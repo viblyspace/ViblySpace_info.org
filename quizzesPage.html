@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViblySpace - Coding Quizzes</title>
+    <link rel="icon" type="image/x-icon" href="connection.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --success: #4CAF50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --dark: #2d3748;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --html-color: #e34c26;
+            --python-color: #306998;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 0;
+            min-height: calc(100vh - 200px);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Quizzes Section */
+        .quizzes-section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* Quiz Cards Grid */
+        .quiz-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .quiz-cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Quiz Card */
+        .quiz-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .quiz-header {
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--html-color), #f06529);
+        }
+
+        .python-card .quiz-header::before {
+            background: linear-gradient(to right, var(--python-color), #4B8BBE);
+        }
+
+        .quiz-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .html-card .quiz-icon {
+            color: var(--html-color);
+        }
+
+        .python-card .quiz-icon {
+            color: var(--python-color);
+        }
+
+        .quiz-header h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .quiz-level {
+            display: inline-block;
+            padding: 6px 15px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .html-card .quiz-level {
+            background: rgba(227, 76, 38, 0.1);
+            color: var(--html-color);
+        }
+
+        .python-card .quiz-level {
+            background: rgba(48, 105, 152, 0.1);
+            color: var(--python-color);
+        }
+
+        .quiz-description {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Quiz Details */
+        .quiz-details {
+            padding: 25px;
+            border-top: 1px solid #eee;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .detail-item i {
+            width: 20px;
+            color: var(--primary);
+        }
+
+        /* Removed .quiz-stats CSS section */
+
+        /* Start Quiz Button */
+        .start-quiz-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--html-color), #f06529);
+            color: white;
+            border: none;
+            border-radius: 0 0 20px 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .start-quiz-btn:hover {
+            background: linear-gradient(135deg, #f06529, var(--html-color));
+            letter-spacing: 1px;
+        }
+
+        .python-card .start-quiz-btn {
+            background: linear-gradient(135deg, var(--python-color), #4B8BBE);
+        }
+
+        .python-card .start-quiz-btn:hover {
+            background: linear-gradient(135deg, #4B8BBE, var(--python-color));
+        }
+
+        .start-quiz-btn i {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .start-quiz-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Instructions Section */
+        .instructions-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        .instructions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .instruction-card {
+            text-align: center;
+            padding: 25px;
+            border-radius: 15px;
+            background: var(--light);
+            transition: all 0.3s ease;
+        }
+
+        .instruction-card:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        }
+
+        .instruction-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 20px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .instruction-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .instruction-card p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark), #1a202c);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-section p {
+            color: #b0b7c3;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul li a {
+            color: #b0b7c3;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b0b7c3;
+            font-size: 0.9rem;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transform: translateX(150%);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-width: 350px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        /* Progress Bar Animation */
+        .progress-bar {
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 3px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .quiz-cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quiz-card {
+                max-width: 100%;
+            }
+
+            .instructions-section {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .quiz-header h3 {
+                font-size: 1.6rem;
+            }
+
+            .quiz-icon {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-laptop-code logo-icon"></i>
+                <div class="logo-text">ViblySpace</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="concept.html"><i class="fab fa-html5"></i> HTML</a></li>
+                    <li><a href="python.html"><i class="fab fa-python"></i> Python</a></li>
+                    <li><a href="#instructions"><i class="fas fa-info-circle"></i> Instructions</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Test Your Coding Skills</h1>
+            <p>Challenge yourself with our interactive HTML and Python quizzes. Track your progress and earn certificates as you master each language.</p>
+            <div class="progress-bar"></div>
+        </div>
+
+        <!-- Quizzes Section -->
+        <section class="quizzes-section">
+            <h2 class="section-title">Available Quizzes</h2>
+            
+            <div class="quiz-cards-grid">
+                <!-- HTML Quiz Card -->
+                <div class="quiz-card html-card">
+                    <div class="quiz-header">
+                        <i class="fab fa-html5 quiz-icon"></i>
+                        <h3>HTML Fundamentals Quiz</h3>
+                        <span class="quiz-level">Beginner to Intermediate</span>
+                        <p class="quiz-description">
+                            Test your knowledge of HTML5, tags, attributes, semantic elements, forms, and modern web development concepts. Perfect for beginners and intermediate developers.
+                        </p>
+                    </div>
+                    
+                    <div class="quiz-details">
+                        <div class="detail-item">
+                            <i class="fas fa-question-circle"></i>
+                            <span><strong>25 Questions</strong> covering all HTML5 concepts</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span><strong>30 Minute</strong> time limit</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-star"></i>
+                            <span>Score <strong>70% or higher</strong> to pass</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Earn a <strong>certificate</strong> upon completion</span>
+                        </div>
+                        
+                        <!-- Removed quiz-stats div -->
+                    </div>
+                    
+                    <a href="certificatepage.html" class="start-quiz-btn">
+                        Start HTML Quiz <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Python Quiz Card -->
+                <div class="quiz-card python-card">
+                    <div class="quiz-header">
+                        <i class="fab fa-python quiz-icon"></i>
+                        <h3>Python Programming Quiz</h3>
+                        <span class="quiz-level">Beginner to Advanced</span>
+                        <p class="quiz-description">
+                            Challenge yourself with Python concepts including data types, functions, OOP, error handling, and common libraries. Suitable for all skill levels.
+                     </p>
+                    </div>
+                    
+                    <div class="quiz-details">
+                        <div class="detail-item">
+                            <i class="fas fa-question-circle"></i>
+                            <span><strong>20 Questions</strong> on Python fundamentals</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span><strong>25 Minute</strong> time limit</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-star"></i>
+                            <span>Score <strong>70% or higher</strong> to pass</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Earn a <strong>certificate</strong> upon completion</span>
+                        </div>
+                        
+                        <!-- Removed quiz-stats div -->
+                         
+                    </div>
+                     <br>
+                    <a href="pythonuizzes.html" class="start-quiz-btn">
+                        Start Python Quiz <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instructions Section -->
+        <section id="instructions" class="instructions-section">
+            <h2 class="section-title">Quiz Instructions</h2>
+            <p style="text-align: center; color: var(--gray); margin-bottom: 30px;">
+                Follow these guidelines for the best quiz experience
+            </p>
+            
+            <div class="instructions-grid">
+                <div class="instruction-card">
+                    <i class="fas fa-book instruction-icon"></i>
+                    <h4>Prepare Yourself</h4>
+                    <p>Review the course material before attempting the quiz. Make sure you understand the key concepts.</p>
+                </div>
+                
+                <div class="instruction-card">
+                    <i class="fas fa-clock instruction-icon"></i>
+                    <h4>Time Management</h4>
+                    <p>Each quiz has a time limit. Read questions carefully and manage your time effectively.</p>
+                </div>
+                
+                <div class="instruction-card">
+                    <i class="fas fa-laptop instruction-icon"></i>
+                    <h4>Stable Connection</h4>
+                    <p>Ensure you have a stable internet connection. The quiz will auto-submit when time expires.</p>
+                </div>
+                
+                <div class="instruction-card">
+                    <i class="fas fa-certificate instruction-icon"></i>
+                    <h4>Earn Certificate</h4>
+                    <p>Score above the passing threshold to earn a certificate. You can retake the quiz to improve your score.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About ViblySpace Quizzes</h3>
+                    <p>Our interactive quizzes are designed to reinforce learning and help you master HTML and Python programming concepts through practice.</p>
+                    <div style="margin-top: 20px;">
+                        <!-- <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; margin-right: 15px;"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" style="color: white;"><i class="fab fa-github"></i></a> -->
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                      
+                    <!-- <ul>
+                        <li><a href="#instructions"><i class="fas fa-question-circle"></i> Quiz Instructions</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact Support</a></li>
+                        <li><a href="faq.html"><i class="fas fa-comments"></i> FAQ</a></li>
+                        <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                    </ul>  -->
+                   
+                </div>
+                
+                <div class="footer-section">
+                   <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="concept.html"><i class="fab fa-html5"></i> HTML</a></li>
+                        <li><a href="python.html"><i class="fab fa-python"></i> Python</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy;ViblySpace. All rights reserved. | Designed for better learning experiences</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <div class="notification-content">
+            <span id="notification-text">Welcome to ViblySpace Quizzes! Ready to test your skills?</span>
+            <button class="notification-close">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const notification = document.getElementById('notification');
+        const notificationClose = document.querySelector('.notification-close');
+        const quizCards = document.querySelectorAll('.quiz-card');
+        const startButtons = document.querySelectorAll('.start-quiz-btn');
+
+        // Show welcome notification
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 1000);
+
+        // Close notification
+        notificationClose.addEventListener('click', () => {
+            notification.classList.remove('show');
+        });
+
+        // Auto-hide notification after 5 seconds
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 5000);
+
+        // Quiz card hover effects
+        quizCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Start quiz button animation
+        startButtons.forEach(button => {
+            button.addEventListener('mouseenter', (e) => {
+                const icon = e.target.querySelector('i');
+                if (icon) {
+                    icon.style.transform = 'translateX(8px)';
+                }
+            });
+            
+            button.addEventListener('mouseleave', (e) => {
+                const icon = e.target.querySelector('i');
+                if (icon) {
+                    icon.style.transform = 'translateX(0)';
+                }
+            });
+            
+            // Confirmation before starting quiz
+            button.addEventListener('click', (e) => {
+                const quizName = e.target.closest('.quiz-card').querySelector('h3').textContent;
+                
+                // Show confirmation notification
+                notification.querySelector('#notification-text').textContent = 
+                    `Starting ${quizName}! Good luck!`;
+                notification.classList.add('show');
+                
+                // Auto-hide confirmation
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add loading animation to start buttons
+        startButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Only show loading if the link is valid
+                if (!this.getAttribute('href') || this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading Quiz...';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        notification.querySelector('#notification-text').textContent = 
+                            'Quiz file not found. Please check the file path.';
+                        notification.classList.add('show');
+                        
+                        setTimeout(() => {
+                            notification.classList.remove('show');
+                        }, 3000);
+                    }, 1500);
+                }
+            });
+        });
+
+        // Add typing effect to page header description
+        const headerDescription = document.querySelector('.page-header p');
+        if (headerDescription) {
+            const originalText = headerDescription.textContent;
+            headerDescription.textContent = '';
+            
+            let i = 0;
+            const typeWriter = () => {
+                if (i < originalText.length) {
+                    headerDescription.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 30);
+                }
+            };
+            
+            // Start typing effect after page loads
+            window.addEventListener('load', () => {
+                setTimeout(typeWriter, 500);
+            });
+        }
+
+        // Progress bar animation
+        const progressBar = document.querySelector('.progress-bar');
+        if (progressBar) {
+            let width = 0;
+            const animateProgress = () => {
+                if (width >= 100) {
+                    width = 0;
+                } else {
+                    width += 0.5;
+                }
+                progressBar.style.width = width + '%';
+                requestAnimationFrame(animateProgress);
+            };
+            
+            // Start animation
+            setTimeout(() => {
+                progressBar.style.width = '100%';
+                progressBar.style.transition = 'width 2s ease-in-out';
+                
+                // After reaching 100%, start the shimmer animation
+                setTimeout(() => {
+                    progressBar.style.width = '100%';
+                }, 2000);
+            }, 1000);
+        }
+
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // H key for HTML quiz
+            if (e.key === 'h' || e.key === 'H') {
+                e.preventDefault();
+                document.querySelector('.html-card .start-quiz-btn').click();
+            }
+            
+            // P key for Python quiz
+            if (e.key === 'p' || e.key === 'P') {
+                e.preventDefault();
+                document.querySelector('.python-card .start-quiz-btn').click();
+            }
+            
+            // Esc key to close notification
+            if (e.key === 'Escape') {
+                notification.classList.remove('show');
+            }
+        });
+
+        // Page load animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViblySpace - Grade 7 Programming Curriculum</title>
+    <link rel="icon" type="favicon" href="connection.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #2d3748;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        .main-header {
+            background: white;
+            color: #2d3748;
+            padding: 15px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #4f46e5;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .main-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed, #06b6d4);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            font-size: 2.2rem;
+            color: #4f46e5;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        nav a:hover {
+            color: #4f46e5;
+            background-color: #f1f5f9;
+        }
+        
+        nav a.active {
+            color: #4f46e5;
+            background-color: #eef2ff;
+            font-weight: 600;
+        }
+
+        /* Page Header */
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .grade-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Navigation */
+        .chapter-nav {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .chapter-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            list-style: none;
+        }
+        
+        .chapter-item {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #4f46e5;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .chapter-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chapter-icon {
+            font-size: 1.5rem;
+            color: #4f46e5;
+            width: 40px;
+            text-align: center;
+        }
+        
+        /* Content Cards */
+        .chapter {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+        
+        .chapter::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .chapter-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .chapter-number {
+            background: #4f46e5;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+        }
+        
+        h2 {
+            color: #2d3748;
+            font-size: 1.8rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h3 {
+            color: #4f46e5;
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h4 {
+            color: #5a67d8;
+            margin: 20px 0 12px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Content Elements */
+        .concept-box {
+            background: linear-gradient(135deg, #f0f4ff 0%, #f8faff 100%);
+            border-left: 4px solid #4f46e5;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+            position: relative;
+        }
+        
+        .concept-box::before {
+            content: "\f0eb";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #4f46e5;
+            opacity: 0.2;
+            font-size: 2rem;
+        }
+        
+        .real-world {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .real-world::before {
+            content: "\f06c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #38a169;
+            opacity: 0.3;
+            font-size: 1.5rem;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            border: 1px solid #4a5568;
+            position: relative;
+        }
+        
+        .code-block::before {
+            content: "\f121";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #a0aec0;
+            font-size: 1rem;
+        }
+        
+        .code-comment {
+            color: #a0aec0;
+        }
+        
+        .output {
+            background: #edf2f7;
+            border: 2px dashed #cbd5e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .output::before {
+            content: "Output";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #edf2f7;
+            padding: 0 10px;
+            font-size: 0.8rem;
+            color: #4a5568;
+            font-weight: 600;
+        }
+        
+        .try-it {
+            background: linear-gradient(135deg, #ebf8ff 0%, #f0fff4 100%);
+            border: 2px solid #4f46e5;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+        }
+        
+        .try-it::before {
+            content: "\f544";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #4f46e5;
+            opacity: 0.3;
+            font-size: 2rem;
+        }
+        
+        .interactive-area {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .code-editor {
+            width: 100%;
+            min-height: 150px;
+            background: #2d3748;
+            color: #e2e8f0;
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.95rem;
+            resize: vertical;
+            margin: 15px 0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+        }
+        
+        .hint {
+            background: #fffaf0;
+            border: 1px solid #fbd38d;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            position: relative;
+        }
+        
+        .hint::before {
+            content: "\f05a";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #d69e2e;
+            font-size: 1.2rem;
+        }
+        
+        .success {
+            color: #38a169;
+            font-weight: 600;
+        }
+        
+        .error {
+            color: #e53e3e;
+            font-weight: 600;
+        }
+        
+        /* Project Section */
+        .project {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,70 C20,40 40,60 60,30 C80,0 100,20 100,50 L100,100 L0,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .project h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #718096;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .chapter {
+                padding: 25px;
+            }
+            
+            .chapter-list {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                gap: 10px;
+            }
+            
+            nav a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .logo-icon {
+                font-size: 1.8rem;
+            }
+            
+            .chapter-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .chapter-number {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Header -->
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-laptop-code logo-icon"></i>
+                    <div class="logo-text">ViblySpace</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="5thgrade.html" class="nav-link">Grade 5</a></li>
+                        <li><a href="6thgrade.html" class="nav-link">Grade 6</a></li>
+                        <li><a href="7thgrade.html" class="nav-link active">Grade 7</a></li>
+                        <li><a href="8thgrade.html" class="nav-link">Grade 8</a></li>
+                        <li><a href="python.html" class="nav-link">Python</a></li>
+                        <li><a href="concept.html" class="nav-link">HTML</a></li>
+                        <li><a href="css.html" class="nav-link">CSS</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Page Header -->
+        <div class="header">
+            <div class="grade-tag"><i class="fas fa-graduation-cap"></i> Grade 7 Curriculum</div>
+            <h1><i class="fas fa-code"></i> Building Programming Foundations</h1>
+            <p class="subtitle">Master the essential building blocks of programming with Python. Learn to think like a programmer and create your first real applications.</p>
+        </div>
+
+        <!-- Chapter Navigation -->
+        <div class="chapter-nav">
+            <h3 style="color: #4f46e5; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-map"></i> Course Chapters
+            </h3>
+            <ul class="chapter-list">
+                <li class="chapter-item">
+                    <div class="chapter-icon"><i class="fas fa-cube"></i></div>
+                    <div><strong>Chapter 1:</strong> Functions & Modular Programming</div>
+                </li>
+                <li class="chapter-item">
+                    <div class="chapter-icon"><i class="fas fa-redo"></i></div>
+                    <div><strong>Chapter 2:</strong> Loops & Repetition</div>
+                </li>
+                <li class="chapter-item">
+                    <div class="chapter-icon"><i class="fas fa-layer-group"></i></div>
+                    <div><strong>Chapter 3:</strong> Data Structures - Lists & Tuples</div>
+                </li>
+                <li class="chapter-item">
+                    <div class="chapter-icon"><i class="fas fa-puzzle-piece"></i></div>
+                    <div><strong>Chapter 4:</strong> Problem Solving Techniques</div>
+                </li>
+                <li class="chapter-item">
+                    <div class="chapter-icon"><i class="fas fa-gamepad"></i></div>
+                    <div><strong>Final Project:</strong> Number Guessing Game</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Chapter 1 -->
+        <div class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">1</div>
+                <h2><i class="fas fa-cube"></i> Functions & Modular Programming</h2>
+            </div>
+
+            <div class="concept-box">
+                <h3><i class="fas fa-lightbulb"></i> What Are Functions?</h3>
+                <p>Functions are like mini-programs within your main program. They help you organize code, avoid repetition, and make your programs easier to understand and maintain.</p>
+                
+                <h4><i class="fas fa-check-circle"></i> Why Use Functions?</h4>
+                <ul style="margin: 15px 0 15px 30px;">
+                    <li><strong>Reusability:</strong> Write once, use multiple times</li>
+                    <li><strong>Organization:</strong> Break complex problems into smaller pieces</li>
+                    <li><strong>Debugging:</strong> Easier to find and fix errors</li>
+                    <li><strong>Collaboration:</strong> Multiple programmers can work on different functions</li>
+                </ul>
+            </div>
+
+            <h3><i class="fas fa-code"></i> Function Syntax</h3>
+            <div class="code-block">
+<span class="code-comment"># Function definition</span><br>
+<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">function_name</span>(parameters):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Function body - indented code</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">return</span> result<br>
+<br>
+<span class="code-comment"># Function call</span><br>
+function_name(arguments)
+            </div>
+
+            <div class="real-world">
+                <h4><i class="fas fa-globe-americas"></i> Real-World Analogy</h4>
+                <p>Think of a function like a kitchen recipe. The recipe (function) has ingredients (parameters) and steps (code). You can use the same recipe multiple times with different ingredients to make different dishes!</p>
+            </div>
+
+            <h3><i class="fas fa-list-ol"></i> Detailed Examples</h3>
+            
+            <h4><i class="fas fa-comment"></i> Example 1: Simple Greeting Function</h4>
+            <div class="code-block">
+<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">greet_student</span>():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># This function greets a student</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Hello! Welcome to programming class!"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"We're going to learn amazing things today!"</span>)<br>
+<br>
+<span class="code-comment"># Using the function</span><br>
+greet_student()<br>
+greet_student()  <span class="code-comment"># Can call it multiple times!</span>
+            </div>
+            <div class="output">
+Hello! Welcome to programming class!<br>
+We're going to learn amazing things today!<br>
+Hello! Welcome to programming class!<br>
+We're going to learn amazing things today!
+            </div>
+
+            <h4><i class="fas fa-user-friends"></i> Example 2: Function with Parameters</h4>
+            <div class="code-block">
+<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">personal_greeting</span>(name, subject):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Greet a student personally</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;message = <span style="color: #f1fa8c">f"Hello {name}! Ready to learn {subject}?"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(message)<br>
+<br>
+<span class="code-comment"># Using the function with different arguments</span><br>
+personal_greeting(<span style="color: #f1fa8c">"Anya"</span>, <span style="color: #f1fa8c">"Python"</span>)<br>
+personal_greeting(<span style="color: #f1fa8c">"Rohan"</span>, <span style="color: #f1fa8c">"mathematics"</span>)
+            </div>
+            <div class="output">
+Hello Anya! Ready to learn Python?<br>
+Hello Rohan! Ready to learn mathematics?
+            </div>
+
+            <div class="try-it">
+                <h3><i class="fas fa-flask"></i> Try It Yourself: Create Your First Function</h3>
+                <p>Create a function that introduces a student with their name, age, and favorite subject.</p>
+                
+                <div class="interactive-area">
+                    <textarea class="code-editor" id="code1-1">def introduce_student(name, age, favorite_subject):
+    # Create an introduction message
+    print(f"Meet {name}, who is {age} years old.")
+    print(f"{name}'s favorite subject is {favorite_subject}!")
+    print("Let's welcome them to our class!\n")
+
+# Test your function with different students
+introduce_student("Alex", 13, "Science")
+introduce_student("Priya", 12, "Art")</textarea>
+                    <button class="btn" onclick="runCode('1-1')"><i class="fas fa-play"></i> Run Code</button>
+                    <div class="hint">
+                        <strong>Hint:</strong> Make sure to use the f-string format with {variables} inside your print statements!
+                    </div>
+                    <div id="output1-1" class="output">Output will appear here...</div>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-undo"></i> Return Values</h3>
+            <p>Functions can also return values that you can use in other parts of your program.</p>
+            
+            <div class="code-block">
+<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">calculate_area</span>(length, width):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Calculate area of a rectangle</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;area = length * width<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">return</span> area<br>
+<br>
+<span class="code-comment"># Using the return value</span><br>
+room_area = calculate_area(<span style="color: #bd93f9">10</span>, <span style="color: #bd93f9">5</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"The room area is {room_area} square meters"</span>)
+            </div>
+            <div class="output">
+The room area is 50 square meters
+            </div>
+        </div>
+
+        <!-- Chapter 2 -->
+        <div class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">2</div>
+                <h2><i class="fas fa-redo"></i> Loops & Repetition</h2>
+            </div>
+
+            <div class="concept-box">
+                <h3><i class="fas fa-question-circle"></i> Why Use Loops?</h3>
+                <p>Loops allow you to repeat code multiple times without writing it over and over. This is essential for processing lists, calculating multiple values, or creating interactive programs.</p>
+            </div>
+
+            <h3><i class="fas fa-sync"></i> While Loops</h3>
+            <p>While loops continue running as long as a condition is True.</p>
+            
+            <div class="code-block">
+<span class="code-comment"># Basic while loop structure</span><br>
+<span style="color: #ff79c6">while</span> condition:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Code to repeat</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Don't forget to update the condition!</span>
+            </div>
+
+            <h4><i class="fas fa-hourglass-half"></i> Example: Countdown Timer</h4>
+            <div class="code-block">
+countdown = <span style="color: #bd93f9">5</span><br>
+<br>
+<span style="color: #ff79c6">while</span> countdown > <span style="color: #bd93f9">0</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Countdown: {countdown}"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;countdown = countdown - <span style="color: #bd93f9">1</span><br>
+<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Blast off! 🚀"</span>)
+            </div>
+            <div class="output">
+Countdown: 5<br>
+Countdown: 4<br>
+Countdown: 3<br>
+Countdown: 2<br>
+Countdown: 1<br>
+Blast off! 🚀
+            </div>
+
+            <div class="try-it">
+                <h3><i class="fas fa-flask"></i> Try It Yourself: Create a Multiplication Table</h3>
+                <p>Use a while loop to create a multiplication table for the number 7.</p>
+                
+                <div class="interactive-area">
+                    <textarea class="code-editor" id="code2-1">number = 7
+counter = 1
+
+print(f"Multiplication table for {number}:")
+while counter <= 10:
+    result = number * counter
+    print(f"{number} × {counter} = {result}")
+    counter += 1  # This is the same as counter = counter + 1
+
+print("Table complete!")</textarea>
+                    <button class="btn" onclick="runCode('2-1')"><i class="fas fa-play"></i> Run Code</button>
+                    <div class="hint">
+                        <strong>Hint:</strong> Remember to update your counter variable inside the loop, otherwise it will run forever!
+                    </div>
+                    <div id="output2-1" class="output">Output will appear here...</div>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-list"></i> For Loops with Lists</h3>
+            <p>For loops are perfect for going through each item in a list.</p>
+            
+            <div class="code-block">
+<span class="code-comment"># Basic for loop structure</span><br>
+<span style="color: #ff79c6">for</span> item <span style="color: #ff79c6">in</span> list_name:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Code to run for each item</span>
+            </div>
+
+            <h4><i class="fas fa-shopping-cart"></i> Example: Processing a Shopping List</h4>
+            <div class="code-block">
+shopping_list = [<span style="color: #f1fa8c">"apples"</span>, <span style="color: #f1fa8c">"bread"</span>, <span style="color: #f1fa8c">"milk"</span>, <span style="color: #f1fa8c">"eggs"</span>]<br>
+<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"My shopping list:"</span>)<br>
+<span style="color: #ff79c6">for</span> item <span style="color: #ff79c6">in</span> shopping_list:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"- {item}"</span>)<br>
+<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Don't forget anything!"</span>)
+            </div>
+            <div class="output">
+My shopping list:<br>
+- apples<br>
+- bread<br>
+- milk<br>
+- eggs<br>
+Don't forget anything!
+            </div>
+        </div>
+
+        <!-- Chapter 3 -->
+        <div class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">3</div>
+                <h2><i class="fas fa-layer-group"></i> Data Structures - Lists & Tuples</h2>
+            </div>
+
+            <div class="concept-box">
+                <h3><i class="fas fa-database"></i> Understanding Data Structures</h3>
+                <p>Data structures help you organize and store multiple pieces of data together. Think of them like containers that hold related information.</p>
+                
+                <h4><i class="fas fa-list"></i> Lists vs Tuples</h4>
+                <ul style="margin: 15px 0 15px 30px;">
+                    <li><strong>Lists:</strong> Mutable - you can change, add, or remove items</li>
+                    <li><strong>Tuples:</strong> Immutable - cannot be changed after creation</li>
+                </ul>
+            </div>
+
+            <h3><i class="fas fa-list-alt"></i> Working with Lists</h3>
+            <p>Lists are versatile and can hold different types of data.</p>
+            
+            <div class="code-block">
+<span class="code-comment"># Creating and modifying lists</span><br>
+<span class="code-comment"># Create a list of student names</span><br>
+students = [<span style="color: #f1fa8c">"Alice"</span>, <span style="color: #f1fa8c">"Bob"</span>, <span style="color: #f1fa8c">"Charlie"</span>, <span style="color: #f1fa8c">"Diana"</span>]<br>
+<br>
+<span class="code-comment"># Add a new student</span><br>
+students.append(<span style="color: #f1fa8c">"Ethan"</span>)<br>
+<br>
+<span class="code-comment"># Remove a student</span><br>
+students.remove(<span style="color: #f1fa8c">"Bob"</span>)<br>
+<br>
+<span class="code-comment"># Access elements</span><br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"First student:"</span>, students[<span style="color: #bd93f9">0</span>])<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"All students:"</span>, students)
+            </div>
+            <div class="output">
+First student: Alice<br>
+All students: ['Alice', 'Charlie', 'Diana', 'Ethan']
+            </div>
+
+            <h4><i class="fas fa-calculator"></i> Example: Grade Calculator</h4>
+            <div class="code-block">
+<span class="code-comment"># Calculate average grade using a list</span><br>
+grades = [<span style="color: #bd93f9">85</span>, <span style="color: #bd93f9">92</span>, <span style="color: #bd93f9">78</span>, <span style="color: #bd93f9">96</span>, <span style="color: #bd93f9">88</span>]<br>
+<br>
+<span class="code-comment"># Calculate average</span><br>
+total = <span style="color: #bd93f9">0</span><br>
+<span style="color: #ff79c6">for</span> grade <span style="color: #ff79c6">in</span> grades:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;total += grade<br>
+<br>
+average = total / <span style="color: #8be9fd">len</span>(grades)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Grades: {grades}"</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Average grade: {average}"</span>)
+            </div>
+            <div class="output">
+Grades: [85, 92, 78, 96, 88]<br>
+Average grade: 87.8
+            </div>
+
+            <div class="try-it">
+                <h3><i class="fas fa-flask"></i> Try It Yourself: Shopping Cart Manager</h3>
+                <p>Create a program that manages a shopping cart using lists.</p>
+                
+                <div class="interactive-area">
+                    <textarea class="code-editor" id="code3-1"># Shopping cart program
+cart = []
+
+# Add items to cart
+cart.append("Milk")
+cart.append("Bread")
+cart.append("Eggs")
+
+print("Your shopping cart:")
+for item in cart:
+    print(f"- {item}")
+
+# Remove an item
+cart.remove("Bread")
+print("\nAfter removing Bread:")
+for item in cart:
+    print(f"- {item}")
+
+# Check if cart is empty
+if len(cart) == 0:
+    print("Your cart is empty!")
+else:
+    print(f"You have {len(cart)} items in your cart.")</textarea>
+                    <button class="btn" onclick="runCode('3-1')"><i class="fas fa-play"></i> Run Code</button>
+                    <div class="hint">
+                        <strong>Hint:</strong> Use append() to add items and remove() to remove items from the list.
+                    </div>
+                    <div id="output3-1" class="output">Output will appear here...</div>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-lock"></i> Understanding Tuples</h3>
+            <p>Tuples are like lists but cannot be modified after creation.</p>
+            
+            <div class="code-block">
+<span class="code-comment"># Working with tuples</span><br>
+<span class="code-comment"># Create a tuple for student information</span><br>
+student_info = (<span style="color: #f1fa8c">"Alice"</span>, <span style="color: #bd93f9">14</span>, <span style="color: #f1fa8c">"Grade 8"</span>)<br>
+<br>
+<span class="code-comment"># Access tuple elements</span><br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Name:"</span>, student_info[<span style="color: #bd93f9">0</span>])<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Age:"</span>, student_info[<span style="color: #bd93f9">1</span>])<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Grade:"</span>, student_info[<span style="color: #bd93f9">2</span>])<br>
+<br>
+<span class="code-comment"># This would cause an error (tuples are immutable):</span><br>
+<span class="code-comment"># student_info[1] = 15  # Uncomment to see the error</span>
+            </div>
+            <div class="output">
+Name: Alice<br>
+Age: 14<br>
+Grade: Grade 8
+            </div>
+        </div>
+
+        <!-- Chapter 4 -->
+        <div class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">4</div>
+                <h2><i class="fas fa-puzzle-piece"></i> Problem Solving Techniques</h2>
+            </div>
+
+            <div class="concept-box">
+                <h3><i class="fas fa-brain"></i> The Programmer's Mindset</h3>
+                <p>Great programmers aren't just good at writing code - they're excellent problem solvers. Learning how to break down problems is the key to success.</p>
+                
+                <h4><i class="fas fa-road"></i> The Problem-Solving Process</h4>
+                <ol style="margin: 15px 0 15px 30px;">
+                    <li><strong>Understand:</strong> What exactly needs to be solved?</li>
+                    <li><strong>Plan:</strong> Break the problem into smaller steps</li>
+                    <li><strong>Code:</strong> Write the solution step by step</li>
+                    <li><strong>Test:</strong> Check if your solution works correctly</li>
+                    <li><strong>Improve:</strong> Make your code cleaner and more efficient</li>
+                </ol>
+            </div>
+
+            <h3><i class="fas fa-project-diagram"></i> Example: Planning a Birthday Party</h3>
+            <p>Let's see how we can apply problem-solving to plan a birthday party programmatically.</p>
+            
+            <div class="code-block">
+<span class="code-comment"># Birthday Party Planner</span><br>
+<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">plan_party</span>():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Step 1: Create guest list</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;guests = [<span style="color: #f1fa8c">"Alice"</span>, <span style="color: #f1fa8c">"Bob"</span>, <span style="color: #f1fa8c">"Charlie"</span>, <span style="color: #f1fa8c">"Diana"</span>]<br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Step 2: Plan activities</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;activities = [<span style="color: #f1fa8c">"Games"</span>, <span style="color: #f1fa8c">"Cake"</span>, <span style="color: #f1fa8c">"Presents"</span>]<br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Step 3: Send invitations</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"🎉 Birthday Party Plan 🎉"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Guests: {', '.join(guests)}"</span>)<br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Step 4: Schedule activities</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"\nParty Schedule:"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">for</span> i, activity <span style="color: #ff79c6">in</span> <span style="color: #8be9fd">enumerate</span>(activities, <span style="color: #bd93f9">1</span>):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"{i}. {activity}"</span>)<br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Step 5: Check preparations</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"\nReady for {len(guests)} guests!"</span>)<br>
+<br>
+<span class="code-comment"># Run the party planner</span><br>
+plan_party()
+            </div>
+            <div class="output">
+🎉 Birthday Party Plan 🎉<br>
+Guests: Alice, Bob, Charlie, Diana<br><br>
+Party Schedule:<br>
+1. Games<br>
+2. Cake<br>
+3. Presents<br><br>
+Ready for 4 guests!
+            </div>
+
+            <div class="real-world">
+                <h4><i class="fas fa-lightbulb"></i> Problem-Solving Tip: Rubber Duck Debugging</h4>
+                <p>When you're stuck, try explaining your code line by line to someone (or even a rubber duck!). This often helps you spot errors you might have missed.</p>
+            </div>
+
+            <div class="try-it">
+                <h3><i class="fas fa-flask"></i> Try It Yourself: Simple Calculator</h3>
+                <p>Create a calculator that can add, subtract, multiply, and divide two numbers.</p>
+                
+                <div class="interactive-area">
+                    <textarea class="code-editor" id="code4-1">def calculator():
+    print("🧮 Simple Calculator")
+    print("Operations: +, -, *, /")
+    
+    # Get user input
+    num1 = float(input("Enter first number: "))
+    operation = input("Enter operation (+, -, *, /): ")
+    num2 = float(input("Enter second number: "))
+    
+    # Perform calculation
+    if operation == "+":
+        result = num1 + num2
+    elif operation == "-":
+        result = num1 - num2
+    elif operation == "*":
+        result = num1 * num2
+    elif operation == "/":
+        if num2 != 0:
+            result = num1 / num2
+        else:
+            result = "Error: Cannot divide by zero!"
+    else:
+        result = "Error: Invalid operation!"
+    
+    # Display result
+    print(f"Result: {result}")
+
+# Run the calculator
+calculator()</textarea>
+                    <button class="btn" onclick="runCode('4-1')"><i class="fas fa-play"></i> Run Code</button>
+                    <div class="hint">
+                        <strong>Hint:</strong> Remember to handle division by zero! Use if statements to check different operations.
+                    </div>
+                    <div id="output4-1" class="output">Output will appear here...</div>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-search"></i> Debugging Strategies</h3>
+            <p>Even experienced programmers make mistakes. Here's how to find and fix them:</p>
+            
+            <div class="code-block">
+<span class="code-comment"># Debugging example</span><br>
+<span class="code-comment"># This code has a bug - can you spot it?</span><br>
+numbers = [<span style="color: #bd93f9">1</span>, <span style="color: #bd93f9">2</span>, <span style="color: #bd93f9">3</span>, <span style="color: #bd93f9">4</span>, <span style="color: #bd93f9">5</span>]<br>
+total = <span style="color: #bd93f9">0</span><br>
+<br>
+<span style="color: #ff79c6">for</span> i <span style="color: #ff79c6">in</span> <span style="color: #8be9fd">range</span>(<span style="color: #bd93f9">5</span>):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;total = total + numbers[i]<br>
+    <br>
+<span class="code-comment"># Debugging technique: Print intermediate values</span><br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Total: {total}"</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Expected: 15"</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Correct? {total == 15}"</span>)
+            </div>
+            <div class="output">
+Total: 15<br>
+Expected: 15<br>
+Correct? True
+            </div>
+        </div>
+
+        <!-- Final Project -->
+        <div class="project">
+            <h3><i class="fas fa-gamepad"></i> Final Project: Number Guessing Game</h3>
+            <p>Combine everything you've learned to create an interactive number guessing game!</p>
+            
+            <div class="code-block" style="background: rgba(0, 0, 0, 0.3);">
+<span class="code-comment"># Number Guessing Game - Complete Project</span><br>
+<span style="color: #ff79c6">import</span> random<br>
+<br>
+<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">guessing_game</span>():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Generate a random number between 1-20</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;secret_number = random.randint(<span style="color: #bd93f9">1</span>, <span style="color: #bd93f9">20</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;attempts = <span style="color: #bd93f9">0</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;max_attempts = <span style="color: #bd93f9">5</span><br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"🎮 Welcome to the Number Guessing Game!"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"I'm thinking of a number between 1-20. You have {max_attempts} tries."</span>)<br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">while</span> attempts < max_attempts:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">try</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;guess = int(<span style="color: #8be9fd">input</span>(<span style="color: #f1fa8c">"Enter your guess: "</span>))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attempts += <span style="color: #bd93f9">1</span><br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">if</span> guess == secret_number:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"🎉 Congratulations! You guessed it in {attempts} tries!"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">break</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">elif</span> guess < secret_number:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"📈 Too low! Try a higher number."</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">else</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"📉 Too high! Try a lower number."</span>)<br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remaining = max_attempts - attempts<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"🔄 {remaining} attempts remaining\n"</span>)<br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">except</span> ValueError:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"❌ Please enter a valid number!"</span>)<br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">if</span> attempts == max_attempts <span style="color: #ff79c6">and</span> guess != secret_number:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"💔 Game over! The number was {secret_number}"</span>)<br>
+<br>
+<span class="code-comment"># Start the game</span><br>
+guessing_game()
+            </div>
+
+            <div class="try-it" style="background: rgba(255, 255, 255, 0.1); border-color: white;">
+                <h3 style="color: white;"><i class="fas fa-rocket"></i> Challenge: Enhance the Game</h3>
+                <p style="color: white;">Try adding these features to make the game even better:</p>
+                <ul style="color: white; margin: 15px 0 15px 30px;">
+                    <li><i class="fas fa-star"></i> Add a scoring system</li>
+                    <li><i class="fas fa-sliders-h"></i> Let players choose difficulty levels</li>
+                    <li><i class="fas fa-trophy"></i> Keep track of high scores</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="lesson-nav">
+            <button class="btn"><a href="6thgrade.html" style="color: white; text-decoration: none;"><i class="fas fa-arrow-left"></i> Previous Grade</a></button>
+            <button class="btn"><a href="8thgrade.html" style="color: white; text-decoration: none;">Next Grade <i class="fas fa-arrow-right"></i></a></button>
+        </div>
+
+        <footer>
+            <p>ViblySpace - Grade 7 Programming Curriculum | Building Strong Foundations for Future Coders</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;"><i class="fas fa-arrow-right"></i> Next: Grade 8 - Problem Solving with Data Structures</p>
+            <button class="btn" style="margin-top: 15px;"><a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-home"></i> Back to ViblySpace</a></button>
+        </footer>
+    </div>
+
+    <script>
+        function runCode(codeId) {
+            const code = document.getElementById(`code${codeId}`).value;
+            const outputElement = document.getElementById(`output${codeId}`);
+            
+            try {
+                outputElement.innerHTML = '';
+                outputElement.className = 'output';
+                
+                let output = simulatePythonExecution(code);
+                outputElement.innerHTML = output;
+                
+            } catch (error) {
+                outputElement.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+                outputElement.className = 'output error';
+            }
+        }
+
+        function simulatePythonExecution(code) {
+            let output = '';
+            
+            // Simple simulation for educational purposes
+            if (code.includes('introduce_student')) {
+                output = `Meet Alex, who is 13 years old.<br>Alex's favorite subject is Science!<br>Let's welcome them to our class!<br><br>Meet Priya, who is 12 years old.<br>Priya's favorite subject is Art!<br>Let's welcome them to our class!`;
+            } else if (code.includes('Multiplication table')) {
+                output = `Multiplication table for 7:<br>7 × 1 = 7<br>7 × 2 = 14<br>7 × 3 = 21<br>7 × 4 = 28<br>7 × 5 = 35<br>7 × 6 = 42<br>7 × 7 = 49<br>7 × 8 = 56<br>7 × 9 = 63<br>7 × 10 = 70<br>Table complete!`;
+            } else if (code.includes('shopping cart')) {
+                output = `Your shopping cart:<br>- Milk<br>- Bread<br>- Eggs<br><br>After removing Bread:<br>- Milk<br>- Eggs<br><br>You have 2 items in your cart.`;
+            } else if (code.includes('calculator')) {
+                output = `🧮 Simple Calculator<br>Operations: +, -, *, /<br>Enter first number: [Type a number]<br>Enter operation (+, -, *, /): [Type an operation]<br>Enter second number: [Type a number]<br>Result: [Calculation result will appear here]`;
+            }
+            
+            return output || 'Code executed successfully! Check the example outputs above.';
+        }
+
+        // Initialize with example outputs
+        window.onload = function() {
+            document.getElementById('output1-1').innerHTML = 'Run the code to see the student introductions!';
+            document.getElementById('output2-1').innerHTML = 'Run the code to see the multiplication table!';
+            document.getElementById('output3-1').innerHTML = 'Run the code to manage your shopping cart!';
+            document.getElementById('output4-1').innerHTML = 'Run the code to use the calculator!';
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViblySpace - JavaScript Practice Exercises</title>
+    <link rel="icon" type="favicon" href="connection.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Professional Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 12px 0;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #3498db;
+            margin-right: 20px;
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
+            margin-right: 8px;
+            color: #3498db;
+        }
+        
+        .main-nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links li {
+            margin: 0 5px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .language-nav {
+            display: flex;
+            list-style: none;
+            margin-left: 15px;
+        }
+        
+        .language-nav li {
+            margin-left: 8px;
+        }
+        
+        .language-nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            background-color: #f0f2f5;
+        }
+        
+        .language-nav a:hover, .language-nav a.active {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #3498db;
+        }
+        
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .main-nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .main-nav.active {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-links li {
+                margin: 5px 0;
+                width: 100%;
+            }
+            
+            .nav-links a {
+                display: block;
+                width: 100%;
+            }
+            
+            .language-nav {
+                margin: 10px 0 0 0;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .language-nav li {
+                margin: 0 5px 0 0;
+            }
+        }
+        
+        /* Page Header - Restored original styling */
+        .page-header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Navigation - Restored original styling */
+        nav {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 5px 10px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        /* Main Content */
+        main {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Content Sections - Restored original styling */
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        section h3 {
+            color: #3498db;
+            margin: 20px 0 10px;
+        }
+        
+        section p {
+            margin-bottom: 15px;
+        }
+        
+        /* Exercise Containers - Restored original styling */
+        .exercise {
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+        }
+        
+        .exercise h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        
+        /* Calculator Styles - Restored original styling */
+        .calculator {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #2c3e50;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .calculator-display {
+            background-color: #1a252f;
+            color: white;
+            font-size: 2rem;
+            text-align: right;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            min-height: 70px;
+            word-wrap: break-word;
+        }
+        
+        .calculator-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        .calc-btn {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .calc-btn:hover {
+            background-color: #4a6572;
+        }
+        
+        .calc-btn.operator {
+            background-color: #3498db;
+        }
+        
+        .calc-btn.operator:hover {
+            background-color: #2980b9;
+        }
+        
+        .calc-btn.equals {
+            background-color: #e74c3c;
+            grid-column: span 2;
+        }
+        
+        .calc-btn.equals:hover {
+            background-color: #c0392b;
+        }
+        
+        /* To-Do List Styles - Restored original styling */
+        .todo-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .todo-input {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .todo-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+        
+        .todo-input button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .todo-list {
+            list-style: none;
+        }
+        
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .todo-item:last-child {
+            border-bottom: none;
+        }
+        
+        .todo-item.completed span {
+            text-decoration: line-through;
+            color: #7f8c8d;
+        }
+        
+        .todo-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 5px;
+            color: #7f8c8d;
+        }
+        
+        .todo-actions button:hover {
+            color: #e74c3c;
+        }
+        
+        /* Color Changer Styles - Restored original styling */
+        .color-changer {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .color-display {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            transition: background-color 0.3s;
+        }
+        
+        .color-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .color-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            transition: transform 0.2s;
+        }
+        
+        .color-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .color-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .color-inputs input {
+            width: 60px;
+            padding: 5px;
+            text-align: center;
+        }
+        
+        /* Counter App Styles - Restored original styling */
+        .counter {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .counter-value {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 20px 0;
+        }
+        
+        .counter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .counter-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .counter-btn.increment {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .counter-btn.decrement {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .counter-btn.reset {
+            background-color: #95a5a6;
+            color: white;
+        }
+        
+        .counter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .counter-input {
+            margin-top: 20px;
+        }
+        
+        .counter-input input {
+            padding: 8px;
+            width: 80px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        /* Sidebar - Restored original styling */
+        aside {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            align-self: start;
+            position: sticky;
+            top: 100px;
+        }
+        
+        aside h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        aside ul {
+            list-style: none;
+        }
+        
+        aside li {
+            margin-bottom: 10px;
+        }
+        
+        aside a {
+            text-decoration: none;
+            color: #3498db;
+            display: block;
+            padding: 8px 10px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        aside a:hover {
+            background-color: #f0f8ff;
+        }
+        
+        /* Footer - Restored original styling */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #7f8c8d;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        /* Instructions - Restored original styling */
+        .instructions {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .instructions h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        /* Code Examples - Restored original styling */
+        .code-example {
+            background-color: #2c3e50;
+            color: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .code-example .keyword {
+            color: #e74c3c;
+        }
+        
+        .code-example .string {
+            color: #2ecc71;
+        }
+        
+        .code-example .number {
+            color: #3498db;
+        }
+        
+        .code-example .comment {
+            color: #7f8c8d;
+        }
+        
+        .code-example .function {
+            color: #9b59b6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Professional Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-laptop-code logo-icon"></i>
+                <div class="logo-text">ViblySpace</div>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="main-nav" id="mainNav">
+                <ul class="nav-links">
+                    <!-- <li><a href="into.html" class="nav-link">Home</a></li>
+                    <li><a href="into.html#courses" class="nav-link">Courses</a></li>
+                    <li><a href="into.html#grades" class="nav-link">Grade Levels</a></li>
+                    <li><a href="into.html#about" class="nav-link">About</a></li>
+                    <li><a href="into.html#contact" class="nav-link">Contact</a></li> -->
+                </ul>
+                
+                <ul class="language-nav">
+                    <li><a href="concept.html">HTML</a></li>
+                    <li><a href="css.html">CSS</a></li>
+                    <li><a href="python.html">Python</a></li>
+                    <li><a href="js.html">JS</a></li>
+                    <li><a href="ai.html">AI</a></li> 
+                    <li><a href="TRP.html">TRP</a></li> 
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+    <div class="page-header">
+        <div class="container">
+            <h1>JavaScript Practice Exercises</h1>
+            <p>Apply your JavaScript knowledge with these interactive projects</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#calculator">Calculator</a></li>
+                <li><a href="#todo">To-Do List</a></li>
+                <li><a href="#color">Color Changer</a></li>
+                <li><a href="#counter">Counter App</a></li>
+                <li><a href="index.html">->Home</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <div class="content">
+                <section id="calculator">
+                    <h2>Calculator App</h2>
+                    <p>Build a functional calculator that can perform basic arithmetic operations.</p>
+                    
+                    <div class="instructions">
+                        <h4>Instructions:</h4>
+                        <p>Create a calculator that can:</p>
+                        <ul>
+                            <li>Add, subtract, multiply, and divide numbers</li>
+                            <li>Handle decimal numbers</li>
+                            <li>Clear the display</li>
+                            <li>Show the current calculation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exercise">
+                        <h3>Your Calculator</h3>
+                        <div class="calculator">
+                            <div class="calculator-display" id="calcDisplay">0</div>
+                            <div class="calculator-buttons">
+                                <button class="calc-btn" onclick="clearDisplay()">C</button>
+                                <button class="calc-btn" onclick="deleteLast()">⌫</button>
+                                <button class="calc-btn operator" onclick="appendOperator('/')">/</button>
+                                <button class="calc-btn operator" onclick="appendOperator('*')">×</button>
+                                
+                                <button class="calc-btn" onclick="appendNumber('7')">7</button>
+                                <button class="calc-btn" onclick="appendNumber('8')">8</button>
+                                <button class="calc-btn" onclick="appendNumber('9')">9</button>
+                                <button class="calc-btn operator" onclick="appendOperator('-')">-</button>
+                                
+                                <button class="calc-btn" onclick="appendNumber('4')">4</button>
+                                <button class="calc-btn" onclick="appendNumber('5')">5</button>
+                                <button class="calc-btn" onclick="appendNumber('6')">6</button>
+                                <button class="calc-btn operator" onclick="appendOperator('+')">+</button>
+                                
+                                <button class="calc-btn" onclick="appendNumber('1')">1</button>
+                                <button class="calc-btn" onclick="appendNumber('2')">2</button>
+                                <button class="calc-btn" onclick="appendNumber('3')">3</button>
+                                <button class="calc-btn" onclick="appendNumber('0')">0</button>
+                                
+                                <button class="calc-btn" onclick="appendDecimal()">.</button>
+                                <button class="calc-btn equals" onclick="calculate()">=</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-example">
+                        <span class="comment">// Example: Calculator logic structure</span><br>
+                        <span class="keyword">let</span> displayValue = <span class="string">''</span>;<br>
+                        <span class="keyword">let</span> operator = <span class="keyword">null</span>;<br>
+                        <span class="keyword">let</span> firstOperand = <span class="keyword">null</span>;<br><br>
+                        
+                        <span class="keyword">function</span> <span class="function">appendNumber</span>(number) {<br>
+                        &nbsp;&nbsp;<span class="comment">// Add number to display</span><br>
+                        }<br><br>
+                        
+                        <span class="keyword">function</span> <span class="function">appendOperator</span>(nextOperator) {<br>
+                        &nbsp;&nbsp;<span class="comment">// Handle operator selection</span><br>
+                        }<br><br>
+                        
+                        <span class="keyword">function</span> <span class="function">calculate</span>() {<br>
+                        &nbsp;&nbsp;<span class="comment">// Perform calculation and show result</span><br>
+                        }
+                    </div>
+                </section>
+                
+                <section id="todo">
+                    <h2>To-Do List App</h2>
+                    <p>Create a to-do list where you can add, complete, and remove tasks.</p>
+                    
+                    <div class="instructions">
+                        <h4>Instructions:</h4>
+                        <p>Build a to-do list that can:</p>
+                        <ul>
+                            <li>Add new tasks</li>
+                            <li>Mark tasks as completed</li>
+                            <li>Delete tasks</li>
+                            <li>Show the total number of tasks</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exercise">
+                        <h3>Your To-Do List</h3>
+                        <div class="todo-container">
+                            <div class="todo-input">
+                                <input type="text" id="todoInput" placeholder="Add a new task...">
+                                <button onclick="addTodo()">Add Task</button>
+                            </div>
+                            <div id="todoStats" class="todo-stats">Total tasks: 0</div>
+                            <ul class="todo-list" id="todoList">
+                                <!-- Tasks will be added here dynamically -->
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="code-example">
+                        <span class="comment">// Example: To-do list data structure</span><br>
+                        <span class="keyword">let</span> todos = [<br>
+                        &nbsp;&nbsp;{ id: 1, text: <span class="string">'Learn JavaScript'</span>, completed: <span class="keyword">false</span> },<br>
+                        &nbsp;&nbsp;{ id: 2, text: <span class="string">'Build a project'</span>, completed: <span class="keyword">true</span> }<br>
+                        ];<br><br>
+                        
+                        <span class="keyword">function</span> <span class="function">addTodo</span>() {<br>
+                        &nbsp;&nbsp;<span class="comment">// Get input value and add to todos array</span><br>
+                        }<br><br>
+                        
+                        <span class="keyword">function</span> <span class="function">toggleTodo</span>(id) {<br>
+                        &nbsp;&nbsp;<span class="comment">// Mark todo as completed/incomplete</span><br>
+                        }<br><br>
+                        
+                        <span class="keyword">function</span> <span class="function">deleteTodo</span>(id) {<br>
+                        &nbsp;&nbsp;<span class="comment">// Remove todo from array</span><br>
+                        }
+                    </div>
+                </section>
+                
+                <section id="color">
+                    <h2>Color Changer App</h2>
+                    <p>Create an app that changes background colors in different ways.</p>
+                    
+                    <div class="instructions">
+                        <h4>Instructions:</h4>
+                        <p>Build a color changer that can:</p>
+                        <ul>
+                            <li>Change colors with preset buttons</li>
+                            <li>Generate random colors</li>
+                            <li>Use RGB sliders to create custom colors</li>
+                            <li>Show the current color value</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exercise">
+                        <h3>Your Color Changer</h3>
+                        <div class="color-changer">
+                            <div class="color-display" id="colorDisplay"></div>
+                            <div class="color-value" id="colorValue">Current color: #3498db</div>
+                            
+                            <div class="color-controls">
+                                <button class="color-btn" style="background-color: #e74c3c;" onclick="changeColor('#e74c3c')">Red</button>
+                                <button class="color-btn" style="background-color: #2ecc71;" onclick="changeColor('#2ecc71')">Green</button>
+                                <button class="color-btn" style="background-color: #3498db;" onclick="changeColor('#3498db')">Blue</button>
+                                <button class="color-btn" style="background-color: #f39c12;" onclick="changeColor('#f39c12')">Orange</button>
+                                <button class="color-btn" style="background-color: #9b59b6;" onclick="changeColor('#9b59b6')">Purple</button>
+                                <button class="color-btn" style="background-color: #1abc9c;" onclick="changeColor('#1abc9c')">Teal</button>
+                            </div>
+                            
+                            <button class="color-btn" style="background-color: #2c3e50; color: white;" onclick="generateRandomColor()">Random Color</button>
+                            
+                            <div class="color-inputs">
+                                <div>
+                                    <label>R: <input type="number" id="redValue" min="0" max="255" value="52" onchange="updateRGBColor()"></label>
+                                </div>
+                                <div>
+                                    <label>G: <input type="number" id="greenValue" min="0" max="255" value="152" onchange="updateRGBColor()"></label>
+                                </div>
+                                <div>
+                                    <label>B: <input type="number" id="blueValue" min="0" max="255" value="219" onchange="updateRGBColor()"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-example">
+                        <span class="comment">// Example: Color changing functions</span><br>
+                        <span class="keyword">function</span> <span class="function">changeColor</span>(color) {<br>
+                        &nbsp;&nbsp;document.getElementById(<span class="string">'colorDisplay'</span>).style.backgroundColor = color;<br>
+                        }<br><br>
+                        
+                        <span class="keyword">function</span> <span class="function">generateRandomColor</span>() {<br>
+                        &nbsp;&nbsp;<span class="keyword">let</span> r = Math.floor(Math.random() * <span class="number">256</span>);<br>
+                        &nbsp;&nbsp;<span class="keyword">let</span> g = Math.floor(Math.random() * <span class="number">256</span>);<br>
+                        &nbsp;&nbsp;<span class="keyword">let</span> b = Math.floor(Math.random() * <span class="number">256</span>);<br>
+                        &nbsp;&nbsp;<span class="keyword">let</span> color = <span class="string">`rgb(<span class="number">${r}</span>, <span class="number">${g}</span>, <span class="number">${b}</span>)`</span>;<br>
+                        &nbsp;&nbsp;changeColor(color);<br>
+                        }<br><br>
+                        
+                        <span class="keyword">function</span> <span class="function">updateRGBColor</span>() {<br>
+                        &nbsp;&nbsp;<span class="comment">// Get values from RGB inputs and update color</span><br>
+                        }
+                    </div>
+                </section>
+                
+                <section id="counter">
+                    <h2>Counter App</h2>
+                    <p>Build a counter that can increment, decrement, and reset its value.</p>
+                    
+                    <div class="instructions">
+                        <h4>Instructions:</h4>
+                        <p>Create a counter that can:</p>
+                        <ul>
+                            <li>Increment the count</li>
+                            <li>Decrement the count</li>
+                            <li>Reset to zero</li>
+                            <li>Set a custom increment/decrement value</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exercise">
+                        <h3>Your Counter</h3>
+                        <div class="counter">
+                            <div class="counter-value" id="counterValue">0</div>
+                            <div class="counter-buttons">
+                                <button class="counter-btn decrement" onclick="decrementCounter()">-</button>
+                                <button class="counter-btn reset" onclick="resetCounter()">Reset</button>
+                                <button class="counter-btn increment" onclick="incrementCounter()">+</button>
+                            </div>
+                            <div class="counter-input">
+                                <label>Step value: 
+                                    <input type="number" id="stepValue" value="1" min="1">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-example">
+                        <span class="comment">// Example: Counter logic</span><br>
+                        <span class="keyword">let</span> count = <span class="number">0</span>;<br>
+                        <span class="keyword">let</span> step = <span class="number">1</span>;<br><br>
+                        
+                        <span class="keyword">function</span> <span class="function">incrementCounter</span>() {<br>
+                        &nbsp;&nbsp;count += step;<br>
+                        &nbsp;&nbsp;updateCounterDisplay();<br>
+                        }<br><br>
+                        
+                        <span class="keyword">function</span> <span class="function">decrementCounter</span>() {<br>
+                        &nbsp;&nbsp;count -= step;<br>
+                        &nbsp;&nbsp;updateCounterDisplay();<br>
+                        }<br><br>
+                        
+                        <span class="keyword">function</span> <span class="function">resetCounter</span>() {<br>
+                        &nbsp;&nbsp;count = <span class="number">0</span>;<br>
+                        &nbsp;&nbsp;updateCounterDisplay();<br>
+                        }
+                    </div>
+                </section>
+            </div>
+            
+            <aside>
+                <h3>Practice Exercises</h3>
+                <ul>
+                    <li><a href="#calculator">Calculator</a></li>
+                    <li><a href="#todo">To-Do List</a></li>
+                    <li><a href="#color">Color Changer</a></li>
+                    <li><a href="#counter">Counter App</a></li>
+                </ul>
+                
+                <h3>Learning Tips</h3>
+                <ul>
+                    <li>Try to code each project yourself first</li>
+                    <li>Experiment with adding new features</li>
+                    <li>Debug using browser console (F12)</li>
+                    <li>Practice regularly to build muscle memory</li>
+                </ul>
+                
+                <h3>Next Steps</h3>
+                <ul>
+                    <li><a href="js.html">Back to Tutorial</a></li>
+                    <li>Advanced JavaScript Projects</li>
+                    <li>API Integration</li>
+                    <li>Frameworks (React, Vue)</li>
+                </ul>
+            </aside>
+        </main>
+        
+        <footer>
+            <p>JavaScript Practice Exercises &copy; ViblySpace | Interactive Learning Experience</p>
+        </footer>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+
+        // Calculator App
+        let displayValue = '0';
+        let firstOperand = null;
+        let operator = null;
+        let waitingForSecondOperand = false;
+        
+        function updateDisplay() {
+            const display = document.getElementById('calcDisplay');
+            display.textContent = displayValue;
+        }
+        
+        function appendNumber(number) {
+            if (waitingForSecondOperand) {
+                displayValue = number;
+                waitingForSecondOperand = false;
+            } else {
+                displayValue = displayValue === '0' ? number : displayValue + number;
+            }
+            updateDisplay();
+        }
+        
+        function appendDecimal() {
+            if (waitingForSecondOperand) {
+                displayValue = '0.';
+                waitingForSecondOperand = false;
+                updateDisplay();
+                return;
+            }
+            
+            if (!displayValue.includes('.')) {
+                displayValue += '.';
+            }
+            updateDisplay();
+        }
+        
+        function appendOperator(nextOperator) {
+            const inputValue = parseFloat(displayValue);
+            
+            if (firstOperand === null) {
+                firstOperand = inputValue;
+            } else if (operator) {
+                const result = calculate(firstOperand, inputValue, operator);
+                displayValue = `${parseFloat(result.toFixed(7))}`;
+                firstOperand = result;
+            }
+            
+            waitingForSecondOperand = true;
+            operator = nextOperator;
+        }
+        
+        function calculate() {
+            const inputValue = parseFloat(displayValue);
+            
+            if (operator && firstOperand !== null) {
+                const result = calculate(firstOperand, inputValue, operator);
+                displayValue = `${parseFloat(result.toFixed(7))}`;
+                firstOperand = null;
+                operator = null;
+                waitingForSecondOperand = false;
+                updateDisplay();
+            }
+        }
+        
+        function calculate(firstOperand, secondOperand, operator) {
+            switch (operator) {
+                case '+':
+                    return firstOperand + secondOperand;
+                case '-':
+                    return firstOperand - secondOperand;
+                case '*':
+                    return firstOperand * secondOperand;
+                case '/':
+                    return firstOperand / secondOperand;
+                default:
+                    return secondOperand;
+            }
+        }
+        
+        function clearDisplay() {
+            displayValue = '0';
+            firstOperand = null;
+            operator = null;
+            waitingForSecondOperand = false;
+            updateDisplay();
+        }
+        
+        function deleteLast() {
+            if (displayValue.length > 1) {
+                displayValue = displayValue.slice(0, -1);
+            } else {
+                displayValue = '0';
+            }
+            updateDisplay();
+        }
+        
+        // Initialize calculator display
+        updateDisplay();
+        
+        // To-Do List App
+        let todos = [];
+        let nextId = 1;
+        
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            const text = input.value.trim();
+            
+            if (text !== '') {
+                const todo = {
+                    id: nextId++,
+                    text: text,
+                    completed: false
+                };
+                
+                todos.push(todo);
+                input.value = '';
+                renderTodos();
+            }
+        }
+        
+        function toggleTodo(id) {
+            todos = todos.map(todo => {
+                if (todo.id === id) {
+                    return { ...todo, completed: !todo.completed };
+                }
+                return todo;
+            });
+            
+            renderTodos();
+        }
+        
+        function deleteTodo(id) {
+            todos = todos.filter(todo => todo.id !== id);
+            renderTodos();
+        }
+        
+        function renderTodos() {
+            const todoList = document.getElementById('todoList');
+            const todoStats = document.getElementById('todoStats');
+            
+            // Update stats
+            const total = todos.length;
+            const completed = todos.filter(todo => todo.completed).length;
+            todoStats.textContent = `Total tasks: ${total} | Completed: ${completed}`;
+            
+            // Clear the list
+            todoList.innerHTML = '';
+            
+            // Add todos to the list
+            todos.forEach(todo => {
+                const li = document.createElement('li');
+                li.className = 'todo-item';
+                if (todo.completed) {
+                    li.classList.add('completed');
+                }
+                
+                li.innerHTML = `
+                    <span>${todo.text}</span>
+                    <div class="todo-actions">
+                        <button onclick="toggleTodo(${todo.id})">${todo.completed ? 'Undo' : 'Complete'}</button>
+                        <button onclick="deleteTodo(${todo.id})">Delete</button>
+                    </div>
+                `;
+                
+                todoList.appendChild(li);
+            });
+        }
+        
+        // Color Changer App
+        function changeColor(color) {
+            const display = document.getElementById('colorDisplay');
+            const value = document.getElementById('colorValue');
+            
+            display.style.backgroundColor = color;
+            value.textContent = `Current color: ${color}`;
+        }
+        
+        function generateRandomColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            const color = `rgb(${r}, ${g}, ${b})`;
+            
+            changeColor(color);
+            
+            // Update RGB inputs
+            document.getElementById('redValue').value = r;
+            document.getElementById('greenValue').value = g;
+            document.getElementById('blueValue').value = b;
+        }
+        
+        function updateRGBColor() {
+            const r = document.getElementById('redValue').value;
+            const g = document.getElementById('greenValue').value;
+            const b = document.getElementById('blueValue').value;
+            const color = `rgb(${r}, ${g}, ${b})`;
+            
+            changeColor(color);
+        }
+        
+        // Initialize color display
+        changeColor('#3498db');
+        
+        // Counter App
+        let count = 0;
+        
+        function updateCounterDisplay() {
+            document.getElementById('counterValue').textContent = count;
+        }
+        
+        function incrementCounter() {
+            const step = parseInt(document.getElementById('stepValue').value) || 1;
+            count += step;
+            updateCounterDisplay();
+        }
+        
+        function decrementCounter() {
+            const step = parseInt(document.getElementById('stepValue').value) || 1;
+            count -= step;
+            updateCounterDisplay();
+        }
+        
+        function resetCounter() {
+            count = 0;
+            updateCounterDisplay();
+        }
+        
+        // Initialize counter display
+        updateCounterDisplay();
+    </script>
+</body>
+</html>

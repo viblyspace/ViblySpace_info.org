@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViblySpace - Learn Artificial Intelligence</title>
+    <link rel="icon" type="image/x-icon" href="connection.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --success: #4cc9f0;
+            --accent: #4895ef;
+            --warning: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Enhanced Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 20px;
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
+            margin-right: 8px;
+            color: var(--primary);
+        }
+        
+        .main-nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links li {
+            margin: 0 5px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .language-nav {
+            display: flex;
+            list-style: none;
+            margin-left: 15px;
+        }
+        
+        .language-nav li {
+            margin-left: 8px;
+        }
+        
+        .language-nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            background-color: #f0f2f5;
+        }
+        
+        .language-nav a:hover, .language-nav a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 5px 10px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: #667eea;
+            color: white;
+        }
+        
+        /* Main Content */
+        main {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .main-nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .main-nav.active {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-links li {
+                margin: 5px 0;
+                width: 100%;
+            }
+            
+            .nav-links a {
+                display: block;
+                width: 100%;
+            }
+            
+            .language-nav {
+                margin: 10px 0 0 0;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .language-nav li {
+                margin: 0 5px 0 0;
+            }
+        }
+        
+        /* Content Sections */
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        section h3 {
+            color: #667eea;
+            margin: 20px 0 10px;
+        }
+        
+        section p {
+            margin-bottom: 15px;
+        }
+        
+        /* AI Concept Boxes */
+        .concept-box {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ml-box {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .dl-box {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .nlp-box {
+            background: linear-gradient(135deg, #fa709a, #fee140);
+            color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        /* Interactive Examples */
+        .interactive-example {
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+        }
+        
+        .ai-demo {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            min-height: 150px;
+        }
+        
+        .neural-network {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            margin: 20px 0;
+        }
+        
+        .neuron {
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            border-radius: 50%;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .neuron:hover {
+            transform: scale(1.2);
+            background: #764ba2;
+        }
+        
+        .connection {
+            position: absolute;
+            height: 2px;
+            background: #667eea;
+            transform-origin: left center;
+        }
+        
+        button {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #764ba2;
+            transform: translateY(-2px);
+        }
+        
+        input, select, textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 5px;
+            font-size: 16px;
+            width: calc(100% - 20px);
+        }
+        
+        /* Output Areas */
+        .output {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            min-height: 50px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .training-progress {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 20px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            width: 0%;
+            transition: width 1s ease;
+        }
+        
+        /* Sidebar */
+        aside {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            align-self: start;
+            position: sticky;
+            top: 100px;
+        }
+        
+        aside h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        aside ul {
+            list-style: none;
+        }
+        
+        aside li {
+            margin-bottom: 10px;
+        }
+        
+        aside a {
+            text-decoration: none;
+            color: #667eea;
+            display: block;
+            padding: 8px 10px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        aside a:hover {
+            background-color: #f0f7ff;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #7f8c8d;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        /* AI Timeline */
+        .timeline {
+            position: relative;
+            max-width: 100%;
+            margin: 20px 0;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: #667eea;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 4px solid #667eea;
+            border-radius: 50%;
+            top: 15px;
+            right: -10px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* Comparison Tables */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .comparison-table th {
+            background-color: #f8f9fa;
+            color: #2c3e50;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Header from React.js file -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-laptop-code logo-icon"></i>
+                <div class="logo-text">ViblySpace</div>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="main-nav" id="mainNav">
+                <ul class="nav-links">
+                    <!-- Navigation links can be added here if needed -->
+                </ul>
+                
+                <ul class="language-nav">
+                    <li><a href="concept.html">HTML</a></li>
+                    <li><a href="css.html">CSS</a></li>
+                    <li><a href="python.html">Python</a></li>
+                    <li><a href="js.html">JS</a></li>
+                    <li><a href="ai.html">AI</a></li> 
+                    <li><a href="IOT-.html">IOT</a></li> 
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Artificial Intelligence</h1>
+            <p>Learn the basics of AI - From simple algorithms to neural networks</p>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#what-is-ai">What is AI?</a></li>
+                <li><a href="#types-of-ai">Types of AI</a></li>
+                <li><a href="#machine-learning">Machine Learning</a></li>
+                <li><a href="#neural-networks">Neural Networks</a></li>
+                <li><a href="#nlp">NLP</a></li>
+                <li><a href="#computer-vision">Computer Vision</a></li>
+                <li><a href="#ethics">AI Ethics</a></li>
+                <li><a href="#future">Future of AI</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <div class="content">
+                <section id="what-is-ai">
+                    <h2>What is Artificial Intelligence?</h2>
+                    <p>Artificial Intelligence (AI) is the science of making machines smart and enabling them to perform tasks that typically require human intelligence.</p>
+                    
+                    <div class="concept-box">
+                        <h3>🤖 Simple Definition:</h3>
+                        <p><strong>AI is like teaching computers to think and learn like humans.</strong> Just like you learn from experience, AI systems learn from data.</p>
+                    </div>
+
+                    <h3>Real-World AI Examples</h3>
+                    <div class="interactive-example">
+                        <p><strong>Try these AI examples:</strong></p>
+                        <button onclick="showAIExample('recommendation')">Movie Recommendations</button>
+                        <button onclick="showAIExample('voice')">Voice Assistant</button>
+                        <button onclick="showAIExample('spam')">Spam Filter</button>
+                        <button onclick="showAIExample('navigation')">GPS Navigation</button>
+                        <div class="output" id="aiExampleOutput">
+                            Click a button to see how AI works in everyday life!
+                        </div>
+                    </div>
+
+                    <h3>Human Intelligence vs Artificial Intelligence</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Human Intelligence</th>
+                            <th>Artificial Intelligence</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Learning</strong></td>
+                            <td>Learns from experience over years</td>
+                            <td>Learns from data in hours/days</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Creativity</strong></td>
+                            <td>Highly creative and imaginative</td>
+                            <td>Can combine existing ideas in new ways</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Speed</strong></td>
+                            <td>Processes information slowly</td>
+                            <td>Processes massive data instantly</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Energy Usage</strong></td>
+                            <td>Very efficient (20 watts)</td>
+                            <td>High energy consumption</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Emotions</strong></td>
+                            <td>Has emotions and empathy</td>
+                            <td>No emotions or consciousness</td>
+                        </tr>
+                    </table>
+                </section>
+                
+                <section id="types-of-ai">
+                    <h2>Types of Artificial Intelligence</h2>
+                    <p>AI can be categorized based on its capabilities and functionality.</p>
+
+                    <h3>Based on Capabilities</h3>
+                    <div class="interactive-example">
+                        <div class="ai-demo">
+                            <h4>🎯 Narrow AI (Weak AI)</h4>
+                            <p><strong>Specialized in one task</strong> - Like a chess-playing AI that can't do anything else</p>
+                            <p><em>Examples: Siri, Alexa, Google Search, Netflix recommendations</em></p>
+                        </div>
+                        
+                        <div class="ai-demo">
+                            <h4>🧠 General AI (Strong AI)</h4>
+                            <p><strong>Human-like intelligence</strong> - Can perform any intellectual task a human can</p>
+                            <p><em>Examples: This doesn't exist yet! (Like robots in movies)</em></p>
+                        </div>
+                        
+                        <div class="ai-demo">
+                            <h4>⚡ Superintelligent AI</h4>
+                            <p><strong>Smarter than humans</strong> in virtually every field</p>
+                            <p><em>Examples: Theoretical future AI</em></p>
+                        </div>
+                    </div>
+
+                    <h3>AI Timeline</h3>
+                    <div class="timeline">
+                        <div class="timeline-item left">
+                            <div class="timeline-content">
+                                <h4>1950s</h4>
+                                <p>Alan Turing proposes the "Turing Test"</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item right">
+                            <div class="timeline-content">
+                                <h4>1997</h4>
+                                <p>IBM's Deep Blue beats chess world champion</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item left">
+                            <div class="timeline-content">
+                                <h4>2011</h4>
+                                <p>IBM Watson wins Jeopardy!</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item right">
+                            <div class="timeline-content">
+                                <h4>2016</h4>
+                                <p>AlphaGo beats world champion in Go</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item left">
+                            <div class="timeline-content">
+                                <h4>2020s</h4>
+                                <p>ChatGPT and large language models emerge</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="machine-learning">
+                    <h2>Machine Learning</h2>
+                    <p>Machine Learning is a subset of AI that enables computers to learn from data without being explicitly programmed.</p>
+                    
+                    <div class="ml-box">
+                        <h3>🎯 Simple Explanation:</h3>
+                        <p><strong>ML is like teaching a child by showing examples.</strong> Instead of giving rules, you show many examples and let the computer find patterns.</p>
+                    </div>
+
+                    <h3>Types of Machine Learning</h3>
+                    <div class="interactive-example">
+                        <button onclick="showMLType('supervised')">Supervised Learning</button>
+                        <button onclick="showMLType('unsupervised')">Unsupervised Learning</button>
+                        <button onclick="showMLType('reinforcement')">Reinforcement Learning</button>
+                        
+                        <div class="output" id="mlTypeOutput">
+                            Click buttons to learn about different ML types
+                        </div>
+                    </div>
+
+                    <h3>Machine Learning Process</h3>
+                    <div class="interactive-example">
+                        <div class="training-progress">
+                            <div class="progress-bar" id="trainingProgress"></div>
+                        </div>
+                        <button onclick="startTraining()">Start ML Training Simulation</button>
+                        <div class="output" id="trainingOutput">
+                            Click "Start Training" to see how machines learn from data
+                        </div>
+                    </div>
+
+                    <h3>Real ML Example: Spam Detection</h3>
+                    <div class="interactive-example">
+                        <p>Type an email message to see if our AI would classify it as spam:</p>
+                        <textarea id="emailText" rows="3" placeholder="Type your email message here...">Win $1000 now! Click here for free money!</textarea>
+                        <button onclick="checkSpam()">Check for Spam</button>
+                        <div class="output" id="spamResult"></div>
+                    </div>
+                </section>
+                
+                <section id="neural-networks">
+                    <h2>Neural Networks</h2>
+                    <p>Neural Networks are computing systems inspired by the human brain. They're the foundation of Deep Learning.</p>
+                    
+                    <div class="dl-box">
+                        <h3>🧠 Brain-Inspired Computing</h3>
+                        <p><strong>Neural networks work like simplified brain neurons.</strong> They take inputs, process them, and produce outputs through interconnected nodes.</p>
+                    </div>
+
+                    <h3>Simple Neural Network Demo</h3>
+                    <div class="interactive-example">
+                        <div class="neural-network" id="neuralNetworkDemo">
+                            <!-- Neural network visualization will be inserted here -->
+                        </div>
+                        <button onclick="activateNeuralNetwork()">Activate Neural Network</button>
+                        <div class="output" id="nnOutput">
+                            Click "Activate" to see how information flows through a neural network
+                        </div>
+                    </div>
+
+                    <h3>How Neural Networks Learn</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Step</th>
+                            <th>What Happens</th>
+                            <th>Simple Analogy</th>
+                        </tr>
+                        <tr>
+                            <td><strong>1. Input</strong></td>
+                            <td>Data enters the network</td>
+                            <td>Like seeing a picture</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Processing</strong></td>
+                            <td>Neurons process information</td>
+                            <td>Like brain cells thinking</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Output</strong></td>
+                            <td>Network makes a prediction</td>
+                            <td>Like recognizing "it's a cat"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Learning</strong></td>
+                            <td>Adjusts based on errors</td>
+                            <td>Like learning from mistakes</td>
+                        </tr>
+                    </table>
+
+                    <h3>Deep Learning</h3>
+                    <p>Deep Learning uses neural networks with many layers (hence "deep"). Each layer learns different features:</p>
+                    <ul>
+                        <li><strong>Layer 1:</strong> Learns simple edges and shapes</li>
+                        <li><strong>Layer 2:</strong> Learns combinations of edges (like corners)</li>
+                        <li><strong>Layer 3:</strong> Learns object parts (like eyes, wheels)</li>
+                        <li><strong>Layer 4+:</strong> Learns complete objects (like faces, cars)</li>
+                    </ul>
+                </section>
+
+                <section id="nlp">
+                    <h2>Natural Language Processing (NLP)</h2>
+                    <p>NLP helps computers understand, interpret, and generate human language.</p>
+                    
+                    <div class="nlp-box">
+                        <h3>💬 Teaching Computers Language</h3>
+                        <p><strong>NLP is like teaching a computer to read and write.</strong> It enables chatbots, translation, and voice assistants to understand us.</p>
+                    </div>
+
+                    <h3>NLP Demo: Sentiment Analysis</h3>
+                    <div class="interactive-example">
+                        <p>Type a sentence to analyze its sentiment:</p>
+                        <input type="text" id="sentimentText" placeholder="I love this amazing product!" style="width: 100%;">
+                        <button onclick="analyzeSentiment()">Analyze Sentiment</button>
+                        <div class="output" id="sentimentResult"></div>
+                    </div>
+
+                    <h3>How NLP Works</h3>
+                    <div class="interactive-example">
+                        <p>Type a sentence to see how NLP breaks it down:</p>
+                        <input type="text" id="nlpText" placeholder="The quick brown fox jumps" style="width: 100%;">
+                        <button onclick="analyzeNLP()">Analyze Sentence</button>
+                        <div class="output" id="nlpAnalysis"></div>
+                    </div>
+
+                    <h3>Common NLP Applications</h3>
+                    <ul>
+                        <li><strong>Chatbots:</strong> Customer service assistants</li>
+                        <li><strong>Translation:</strong> Google Translate, DeepL</li>
+                        <li><strong>Voice Assistants:</strong> Siri, Alexa, Google Assistant</li>
+                        <li><strong>Text Summarization:</strong> Creating summaries of long documents</li>
+                        <li><strong>Spell Check:</strong> Grammar and spelling correction</li>
+                    </ul>
+                </section>
+
+                <section id="computer-vision">
+                    <h2>Computer Vision</h2>
+                    <p>Computer Vision enables computers to see and understand visual information from the world.</p>
+
+                    <h3>Object Recognition Demo</h3>
+                    <div class="interactive-example">
+                        <p>Select an object type to see how computer vision recognizes it:</p>
+                        <select id="objectType" onchange="recognizeObject()">
+                            <option value="">Choose an object</option>
+                            <option value="cat">Cat</option>
+                            <option value="car">Car</option>
+                            <option value="face">Human Face</option>
+                            <option value="building">Building</option>
+                        </select>
+                        <div class="output" id="visionResult">
+                            Select an object to see computer vision in action
+                        </div>
+                    </div>
+
+                    <h3>How Computer Vision Works</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Step</th>
+                            <th>Human Vision</th>
+                            <th>Computer Vision</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Input</strong></td>
+                            <td>Light enters eyes</td>
+                            <td>Camera captures pixels</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Processing</strong></td>
+                            <td>Brain processes shapes/colors</td>
+                            <td>AI analyzes pixel patterns</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Recognition</strong></td>
+                            <td>"That's a cat!"</td>
+                            <td>"98% confidence: cat"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Learning</strong></td>
+                            <td>Learn from seeing many cats</td>
+                            <td>Train on thousands of cat images</td>
+                        </tr>
+                    </table>
+
+                    <h3>Computer Vision Applications</h3>
+                    <ul>
+                        <li><strong>Medical Imaging:</strong> Detecting diseases in X-rays</li>
+                        <li><strong>Self-Driving Cars:</strong> Recognizing pedestrians and signs</li>
+                        <li><strong>Security:</strong> Facial recognition systems</li>
+                        <li><strong>Retail:</strong> Automated checkout systems</li>
+                        <li><strong>Agriculture:</strong> Monitoring crop health from drones</li>
+                    </ul>
+                </section>
+
+                <section id="ethics">
+                    <h2>AI Ethics and Responsibility</h2>
+                    <p>As AI becomes more powerful, we must consider its ethical implications and ensure it benefits humanity.</p>
+
+                    <h3>Key Ethical Concerns</h3>
+                    <div class="interactive-example">
+                        <button onclick="showEthicalIssue('bias')">Algorithmic Bias</button>
+                        <button onclick="showEthicalIssue('privacy')">Privacy</button>
+                        <button onclick="showEthicalIssue('jobs')">Employment Impact</button>
+                        <button onclick="showEthicalIssue('safety')">AI Safety</button>
+                        
+                        <div class="output" id="ethicsOutput">
+                            Click buttons to explore AI ethics topics
+                        </div>
+                    </div>
+
+                    <h3>AI Principles</h3>
+                    <ul>
+                        <li><strong>Fairness:</strong> AI should treat all people equally</li>
+                        <li><strong>Transparency:</strong> We should understand how AI makes decisions</li>
+                        <li><strong>Privacy:</strong> AI should protect personal information</li>
+                        <li><strong>Safety:</strong> AI systems must be secure and reliable</li>
+                        <li><strong>Accountability:</strong> Humans are responsible for AI actions</li>
+                    </ul>
+                </section>
+
+                <section id="future">
+                    <h2>The Future of AI</h2>
+                    <p>AI is rapidly evolving and will continue to transform our world in exciting ways.</p>
+
+                    <h3>Emerging AI Trends</h3>
+                    <div class="interactive-example">
+                        <div class="ai-demo">
+                            <h4>🤖 Generative AI</h4>
+                            <p>AI that creates new content - images, music, text</p>
+                            <p><em>Examples: DALL-E, ChatGPT, Midjourney</em></p>
+                        </div>
+                        
+                        <div class="ai-demo">
+                            <h4>🏥 AI in Healthcare</h4>
+                            <p>Personalized medicine and drug discovery</p>
+                            <p><em>Examples: Disease diagnosis, drug development</em></p>
+                        </div>
+                        
+                        <div class="ai-demo">
+                            <h4>🌍 AI for Climate</h4>
+                            <p>Solving environmental challenges</p>
+                            <p><em>Examples: Climate modeling, renewable energy optimization</em></p>
+                        </div>
+                    </div>
+
+                    <h3>Your Role in the AI Future</h3>
+                    <p>Everyone can participate in shaping the AI future:</p>
+                    <ul>
+                        <li><strong>Learn about AI</strong> - Understand how it affects your life</li>
+                        <li><strong>Provide feedback</strong> - Help improve AI systems</li>
+                        <li><strong>Consider ethics</strong> - Think about responsible AI use</li>
+                        <li><strong>Stay informed</strong> - Keep learning as AI evolves</li>
+                    </ul>
+
+                    <div class="concept-box">
+                        <h3>🚀 Getting Started with AI</h3>
+                        <p><strong>You don't need to be an expert to start learning AI!</strong> Begin with online courses, try simple AI tools, and explore how AI is used in apps you already use.</p>
+                    </div>
+                </section>
+            </div>
+            
+            <aside>
+                <h3>AI Quick Concepts</h3>
+                <ul>
+                    <li><a href="#what-is-ai">What is AI?</a></li>
+                    <li><a href="#types-of-ai">Types of AI</a></li>
+                    <li><a href="#machine-learning">Machine Learning</a></li>
+                    <li><a href="#neural-networks">Neural Networks</a></li>
+                    <li><a href="#nlp">Natural Language Processing</a></li>
+                    <li><a href="#computer-vision">Computer Vision</a></li>
+                    <li><a href="#ethics">AI Ethics</a></li>
+                    <li><a href="#future">Future of AI</a></li>
+                </ul>
+                
+                <h3>Key AI Terms</h3>
+                <ul>
+                    <li><strong>Algorithm:</strong> Step-by-step instructions</li>
+                    <li><strong>Training Data:</strong> Examples for learning</li>
+                    <li><strong>Model:</strong> Learned patterns</li>
+                    <li><strong>Prediction:</strong> AI's educated guess</li>
+                    <li><strong>Neuron:</strong> Basic processing unit</li>
+                </ul>
+                
+                <h3>AI in Daily Life</h3>
+                <ul>
+                    <li>Social media feeds</li>
+                    <li>Email spam filters</li>
+                    <li>Voice assistants</li>
+                    <li>Navigation apps</li>
+                    <li>Product recommendations</li>
+                </ul>
+                
+                <h3>Learn More</h3>
+                <ul>
+                    <!-- <li><a href="#">AI Courses for Beginners</a></li>
+                    <li><a href="#">AI Project Ideas</a></li>
+                    <li><a href="#">AI Career Paths</a></li>
+                    <li><a href="#">Latest AI Research</a></li> -->
+                     <li><a href="index.html">->Home</a></li>
+                </ul>
+            </aside>
+        </main>
+        
+        <footer>
+            <p>Artificial Intelligence Tutorial &copy; <a href="index.html">ViblySpace</a> | Understanding Intelligent Machines</p>
+        </footer>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+
+        // AI Examples
+        function showAIExample(type) {
+            const output = document.getElementById('aiExampleOutput');
+            let content = '';
+            
+            switch(type) {
+                case 'recommendation':
+                    content = `
+                        <h4>🎬 Netflix Recommendations</h4>
+                        <p><strong>How it works:</strong> AI analyzes what you've watched and finds patterns with other users who have similar tastes.</p>
+                        <p><strong>AI Technique:</strong> Collaborative Filtering</p>
+                        <p><em>"People who liked Stranger Things also liked Black Mirror"</em></p>
+                    `;
+                    break;
+                case 'voice':
+                    content = `
+                        <h4>🗣️ Voice Assistants (Siri/Alexa)</h4>
+                        <p><strong>How it works:</strong> AI converts your speech to text, understands the meaning, finds answers, and speaks back.</p>
+                        <p><strong>AI Techniques:</strong> Speech Recognition + Natural Language Processing</p>
+                        <p><em>"Hey Siri, what's the weather today?"</em></p>
+                    `;
+                    break;
+                case 'spam':
+                    content = `
+                        <h4>📧 Spam Filters</h4>
+                        <p><strong>How it works:</strong> AI analyzes email content and identifies patterns common in spam messages.</p>
+                        <p><strong>AI Technique:</strong> Classification Algorithm</p>
+                        <p><em>Learns from millions of emails marked as "spam" by users</em></p>
+                    `;
+                    break;
+                case 'navigation':
+                    content = `
+                        <h4>🗺️ GPS Navigation (Google Maps)</h4>
+                        <p><strong>How it works:</strong> AI analyzes real-time traffic data from millions of users to find the fastest route.</p>
+                        <p><strong>AI Technique:</strong> Predictive Analytics + Optimization</p>
+                        <p><em>Predicts traffic patterns and suggests alternate routes</em></p>
+                    `;
+                    break;
+            }
+            
+            output.innerHTML = content;
+        }
+
+        // Machine Learning Types
+        function showMLType(type) {
+            const output = document.getElementById('mlTypeOutput');
+            let content = '';
+            
+            switch(type) {
+                case 'supervised':
+                    content = `
+                        <h4>👨‍🏫 Supervised Learning</h4>
+                        <p><strong>Like learning with a teacher:</strong> The AI gets labeled examples with correct answers.</p>
+                        <p><strong>Example:</strong> Showing the AI 1000 cat photos (labeled "cat") and 1000 dog photos (labeled "dog")</p>
+                        <p><strong>Use Case:</strong> Spam detection, image classification</p>
+                    `;
+                    break;
+                case 'unsupervised':
+                    content = `
+                        <h4>🔍 Unsupervised Learning</h4>
+                        <p><strong>Like exploring without guidance:</strong> The AI finds patterns in unlabeled data.</p>
+                        <p><strong>Example:</strong> Giving the AI customer data and letting it find natural groupings</p>
+                        <p><strong>Use Case:</strong> Customer segmentation, recommendation systems</p>
+                    `;
+                    break;
+                case 'reinforcement':
+                    content = `
+                        <h4>🎮 Reinforcement Learning</h4>
+                        <p><strong>Like learning through trial and error:</strong> The AI learns by receiving rewards for good actions.</p>
+                        <p><strong>Example:</strong> Teaching a computer to play chess by rewarding winning moves</p>
+                        <p><strong>Use Case:</strong> Game AI, robotics, self-driving cars</p>
+                    `;
+                    break;
+            }
+            
+            output.innerHTML = content;
+        }
+
+        // Training Simulation
+        function startTraining() {
+            const progressBar = document.getElementById('trainingProgress');
+            const output = document.getElementById('trainingOutput');
+            
+            output.innerHTML = '🔄 Starting training...';
+            progressBar.style.width = '0%';
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 5;
+                progressBar.style.width = progress + '%';
+                
+                if (progress <= 25) {
+                    output.innerHTML = '📥 Loading training data...';
+                } else if (progress <= 50) {
+                    output.innerHTML = '🔍 Finding patterns in data...';
+                } else if (progress <= 75) {
+                    output.innerHTML = '🎯 Adjusting model parameters...';
+                } else if (progress < 100) {
+                    output.innerHTML = '✅ Finalizing learning...';
+                } else {
+                    output.innerHTML = '🎉 Training complete! The AI has learned from the data and can now make predictions.';
+                    clearInterval(interval);
+                }
+            }, 200);
+        }
+
+        // Spam Detection
+        function checkSpam() {
+            const emailText = document.getElementById('emailText').value.toLowerCase();
+            const resultDiv = document.getElementById('spamResult');
+            
+            const spamKeywords = ['win', 'free', 'money', 'click', 'now', 'urgent', 'prize', 'cash', 'winner'];
+            let spamScore = 0;
+            
+            spamKeywords.forEach(keyword => {
+                if (emailText.includes(keyword)) {
+                    spamScore++;
+                }
+            });
+            
+            const confidence = (spamScore / spamKeywords.length * 100).toFixed(0);
+            
+            if (spamScore >= 3) {
+                resultDiv.innerHTML = `
+                    <div style="color: #d32f2f; background: #ffebee; padding: 15px; border-radius: 5px;">
+                        <h4>🚫 SPAM DETECTED</h4>
+                        <p>Confidence: ${confidence}%</p>
+                        <p>The AI identified ${spamScore} spam indicators in your message.</p>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <div style="color: #388e3c; background: #e8f5e8; padding: 15px; border-radius: 5px;">
+                        <h4>✅ NOT SPAM</h4>
+                        <p>Confidence: ${100 - confidence}%</p>
+                        <p>This message appears to be legitimate.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Neural Network Visualization
+        function createNeuralNetwork() {
+            const container = document.getElementById('neuralNetworkDemo');
+            container.innerHTML = '';
+            
+            // Create input layer
+            const inputLayer = document.createElement('div');
+            inputLayer.style.display = 'flex';
+            inputLayer.style.flexDirection = 'column';
+            inputLayer.style.alignItems = 'center';
+            
+            for (let i = 0; i < 3; i++) {
+                const neuron = document.createElement('div');
+                neuron.className = 'neuron';
+                neuron.textContent = i + 1;
+                neuron.style.background = '#667eea';
+                inputLayer.appendChild(neuron);
+            }
+            
+            // Create hidden layer
+            const hiddenLayer = document.createElement('div');
+            hiddenLayer.style.display = 'flex';
+            hiddenLayer.style.flexDirection = 'column';
+            hiddenLayer.style.alignItems = 'center';
+            hiddenLayer.style.margin = '0 20px';
+            
+            for (let i = 0; i < 4; i++) {
+                const neuron = document.createElement('div');
+                neuron.className = 'neuron';
+                neuron.textContent = i + 1;
+                neuron.style.background = '#764ba2';
+                hiddenLayer.appendChild(neuron);
+            }
+            
+            // Create output layer
+            const outputLayer = document.createElement('div');
+            outputLayer.style.display = 'flex';
+            outputLayer.style.flexDirection = 'column';
+            outputLayer.style.alignItems = 'center';
+            
+            for (let i = 0; i < 2; i++) {
+                const neuron = document.createElement('div');
+                neuron.className = 'neuron';
+                neuron.textContent = i + 1;
+                neuron.style.background = '#f093fb';
+                outputLayer.appendChild(neuron);
+            }
+            
+            container.appendChild(inputLayer);
+            container.appendChild(hiddenLayer);
+            container.appendChild(outputLayer);
+        }
+
+        function activateNeuralNetwork() {
+            const output = document.getElementById('nnOutput');
+            const neurons = document.querySelectorAll('.neuron');
+            
+            // Reset all neurons
+            neurons.forEach(neuron => {
+                neuron.style.background = neuron.textContent <= 3 ? '#667eea' : 
+                                         neuron.textContent <= 7 ? '#764ba2' : '#f093fb';
+            });
+            
+            // Simulate activation
+            let delay = 0;
+            neurons.forEach((neuron, index) => {
+                setTimeout(() => {
+                    neuron.style.background = '#43e97b';
+                    neuron.style.transform = 'scale(1.3)';
+                    
+                    setTimeout(() => {
+                        neuron.style.transform = 'scale(1)';
+                    }, 300);
+                }, delay);
+                
+                delay += 200;
+            });
+            
+            setTimeout(() => {
+                output.innerHTML = `
+                    <h4>🧠 Neural Network Activated!</h4>
+                    <p><strong>Input Layer (Blue):</strong> Receives data (like pixels from an image)</p>
+                    <p><strong>Hidden Layer (Purple):</strong> Processes information and finds patterns</p>
+                    <p><strong>Output Layer (Pink):</strong> Makes final decision (like "it's a cat!")</p>
+                    <p>Each connection between neurons has a "weight" that determines how much influence it has.</p>
+                `;
+            }, delay + 300);
+        }
+
+        // NLP Functions
+        function analyzeSentiment() {
+            const text = document.getElementById('sentimentText').value;
+            const resultDiv = document.getElementById('sentimentResult');
+            
+            const positiveWords = ['love', 'amazing', 'great', 'excellent', 'good', 'wonderful', 'happy', 'best'];
+            const negativeWords = ['hate', 'terrible', 'awful', 'bad', 'worst', 'angry', 'sad', 'disappointing'];
+            
+            let positiveScore = 0;
+            let negativeScore = 0;
+            
+            const words = text.toLowerCase().split(' ');
+            
+            words.forEach(word => {
+                if (positiveWords.includes(word)) positiveScore++;
+                if (negativeWords.includes(word)) negativeScore++;
+            });
+            
+            let sentiment = 'Neutral';
+            let color = '#ff9800';
+            
+            if (positiveScore > negativeScore) {
+                sentiment = 'Positive 😊';
+                color = '#4caf50';
+            } else if (negativeScore > positiveScore) {
+                sentiment = 'Negative 😞';
+                color = '#f44336';
+            }
+            
+            resultDiv.innerHTML = `
+                <div style="color: ${color}; background: ${color === '#4caf50' ? '#e8f5e8' : color === '#f44336' ? '#ffebee' : '#fff3e0'}; padding: 15px; border-radius: 5px;">
+                    <h4>Sentiment: ${sentiment}</h4>
+                    <p>Positive words: ${positiveScore}</p>
+                    <p>Negative words: ${negativeScore}</p>
+                    <p><em>The AI analyzes emotional words to understand how you feel!</em></p>
+                </div>
+            `;
+        }
+
+        function analyzeNLP() {
+            const text = document.getElementById('nlpText').value;
+            const resultDiv = document.getElementById('nlpAnalysis');
+            
+            const words = text.split(' ');
+            const wordCount = words.length;
+            const charCount = text.length;
+            const avgWordLength = (charCount / wordCount).toFixed(1);
+            
+            resultDiv.innerHTML = `
+                <h4>📊 NLP Analysis</h4>
+                <p><strong>Original Text:</strong> "${text}"</p>
+                <p><strong>Word Count:</strong> ${wordCount} words</p>
+                <p><strong>Character Count:</strong> ${charCount} characters</p>
+                <p><strong>Average Word Length:</strong> ${avgWordLength} characters</p>
+                <p><strong>Words:</strong> ${words.join(', ')}</p>
+                <p><em>NLP breaks down language into pieces computers can understand!</em></p>
+            `;
+        }
+
+        // Computer Vision
+        function recognizeObject() {
+            const objectType = document.getElementById('objectType').value;
+            const resultDiv = document.getElementById('visionResult');
+            
+            if (!objectType) return;
+            
+            const objects = {
+                'cat': { confidence: 96, features: ['pointy ears', 'whiskers', 'fur texture', 'eye shape'] },
+                'car': { confidence: 92, features: ['wheels', 'windshield', 'headlights', 'body shape'] },
+                'face': { confidence: 98, features: ['eyes', 'nose', 'mouth', 'face outline'] },
+                'building': { confidence: 89, features: ['windows', 'doors', 'roof', 'walls'] }
+            };
+            
+            const obj = objects[objectType];
+            
+            resultDiv.innerHTML = `
+                <div style="background: #e3f2fd; padding: 15px; border-radius: 5px;">
+                    <h4>👁️ Computer Vision Result</h4>
+                    <p><strong>Object Detected:</strong> ${objectType.charAt(0).toUpperCase() + objectType.slice(1)}</p>
+                    <p><strong>Confidence:</strong> ${obj.confidence}%</p>
+                    <p><strong>Features Identified:</strong> ${obj.features.join(', ')}</p>
+                    <p><em>The AI recognized patterns that are common in ${objectType}s!</em></p>
+                </div>
+            `;
+        }
+
+        // Ethics
+        function showEthicalIssue(issue) {
+            const output = document.getElementById('ethicsOutput');
+            let content = '';
+            
+            switch(issue) {
+                case 'bias':
+                    content = `
+                        <h4>⚖️ Algorithmic Bias</h4>
+                        <p><strong>Problem:</strong> AI can learn and amplify human biases from training data.</p>
+                        <p><strong>Example:</strong> A hiring AI that learned to prefer male candidates because historical data showed more men were hired.</p>
+                        <p><strong>Solution:</strong> Use diverse training data and regularly test for bias.</p>
+                    `;
+                    break;
+                case 'privacy':
+                    content = `
+                        <h4>🔒 Privacy Concerns</h4>
+                        <p><strong>Problem:</strong> AI systems often need lots of personal data, raising privacy issues.</p>
+                        <p><strong>Example:</strong> Facial recognition in public spaces without consent.</p>
+                        <p><strong>Solution:</strong> Strong data protection laws and transparent data usage policies.</p>
+                    `;
+                    break;
+                case 'jobs':
+                    content = `
+                        <h4>💼 Employment Impact</h4>
+                        <p><strong>Problem:</strong> AI automation may replace some jobs while creating new ones.</p>
+                        <p><strong>Example:</strong> Self-checkout systems reducing cashier jobs but creating AI maintenance roles.</p>
+                        <p><strong>Solution:</strong> Education and retraining programs for new types of jobs.</p>
+                    `;
+                    break;
+                case 'safety':
+                    content = `
+                        <h4>🛡️ AI Safety</h4>
+                        <p><strong>Problem:</strong> Ensuring AI systems behave as intended and don't cause harm.</p>
+                        <p><strong>Example:</strong> Self-driving cars must make safe decisions in unexpected situations.</p>
+                        <p><strong>Solution:</strong> Rigorous testing, safety protocols, and human oversight.</p>
+                    `;
+                    break;
+            }
+            
+            output.innerHTML = content;
+        }
+
+        // Initialize
+        createNeuralNetwork();
+    </script>
+</body>
+</html>

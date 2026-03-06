@@ -1,0 +1,2740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete HTML Teaching Guide - ViblySpace</title>
+    <link rel="icon" type="favicon" href="connection.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --html-color: #e34c26;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            /* box-sizing: border-box; */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+              margin: 0;
+            padding: 5px;
+            /* line-height: 1.6; */
+        }
+        
+        .container {
+            width: 100%;
+            /* max-width: 1200px; */
+            margin: 0 auto;
+            /* padding: 0 15px; */
+        }
+        
+        /* Book-style Content Layout */
+        .book-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .book-header {
+            background: var(--html-color);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .book-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .book-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .book-content {
+            display: flex;
+            min-height: 800px;
+        }
+        
+        .book-sidebar {
+            width: 300px;
+            background: var(--light-gray);
+            border-right: 1px solid #dee2e6;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+        
+        .chapter-list {
+            list-style: none;
+        }
+        
+        .chapter-item {
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .chapter-link {
+            display: block;
+            padding: 15px 25px;
+            color: var(--dark);
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .chapter-link:hover, .chapter-link.active {
+            background-color: white;
+            color: var(--html-color);
+        }
+        
+        .chapter-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .book-main {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            max-height: 800px;
+        }
+        
+        .chapter-content {
+            display: none;
+        }
+        
+        .chapter-content.active {
+            display: block;
+        }
+        
+        .chapter-title {
+            color: var(--html-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        .content-section {
+            margin-bottom: 30px;
+        }
+        
+        .content-section h3 {
+            color: var(--dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .content-section h3 i {
+            margin-right: 10px;
+            color: var(--html-color);
+        }
+        
+        .content-section p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .content-section ul, .content-section ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .content-section li {
+            margin-bottom: 8px;
+        }
+        
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .code-comment {
+            color: #a0aec0;
+        }
+        
+        .code-tag {
+            color: #63b3ed;
+        }
+        
+        .code-attr {
+            color: #fbb6ce;
+        }
+        
+        .code-value {
+            color: #68d391;
+        }
+        
+        .note {
+            background: #e6fffa;
+            border-left: 4px solid #38b2ac;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .warning {
+            background: #fff5f5;
+            border-left: 4px solid #e53e3e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .tip {
+            background: #f0fff4;
+            border-left: 4px solid #38a169;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .activity {
+            background: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .practice-exercise {
+            background: #faf5ff;
+            border-left: 4px solid #805ad5;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--light-gray);
+            font-weight: 600;
+        }
+        
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .section-content.expanded {
+            max-height: 2000px;
+        }
+        
+        .toggle-icon {
+            margin-left: auto;
+            transition: transform 0.3s;
+        }
+        
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .book-content {
+                flex-direction: column;
+            }
+            
+            .book-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #dee2e6;
+                max-height: 300px;
+            }
+            
+            .book-main {
+                max-height: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HTML Book -->
+    <div class="container">
+        <div class="book-container" id="html-book">
+            <div class="book-header">
+                <h2><i class="fab fa-html5"></i> Complete HTML Teaching Guide</h2>
+                <p>Everything teachers need to teach HTML effectively - 12 comprehensive chapters</p>
+            </div>
+            <div class="book-content">
+                <div class="book-sidebar">
+                    <ul class="chapter-list">
+                        <li class="chapter-item"><a href="#" class="chapter-link active" data-chapter="html-intro"><i class="fas fa-play-circle"></i> 1. Introduction to HTML</a></li>
+                        <li class="chapter-item"><a href="#" class="chapter-link" data-chapter="html-basics"><i class="fas fa-code"></i> 2. HTML Basics & Structure</a></li>
+                        <li class="chapter-item"><a href="#" class="chapter-link" data-chapter="html-text"><i class="fas fa-font"></i> 3. Text Formatting</a></li>
+                        <li class="chapter-item"><a href="#" class="chapter-link" data-chapter="html-lists"><i class="fas fa-list"></i> 4. Lists in HTML</a></li>
+                        <li class="chapter-item"><a href="#" class="chapter-link" data-chapter="html-links"><i class="fas fa-link"></i> 5. Links & Navigation</a></li>
+                        <li class="chapter-item"><a href="#" class="chapter-link" data-chapter="html-images"><i class="fas fa-image"></i> 6. Images & Media</a></li>
+                        <li class="chapter-item"><a href="#" class="chapter-link" data-chapter="html-tables"><i class="fas fa-table"></i> 7. Tables</a></li>
+                        <li class="chapter-item"><a href="#" class="chapter-link" data-chapter="html-forms"><i class="fas fa-edit"></i> 8. Forms & Input</a></li>
+                        <li class="chapter-item"><a href="#" class="chapter-link" data-chapter="html-semantic"><i class="fas fa-code"></i> 9. Semantic HTML</a></li>
+                        <li class="chapter-item"><a href="#" class="chapter-link" data-chapter="html-multimedia"><i class="fas fa-video"></i> 10. Multimedia Elements</a></li>
+                        <li class="chapter-item"><a href="#" class="chapter-link" data-chapter="html-accessibility"><i class="fas fa-universal-access"></i> 11. Accessibility</a></li>
+                        <li class="chapter-item"><a href="#" class="chapter-link" data-chapter="html-best-practices"><i class="fas fa-check-circle"></i> 12. Best Practices</a></li>
+                    </ul>
+                </div>
+                <div class="book-main">
+                    <!-- Chapter 1: Introduction to HTML -->
+                    <div class="chapter-content active" id="html-intro">
+                        <h2 class="chapter-title">Chapter 1: Introduction to HTML</h2>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-info-circle"></i> What is HTML? <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages and web applications. It describes the structure of a web page using a system of tags and attributes.</p>
+                                
+                                <p>HTML is not a programming language; it doesn't have logic or computational capabilities. Instead, it's a markup language that tells web browsers how to display content.</p>
+                                
+                                <div class="note">
+                                    <p><strong>Teaching Tip:</strong> Start by comparing HTML to the skeleton of a human body - it provides the basic structure that everything else builds upon. CSS would be the skin and clothing, while JavaScript would be the muscles and nervous system.</p>
+                                </div>
+                                
+                                <p>HTML documents are plain text files that contain:</p>
+                                <ul>
+                                    <li>Text content</li>
+                                    <li>Markup tags that define structure and presentation</li>
+                                    <li>References to other resources like images, CSS, and JavaScript</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-history"></i> Brief History of HTML <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>HTML was created by Tim Berners-Lee in 1991 while working at CERN. The evolution of HTML:</p>
+                                <ul>
+                                    <li><strong>1991:</strong> HTML first proposed with 18 elements</li>
+                                    <li><strong>1995:</strong> HTML 2.0 - First standardized version</li>
+                                    <li><strong>1997:</strong> HTML 3.2 - Added tables, applets, text flow</li>
+                                    <li><strong>1999:</strong> HTML 4.01 - Major cleanup and standardization</li>
+                                    <li><strong>2000:</strong> XHTML 1.0 - XML-based version</li>
+                                    <li><strong>2014:</strong> HTML5 - Current standard with multimedia and semantic elements</li>
+                                </ul>
+                                
+                                <p>HTML5 introduced many new features that made web development more powerful:</p>
+                                <ul>
+                                    <li>New semantic elements (header, footer, article, section, etc.)</li>
+                                    <li>Native multimedia support (audio, video)</li>
+                                    <li>Canvas for drawing graphics</li>
+                                    <li>Local storage capabilities</li>
+                                    <li>Improved form controls</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-cogs"></i> How HTML Works <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>HTML documents are plain text files saved with .html extension. When a browser opens an HTML file, it reads the tags and renders the content accordingly.</p>
+                                
+                                <p>The browser follows these steps:</p>
+                                <ol>
+                                    <li>Parses the HTML to create a Document Object Model (DOM)</li>
+                                    <li>Processes any CSS to create a CSS Object Model (CSSOM)</li>
+                                    <li>Combines DOM and CSSOM to create a render tree</li>
+                                    <li>Lays out the elements on the page</li>
+                                    <li>Paints the final visual representation</li>
+                                </ol>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Basic HTML Document Structure --&gt;</div>
+                                    <div class="code-tag">&lt;!DOCTYPE html&gt;</div>
+                                    <div class="code-tag">&lt;html lang="en"&gt;</div>
+                                    <div class="code-tag">&lt;head&gt;</div>
+                                    <div class="code-tag">&nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;</div>
+                                    <div class="code-tag">&nbsp;&nbsp;&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</div>
+                                    <div class="code-tag">&nbsp;&nbsp;&lt;title&gt;</div>My First Web Page<div class="code-tag">&lt;/title&gt;</div>
+                                    <div class="code-tag">&lt;/head&gt;</div>
+                                    <div class="code-tag">&lt;body&gt;</div>
+                                    <div class="code-tag">&nbsp;&nbsp;&lt;h1&gt;</div>Welcome to My Website<div class="code-tag">&lt;/h1&gt;</div>
+                                    <div class="code-tag">&nbsp;&nbsp;&lt;p&gt;</div>This is my first web page created with HTML.<div class="code-tag">&lt;/p&gt;</div>
+                                    <div class="code-tag">&lt;/body&gt;</div>
+                                    <div class="code-tag">&lt;/html&gt;</div>
+                                </div>
+                                
+                                <div class="tip">
+                                    <p><strong>Teaching Strategy:</strong> Encourage students to view the source code of their favorite websites (right-click > View Page Source) to see real-world HTML in action.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-lightbulb"></i> Key Concepts for Students <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <ul>
+                                    <li><strong>HTML is a markup language, not a programming language</strong> - It structures content but doesn't perform calculations or logic</li>
+                                    <li><strong>Tags define elements</strong> - Most elements have opening and closing tags</li>
+                                    <li><strong>Elements can be nested</strong> - Tags can contain other tags</li>
+                                    <li><strong>Attributes provide additional information</strong> - Added to opening tags</li>
+                                    <li><strong>Browsers are forgiving</strong> - They try to display content even with errors</li>
+                                </ul>
+                                
+                                <p>Common misconceptions to address:</p>
+                                <ul>
+                                    <li>HTML is not "programming" in the traditional sense</li>
+                                    <li>HTML alone cannot create interactive websites</li>
+                                    <li>HTML structure is separate from presentation (CSS) and behavior (JavaScript)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="content-section">
+                            <h3><i class="fas fa-desktop"></i> Tools for HTML Development <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Students need minimal tools to start learning HTML:</p>
+                                
+                                <ul>
+                                    <li><strong>Text Editors:</strong> VS Code, Sublime Text, Atom, or even Notepad</li>
+                                    <li><strong>Web Browsers:</strong> Chrome, Firefox, Safari, Edge for testing</li>
+                                    <li><strong>Developer Tools:</strong> Built into modern browsers for debugging</li>
+                                </ul>
+                                
+                                <p>Recommended setup for beginners:</p>
+                                <ol>
+                                    <li>Install VS Code (free and feature-rich)</li>
+                                    <li>Install the Live Server extension for real-time preview</li>
+                                    <li>Use Chrome or Firefox with developer tools</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <h3><i class="fas fa-tasks"></i> Classroom Activity: First Web Page</h3>
+                            <p><strong>Objective:</strong> Students create their first HTML page from scratch</p>
+                            <p><strong>Materials:</strong> Text editor (VS Code, Notepad++, or online editor)</p>
+                            <p><strong>Instructions:</strong></p>
+                            <ol>
+                                <li>Open your text editor and create a new file</li>
+                                <li>Type the basic HTML structure with doctype, html, head, and body tags</li>
+                                <li>Add a title in the head section: "My First Web Page"</li>
+                                <li>In the body, add an h1 heading with your name</li>
+                                <li>Add a paragraph introducing yourself and your interests</li>
+                                <li>Save the file as "my-first-page.html"</li>
+                                <li>Open the file in a web browser to see your creation!</li>
+                            </ol>
+                            
+                            <div class="practice-exercise">
+                                <p><strong>Extension Activity:</strong> Create a simple personal profile page with:</p>
+                                <ul>
+                                    <li>A main heading with your name</li>
+                                    <li>A paragraph about your background</li>
+                                    <li>A list of your hobbies</li>
+                                    <li>A subheading for your favorite subjects</li>
+                                    <li>A paragraph about why you're learning HTML</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 2: HTML Basics & Structure -->
+                    <div class="chapter-content" id="html-basics">
+                        <h2 class="chapter-title">Chapter 2: HTML Basics & Structure</h2>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-sitemap"></i> Document Structure Essentials <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Every valid HTML document must include these essential components:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Required for HTML5 --&gt;</div>
+                                    <div class="code-tag">&lt;!DOCTYPE html&gt;</div>
+                                    <div class="code-comment">&lt;!-- Root element with language attribute --&gt;</div>
+                                    <div class="code-tag">&lt;html lang="en"&gt;</div>
+                                    <div class="code-comment">&lt;!-- Contains metadata --&gt;</div>
+                                    <div class="code-tag">&lt;head&gt;</div>
+                                    <div class="code-comment">&nbsp;&nbsp;&lt;!-- Character encoding --&gt;</div>
+                                    <div class="code-tag">&nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;</div>
+                                    <div class="code-comment">&nbsp;&nbsp;&lt;!-- Responsive viewport --&gt;</div>
+                                    <div class="code-tag">&nbsp;&nbsp;&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</div>
+                                    <div class="code-comment">&nbsp;&nbsp;&lt;!-- Page title (appears in browser tab) --&gt;</div>
+                                    <div class="code-tag">&nbsp;&nbsp;&lt;title&gt;</div>Page Title<div class="code-tag">&lt;/title&gt;</div>
+                                    <div class="code-tag">&lt;/head&gt;</div>
+                                    <div class="code-comment">&lt;!-- Visible content --&gt;</div>
+                                    <div class="code-tag">&lt;body&gt;</div>
+                                    <div class="code-comment">&nbsp;&nbsp;&lt;!-- All visible elements go here --&gt;</div>
+                                    <div class="code-tag">&lt;/body&gt;</div>
+                                    <div class="code-tag">&lt;/html&gt;</div>
+                                </div>
+                                
+                                <p>Explanation of each component:</p>
+                                <ul>
+                                    <li><code>&lt;!DOCTYPE html&gt;</code> - Declares the document type and version of HTML</li>
+                                    <li><code>&lt;html lang="en"&gt;</code> - Root element with language attribute for accessibility</li>
+                                    <li><code>&lt;head&gt;</code> - Contains metadata, links to resources, and the page title</li>
+                                    <li><code>&lt;meta charset="UTF-8"&gt;</code> - Ensures proper character encoding</li>
+                                    <li><code>&lt;meta name="viewport"&gt;</code> - Makes page responsive on mobile devices</li>
+                                    <li><code>&lt;title&gt;</code> - Appears in browser tab and search results</li>
+                                    <li><code>&lt;body&gt;</code> - Contains all visible page content</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-tags"></i> Understanding HTML Elements <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>HTML elements are the building blocks of web pages. Each element consists of:</p>
+                                
+                                <table>
+                                    <tr>
+                                        <th>Component</th>
+                                        <th>Description</th>
+                                        <th>Example</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Opening Tag</td>
+                                        <td>Starts the element, may include attributes</td>
+                                        <td>&lt;p&gt;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Content</td>
+                                        <td>The actual content between tags</td>
+                                        <td>This is text content</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Closing Tag</td>
+                                        <td>Ends the element (note the forward slash)</td>
+                                        <td>&lt;/p&gt;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Empty Element</td>
+                                        <td>Elements with no content, self-closing</td>
+                                        <td>&lt;br&gt; or &lt;img src="image.jpg"&gt;</td>
+                                    </tr>
+                                </table>
+                                
+                                <div class="note">
+                                    <p><strong>Important:</strong> HTML tags are case-insensitive, but lowercase is the standard convention. Always use lowercase for consistency and readability.</p>
+                                </div>
+                                
+                                <p>HTML elements can have attributes that provide additional information:</p>
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Element with attributes --&gt;</div>
+                                    <div class="code-tag">&lt;a </div><div class="code-attr">href</div>=<div class="code-value">"https://example.com"</div> <div class="code-attr">target</div>=<div class="code-value">"_blank"</div><div class="code-tag">&gt;</div>Visit Example<div class="code-tag">&lt;/a&gt;</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-list-alt"></i> Essential HTML Elements <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>These are the fundamental elements every student should master:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Headings (h1-h6) --&gt;</div>
+                                    <div class="code-tag">&lt;h1&gt;</div>Main Title (Most Important)<div class="code-tag">&lt;/h1&gt;</div>
+                                    <div class="code-tag">&lt;h2&gt;</div>Section Heading<div class="code-tag">&lt;/h2&gt;</div>
+                                    <div class="code-tag">&lt;h3&gt;</div>Subsection Heading<div class="code-tag">&lt;/h3&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Paragraphs --&gt;</div>
+                                    <div class="code-tag">&lt;p&gt;</div>This is a paragraph of text.<div class="code-tag">&lt;/p&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Line Break (empty element) --&gt;</div>
+                                    <div class="code-tag">&lt;br&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Horizontal Rule (empty element) --&gt;</div>
+                                    <div class="code-tag">&lt;hr&gt;</div>
+                                </div>
+                                
+                                <p>Additional important elements:</p>
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Division (block-level container) --&gt;</div>
+                                    <div class="code-tag">&lt;div&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;p&gt;</div>Content inside a div<div class="code-tag">&lt;/p&gt;</div>
+                                    <div class="code-tag">&lt;/div&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Span (inline container) --&gt;</div>
+                                    <div class="code-tag">&lt;p&gt;</div>This text has a <div class="code-tag">&lt;span&gt;</div>special part<div class="code-tag">&lt;/span&gt;</div> in it.<div class="code-tag">&lt;/p&gt;</div>
+                                </div>
+                                
+                                <div class="tip">
+                                    <p><strong>Teaching Strategy:</strong> Use the analogy of boxes within boxes to explain how HTML elements nest inside each other. A div is like a large shipping box that can contain many smaller boxes (other elements).</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-code"></i> HTML Comments <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Comments are notes in the code that browsers ignore. They're essential for documentation and collaboration:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- This is a single-line comment --&gt;</div>
+                                    <div class="code-comment">&lt;!-- </div>
+                                    <div class="code-comment">This is a multi-line comment</div>
+                                    <div class="code-comment">that spans several lines</div>
+                                    <div class="code-comment">--&gt;</div>
+                                    <br>
+                                    <div class="code-tag">&lt;header&gt;</div>
+                                    <div class="code-comment">&nbsp;&nbsp;&lt;!-- Navigation will go here --&gt;</div>
+                                    <div class="code-tag">&lt;/header&gt;</div>
+                                </div>
+                                
+                                <p>Best practices for comments:</p>
+                                <ul>
+                                    <li>Use comments to explain complex sections of code</li>
+                                    <li>Add TODO comments for future improvements</li>
+                                    <li>Comment out code temporarily during development</li>
+                                    <li>Keep comments concise and relevant</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <h3><i class="fas fa-tasks"></i> Classroom Activity: Structured Document</h3>
+                            <p><strong>Objective:</strong> Create a properly structured HTML document with multiple elements</p>
+                            <p><strong>Instructions:</strong></p>
+                            <ol>
+                                <li>Create the basic HTML5 document structure</li>
+                                <li>Add an appropriate title for a "Book Review" page</li>
+                                <li>In the body, create headings, paragraphs, and use div elements</li>
+                                <li>Validate your code using an online HTML validator</li>
+                            </ol>
+                            
+                            <div class="practice-exercise">
+                                <p><strong>Challenge Activity:</strong> Create a simple resume page with:</p>
+                                <ul>
+                                    <li>Proper document structure</li>
+                                    <li>Headings for different sections (Education, Experience, Skills)</li>
+                                    <li>Paragraphs describing your background</li>
+                                    <li>Div elements to group related content</li>
+                                    <li>Comments explaining each section</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 3: Text Formatting -->
+                    <div class="chapter-content" id="html-text">
+                        <h2 class="chapter-title">Chapter 3: Text Formatting in HTML</h2>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-text-height"></i> Text-Level Semantic Elements <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>HTML provides semantic elements to add meaning to text content:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Strong importance --&gt;</div>
+                                    <div class="code-tag">&lt;strong&gt;</div>This text is important<div class="code-tag">&lt;/strong&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Emphasis --&gt;</div>
+                                    <div class="code-tag">&lt;em&gt;</div>This text is emphasized<div class="code-tag">&lt;/em&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Small text --&gt;</div>
+                                    <div class="code-tag">&lt;small&gt;</div>This is fine print<div class="code-tag">&lt;/small&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Marked/highlighted text --&gt;</div>
+                                    <div class="code-tag">&lt;mark&gt;</div>This text is highlighted<div class="code-tag">&lt;/mark&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Deleted text --&gt;</div>
+                                    <div class="code-tag">&lt;del&gt;</div>This text has been deleted<div class="code-tag">&lt;/del&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Inserted text --&gt;</div>
+                                    <div class="code-tag">&lt;ins&gt;</div>This text has been inserted<div class="code-tag">&lt;/ins&gt;</div>
+                                </div>
+                                
+                                <p>Why use semantic elements:</p>
+                                <ul>
+                                    <li>Better accessibility for screen readers</li>
+                                    <li>Improved SEO (Search Engine Optimization)</li>
+                                    <li>Clearer code meaning for developers</li>
+                                    <li>Future-proof styling (presentation can be changed with CSS)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-code"></i> Presentational Elements (Use Sparingly) <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>These elements affect appearance but don't add semantic meaning:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Bold (use strong instead for importance) --&gt;</div>
+                                    <div class="code-tag">&lt;b&gt;</div>This text is bold<div class="code-tag">&lt;/b&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Italic (use em instead for emphasis) --&gt;</div>
+                                    <div class="code-tag">&lt;i&gt;</div>This text is italic<div class="code-tag">&lt;/i&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Underline (avoid for links) --&gt;</div>
+                                    <div class="code-tag">&lt;u&gt;</div>This text is underlined<div class="code-tag">&lt;/u&gt;</div>
+                                </div>
+                                
+                                <div class="warning">
+                                    <p><strong>Best Practice:</strong> Avoid using presentational elements when semantic elements are available. Use CSS for presentation instead of HTML.</p>
+                                </div>
+                                
+                                <p>When to use presentational elements:</p>
+                                <ul>
+                                    <li><code>&lt;b&gt;</code> - When you want to draw attention without implying importance</li>
+                                    <li><code>&lt;i&gt;</code> - For technical terms, foreign phrases, or thoughts</li>
+                                    <li><code>&lt;u&gt;</code> - For proper names in Chinese or to indicate spelling errors</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-superscript"></i> Special Text Formatting <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>HTML provides elements for specific text formatting needs:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Subscript --&gt;</div>
+                                    <div class="code-tag">&lt;p&gt;</div>H<div class="code-tag">&lt;sub&gt;</div>2<div class="code-tag">&lt;/sub&gt;</div>O is water.<div class="code-tag">&lt;/p&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Superscript --&gt;</div>
+                                    <div class="code-tag">&lt;p&gt;</div>E = mc<div class="code-tag">&lt;sup&gt;</div>2<div class="code-tag">&lt;/sup&gt;</div><div class="code-tag">&lt;/p&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Code --&gt;</div>
+                                    <div class="code-tag">&lt;code&gt;</div>console.log("Hello World");<div class="code-tag">&lt;/code&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Preformatted text --&gt;</div>
+                                    <div class="code-tag">&lt;pre&gt;</div>
+                                    This text
+                                    preserves   spaces
+                                    and
+                                    line breaks
+                                    <div class="code-tag">&lt;/pre&gt;</div>
+                                </div>
+                                
+                                <p>Additional text formatting elements:</p>
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Abbreviation --&gt;</div>
+                                    <div class="code-tag">&lt;abbr title="HyperText Markup Language"&gt;</div>HTML<div class="code-tag">&lt;/abbr&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Citation --&gt;</div>
+                                    <div class="code-tag">&lt;cite&gt;</div>The Great Gatsby<div class="code-tag">&lt;/cite&gt;</div> by F. Scott Fitzgerald
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Definition --&gt;</div>
+                                    The <div class="code-tag">&lt;dfn&gt;</div>HTML<div class="code-tag">&lt;/dfn&gt;</div> is a markup language.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-quote-right"></i> Quotations <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>HTML provides specific elements for different types of quotations:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Short inline quotation --&gt;</div>
+                                    <div class="code-tag">&lt;q&gt;</div>To be or not to be<div class="code-tag">&lt;/q&gt;</div> is the question.
+                                    <br><br>
+                                    <div class="code-comment">&lt;!-- Block quotation --&gt;</div>
+                                    <div class="code-tag">&lt;blockquote cite="https://example.com/source"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;p&gt;</div>This is a longer quotation that spans multiple lines and is set off from the main text.<div class="code-tag">&lt;/p&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;footer&gt;</div>- Author Name, <div class="code-tag">&lt;cite&gt;</div>Source Title<div class="code-tag">&lt;/cite&gt;</div><div class="code-tag">&lt;/footer&gt;</div>
+                                    <div class="code-tag">&lt;/blockquote&gt;</div>
+                                </div>
+                                
+                                <div class="tip">
+                                    <p><strong>Teaching Tip:</strong> Show students how browsers typically render these elements - <code>&lt;q&gt;</code> adds quotation marks automatically, while <code>&lt;blockquote&gt;</code> is typically indented.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <h3><i class="fas fa-tasks"></i> Classroom Activity: Formatted Article</h3>
+                            <p><strong>Objective:</strong> Create a formatted article using various text elements</p>
+                            <p><strong>Instructions:</strong></p>
+                            <ol>
+                                <li>Create an HTML document about a scientific topic</li>
+                                <li>Include headings, paragraphs with emphasized and important text</li>
+                                <li>Use chemical formulas with subscripts and mathematical expressions with superscripts</li>
+                                <li>Add a block quotation from a famous scientist</li>
+                            </ol>
+                            
+                            <div class="practice-exercise">
+                                <p><strong>Extension Activity:</strong> Create a technical documentation page with:</p>
+                                <ul>
+                                    <li>Code examples using the <code>&lt;code&gt;</code> element</li>
+                                    <li>Keyboard shortcuts using the <code>&lt;kbd&gt;</code> element</li>
+                                    <li>Sample output using the <code>&lt;samp&gt;</code> element</li>
+                                    <li>Variables using the <code>&lt;var&gt;</code> element</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 4: Lists in HTML -->
+                    <div class="chapter-content" id="html-lists">
+                        <h2 class="chapter-title">Chapter 4: Lists in HTML</h2>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-list-ul"></i> Unordered Lists <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Unordered lists are used when the order of items doesn't matter:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Basic unordered list --&gt;</div>
+                                    <div class="code-tag">&lt;ul&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>First item<div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Second item<div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Third item<div class="code-tag">&lt;/li&gt;</div>
+                                    <div class="code-tag">&lt;/ul&gt;</div>
+                                </div>
+                                
+                                <p>Browser default styling for unordered lists:</p>
+                                <ul>
+                                    <li>Bullet points (discs) for top-level items</li>
+                                    <li>Circles for nested lists</li>
+                                    <li>Squares for deeply nested lists</li>
+                                </ul>
+                                
+                                <div class="tip">
+                                    <p><strong>Teaching Tip:</strong> Explain that the default bullet style can be changed with CSS using the <code>list-style-type</code> property (disc, circle, square, none).</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-list-ol"></i> Ordered Lists <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Ordered lists are used when the sequence of items is important:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Basic ordered list --&gt;</div>
+                                    <div class="code-tag">&lt;ol&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>First step<div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Second step<div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Third step<div class="code-tag">&lt;/li&gt;</div>
+                                    <div class="code-tag">&lt;/ol&gt;</div>
+                                </div>
+                                
+                                <p>Ordered list attributes:</p>
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Start from specific number --&gt;</div>
+                                    <div class="code-tag">&lt;ol start="5"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Item 5<div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Item 6<div class="code-tag">&lt;/li&gt;</div>
+                                    <div class="code-tag">&lt;/ol&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Reverse numbering --&gt;</div>
+                                    <div class="code-tag">&lt;ol reversed&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Item 3<div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Item 2<div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Item 1<div class="code-tag">&lt;/li&gt;</div>
+                                    <div class="code-tag">&lt;/ol&gt;</div>
+                                </div>
+                                
+                                <p>Numbering styles can be controlled with CSS using the <code>list-style-type</code> property:</p>
+                                <ul>
+                                    <li>decimal (1, 2, 3)</li>
+                                    <li>lower-roman (i, ii, iii)</li>
+                                    <li>upper-roman (I, II, III)</li>
+                                    <li>lower-alpha (a, b, c)</li>
+                                    <li>upper-alpha (A, B, C)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-list"></i> Description Lists <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Description lists are used for terms and their descriptions:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Description list --&gt;</div>
+                                    <div class="code-tag">&lt;dl&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;dt&gt;</div>HTML<div class="code-tag">&lt;/dt&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;dd&gt;</div>HyperText Markup Language - the standard markup language for web pages.<div class="code-tag">&lt;/dd&gt;</div>
+                                    <br>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;dt&gt;</div>CSS<div class="code-tag">&lt;/dt&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;dd&gt;</div>Cascading Style Sheets - used for styling web pages.<div class="code-tag">&lt;/dd&gt;</div>
+                                    <br>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;dt&gt;</div>JavaScript<div class="code-tag">&lt;/dt&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;dd&gt;</div>A programming language that enables interactive web pages.<div class="code-tag">&lt;/dd&gt;</div>
+                                    <div class="code-tag">&lt;/dl&gt;</div>
+                                </div>
+                                
+                                <p>Common uses for description lists:</p>
+                                <ul>
+                                    <li>Glossaries and dictionaries</li>
+                                    <li>Metadata (key-value pairs)</li>
+                                    <li>FAQ sections</li>
+                                    <li>Any list of terms with descriptions</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-sitemap"></i> Nested Lists <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Lists can be nested inside other lists to create hierarchical structures:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Nested list example --&gt;</div>
+                                    <div class="code-tag">&lt;ul&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Fruits
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;ul&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Apples<div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Oranges<div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;/ul&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Vegetables
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;ul&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Carrots<div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Broccoli<div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;/ul&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/li&gt;</div>
+                                    <div class="code-tag">&lt;/ul&gt;</div>
+                                </div>
+                                
+                                <div class="note">
+                                    <p><strong>Important:</strong> Pay attention to proper indentation when creating nested lists. Each nested list should be inside an <code>&lt;li&gt;</code> element of its parent list.</p>
+                                </div>
+                                
+                                <p>You can mix different types of lists:</p>
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Mixed list types --&gt;</div>
+                                    <div class="code-tag">&lt;ol&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Main step
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;ul&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Substep 1<div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Substep 2<div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;/ul&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div>Next main step<div class="code-tag">&lt;/li&gt;</div>
+                                    <div class="code-tag">&lt;/ol&gt;</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <h3><i class="fas fa-tasks"></i> Classroom Activity: Recipe Page</h3>
+                            <p><strong>Objective:</strong> Create a recipe page using different types of lists</p>
+                            <p><strong>Instructions:</strong></p>
+                            <ol>
+                                <li>Create an HTML document for your favorite recipe</li>
+                                <li>Include a description list for recipe information</li>
+                                <li>Use an unordered list for ingredients</li>
+                                <li>Use an ordered list for instructions</li>
+                                <li>Add a nested list for ingredient substitutions</li>
+                            </ol>
+                            
+                            <div class="practice-exercise">
+                                <p><strong>Challenge Activity:</strong> Create a multi-level navigation menu using nested lists:</p>
+                                <ul>
+                                    <li>Main categories as top-level list items</li>
+                                    <li>Subcategories as nested unordered lists</li>
+                                    <li>Use proper indentation for readability</li>
+                                    <li>Include at least three levels of navigation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 5: Links & Navigation -->
+                    <div class="chapter-content" id="html-links">
+                        <h2 class="chapter-title">Chapter 5: Links & Navigation</h2>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-link"></i> The Anchor Element <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>The <code>&lt;a&gt;</code> (anchor) element creates hyperlinks:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Basic link --&gt;</div>
+                                    <div class="code-tag">&lt;a href="https://www.example.com"&gt;</div>Visit Example.com<div class="code-tag">&lt;/a&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Link opening in new tab --&gt;</div>
+                                    <div class="code-tag">&lt;a href="https://external-site.com" target="_blank"&gt;</div>External Site<div class="code-tag">&lt;/a&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Email link --&gt;</div>
+                                    <div class="code-tag">&lt;a href="mailto:contact@example.com"&gt;</div>Email Us<div class="code-tag">&lt;/a&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Telephone link --&gt;</div>
+                                    <div class="code-tag">&lt;a href="tel:+1234567890"&gt;</div>Call Us<div class="code-tag">&lt;/a&gt;</div>
+                                </div>
+                                
+                                <p>Common link attributes:</p>
+                                <table>
+                                    <tr>
+                                        <th>Attribute</th>
+                                        <th>Purpose</th>
+                                        <th>Example</th>
+                                    </tr>
+                                    <tr>
+                                        <td>href</td>
+                                        <td>Specifies the URL</td>
+                                        <td>href="page.html"</td>
+                                    </tr>
+                                    <tr>
+                                        <td>target</td>
+                                        <td>Specifies where to open the link</td>
+                                        <td>target="_blank"</td>
+                                    </tr>
+                                    <tr>
+                                        <td>title</td>
+                                        <td>Additional information (tooltip)</td>
+                                        <td>title="Learn more"</td>
+                                    </tr>
+                                    <tr>
+                                        <td>rel</td>
+                                        <td>Relationship between documents</td>
+                                        <td>rel="nofollow"</td>
+                                    </tr>
+                                    <tr>
+                                        <td>download</td>
+                                        <td>Prompts to download the linked resource</td>
+                                        <td>download="filename"</td>
+                                    </tr>
+                                </table>
+                                
+                                <div class="warning">
+                                    <p><strong>Security Consideration:</strong> Use <code>rel="noopener noreferrer"</code> with <code>target="_blank"</code> to prevent potential security vulnerabilities.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-sitemap"></i> Navigation Menus <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>The <code>&lt;nav&gt;</code> element defines a section of navigation links:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Semantic navigation --&gt;</div>
+                                    <div class="code-tag">&lt;nav&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;ul&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div><div class="code-tag">&lt;a href="index.html"&gt;</div>Home<div class="code-tag">&lt;/a&gt;</div><div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div><div class="code-tag">&lt;a href="about.html"&gt;</div>About<div class="code-tag">&lt;/a&gt;</div><div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div><div class="code-tag">&lt;a href="contact.html"&gt;</div>Contact<div class="code-tag">&lt;/a&gt;</div><div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/ul&gt;</div>
+                                    <div class="code-tag">&lt;/nav&gt;</div>
+                                </div>
+                                
+                                <p>Best practices for navigation:</p>
+                                <ul>
+                                    <li>Use semantic <code>&lt;nav&gt;</code> element for major navigation blocks</li>
+                                    <li>Structure navigation with lists for better accessibility</li>
+                                    <li>Provide clear, descriptive link text</li>
+                                    <li>Include a "skip to main content" link for accessibility</li>
+                                    <li>Ensure navigation is usable without a mouse</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-anchor"></i> Link Types and URL Schemes <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>HTML supports various URL schemes for different purposes:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Absolute URL --&gt;</div>
+                                    <div class="code-tag">&lt;a href="https://www.example.com/page.html"&gt;</div>Absolute Link<div class="code-tag">&lt;/a&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Relative URL --&gt;</div>
+                                    <div class="code-tag">&lt;a href="about.html"&gt;</div>Relative Link<div class="code-tag">&lt;/a&gt;</div>
+                                    <div class="code-tag">&lt;a href="../parent/page.html"&gt;</div>Parent Directory Link<div class="code-tag">&lt;/a&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Same page anchor --&gt;</div>
+                                    <div class="code-tag">&lt;a href="#section1"&gt;</div>Jump to Section 1<div class="code-tag">&lt;/a&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- File download --&gt;</div>
+                                    <div class="code-tag">&lt;a href="document.pdf" download&gt;</div>Download PDF<div class="code-tag">&lt;/a&gt;</div>
+                                </div>
+                                
+                                <p>Special URL schemes:</p>
+                                <ul>
+                                    <li><code>mailto:</code> - Opens default email client</li>
+                                    <li><code>tel:</code> - Initiates phone call on mobile devices</li>
+                                    <li><code>sms:</code> - Opens SMS messaging</li>
+                                    <li><code>ftp:</code> - Links to FTP servers</li>
+                                    <li><code>javascript:</code> - Executes JavaScript code (use sparingly)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-bookmark"></i> Internal Page Navigation <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>You can create links to specific sections within the same page using ID attributes:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Navigation to sections --&gt;</div>
+                                    <div class="code-tag">&lt;nav&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;ul&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div><div class="code-tag">&lt;a href="#intro"&gt;</div>Introduction<div class="code-tag">&lt;/a&gt;</div><div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div><div class="code-tag">&lt;a href="#features"&gt;</div>Features<div class="code-tag">&lt;/a&gt;</div><div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;li&gt;</div><div class="code-tag">&lt;a href="#contact"&gt;</div>Contact<div class="code-tag">&lt;/a&gt;</div><div class="code-tag">&lt;/li&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/ul&gt;</div>
+                                    <div class="code-tag">&lt;/nav&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Sections with IDs --&gt;</div>
+                                    <div class="code-tag">&lt;section id="intro"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;h2&gt;</div>Introduction<div class="code-tag">&lt;/h2&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;p&gt;</div>Content here...<div class="code-tag">&lt;/p&gt;</div>
+                                    <div class="code-tag">&lt;/section&gt;</div>
+                                    <br>
+                                    <div class="code-tag">&lt;section id="features"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;h2&gt;</div>Features<div class="code-tag">&lt;/h2&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;p&gt;</div>Content here...<div class="code-tag">&lt;/p&gt;</div>
+                                    <div class="code-tag">&lt;/section&gt;</div>
+                                </div>
+                                
+                                <div class="tip">
+                                    <p><strong>Teaching Tip:</strong> Demonstrate how browser scrolling behavior changes with anchor links. You can also show how to create a "back to top" link using <code>href="#"</code> or <code>href="#top"</code>.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <h3><i class="fas fa-tasks"></i> Classroom Activity: Multi-page Website</h3>
+                            <p><strong>Objective:</strong> Create a simple 3-page website with navigation</p>
+                            <p><strong>Instructions:</strong></p>
+                            <ol>
+                                <li>Create three HTML files: index.html, about.html, contact.html</li>
+                                <li>Each page should have a navigation menu linking to all three pages</li>
+                                <li>Add appropriate content for each page</li>
+                                <li>Include internal and external links</li>
+                                <li>Test that all links work correctly</li>
+                            </ol>
+                            
+                            <div class="practice-exercise">
+                                <p><strong>Extension Activity:</strong> Create a single-page website with:</p>
+                                <ul>
+                                    <li>Navigation that jumps to different sections</li>
+                                    <li>External links that open in new tabs</li>
+                                    <li>Email and telephone links</li>
+                                    <li>A downloadable resource</li>
+                                    <li>Proper link styling and hover effects using CSS</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 6: Images & Media -->
+                    <div class="chapter-content" id="html-images">
+                        <h2 class="chapter-title">Chapter 6: Images & Media</h2>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-image"></i> Adding Images <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>The <code>&lt;img&gt;</code> element embeds images in web pages:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Basic image --&gt;</div>
+                                    <div class="code-tag">&lt;img src="photo.jpg" alt="Description of photo"&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Image with dimensions --&gt;</div>
+                                    <div class="code-tag">&lt;img src="logo.png" alt="Company logo" width="200" height="100"&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Responsive image --&gt;</div>
+                                    <div class="code-tag">&lt;img src="banner.jpg" alt="Website banner" style="max-width: 100%; height: auto;"&gt;</div>
+                                </div>
+                                
+                                <div class="note">
+                                    <p><strong>Important:</strong> Always include the <code>alt</code> attribute for accessibility. It describes the image for screen readers and displays if the image fails to load.</p>
+                                </div>
+                                
+                                <p>Image attributes:</p>
+                                <table>
+                                    <tr>
+                                        <th>Attribute</th>
+                                        <th>Purpose</th>
+                                    </tr>
+                                    <tr>
+                                        <td>src</td>
+                                        <td>Source URL of the image</td>
+                                    </tr>
+                                    <tr>
+                                        <td>alt</td>
+                                        <td>Alternative text for accessibility</td>
+                                    </tr>
+                                    <tr>
+                                        <td>width/height</td>
+                                        <td>Dimensions of the image</td>
+                                    </tr>
+                                    <tr>
+                                        <td>loading</td>
+                                        <td>Lazy loading ("lazy" or "eager")</td>
+                                    </tr>
+                                    <tr>
+                                        <td>srcset</td>
+                                        <td>Multiple image sources for different resolutions</td>
+                                    </tr>
+                                    <tr>
+                                        <td>sizes</td>
+                                        <td>Image sizes for different viewports</td>
+                                    </tr>
+                                </table>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Responsive images with srcset --&gt;</div>
+                                    <div class="code-tag">&lt;img src="image-800.jpg"</div>
+                                    &nbsp;&nbsp;<div class="code-attr">srcset</div>=<div class="code-value">"image-400.jpg 400w, image-800.jpg 800w, image-1200.jpg 1200w"</div>
+                                    &nbsp;&nbsp;<div class="code-attr">sizes</div>=<div class="code-value">"(max-width: 600px) 400px, (max-width: 1000px) 800px, 1200px"</div>
+                                    &nbsp;&nbsp;<div class="code-attr">alt</div>=<div class="code-value">"Responsive image example"</div><div class="code-tag">&gt;</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-icons"></i> Figures and Captions <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>The <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> elements provide semantic structure for images with captions:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Figure with caption --&gt;</div>
+                                    <div class="code-tag">&lt;figure&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;img src="chart.png" alt="Sales growth chart 2023"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;figcaption&gt;</div>Figure 1: Quarterly sales growth for 2023<div class="code-tag">&lt;/figcaption&gt;</div>
+                                    <div class="code-tag">&lt;/figure&gt;</div>
+                                </div>
+                                
+                                <p>The <code>&lt;figure&gt;</code> element can contain:</p>
+                                <ul>
+                                    <li>Images</li>
+                                    <li>Code snippets</li>
+                                    <li>Videos</li>
+                                    <li>Audio</li>
+                                    <li>Diagrams</li>
+                                    <li>Any content that is referenced from the main content</li>
+                                </ul>
+                                
+                                <div class="tip">
+                                    <p><strong>Teaching Tip:</strong> Explain that <code>&lt;figure&gt;</code> is self-contained content that could be moved to another part of the document without affecting the flow. <code>&lt;figcaption&gt;</code> provides a caption that is directly related to the figure.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-picture-o"></i> Image Formats and Optimization <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Different image formats serve different purposes on the web:</p>
+                                
+                                <table>
+                                    <tr>
+                                        <th>Format</th>
+                                        <th>Best For</th>
+                                        <th>Features</th>
+                                    </tr>
+                                    <tr>
+                                        <td>JPEG</td>
+                                        <td>Photographs</td>
+                                        <td>Lossy compression, millions of colors</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PNG</td>
+                                        <td>Graphics with transparency</td>
+                                        <td>Lossless compression, transparency support</td>
+                                    </tr>
+                                    <tr>
+                                        <td>GIF</td>
+                                        <td>Simple animations</td>
+                                        <td>Limited colors (256), supports animation</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SVG</td>
+                                        <td>Logos, icons, illustrations</td>
+                                        <td>Vector format, scales infinitely, small file size</td>
+                                    </tr>
+                                    <tr>
+                                        <td>WebP</td>
+                                        <td>Modern web images</td>
+                                        <td>Better compression than JPEG/PNG, transparency, animation</td>
+                                    </tr>
+                                </table>
+                                
+                                <p>Image optimization best practices:</p>
+                                <ul>
+                                    <li>Choose the right format for the content</li>
+                                    <li>Compress images to reduce file size</li>
+                                    <li>Use responsive images with srcset</li>
+                                    <li>Specify width and height to prevent layout shifts</li>
+                                    <li>Use lazy loading for offscreen images</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-images"></i> Image Maps <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Image maps define clickable areas on an image:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Image with clickable areas --&gt;</div>
+                                    <div class="code-tag">&lt;img src="planets.jpg" alt="Solar System" usemap="#solarsystem"&gt;</div>
+                                    <br>
+                                    <div class="code-tag">&lt;map name="solarsystem"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-comment">&lt;!-- Circle area --&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;area shape="circle" coords="100,100,50" href="sun.html" alt="Sun"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-comment">&lt;!-- Rectangle area --&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;area shape="rect" coords="200,50,300,150" href="earth.html" alt="Earth"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-comment">&lt;!-- Polygon area --&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;area shape="poly" coords="350,100,400,150,300,150" href="mars.html" alt="Mars"&gt;</div>
+                                    <div class="code-tag">&lt;/map&gt;</div>
+                                </div>
+                                
+                                <div class="warning">
+                                    <p><strong>Accessibility Note:</strong> Image maps can be difficult for users with mobility or vision impairments. Provide alternative navigation methods when using image maps.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <h3><i class="fas fa-tasks"></i> Classroom Activity: Photo Gallery</h3>
+                            <p><strong>Objective:</strong> Create an image gallery with proper HTML structure</p>
+                            <p><strong>Instructions:</strong></p>
+                            <ol>
+                                <li>Create an HTML document for a photo gallery</li>
+                                <li>Add at least 6 images with appropriate alt text</li>
+                                <li>Use figure and figcaption for at least 3 images</li>
+                                <li>Create a responsive layout that works on mobile devices</li>
+                                <li>Add captions that describe each image meaningfully</li>
+                            </ol>
+                            
+                            <div class="practice-exercise">
+                                <p><strong>Extension Activity:</strong> Create an interactive image map:</p>
+                                <ul>
+                                    <li>Use an image of a world map or floor plan</li>
+                                    <li>Define at least 5 clickable areas</li>
+                                    <li>Link each area to a relevant page or section</li>
+                                    <li>Provide alternative text for each area</li>
+                                    <li>Test the image map with different screen sizes</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 7: Tables -->
+                    <div class="chapter-content" id="html-tables">
+                        <h2 class="chapter-title">Chapter 7: HTML Tables</h2>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-table"></i> Basic Table Structure <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Tables are used to display tabular data with rows and columns:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Simple table --&gt;</div>
+                                    <div class="code-tag">&lt;table&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;tr&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;th&gt;</div>Name<div class="code-tag">&lt;/th&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;th&gt;</div>Age<div class="code-tag">&lt;/th&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;th&gt;</div>City<div class="code-tag">&lt;/th&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/tr&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;tr&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;td&gt;</div>John<div class="code-tag">&lt;/td&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;td&gt;</div>25<div class="code-tag">&lt;/td&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;td&gt;</div>New York<div class="code-tag">&lt;/td&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/tr&gt;</div>
+                                    <div class="code-tag">&lt;/table&gt;</div>
+                                </div>
+                                
+                                <p>Table elements:</p>
+                                <table>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Purpose</th>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;table&gt;</td>
+                                        <td>Defines the table container</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;tr&gt;</td>
+                                        <td>Defines a table row</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;th&gt;</td>
+                                        <td>Defines a header cell</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;td&gt;</td>
+                                        <td>Defines a standard data cell</td>
+                                    </tr>
+                                </table>
+                                
+                                <div class="note">
+                                    <p><strong>Important:</strong> Use tables only for tabular data, not for page layout. For layout purposes, use CSS Flexbox or Grid instead.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-table"></i> Advanced Table Features <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>HTML provides additional elements for complex tables:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Table with header, body, footer --&gt;</div>
+                                    <div class="code-tag">&lt;table&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;caption&gt;</div>Monthly Sales Report<div class="code-tag">&lt;/caption&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;thead&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;tr&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;th&gt;</div>Month<div class="code-tag">&lt;/th&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;th&gt;</div>Sales<div class="code-tag">&lt;/th&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;/tr&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/thead&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;tbody&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;tr&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;td&gt;</div>January<div class="code-tag">&lt;/td&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;td&gt;</div>$5000<div class="code-tag">&lt;/td&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;/tr&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/tbody&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;tfoot&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;tr&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;td&gt;</div>Total<div class="code-tag">&lt;/td&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;td&gt;</div>$5000<div class="code-tag">&lt;/td&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;/tr&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/tfoot&gt;</div>
+                                    <div class="code-tag">&lt;/table&gt;</div>
+                                </div>
+                                
+                                <p>Advanced table elements:</p>
+                                <table>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Purpose</th>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;caption&gt;</td>
+                                        <td>Provides a title or description for the table</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;thead&gt;</td>
+                                        <td>Groups header content</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;tbody&gt;</td>
+                                        <td>Groups main body content</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;tfoot&gt;</td>
+                                        <td>Groups footer content</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;colgroup&gt;</td>
+                                        <td>Groups columns for styling</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;col&gt;</td>
+                                        <td>Specifies column properties</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-th"></i> Table Attributes and Spanning <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Cells can span multiple rows or columns using rowspan and colspan:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Table with row and column spanning --&gt;</div>
+                                    <div class="code-tag">&lt;table&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;tr&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;th rowspan="2"&gt;</div>Name<div class="code-tag">&lt;/th&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;th colspan="2"&gt;</div>Contact Info<div class="code-tag">&lt;/th&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/tr&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;tr&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;th&gt;</div>Email<div class="code-tag">&lt;/th&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;th&gt;</div>Phone<div class="code-tag">&lt;/th&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/tr&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;tr&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;td&gt;</div>John Doe<div class="code-tag">&lt;/td&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;td&gt;</div>john@example.com<div class="code-tag">&lt;/td&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;td&gt;</div>123-456-7890<div class="code-tag">&lt;/td&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/tr&gt;</div>
+                                    <div class="code-tag">&lt;/table&gt;</div>
+                                </div>
+                                
+                                <p>Table attributes:</p>
+                                <table>
+                                    <tr>
+                                        <th>Attribute</th>
+                                        <th>Purpose</th>
+                                    </tr>
+                                    <tr>
+                                        <td>rowspan</td>
+                                        <td>Number of rows a cell should span</td>
+                                    </tr>
+                                    <tr>
+                                        <td>colspan</td>
+                                        <td>Number of columns a cell should span</td>
+                                    </tr>
+                                    <tr>
+                                        <td>headers</td>
+                                        <td>Space-separated list of header cell IDs</td>
+                                    </tr>
+                                    <tr>
+                                        <td>scope</td>
+                                        <td>Defines scope of header cells (row, col, rowgroup, colgroup)</td>
+                                    </tr>
+                                </table>
+                                
+                                <div class="tip">
+                                    <p><strong>Teaching Tip:</strong> Use physical tables (like a calendar or seating chart) as real-world examples to demonstrate rowspan and colspan concepts.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-table"></i> Accessible Tables <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Proper table markup is essential for accessibility:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Accessible table with scope and headers --&gt;</div>
+                                    <div class="code-tag">&lt;table&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;caption&gt;</div>Student Grades for Spring Semester<div class="code-tag">&lt;/caption&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;thead&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;tr&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;th id="name" scope="col"&gt;</div>Student Name<div class="code-tag">&lt;/th&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;th id="math" scope="col"&gt;</div>Math<div class="code-tag">&lt;/th&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;th id="science" scope="col"&gt;</div>Science<div class="code-tag">&lt;/th&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;/tr&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/thead&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;tbody&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;tr&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;th id="student1" scope="row"&gt;</div>John Smith<div class="code-tag">&lt;/th&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;td headers="student1 math"&gt;</div>85<div class="code-tag">&lt;/td&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;td headers="student1 science"&gt;</div>92<div class="code-tag">&lt;/td&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;/tr&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/tbody&gt;</div>
+                                    <div class="code-tag">&lt;/table&gt;</div>
+                                </div>
+                                
+                                <p>Accessibility best practices for tables:</p>
+                                <ul>
+                                    <li>Use <code>&lt;th&gt;</code> for header cells</li>
+                                    <li>Use <code>scope</code> attribute to define header scope</li>
+                                    <li>Use <code>headers</code> attribute for complex tables</li>
+                                    <li>Provide a <code>&lt;caption&gt;</code> for table description</li>
+                                    <li>Use <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, and <code>&lt;tfoot&gt;</code> for structure</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <h3><i class="fas fa-tasks"></i> Classroom Activity: Data Table</h3>
+                            <p><strong>Objective:</strong> Create a complex data table with proper structure</p>
+                            <p><strong>Instructions:</strong></p>
+                            <ol>
+                                <li>Create an HTML table showing student grades</li>
+                                <li>Include columns for: Student Name, Math, Science, English, Total</li>
+                                <li>Use thead, tbody, and tfoot elements</li>
+                                <li>Add a caption describing the table</li>
+                                <li>Include at least 5 students with sample data</li>
+                                <li>Calculate totals in the tfoot section</li>
+                            </ol>
+                            
+                            <div class="practice-exercise">
+                                <p><strong>Challenge Activity:</strong> Create a complex schedule table:</p>
+                                <ul>
+                                    <li>Use rowspan for time slots that span multiple periods</li>
+                                    <li>Use colspan for activities that span multiple days</li>
+                                    <li>Implement proper accessibility features</li>
+                                    <li>Add a caption and summary</li>
+                                    <li>Style the table with CSS for better readability</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 8: Forms & Input -->
+                    <div class="chapter-content" id="html-forms">
+                        <h2 class="chapter-title">Chapter 8: Forms & Input</h2>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-edit"></i> Basic Form Structure <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Forms collect user input and submit it to a server:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Simple contact form --&gt;</div>
+                                    <div class="code-tag">&lt;form action="/submit" method="post"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;label for="name"&gt;</div>Name:<div class="code-tag">&lt;/label&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;input type="text" id="name" name="name" required&gt;</div>
+                                    <br>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;label for="email"&gt;</div>Email:<div class="code-tag">&lt;/label&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;input type="email" id="email" name="email" required&gt;</div>
+                                    <br>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;button type="submit"&gt;</div>Submit<div class="code-tag">&lt;/button&gt;</div>
+                                    <div class="code-tag">&lt;/form&gt;</div>
+                                </div>
+                                
+                                <p>Form attributes:</p>
+                                <table>
+                                    <tr>
+                                        <th>Attribute</th>
+                                        <th>Purpose</th>
+                                    </tr>
+                                    <tr>
+                                        <td>action</td>
+                                        <td>URL where form data is sent</td>
+                                    </tr>
+                                    <tr>
+                                        <td>method</td>
+                                        <td>HTTP method (GET or POST)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>enctype</td>
+                                        <td>Encoding type for file uploads</td>
+                                    </tr>
+                                    <tr>
+                                        <td>target</td>
+                                        <td>Where to display response</td>
+                                    </tr>
+                                    <tr>
+                                        <td>autocomplete</td>
+                                        <td>Enable/disable autocomplete</td>
+                                    </tr>
+                                    <tr>
+                                        <td>novalidate</td>
+                                        <td>Disable browser validation</td>
+                                    </tr>
+                                </table>
+                                
+                                <div class="tip">
+                                    <p><strong>Teaching Tip:</strong> Explain the difference between GET and POST methods. GET appends data to the URL (visible), while POST sends data in the request body (not visible).</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-keyboard"></i> Common Input Types <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>HTML5 introduced many new input types for better user experience:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Various input types --&gt;</div>
+                                    <div class="code-tag">&lt;input type="text" placeholder="Text input"&gt;</div>
+                                    <div class="code-tag">&lt;input type="password" placeholder="Password"&gt;</div>
+                                    <div class="code-tag">&lt;input type="email" placeholder="Email"&gt;</div>
+                                    <div class="code-tag">&lt;input type="url" placeholder="Website URL"&gt;</div>
+                                    <div class="code-tag">&lt;input type="tel" placeholder="Phone number"&gt;</div>
+                                    <div class="code-tag">&lt;input type="number" min="1" max="100"&gt;</div>
+                                    <div class="code-tag">&lt;input type="date"&gt;</div>
+                                    <div class="code-tag">&lt;input type="color"&gt;</div>
+                                    <div class="code-tag">&lt;input type="range" min="0" max="100"&gt;</div>
+                                </div>
+                                
+                                <p>Additional form controls:</p>
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Textarea for multiline text --&gt;</div>
+                                    <div class="code-tag">&lt;textarea rows="4" cols="50"&gt;</div>Default text here<div class="code-tag">&lt;/textarea&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Select dropdown --&gt;</div>
+                                    <div class="code-tag">&lt;select&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;option value="option1"&gt;</div>Option 1<div class="code-tag">&lt;/option&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;option value="option2"&gt;</div>Option 2<div class="code-tag">&lt;/option&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;option value="option3"&gt;</div>Option 3<div class="code-tag">&lt;/option&gt;</div>
+                                    <div class="code-tag">&lt;/select&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Radio buttons --&gt;</div>
+                                    <div class="code-tag">&lt;input type="radio" id="male" name="gender" value="male"&gt;</div>
+                                    <div class="code-tag">&lt;label for="male"&gt;</div>Male<div class="code-tag">&lt;/label&gt;</div>
+                                    <div class="code-tag">&lt;input type="radio" id="female" name="gender" value="female"&gt;</div>
+                                    <div class="code-tag">&lt;label for="female"&gt;</div>Female<div class="code-tag">&lt;/label&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Checkboxes --&gt;</div>
+                                    <div class="code-tag">&lt;input type="checkbox" id="subscribe" name="subscribe" value="yes"&gt;</div>
+                                    <div class="code-tag">&lt;label for="subscribe"&gt;</div>Subscribe to newsletter<div class="code-tag">&lt;/label&gt;</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-tags"></i> Form Attributes and Validation <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>HTML5 provides built-in form validation attributes:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Form with validation --&gt;</div>
+                                    <div class="code-tag">&lt;form&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;label for="username"&gt;</div>Username:<div class="code-tag">&lt;/label&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;input type="text" id="username" name="username" </div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-attr">required</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-attr">minlength</div>=<div class="code-value">"3"</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-attr">maxlength</div>=<div class="code-value">"20"</div><div class="code-tag">&gt;</div>
+                                    <br>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;label for="age"&gt;</div>Age:<div class="code-tag">&lt;/label&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;input type="number" id="age" name="age" </div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-attr">min</div>=<div class="code-value">"18"</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-attr">max</div>=<div class="code-value">"100"</div><div class="code-tag">&gt;</div>
+                                    <br>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;label for="website"&gt;</div>Website:<div class="code-tag">&lt;/label&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;input type="url" id="website" name="website" </div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-attr">pattern</div>=<div class="code-value">"https?://.+"</div><div class="code-tag">&gt;</div>
+                                    <br>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;button type="submit"&gt;</div>Submit<div class="code-tag">&lt;/button&gt;</div>
+                                    <div class="code-tag">&lt;/form&gt;</div>
+                                </div>
+                                
+                                <p>Common validation attributes:</p>
+                                <table>
+                                    <tr>
+                                        <th>Attribute</th>
+                                        <th>Purpose</th>
+                                    </tr>
+                                    <tr>
+                                        <td>required</td>
+                                        <td>Field must be filled out</td>
+                                    </tr>
+                                    <tr>
+                                        <td>minlength/maxlength</td>
+                                        <td>Minimum/maximum character length</td>
+                                    </tr>
+                                    <tr>
+                                        <td>min/max</td>
+                                        <td>Minimum/maximum value for numbers</td>
+                                    </tr>
+                                    <tr>
+                                        <td>pattern</td>
+                                        <td>Regular expression pattern</td>
+                                    </tr>
+                                    <tr>
+                                        <td>step</td>
+                                        <td>Legal number intervals</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-list-alt"></i> Advanced Form Elements <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>HTML provides additional elements for complex forms:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Fieldset and legend --&gt;</div>
+                                    <div class="code-tag">&lt;fieldset&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;legend&gt;</div>Personal Information<div class="code-tag">&lt;/legend&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;label for="fname"&gt;</div>First Name:<div class="code-tag">&lt;/label&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;input type="text" id="fname" name="fname"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;label for="lname"&gt;</div>Last Name:<div class="code-tag">&lt;/label&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;input type="text" id="lname" name="lname"&gt;</div>
+                                    <div class="code-tag">&lt;/fieldset&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Datalist for suggestions --&gt;</div>
+                                    <div class="code-tag">&lt;label for="browser"&gt;</div>Choose your browser:<div class="code-tag">&lt;/label&gt;</div>
+                                    <div class="code-tag">&lt;input list="browsers" id="browser" name="browser"&gt;</div>
+                                    <div class="code-tag">&lt;datalist id="browsers"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;option value="Chrome"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;option value="Firefox"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;option value="Safari"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;option value="Edge"&gt;</div>
+                                    <div class="code-tag">&lt;/datalist&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Output element --&gt;</div>
+                                    <div class="code-tag">&lt;form oninput="result.value=parseInt(a.value)+parseInt(b.value)"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;input type="range" id="a" value="50"&gt;</div>
+                                    &nbsp;&nbsp;+ <div class="code-tag">&lt;input type="number" id="b" value="50"&gt;</div>
+                                    &nbsp;&nbsp;= <div class="code-tag">&lt;output name="result" for="a b"&gt;</div>100<div class="code-tag">&lt;/output&gt;</div>
+                                    <div class="code-tag">&lt;/form&gt;</div>
+                                </div>
+                                
+                                <div class="note">
+                                    <p><strong>Teaching Tip:</strong> Demonstrate how <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code> group related form controls visually and semantically, improving both usability and accessibility.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <h3><i class="fas fa-tasks"></i> Classroom Activity: Registration Form</h3>
+                            <p><strong>Objective:</strong> Create a comprehensive user registration form</p>
+                            <p><strong>Instructions:</strong></p>
+                            <ol>
+                                <li>Create an HTML form for user registration</li>
+                                <li>Include fields for: name, email, password, birth date, gender, interests</li>
+                                <li>Use appropriate input types for each field</li>
+                                <li>Add labels for all form controls</li>
+                                <li>Include required fields and validation</li>
+                                <li>Add a submit button and a reset button</li>
+                            </ol>
+                            
+                            <div class="practice-exercise">
+                                <p><strong>Challenge Activity:</strong> Create a multi-step form:</p>
+                                <ul>
+                                    <li>Divide the form into logical sections using fieldsets</li>
+                                    <li>Implement client-side validation for each field</li>
+                                    <li>Use datalist for suggested inputs</li>
+                                    <li>Add a progress indicator</li>
+                                    <li>Include both client-side and server-side validation considerations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 9: Semantic HTML -->
+                    <div class="chapter-content" id="html-semantic">
+                        <h2 class="chapter-title">Chapter 9: Semantic HTML</h2>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-code"></i> What is Semantic HTML? <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Semantic HTML uses elements that clearly describe their meaning to both browsers and developers:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Semantic HTML structure --&gt;</div>
+                                    <div class="code-tag">&lt;header&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;h1&gt;</div>Website Title<div class="code-tag">&lt;/h1&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;nav&gt;</div>...<div class="code-tag">&lt;/nav&gt;</div>
+                                    <div class="code-tag">&lt;/header&gt;</div>
+                                    <br>
+                                    <div class="code-tag">&lt;main&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;article&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;h2&gt;</div>Article Title<div class="code-tag">&lt;/h2&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;p&gt;</div>Article content...<div class="code-tag">&lt;/p&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/article&gt;</div>
+                                    <div class="code-tag">&lt;/main&gt;</div>
+                                    <br>
+                                    <div class="code-tag">&lt;footer&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;p&gt;</div>Copyright information<div class="code-tag">&lt;/p&gt;</div>
+                                    <div class="code-tag">&lt;/footer&gt;</div>
+                                </div>
+                                
+                                <p>Benefits of semantic HTML:</p>
+                                <ul>
+                                    <li><strong>Accessibility:</strong> Screen readers can better interpret page structure</li>
+                                    <li><strong>SEO:</strong> Search engines understand content better</li>
+                                    <li><strong>Maintainability:</strong> Code is easier to read and understand</li>
+                                    <li><strong>Future-proof:</strong> Semantic markup is less likely to break with design changes</li>
+                                </ul>
+                                
+                                <div class="tip">
+                                    <p><strong>Teaching Strategy:</strong> Compare semantic HTML to a well-organized book with clear chapters, sections, and headings versus a book where everything is just plain text.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-sitemap"></i> Key Semantic Elements <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>HTML5 introduced these important semantic elements:</p>
+                                
+                                <table>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Purpose</th>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;header&gt;</td>
+                                        <td>Introductory content or navigation</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;nav&gt;</td>
+                                        <td>Navigation links</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;main&gt;</td>
+                                        <td>Main content of the document</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;article&gt;</td>
+                                        <td>Self-contained composition</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;section&gt;</td>
+                                        <td>Thematic grouping of content</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;aside&gt;</td>
+                                        <td>Content indirectly related to main content</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;footer&gt;</td>
+                                        <td>Footer for its nearest section</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;figure&gt;</td>
+                                        <td>Self-contained content with optional caption</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;figcaption&gt;</td>
+                                        <td>Caption for &lt;figure&gt;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;time&gt;</td>
+                                        <td>Machine-readable date/time</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;mark&gt;</td>
+                                        <td>Highlighted text</td>
+                                    </tr>
+                                </table>
+                                
+                                <p>When to use each element:</p>
+                                <ul>
+                                    <li><code>&lt;header&gt;</code> - Site header, article header, section header</li>
+                                    <li><code>&lt;nav&gt;</code> - Main navigation, table of contents, pagination</li>
+                                    <li><code>&lt;main&gt;</code> - Primary content (only one per page)</li>
+                                    <li><code>&lt;article&gt;</code> - Blog post, news article, forum post</li>
+                                    <li><code>&lt;section&gt;</code> - Chapters, tabbed content, grouped content</li>
+                                    <li><code>&lt;aside&gt;</code> - Sidebars, pull quotes, advertising</li>
+                                    <li><code>&lt;footer&gt;</code> - Site footer, article footer, section footer</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-file-alt"></i> Document Outline <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Semantic elements create a document outline that helps browsers and assistive technologies understand page structure:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Document outline example --&gt;</div>
+                                    <div class="code-tag">&lt;body&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;header&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;h1&gt;</div>Site Title<div class="code-tag">&lt;/h1&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/header&gt;</div>
+                                    <br>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;main&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;article&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;h2&gt;</div>Article Title<div class="code-tag">&lt;/h2&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;section&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;h3&gt;</div>Section Heading<div class="code-tag">&lt;/h3&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;p&gt;</div>Content...<div class="code-tag">&lt;/p&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;/section&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;/article&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/main&gt;</div>
+                                    <br>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;footer&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;p&gt;</div>Copyright info<div class="code-tag">&lt;/p&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/footer&gt;</div>
+                                    <div class="code-tag">&lt;/body&gt;</div>
+                                </div>
+                                
+                                <p>The resulting outline would be:</p>
+                                <ul>
+                                    <li>Site Title (h1)
+                                        <ul>
+                                            <li>Article Title (h2)
+                                                <ul>
+                                                    <li>Section Heading (h3)</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                
+                                <div class="note">
+                                    <p><strong>Important:</strong> Sectioning elements (<code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;aside&gt;</code>) create a new section in the document outline. Headings (<code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code>) within these elements become part of that section's heading hierarchy.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-code-branch"></i> Semantic Text Elements <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>HTML5 also introduced semantic text-level elements:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Semantic text elements --&gt;</div>
+                                    <div class="code-tag">&lt;p&gt;</div>
+                                    &nbsp;&nbsp;The concert will be on <div class="code-tag">&lt;time datetime="2023-12-25"&gt;</div>December 25, 2023<div class="code-tag">&lt;/time&gt;</div>.
+                                    &nbsp;&nbsp;Don't forget to <div class="code-tag">&lt;mark&gt;</div>highlight this important date<div class="code-tag">&lt;/mark&gt;</div>.
+                                    &nbsp;&nbsp;The event starts at <div class="code-tag">&lt;time datetime="20:00"&gt;</div>8:00 PM<div class="code-tag">&lt;/time&gt;</div>.
+                                    <div class="code-tag">&lt;/p&gt;</div>
+                                    <br>
+                                    <div class="code-tag">&lt;details&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;summary&gt;</div>Event Details<div class="code-tag">&lt;/summary&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;p&gt;</div>Additional information about the event...<div class="code-tag">&lt;/p&gt;</div>
+                                    <div class="code-tag">&lt;/details&gt;</div>
+                                    <br>
+                                    <div class="code-tag">&lt;progress value="75" max="100"&gt;</div>75%<div class="code-tag">&lt;/progress&gt;</div>
+                                    <br>
+                                    <div class="code-tag">&lt;meter value="0.6"&gt;</div>60%<div class="code-tag">&lt;/meter&gt;</div>
+                                </div>
+                                
+                                <p>Additional semantic elements:</p>
+                                <table>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Purpose</th>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;time&gt;</td>
+                                        <td>Machine-readable date/time</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;mark&gt;</td>
+                                        <td>Highlighted text</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;details&gt;</td>
+                                        <td>Disclosure widget</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;summary&gt;</td>
+                                        <td>Summary for &lt;details&gt;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;progress&gt;</td>
+                                        <td>Progress of a task</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;meter&gt;</td>
+                                        <td>Scalar measurement within a range</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <h3><i class="fas fa-tasks"></i> Classroom Activity: Semantic Blog Post</h3>
+                            <p><strong>Objective:</strong> Create a blog post using semantic HTML elements</p>
+                            <p><strong>Instructions:</strong></p>
+                            <ol>
+                                <li>Create an HTML document for a blog post</li>
+                                <li>Use header, main, article, section, and footer elements</li>
+                                <li>Include proper heading hierarchy (h1-h6)</li>
+                                <li>Add navigation in the header</li>
+                                <li>Include an aside with related links</li>
+                                <li>Add author information in the footer</li>
+                            </ol>
+                            
+                            <div class="practice-exercise">
+                                <p><strong>Extension Activity:</strong> Create a semantic news article with:</p>
+                                <ul>
+                                    <li>Proper use of header, main, article, and footer</li>
+                                    <li>Multiple sections within the article</li>
+                                    <li>Figure elements with captions for images</li>
+                                    <li>Time elements for publication date</li>
+                                    <li>Mark elements for highlighted quotes</li>
+                                    <li>Details/summary for additional information</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 10: Multimedia Elements -->
+                    <div class="chapter-content" id="html-multimedia">
+                        <h2 class="chapter-title">Chapter 10: Multimedia Elements</h2>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-video"></i> Video Element <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>The <code>&lt;video&gt;</code> element embeds video content:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Basic video --&gt;</div>
+                                    <div class="code-tag">&lt;video width="320" height="240" controls&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;source src="movie.mp4" type="video/mp4"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;source src="movie.ogg" type="video/ogg"&gt;</div>
+                                    &nbsp;&nbsp;Your browser does not support the video tag.
+                                    <div class="code-tag">&lt;/video&gt;</div>
+                                </div>
+                                
+                                <p>Video attributes:</p>
+                                <table>
+                                    <tr>
+                                        <th>Attribute</th>
+                                        <th>Purpose</th>
+                                    </tr>
+                                    <tr>
+                                        <td>src</td>
+                                        <td>Source URL of the video</td>
+                                    </tr>
+                                    <tr>
+                                        <td>controls</td>
+                                        <td>Displays video controls</td>
+                                    </tr>
+                                    <tr>
+                                        <td>autoplay</td>
+                                        <td>Video plays automatically</td>
+                                    </tr>
+                                    <tr>
+                                        <td>loop</td>
+                                        <td>Video loops continuously</td>
+                                    </tr>
+                                    <tr>
+                                        <td>muted</td>
+                                        <td>Video plays without sound</td>
+                                    </tr>
+                                    <tr>
+                                        <td>poster</td>
+                                        <td>Image displayed before video plays</td>
+                                    </tr>
+                                    <tr>
+                                        <td>preload</td>
+                                        <td>How video should be loaded</td>
+                                    </tr>
+                                </table>
+                                
+                                <div class="warning">
+                                    <p><strong>Best Practice:</strong> Avoid using autoplay for videos, especially with sound. It can be disruptive to users and may violate accessibility guidelines.</p>
+                                </div>
+                                
+                                <p>Advanced video implementation:</p>
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Video with tracks for captions --&gt;</div>
+                                    <div class="code-tag">&lt;video controls width="640" height="360"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;source src="video.mp4" type="video/mp4"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;track src="captions.vtt" kind="captions" srclang="en" label="English"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;track src="descriptions.vtt" kind="descriptions" srclang="en" label="English Descriptions"&gt;</div>
+                                    &nbsp;&nbsp;Your browser does not support the video element.
+                                    <div class="code-tag">&lt;/video&gt;</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-volume-up"></i> Audio Element <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>The <code>&lt;audio&gt;</code> element embeds audio content:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Basic audio --&gt;</div>
+                                    <div class="code-tag">&lt;audio controls&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;source src="audio.mp3" type="audio/mpeg"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;source src="audio.ogg" type="audio/ogg"&gt;</div>
+                                    &nbsp;&nbsp;Your browser does not support the audio element.
+                                    <div class="code-tag">&lt;/audio&gt;</div>
+                                </div>
+                                
+                                <p>Audio attributes:</p>
+                                <table>
+                                    <tr>
+                                        <th>Attribute</th>
+                                        <th>Purpose</th>
+                                    </tr>
+                                    <tr>
+                                        <td>src</td>
+                                        <td>Source URL of the audio</td>
+                                    </tr>
+                                    <tr>
+                                        <td>controls</td>
+                                        <td>Displays audio controls</td>
+                                    </tr>
+                                    <tr>
+                                        <td>autoplay</td>
+                                        <td>Audio plays automatically</td>
+                                    </tr>
+                                    <tr>
+                                        <td>loop</td>
+                                        <td>Audio loops continuously</td>
+                                    </tr>
+                                    <tr>
+                                        <td>muted</td>
+                                        <td>Audio plays without sound</td>
+                                    </tr>
+                                    <tr>
+                                        <td>preload</td>
+                                        <td>How audio should be loaded</td>
+                                    </tr>
+                                </table>
+                                
+                                <div class="tip">
+                                    <p><strong>Teaching Tip:</strong> Demonstrate how to provide multiple source formats to ensure compatibility across different browsers. Common formats include MP3, OGG, and WAV.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-film"></i> Embedding External Content <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>The <code>&lt;iframe&gt;</code> element embeds external content:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Embed YouTube video --&gt;</div>
+                                    <div class="code-tag">&lt;iframe width="560" height="315" </div>
+                                    &nbsp;&nbsp;<div class="code-attr">src</div>=<div class="code-value">"https://www.youtube.com/embed/dQw4w9WgXcQ"</div>
+                                    &nbsp;&nbsp;<div class="code-attr">title</div>=<div class="code-value">"YouTube video player"</div>
+                                    &nbsp;&nbsp;<div class="code-attr">frameborder</div>=<div class="code-value">"0"</div>
+                                    &nbsp;&nbsp;<div class="code-attr">allow</div>=<div class="code-value">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"</div>
+                                    &nbsp;&nbsp;<div class="code-attr">allowfullscreen</div><div class="code-tag">&gt;</div>
+                                    <div class="code-tag">&lt;/iframe&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Embed Google Map --&gt;</div>
+                                    <div class="code-tag">&lt;iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.177231781935!2d-74.00594938459418!3d40.71278367933185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316e12b135%3A0xb4c67af6a8f7f8f4!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"</div>
+                                    &nbsp;&nbsp;<div class="code-attr">width</div>=<div class="code-value">"600"</div>
+                                    &nbsp;&nbsp;<div class="code-attr">height</div>=<div class="code-value">"450"</div>
+                                    &nbsp;&nbsp;<div class="code-attr">style</div>=<div class="code-value">"border:0;"</div>
+                                    &nbsp;&nbsp;<div class="code-attr">allowfullscreen</div>=<div class="code-value">""</div>
+                                    &nbsp;&nbsp;<div class="code-attr">loading</div>=<div class="code-value">"lazy"</div><div class="code-tag">&gt;</div>
+                                    <div class="code-tag">&lt;/iframe&gt;</div>
+                                </div>
+                                
+                                <p>Iframe attributes:</p>
+                                <table>
+                                    <tr>
+                                        <th>Attribute</th>
+                                        <th>Purpose</th>
+                                    </tr>
+                                    <tr>
+                                        <td>src</td>
+                                        <td>Source URL of the embedded content</td>
+                                    </tr>
+                                    <tr>
+                                        <td>width/height</td>
+                                        <td>Dimensions of the iframe</td>
+                                    </tr>
+                                    <tr>
+                                        <td>title</td>
+                                        <td>Accessible name for the iframe</td>
+                                    </tr>
+                                    <tr>
+                                        <td>sandbox</td>
+                                        <td>Security restrictions for the iframe</td>
+                                    </tr>
+                                    <tr>
+                                        <td>allow</td>
+                                        <td>Feature policy for the iframe</td>
+                                    </tr>
+                                    <tr>
+                                        <td>loading</td>
+                                        <td>Lazy loading ("lazy" or "eager")</td>
+                                    </tr>
+                                </table>
+                                
+                                <div class="note">
+                                    <p><strong>Security Consideration:</strong> Use the <code>sandbox</code> attribute to restrict what embedded content can do, especially when embedding content from untrusted sources.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-paint-brush"></i> Canvas Element <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>The <code>&lt;canvas&gt;</code> element provides a drawing surface for dynamic graphics:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Basic canvas --&gt;</div>
+                                    <div class="code-tag">&lt;canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"&gt;</div>
+                                    &nbsp;&nbsp;Your browser does not support the canvas element.
+                                    <div class="code-tag">&lt;/canvas&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- JavaScript to draw on canvas --&gt;</div>
+                                    <div class="code-tag">&lt;script&gt;</div>
+                                    &nbsp;&nbsp;var canvas = document.getElementById("myCanvas");
+                                    &nbsp;&nbsp;var ctx = canvas.getContext("2d");
+                                    &nbsp;&nbsp;ctx.fillStyle = "#FF0000";
+                                    &nbsp;&nbsp;ctx.fillRect(0, 0, 150, 75);
+                                    <div class="code-tag">&lt;/script&gt;</div>
+                                </div>
+                                
+                                <p>Common uses for canvas:</p>
+                                <ul>
+                                    <li>Drawing shapes and paths</li>
+                                    <li>Creating animations</li>
+                                    <li>Displaying charts and graphs</li>
+                                    <li>Image manipulation and filters</li>
+                                    <li>Game development</li>
+                                </ul>
+                                
+                                <div class="tip">
+                                    <p><strong>Teaching Tip:</strong> Explain that canvas is a bitmap drawing surface, while SVG (Scalable Vector Graphics) is vector-based. Canvas is better for pixel manipulation, while SVG is better for scalable graphics.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <h3><i class="fas fa-tasks"></i> Classroom Activity: Multimedia Page</h3>
+                            <p><strong>Objective:</strong> Create a page with various multimedia elements</p>
+                            <p><strong>Instructions:</strong></p>
+                            <ol>
+                                <li>Create an HTML document showcasing multimedia</li>
+                                <li>Embed at least one video with multiple source formats</li>
+                                <li>Include an audio player with controls</li>
+                                <li>Add a YouTube video using iframe</li>
+                                <li>Create a simple image slideshow</li>
+                                <li>Ensure all multimedia elements are accessible</li>
+                            </ol>
+                            
+                            <div class="practice-exercise">
+                                <p><strong>Extension Activity:</strong> Create an interactive media gallery:</p>
+                                <ul>
+                                    <li>Implement a custom video player with JavaScript controls</li>
+                                    <li>Add captions to videos using track elements</li>
+                                    <li>Create an audio playlist</li>
+                                    <li>Embed interactive content using iframes</li>
+                                    <li>Add a canvas element with simple drawings</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 11: Accessibility -->
+                    <div class="chapter-content" id="html-accessibility">
+                        <h2 class="chapter-title">Chapter 11: HTML Accessibility</h2>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-universal-access"></i> Why Accessibility Matters <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Web accessibility ensures that people with disabilities can perceive, understand, navigate, and interact with the web:</p>
+                                
+                                <ul>
+                                    <li><strong>Visual impairments:</strong> Screen readers, high contrast modes, zoom</li>
+                                    <li><strong>Hearing impairments:</strong> Captions, transcripts, visual alerts</li>
+                                    <li><strong>Motor impairments:</strong> Keyboard navigation, voice control, switch devices</li>
+                                    <li><strong>Cognitive impairments:</strong> Clear structure, simple language, consistent navigation</li>
+                                </ul>
+                                
+                                <p>Accessibility benefits everyone:</p>
+                                <ul>
+                                    <li>Older users with changing abilities</li>
+                                    <li>People with temporary disabilities (broken arm)</li>
+                                    <li>Users in challenging environments (bright sunlight)</li>
+                                    <li>People using mobile devices with small screens</li>
+                                    <li>Users with slow internet connections</li>
+                                </ul>
+                                
+                                <div class="note">
+                                    <p><strong>Legal Requirement:</strong> In many countries, web accessibility is required by law for government websites and often for commercial websites as well.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-check-circle"></i> Key Accessibility Practices <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Essential HTML accessibility features every developer should implement:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Proper heading structure --&gt;</div>
+                                    <div class="code-tag">&lt;h1&gt;</div>Main Title<div class="code-tag">&lt;/h1&gt;</div>
+                                    <div class="code-tag">&lt;h2&gt;</div>Section Title<div class="code-tag">&lt;/h2&gt;</div>
+                                    <div class="code-tag">&lt;h3&gt;</div>Subsection Title<div class="code-tag">&lt;/h3&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Descriptive link text --&gt;</div>
+                                    <div class="code-tag">&lt;a href="about.html"&gt;</div>Learn more about our company<div class="code-tag">&lt;/a&gt;</div>
+                                    <div class="code-comment">&lt;!-- Instead of: --&gt;</div>
+                                    <div class="code-tag">&lt;a href="about.html"&gt;</div>Click here<div class="code-tag">&lt;/a&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Form accessibility --&gt;</div>
+                                    <div class="code-tag">&lt;label for="username"&gt;</div>Username:<div class="code-tag">&lt;/label&gt;</div>
+                                    <div class="code-tag">&lt;input type="text" id="username" name="username" aria-describedby="username-help"&gt;</div>
+                                    <div class="code-tag">&lt;div id="username-help"&gt;</div>Your username must be 6-12 characters long.<div class="code-tag">&lt;/div&gt;</div>
+                                </div>
+                                
+                                <p>Essential accessibility practices:</p>
+                                <ul>
+                                    <li>Use semantic HTML elements</li>
+                                    <li>Provide text alternatives for non-text content</li>
+                                    <li>Ensure keyboard accessibility</li>
+                                    <li>Use proper color contrast</li>
+                                    <li>Make forms accessible with labels and instructions</li>
+                                    <li>Ensure content is readable and understandable</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-assistive-listening-systems"></i> ARIA Attributes <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>ARIA (Accessible Rich Internet Applications) attributes enhance accessibility when HTML semantics aren't sufficient:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- ARIA landmarks --&gt;</div>
+                                    <div class="code-tag">&lt;div role="banner"&gt;</div>...<div class="code-tag">&lt;/div&gt;</div>
+                                    <div class="code-tag">&lt;div role="navigation"&gt;</div>...<div class="code-tag">&lt;/div&gt;</div>
+                                    <div class="code-tag">&lt;div role="main"&gt;</div>...<div class="code-tag">&lt;/div&gt;</div>
+                                    <div class="code-tag">&lt;div role="complementary"&gt;</div>...<div class="code-tag">&lt;/div&gt;</div>
+                                    <div class="code-tag">&lt;div role="contentinfo"&gt;</div>...<div class="code-tag">&lt;/div&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- ARIA labels and descriptions --&gt;</div>
+                                    <div class="code-tag">&lt;button aria-label="Close"&gt;</div>X<div class="code-tag">&lt;/button&gt;</div>
+                                    <div class="code-tag">&lt;div aria-labelledby="dialog-title" aria-describedby="dialog-desc"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;h2 id="dialog-title"&gt;</div>Confirmation<div class="code-tag">&lt;/h2&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;p id="dialog-desc"&gt;</div>Are you sure you want to delete this item?<div class="code-tag">&lt;/p&gt;</div>
+                                    <div class="code-tag">&lt;/div&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- ARIA live regions --&gt;</div>
+                                    <div class="code-tag">&lt;div aria-live="polite" aria-atomic="true"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;span id="status"&gt;</div>Loading...<div class="code-tag">&lt;/span&gt;</div>
+                                    <div class="code-tag">&lt;/div&gt;</div>
+                                </div>
+                                
+                                <div class="warning">
+                                    <p><strong>Important:</strong> Use ARIA as a supplement to semantic HTML, not as a replacement. Always prefer native HTML elements with built-in accessibility over custom elements with ARIA.</p>
+                                </div>
+                                
+                                <p>Common ARIA attributes:</p>
+                                <table>
+                                    <tr>
+                                        <th>Attribute</th>
+                                        <th>Purpose</th>
+                                    </tr>
+                                    <tr>
+                                        <td>role</td>
+                                        <td>Defines the purpose of an element</td>
+                                    </tr>
+                                    <tr>
+                                        <td>aria-label</td>
+                                        <td>Provides a text label for an element</td>
+                                    </tr>
+                                    <tr>
+                                        <td>aria-labelledby</td>
+                                        <td>References elements that label the current element</td>
+                                    </tr>
+                                    <tr>
+                                        <td>aria-describedby</td>
+                                        <td>References elements that describe the current element</td>
+                                    </tr>
+                                    <tr>
+                                        <td>aria-hidden</td>
+                                        <td>Hides elements from assistive technology</td>
+                                    </tr>
+                                    <tr>
+                                        <td>aria-live</td>
+                                        <td>Indicates dynamic content that should be announced</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-keyboard"></i> Keyboard Accessibility <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Ensure all interactive elements are accessible via keyboard:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Skip navigation link --&gt;</div>
+                                    <div class="code-tag">&lt;a href="#main" class="skip-link"&gt;</div>Skip to main content<div class="code-tag">&lt;/a&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Proper focus management --&gt;</div>
+                                    <div class="code-tag">&lt;button onclick="openModal()"&gt;</div>Open Modal<div class="code-tag">&lt;/button&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Tabindex for custom controls --&gt;</div>
+                                    <div class="code-tag">&lt;div tabindex="0" role="button" onclick="handleClick()" onkeypress="handleKeypress(event)"&gt;</div>
+                                    &nbsp;&nbsp;Custom Button
+                                    <div class="code-tag">&lt;/div&gt;</div>
+                                </div>
+                                
+                                <p>Keyboard accessibility guidelines:</p>
+                                <ul>
+                                    <li>Ensure all interactive elements are focusable</li>
+                                    <li>Maintain a logical tab order</li>
+                                    <li>Provide visible focus indicators</li>
+                                    <li>Implement keyboard shortcuts carefully</li>
+                                    <li>Handle focus management in dynamic content</li>
+                                </ul>
+                                
+                                <div class="tip">
+                                    <p><strong>Testing Tip:</strong> Test your website using only the keyboard (Tab, Shift+Tab, Enter, Space, Arrow keys). This helps identify navigation issues for keyboard-only users.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <h3><i class="fas fa-tasks"></i> Classroom Activity: Accessibility Audit</h3>
+                            <p><strong>Objective:</strong> Identify and fix accessibility issues in HTML code</p>
+                            <p><strong>Instructions:</strong></p>
+                            <ol>
+                                <li>Review provided HTML code with accessibility issues</li>
+                                <li>Identify at least 5 accessibility problems</li>
+                                <li>Fix the issues using proper HTML techniques</li>
+                                <li>Test the fixed code with a screen reader simulator</li>
+                                <li>Document the changes made and why they improve accessibility</li>
+                            </ol>
+                            
+                            <div class="practice-exercise">
+                                <p><strong>Extension Activity:</strong> Create an accessible web component:</p>
+                                <ul>
+                                    <li>Build a custom tab interface with proper ARIA attributes</li>
+                                    <li>Ensure keyboard navigation works correctly</li>
+                                    <li>Add appropriate focus management</li>
+                                    <li>Test with screen readers and keyboard-only navigation</li>
+                                    <li>Document the accessibility features implemented</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter 12: Best Practices -->
+                    <div class="chapter-content" id="html-best-practices">
+                        <h2 class="chapter-title">Chapter 12: HTML Best Practices</h2>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-check-circle"></i> Code Organization <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Well-organized HTML is easier to read, maintain, and debug:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Good: Proper indentation and organization --&gt;</div>
+                                    <div class="code-tag">&lt;!DOCTYPE html&gt;</div>
+                                    <div class="code-tag">&lt;html lang="en"&gt;</div>
+                                    <div class="code-tag">&lt;head&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;meta charset="UTF-8"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;title&gt;</div>Document Title<div class="code-tag">&lt;/title&gt;</div>
+                                    <div class="code-tag">&lt;/head&gt;</div>
+                                    <br>
+                                    <div class="code-tag">&lt;body&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;header&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;h1&gt;</div>Site Title<div class="code-tag">&lt;/h1&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/header&gt;</div>
+                                    <br>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;main&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;article&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;h2&gt;</div>Article Title<div class="code-tag">&lt;/h2&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;p&gt;</div>Article content...<div class="code-tag">&lt;/p&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;/article&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/main&gt;</div>
+                                    <br>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;footer&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;p&gt;</div>&copy; 2024 Company Name<div class="code-tag">&lt;/p&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/footer&gt;</div>
+                                    <div class="code-tag">&lt;/body&gt;</div>
+                                    <div class="code-tag">&lt;/html&gt;</div>
+                                </div>
+                                
+                                <p>HTML organization best practices:</p>
+                                <ul>
+                                    <li>Use consistent indentation (2 or 4 spaces)</li>
+                                    <li>Add comments for complex sections</li>
+                                    <li>Group related elements together</li>
+                                    <li>Use semantic elements for structure</li>
+                                    <li>Separate content from presentation (use CSS for styling)</li>
+                                    <li>Validate your HTML regularly</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-rocket"></i> Performance Optimization <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Optimize HTML for faster loading and better user experience:</p>
+                                
+                                <ul>
+                                    <li><strong>Minimize HTML:</strong> Remove unnecessary whitespace and comments in production</li>
+                                    <li><strong>Optimize images:</strong> Use appropriate formats and sizes</li>
+                                    <li><strong>Lazy loading:</strong> Use <code>loading="lazy"</code> for offscreen images</li>
+                                    <li><strong>Semantic markup:</strong> Helps browsers optimize rendering</li>
+                                    <li><strong>Valid code:</strong> Reduces browser error correction time</li>
+                                    <li><strong>Efficient structure:</strong> Avoid deeply nested elements when possible</li>
+                                </ul>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Lazy loading for images --&gt;</div>
+                                    <div class="code-tag">&lt;img src="image.jpg" alt="Description" loading="lazy"&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Defer non-critical resources --&gt;</div>
+                                    <div class="code-tag">&lt;script src="analytics.js" defer&gt;</div><div class="code-tag">&lt;/script&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Preload important resources --&gt;</div>
+                                    <div class="code-tag">&lt;link rel="preload" href="font.woff2" as="font" type="font/woff2" crossorigin&gt;</div>
+                                </div>
+                                
+                                <div class="tip">
+                                    <p><strong>Performance Tip:</strong> Use tools like Google PageSpeed Insights, Lighthouse, or WebPageTest to identify performance issues in your HTML and overall website.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-code"></i> Maintainability and Scalability <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Write HTML that is easy to maintain and scale as projects grow:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Use consistent naming conventions --&gt;</div>
+                                    <div class="code-tag">&lt;div class="user-profile"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;img class="user-profile__avatar" src="avatar.jpg" alt="User avatar"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;h2 class="user-profile__name"&gt;</div>John Doe<div class="code-tag">&lt;/h2&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;p class="user-profile__bio"&gt;</div>Software developer...<div class="code-tag">&lt;/p&gt;</div>
+                                    <div class="code-tag">&lt;/div&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Modular components --&gt;</div>
+                                    <div class="code-tag">&lt;article class="card"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;header class="card__header"&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;h3 class="card__title"&gt;</div>Card Title<div class="code-tag">&lt;/h3&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/header&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;div class="card__body"&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;p class="card__text"&gt;</div>Card content...<div class="code-tag">&lt;/p&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/div&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;footer class="card__footer"&gt;</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<div class="code-tag">&lt;button class="card__button"&gt;</div>Action<div class="code-tag">&lt;/button&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;/footer&gt;</div>
+                                    <div class="code-tag">&lt;/article&gt;</div>
+                                </div>
+                                
+                                <p>Maintainability best practices:</p>
+                                <ul>
+                                    <li>Use consistent naming conventions (BEM, SMACSS, etc.)</li>
+                                    <li>Create modular, reusable components</li>
+                                    <li>Separate structure (HTML), presentation (CSS), and behavior (JavaScript)</li>
+                                    <li>Document complex components with comments</li>
+                                    <li>Follow established coding standards</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="content-section">
+                            <h3><i class="fas fa-shield-alt"></i> Security Considerations <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>HTML security practices to protect your website and users:</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-comment">&lt;!-- Secure iframe embedding --&gt;</div>
+                                    <div class="code-tag">&lt;iframe src="https://example.com" sandbox="allow-scripts allow-same-origin"&gt;</div><div class="code-tag">&lt;/iframe&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Prevent clickjacking --&gt;</div>
+                                    <div class="code-tag">&lt;meta http-equiv="X-Frame-Options" content="deny"&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Content Security Policy --&gt;</div>
+                                    <div class="code-tag">&lt;meta http-equiv="Content-Security-Policy" content="default-src 'self'"&gt;</div>
+                                    <br>
+                                    <div class="code-comment">&lt;!-- Secure form submission --&gt;</div>
+                                    <div class="code-tag">&lt;form action="https://secure.example.com" method="post"&gt;</div>
+                                    &nbsp;&nbsp;<div class="code-tag">&lt;input type="hidden" name="csrf_token" value="abc123"&gt;</div>
+                                    &nbsp;&nbsp;...
+                                    <div class="code-tag">&lt;/form&gt;</div>
+                                </div>
+                                
+                                <p>HTML security best practices:</p>
+                                <ul>
+                                    <li>Validate and sanitize all user input</li>
+                                    <li>Use HTTPS for all resources</li>
+                                    <li>Implement Content Security Policy (CSP)</li>
+                                    <li>Set X-Frame-Options to prevent clickjacking</li>
+                                    <li>Use secure attributes for cookies</li>
+                                    <li>Sanitize HTML to prevent XSS attacks</li>
+                                </ul>
+                                
+                                <div class="warning">
+                                    <p><strong>Security Warning:</strong> Never trust user input. Always validate and sanitize data on both the client and server sides to prevent security vulnerabilities.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="activity">
+                            <h3><i class="fas fa-tasks"></i> Classroom Activity: Code Review</h3>
+                            <p><strong>Objective:</strong> Practice identifying and fixing HTML best practice violations</p>
+                            <p><strong>Instructions:</strong></p>
+                            <ol>
+                                <li>Review provided HTML code with multiple best practice violations</li>
+                                <li>Identify issues related to: semantics, accessibility, performance, and maintainability</li>
+                                <li>Rewrite the code following HTML best practices</li>
+                                <li>Validate the improved code using the W3C validator</li>
+                                <li>Document the improvements and their benefits</li>
+                            </ol>
+                            
+                            <div class="practice-exercise">
+                                <p><strong>Extension Activity:</strong> Refactor a complex HTML page:</p>
+                                <ul>
+                                    <li>Improve semantic structure</li>
+                                    <li>Enhance accessibility features</li>
+                                    <li>Optimize for performance</li>
+                                    <li>Apply consistent naming conventions</li>
+                                    <li>Add appropriate comments and documentation</li>
+                                    <li>Test across different browsers and devices</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="content-section">
+                            <h3><i class="fas fa-graduation-cap"></i> HTML Teaching Resources <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span></h3>
+                            <div class="section-content">
+                                <p>Additional resources for teaching HTML effectively:</p>
+                                
+                                <ul>
+                                    <li><strong>W3C Validator:</strong> https://validator.w3.org/ - Validate HTML code</li>
+                                    <li><strong>MDN Web Docs:</strong> https://developer.mozilla.org/ - Comprehensive HTML reference</li>
+                                    <li><strong>WebAIM:</strong> https://webaim.org/ - Accessibility resources and training</li>
+                                    <li><strong>HTML5 Doctor:</strong> http://html5doctor.com/ - HTML5 element guide</li>
+                                    <li><strong>Can I Use:</strong> https://caniuse.com/ - Browser compatibility tables</li>
+                                    <li><strong>Google Web Fundamentals:</strong> https://developers.google.com/web/fundamentals - Best practices guide</li>
+                                    <li><strong>A11Y Project:</strong> https://a11yproject.com/ - Accessibility patterns and resources</li>
+                                </ul>
+                                
+                                <p>Teaching strategies for HTML:</p>
+                                <ul>
+                                    <li>Start with simple examples and gradually increase complexity</li>
+                                    <li>Use real-world projects to demonstrate concepts</li>
+                                    <li>Encourage experimentation and debugging</li>
+                                    <li>Teach validation and testing as integral parts of development</li>
+                                    <li>Emphasize the importance of accessibility from the beginning</li>
+                                    <li>Connect HTML to CSS and JavaScript to show the full picture</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Chapter navigation
+        const chapterLinks = document.querySelectorAll('.chapter-link');
+        const chapterContents = document.querySelectorAll('.chapter-content');
+        
+        chapterLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all
+                chapterLinks.forEach(l => l.classList.remove('active'));
+                chapterContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active to clicked
+                this.classList.add('active');
+                const chapterId = this.getAttribute('data-chapter');
+                const targetContent = document.getElementById(chapterId);
+                
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+                
+                // Scroll to top
+                document.querySelector('.book-main').scrollTop = 0;
+            });
+        });
+        
+        // Collapsible sections
+        const sectionHeaders = document.querySelectorAll('.content-section h3');
+        
+        sectionHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('.toggle-icon i');
+                
+                if (content) {
+                    content.classList.toggle('expanded');
+                    if (icon) {
+                        icon.classList.toggle('rotated');
+                    }
+                }
+            });
+            
+            // Expand all by default
+            const content = header.nextElementSibling;
+            if (content) {
+                content.classList.add('expanded');
+                const icon = header.querySelector('.toggle-icon i');
+                if (icon) {
+                    icon.classList.add('rotated');
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

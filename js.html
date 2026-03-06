@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViblySpace - Learn JavaScript</title>
+    <link rel="icon" type="favicon" href="connection.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --success: #4cc9f0;
+            --accent: #4895ef;
+            --warning: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Enhanced Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 20px;
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
+            margin-right: 8px;
+            color: var(--primary);
+        }
+        
+        .main-nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links li {
+            margin: 0 5px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .language-nav {
+            display: flex;
+            list-style: none;
+            margin-left: 15px;
+        }
+        
+        .language-nav li {
+            margin-left: 8px;
+        }
+        
+        .language-nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            background-color: #f0f2f5;
+        }
+        
+        .language-nav a:hover, .language-nav a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #e74c3c, #e67e22);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 5px 10px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #e74c3c;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        /* Main Content */
+        main {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .main-nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .main-nav.active {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-links li {
+                margin: 5px 0;
+                width: 100%;
+            }
+            
+            .nav-links a {
+                display: block;
+                width: 100%;
+            }
+            
+            .language-nav {
+                margin: 10px 0 0 0;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .language-nav li {
+                margin: 0 5px 0 0;
+            }
+        }
+        
+        /* Content Sections */
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        section h3 {
+            color: #e74c3c;
+            margin: 20px 0 10px;
+        }
+        
+        section p {
+            margin-bottom: 15px;
+        }
+        
+        /* Code Examples */
+        .code-example {
+            background-color: #2c3e50;
+            color: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .code-example .keyword {
+            color: #e74c3c;
+        }
+        
+        .code-example .string {
+            color: #2ecc71;
+        }
+        
+        .code-example .number {
+            color: #3498db;
+        }
+        
+        .code-example .comment {
+            color: #7f8c8d;
+        }
+        
+        .code-example .function {
+            color: #9b59b6;
+        }
+        
+        /* Interactive Examples */
+        .interactive-example {
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+        }
+        
+        .example-box {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .example-box:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        input, select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        
+        /* Output Areas */
+        .output {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            min-height: 50px;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        /* Try It Yourself */
+        .try-it {
+            background-color: #ffeaa7;
+            border-left: 4px solid #fdcb6e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .try-it h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        /* Sidebar */
+        aside {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            align-self: start;
+            position: sticky;
+            top: 100px;
+        }
+        
+        aside h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        aside ul {
+            list-style: none;
+        }
+        
+        aside li {
+            margin-bottom: 10px;
+        }
+        
+        aside a {
+            text-decoration: none;
+            color: #e74c3c;
+            display: block;
+            padding: 8px 10px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        aside a:hover {
+            background-color: #fdf2f0;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #7f8c8d;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        table th {
+            background-color: #f8f9fa;
+            color: #2c3e50;
+        }
+        
+        /* Lists */
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        /* Highlight */
+        .highlight {
+            background-color: #fff9c4;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        /* Interactive Console */
+        .console {
+            background-color: #2c3e50;
+            color: #2ecc71;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            min-height: 100px;
+            margin: 15px 0;
+            overflow-y: auto;
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-laptop-code logo-icon"></i>
+                <div class="logo-text">ViblySpace</div>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="main-nav" id="mainNav">
+                <ul class="nav-links">
+                    <!-- <li><a href="into.html" class="nav-link">Home</a></li>
+                    <!-- <li><a href="into.html#courses" class="nav-link">Courses</a></li>
+                    <li><a href="into.html#grades" class="nav-link">Grade Levels</a></li>
+                    <li><a href="into.html#about" class="nav-link">About</a></li>
+                    <li><a href="into.html#contact" class="nav-link">Contact</a></li> - -->
+                </ul>
+                
+                <ul class="language-nav">
+                    <li><a href="concept.html">HTML</a></li>
+                    <li><a href="css.html">CSS</a></li>
+                    <li><a href="python.html">Python</a></li>
+                    <li><a href="js.html" class="active">JS</a></li>
+                    <li><a href="ai.html">AI</a></li> 
+                    <li><a href="TRP.html">TRP</a></li> 
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>JavaScript Basics Tutorial</h1>
+            <p>Add interactivity to your websites with JavaScript</p>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#variables">Variables</a></li>
+                <li><a href="#functions">Functions</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#dom">DOM Manipulation</a></li>
+                <li><a href="#conditions">Conditions</a></li>
+                <li><a href="#loops">Loops</a></li>
+                <li><a href="#arrays">Arrays</a></li>
+                <li><a href="#objects">Objects</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <div class="content">
+                <section id="introduction">
+                    <h2>What is JavaScript?</h2>
+                    <p>JavaScript is a programming language that adds interactivity to your website. It works in web browsers to create dynamic content, control multimedia, animate images, and much more.</p>
+                    
+                    <h3>Your First JavaScript</h3>
+                    <div class="code-example">
+                        <span class="comment">// This will show a popup message</span><br>
+                        <span class="function">alert</span>(<span class="string">'Hello, World!'</span>);
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Try it out:</h4>
+                        <button onclick="alert('Hello, World!')">Click me to see an alert!</button>
+                    </div>
+                    
+                    <div class="try-it">
+                        <h4>Try It Yourself</h4>
+                        <p>Open your browser's developer tools (F12) and type this in the console:</p>
+                        <div class="code-example">
+                            console.log(<span class="string">"I'm learning JavaScript!"</span>);
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="variables">
+                    <h2>Variables</h2>
+                    <p>Variables are containers for storing data values. In JavaScript, you can declare variables using <span class="highlight">let</span>, <span class="highlight">const</span>, or <span class="highlight">var</span>.</p>
+                    
+                    <div class="code-example">
+                        <span class="comment">// Declaring variables</span><br>
+                        <span class="keyword">let</span> name = <span class="string">"John"</span>;<br>
+                        <span class="keyword">const</span> age = <span class="number">25</span>;<br>
+                        <span class="keyword">var</span> isStudent = <span class="keyword">true</span>;<br><br>
+                        
+                        <span class="comment">// Using variables</span><br>
+                        console.log(name); <span class="comment">// Output: John</span><br>
+                        console.log(age); <span class="comment">// Output: 25</span>
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Variable Playground</h4>
+                        <p>Change the values and see what happens:</p>
+                        <input type="text" id="varName" placeholder="Enter a name" value="Alice">
+                        <input type="number" id="varAge" placeholder="Enter age" value="30">
+                        <button onclick="updateVariables()">Update Variables</button>
+                        <div class="output" id="variableOutput">
+                            Name: Alice, Age: 30
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="functions">
+                    <h2>Functions</h2>
+                    <p>Functions are blocks of code designed to perform a particular task. They are executed when "called" or "invoked".</p>
+                    
+                    <div class="code-example">
+                        <span class="comment">// Function declaration</span><br>
+                        <span class="keyword">function</span> <span class="function">greet</span>(name) {<br>
+                        &nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Hello, "</span> + name + <span class="string">"!"</span>;<br>
+                        }<br><br>
+                        
+                        <span class="comment">// Calling the function</span><br>
+                        <span class="keyword">let</span> message = <span class="function">greet</span>(<span class="string">"Sarah"</span>);<br>
+                        console.log(message); <span class="comment">// Output: Hello, Sarah!</span>
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Function Fun</h4>
+                        <p>Enter your name and see the function in action:</p>
+                        <input type="text" id="funcName" placeholder="Your name">
+                        <button onclick="callGreetFunction()">Greet Me!</button>
+                        <div class="output" id="functionOutput"></div>
+                    </div>
+                </section>
+                
+                <section id="events">
+                    <h2>Events</h2>
+                    <p>Events are actions that happen in the browser, like clicks, mouse movements, or key presses. JavaScript can "listen" for these events and respond to them.</p>
+                    
+                    <div class="code-example">
+                        <span class="comment">// Adding a click event listener</span><br>
+                        document.<span class="function">getElementById</span>(<span class="string">"myButton"</span>).<span class="function">addEventListener</span>(<span class="string">"click"</span>, <span class="keyword">function</span>() {<br>
+                        &nbsp;&nbsp;alert(<span class="string">"Button was clicked!"</span>);<br>
+                        });
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Event Playground</h4>
+                        <p>Try these different events:</p>
+                        <div class="example-box" onclick="showEvent('click')">Click me!</div>
+                        <div class="example-box" onmouseover="showEvent('mouseover')" onmouseout="showEvent('mouseout')">Hover over me!</div>
+                        <input type="text" placeholder="Type here" onkeyup="showEvent('keyup')">
+                        <div class="output" id="eventOutput">Event will appear here</div>
+                    </div>
+                </section>
+                
+                <section id="dom">
+                    <h2>DOM Manipulation</h2>
+                    <p>The Document Object Model (DOM) is a programming interface for HTML. JavaScript can manipulate the DOM to change content, styles, and structure of a webpage.</p>
+                    
+                    <div class="code-example">
+                        <span class="comment">// Changing HTML content</span><br>
+                        document.<span class="function">getElementById</span>(<span class="string">"demo"</span>).innerHTML = <span class="string">"New content!"</span>;<br><br>
+                        
+                        <span class="comment">// Changing CSS styles</span><br>
+                        document.<span class="function">getElementById</span>(<span class="string">"demo"</span>).style.color = <span class="string">"red"</span>;<br><br>
+                        
+                        <span class="comment">// Creating new elements</span><br>
+                        <span class="keyword">let</span> newElement = document.<span class="function">createElement</span>(<span class="string">"p"</span>);<br>
+                        newElement.innerHTML = <span class="string">"This is a new paragraph"</span>;<br>
+                        document.body.<span class="function">appendChild</span>(newElement);
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>DOM Playground</h4>
+                        <p>Manipulate the element below:</p>
+                        <div id="domDemo" class="example-box">I'm a DOM element</div>
+                        <br>
+                        <button onclick="changeContent()">Change Content</button>
+                        <button onclick="changeColor()">Change Color</button>
+                        <button onclick="addElement()">Add New Element</button>
+                        <button onclick="resetDOM()">Reset</button>
+                    </div>
+                </section>
+                
+                <section id="conditions">
+                    <h2>Conditional Statements</h2>
+                    <p>Conditional statements are used to perform different actions based on different conditions.</p>
+                    
+                    <div class="code-example">
+                        <span class="keyword">let</span> time = <span class="number">14</span>;<br><br>
+                        
+                        <span class="keyword">if</span> (time < <span class="number">12</span>) {<br>
+                        &nbsp;&nbsp;console.log(<span class="string">"Good morning!"</span>);<br>
+                        } <span class="keyword">else if</span> (time < <span class="number">18</span>) {<br>
+                        &nbsp;&nbsp;console.log(<span class="string">"Good afternoon!"</span>);<br>
+                        } <span class="keyword">else</span> {<br>
+                        &nbsp;&nbsp;console.log(<span class="string">"Good evening!"</span>);<br>
+                        }
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Condition Checker</h4>
+                        <p>Enter a time (0-23) and see the greeting:</p>
+                        <input type="number" id="timeInput" min="0" max="23" value="14">
+                        <button onclick="checkTime()">Check Time</button>
+                        <div class="output" id="conditionOutput"></div>
+                    </div>
+                </section>
+                
+                <section id="loops">
+                    <h2>Loops</h2>
+                    <p>Loops can execute a block of code multiple times. They are handy when you want to run the same code over and over again, each time with a different value.</p>
+                    
+                    <div class="code-example">
+                        <span class="comment">// For loop - repeats a block of code a number of times</span><br>
+                        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < <span class="number">5</span>; i++) {<br>
+                        &nbsp;&nbsp;console.log(<span class="string">"Number: "</span> + i);<br>
+                        }<br><br>
+                        
+                        <span class="comment">// While loop - repeats while a condition is true</span><br>
+                        <span class="keyword">let</span> count = <span class="number">0</span>;<br>
+                        <span class="keyword">while</span> (count < <span class="number">3</span>) {<br>
+                        &nbsp;&nbsp;console.log(<span class="string">"Count: "</span> + count);<br>
+                        &nbsp;&nbsp;count++;<br>
+                        }
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Loop Generator</h4>
+                        <p>Enter how many times to loop:</p>
+                        <input type="number" id="loopCount" min="1" max="10" value="5">
+                        <button onclick="runLoop()">Run Loop</button>
+                        <div class="console" id="loopOutput"></div>
+                    </div>
+                </section>
+                
+                <section id="arrays">
+                    <h2>Arrays</h2>
+                    <p>Arrays are used to store multiple values in a single variable. They are especially useful when you want to store a list of items.</p>
+                    
+                    <div class="code-example">
+                        <span class="comment">// Creating an array</span><br>
+                        <span class="keyword">let</span> fruits = [<span class="string">"Apple"</span>, <span class="string">"Banana"</span>, <span class="string">"Orange"</span>];<br><br>
+                        
+                        <span class="comment">// Accessing array elements</span><br>
+                        console.log(fruits[<span class="number">0</span>]); <span class="comment">// Output: Apple</span><br><br>
+                        
+                        <span class="comment">// Adding to an array</span><br>
+                        fruits.<span class="function">push</span>(<span class="string">"Grapes"</span>);<br><br>
+                        
+                        <span class="comment">// Array length</span><br>
+                        console.log(fruits.length); <span class="comment">// Output: 4</span>
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Array Playground</h4>
+                        <p>Our fruits array: <span id="arrayDisplay">Apple, Banana, Orange</span></p>
+                        <input type="text" id="newFruit" placeholder="Add a fruit">
+                        <button onclick="addFruit()">Add Fruit</button>
+                        <button onclick="removeFruit()">Remove Last Fruit</button>
+                        <div class="output" id="arrayOutput"></div>
+                    </div>
+                </section>
+                
+                <section id="objects">
+                    <h2>Objects</h2>
+                    <p>Objects are collections of key-value pairs. They are used to store multiple properties that belong to the same entity.</p>
+                    
+                    <div class="code-example">
+                        <span class="comment">// Creating an object</span><br>
+                        <span class="keyword">let</span> person = {<br>
+                        &nbsp;&nbsp;firstName: <span class="string">"John"</span>,<br>
+                        &nbsp;&nbsp;lastName: <span class="string">"Doe"</span>,<br>
+                        &nbsp;&nbsp;age: <span class="number">30</span>,<br>
+                        &nbsp;&nbsp;isStudent: <span class="keyword">false</span>,<br>
+                        &nbsp;&nbsp;fullName: <span class="keyword">function</span>() {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">" "</span> + <span class="keyword">this</span>.lastName;<br>
+                        &nbsp;&nbsp;}<br>
+                        };<br><br>
+                        
+                        <span class="comment">// Accessing object properties</span><br>
+                        console.log(person.firstName); <span class="comment">// Output: John</span><br>
+                        console.log(person.fullName()); <span class="comment">// Output: John Doe</span>
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Object Creator</h4>
+                        <p>Create your own person object:</p>
+                        <input type="text" id="objFirstName" placeholder="First Name" value="Jane">
+                        <input type="text" id="objLastName" placeholder="Last Name" value="Smith">
+                        <input type="number" id="objAge" placeholder="Age" value="28">
+                        <button onclick="createPerson()">Create Person</button>
+                        <div class="output" id="objectOutput"></div>
+                    </div>
+                </section>
+            </div>
+            
+            <aside>
+                <h3>JavaScript Quick Reference</h3>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#variables">Variables</a></li>
+                    <li><a href="#functions">Functions</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#dom">DOM Manipulation</a></li>
+                    <li><a href="#conditions">Conditions</a></li>
+                    <li><a href="#loops">Loops</a></li>
+                    <li><a href="#arrays">Arrays</a></li>
+                    <li><a href="#objects">Objects</a></li>
+                </ul>
+                
+                <h3>Practice Exercises</h3>
+                <ul>
+                    <li>Calculator</li>
+                    <li>To-Do List</li>
+                    <li>Color Changer</li>
+                    <li>Counter App</li>
+                    <li><a href="jspractice.html">->Go for Exercise</a></li>
+                </ul>
+                
+                <h3>Next Steps</h3>
+                <ul>
+                    <li>Advanced JavaScript</li>
+                    <li>jQuery</li>
+                    <li>React Basics</li>
+                    <li>Node.js</li>
+                    <li><a href="index.html">->Home</a></li>
+                    
+                </ul>
+            </aside>
+        </main>
+        
+        <footer>
+            <p>JavaScript Basics Tutorial &copy; ViblySpace | Interactive Learning Experience</p>
+        </footer>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+
+        // Variables section
+        function updateVariables() {
+            const name = document.getElementById('varName').value || 'Anonymous';
+            const age = document.getElementById('varAge').value || '0';
+            document.getElementById('variableOutput').textContent = `Name: ${name}, Age: ${age}`;
+        }
+        
+        // Functions section
+        function greet(name) {
+            return `Hello, ${name}! Welcome to JavaScript!`;
+        }
+        
+        function callGreetFunction() {
+            const name = document.getElementById('funcName').value || 'Friend';
+            const message = greet(name);
+            document.getElementById('functionOutput').textContent = message;
+        }
+        
+        // Events section
+        function showEvent(eventType) {
+            document.getElementById('eventOutput').textContent = `${eventType} event triggered!`;
+        }
+        
+        // DOM Manipulation section
+        function changeContent() {
+            document.getElementById('domDemo').textContent = 'Content changed with JavaScript!';
+        }
+        
+        function changeColor() {
+            const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.getElementById('domDemo').style.backgroundColor = randomColor;
+        }
+        
+        function addElement() {
+            const newElement = document.createElement('div');
+            newElement.textContent = 'New element added!';
+            newElement.className = 'example-box';
+            newElement.style.marginTop = '10px';
+            document.querySelector('.interactive-example').appendChild(newElement);
+        }
+        
+        function resetDOM() {
+            document.getElementById('domDemo').textContent = "I'm a DOM element";
+            document.getElementById('domDemo').style.backgroundColor = '#3498db';
+            const extraElements = document.querySelectorAll('.interactive-example .example-box');
+            for (let i = 1; i < extraElements.length; i++) {
+                extraElements[i].remove();
+            }
+        }
+        
+        // Conditions section
+        function checkTime() {
+            const time = parseInt(document.getElementById('timeInput').value);
+            let greeting;
+            
+            if (time < 12) {
+                greeting = "Good morning!";
+            } else if (time < 18) {
+                greeting = "Good afternoon!";
+            } else {
+                greeting = "Good evening!";
+            }
+            
+            document.getElementById('conditionOutput').textContent = greeting;
+        }
+        
+        // Loops section
+        function runLoop() {
+            const count = parseInt(document.getElementById('loopCount').value);
+            const output = document.getElementById('loopOutput');
+            output.innerHTML = '';
+            
+            for (let i = 0; i < count; i++) {
+                const line = document.createElement('div');
+                line.textContent = `Loop iteration: ${i + 1}`;
+                output.appendChild(line);
+            }
+        }
+        
+        // Arrays section
+        let fruits = ['Apple', 'Banana', 'Orange'];
+        
+        function updateArrayDisplay() {
+            document.getElementById('arrayDisplay').textContent = fruits.join(', ');
+        }
+        
+        function addFruit() {
+            const newFruit = document.getElementById('newFruit').value.trim();
+            if (newFruit) {
+                fruits.push(newFruit);
+                updateArrayDisplay();
+                document.getElementById('arrayOutput').textContent = `Added: ${newFruit}`;
+                document.getElementById('newFruit').value = '';
+            }
+        }
+        
+        function removeFruit() {
+            if (fruits.length > 0) {
+                const removed = fruits.pop();
+                updateArrayDisplay();
+                document.getElementById('arrayOutput').textContent = `Removed: ${removed}`;
+            } else {
+                document.getElementById('arrayOutput').textContent = 'No fruits to remove!';
+            }
+        }
+        
+        // Initialize array display
+        updateArrayDisplay();
+        
+        // Objects section
+        function createPerson() {
+            const firstName = document.getElementById('objFirstName').value || 'Unknown';
+            const lastName = document.getElementById('objLastName').value || 'Unknown';
+            const age = document.getElementById('objAge').value || '0';
+            
+            const person = {
+                firstName: firstName,
+                lastName: lastName,
+                age: age,
+                getFullName: function() {
+                    return `${this.firstName} ${this.lastName}`;
+                },
+                canVote: function() {
+                    return this.age >= 18;
+                }
+            };
+            
+            const output = document.getElementById('objectOutput');
+            output.innerHTML = `
+                <p><strong>Name:</strong> ${person.getFullName()}</p>
+                <p><strong>Age:</strong> ${person.age}</p>
+                <p><strong>Can Vote:</strong> ${person.canVote() ? 'Yes' : 'No'}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

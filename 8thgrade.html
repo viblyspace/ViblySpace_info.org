@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViblySpace - Grade 8 Programming Curriculum</title>
+    <link rel="icon" type="favicon" href="connection.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #2d3748;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        .main-header {
+            background: white;
+            color: #2d3748;
+            padding: 15px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #059669;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .main-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #059669, #047857, #10b981);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            font-size: 2.2rem;
+            color: #059669;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        nav a:hover {
+            color: #059669;
+            background-color: #f1f5f9;
+        }
+        
+        nav a.active {
+            color: #059669;
+            background-color: #ecfdf5;
+            font-weight: 600;
+        }
+
+        /* Page Header */
+        .header {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(5, 150, 105, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .grade-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Navigation */
+        .chapter-nav {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .chapter-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            list-style: none;
+        }
+        
+        .chapter-item {
+            background: #f0fdf4;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #059669;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .chapter-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chapter-icon {
+            font-size: 1.5rem;
+            color: #059669;
+            width: 40px;
+            text-align: center;
+        }
+        
+        /* Content Cards */
+        .chapter {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+        
+        .chapter::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #059669, #047857);
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .chapter-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .chapter-number {
+            background: #059669;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);
+        }
+        
+        h2 {
+            color: #2d3748;
+            font-size: 1.8rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h3 {
+            color: #059669;
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h4 {
+            color: #047857;
+            margin: 20px 0 12px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Content Elements */
+        .concept-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+            border-left: 4px solid #059669;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+            position: relative;
+        }
+        
+        .concept-box::before {
+            content: "\f0eb";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #059669;
+            opacity: 0.2;
+            font-size: 2rem;
+        }
+        
+        .real-world {
+            background: #f0f9ff;
+            border: 1px solid #7dd3fc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .real-world::before {
+            content: "\f06c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #0369a1;
+            opacity: 0.3;
+            font-size: 1.5rem;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            border: 1px solid #4a5568;
+            position: relative;
+        }
+        
+        .code-block::before {
+            content: "\f121";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #a0aec0;
+            font-size: 1rem;
+        }
+        
+        .code-comment {
+            color: #a0aec0;
+        }
+        
+        .output {
+            background: #edf2f7;
+            border: 2px dashed #cbd5e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .output::before {
+            content: "Output";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #edf2f7;
+            padding: 0 10px;
+            font-size: 0.8rem;
+            color: #4a5568;
+            font-weight: 600;
+        }
+        
+        .try-it {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+            border: 2px solid #059669;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+        }
+        
+        .try-it::before {
+            content: "\f544";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #059669;
+            opacity: 0.3;
+            font-size: 2rem;
+        }
+        
+        .interactive-area {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .code-editor {
+            width: 100%;
+            min-height: 150px;
+            background: #2d3748;
+            color: #e2e8f0;
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.95rem;
+            resize: vertical;
+            margin: 15px 0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(5, 150, 105, 0.3);
+        }
+        
+        .hint {
+            background: #fffaf0;
+            border: 1px solid #fbd38d;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            position: relative;
+        }
+        
+        .hint::before {
+            content: "\f05a";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #d69e2e;
+            font-size: 1.2rem;
+        }
+        
+        .success {
+            color: #059669;
+            font-weight: 600;
+        }
+        
+        .error {
+            color: #dc2626;
+            font-weight: 600;
+        }
+        
+        /* Project Section */
+        .project {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,70 C20,40 40,60 60,30 C80,0 100,20 100,50 L100,100 L0,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .project h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #718096;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .chapter {
+                padding: 25px;
+            }
+            
+            .chapter-list {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                gap: 10px;
+            }
+            
+            nav a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .logo-icon {
+                font-size: 1.8rem;
+            }
+            
+            .chapter-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .chapter-number {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Header -->
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-laptop-code logo-icon"></i>
+                    <div class="logo-text">ViblySpace</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="6thgrade.html" class="nav-link">Grade 6</a></li>
+                        <li><a href="7thgrade.html" class="nav-link">Grade 7</a></li>
+                        <li><a href="8thgrade.html" class="nav-link active">Grade 8</a></li>
+                        <li><a href="9thgrade.html" class="nav-link">Grade 9</a></li>
+                        <li><a href="python.html" class="nav-link">Python</a></li>
+                        <li><a href="concept.html" class="nav-link">HTML</a></li>
+                        <li><a href="css.html" class="nav-link">CSS</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Page Header -->
+        <div class="header">
+            <div class="grade-tag"><i class="fas fa-graduation-cap"></i> Grade 8 Curriculum</div>
+            <h1><i class="fas fa-database"></i> Problem Solving with Data Structures</h1>
+            <p class="subtitle">Build on your programming foundations by learning how to organize data efficiently and solve real-world problems.</p>
+        </div>
+
+        <!-- Chapter Navigation -->
+        <div class="chapter-nav">
+            <h3 style="color: #059669; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-map"></i> Course Chapters
+            </h3>
+            <ul class="chapter-list">
+                <li class="chapter-item">
+                    <div class="chapter-icon"><i class="fas fa-list"></i></div>
+                    <div><strong>Chapter 1:</strong> Advanced Lists & List Methods</div>
+                </li>
+                <li class="chapter-item">
+                    <div class="chapter-icon"><i class="fas fa-book"></i></div>
+                    <div><strong>Chapter 2:</strong> Dictionaries - Key-Value Pairs</div>
+                </li>
+                <li class="chapter-item">
+                    <div class="chapter-icon"><i class="fas fa-layer-group"></i></div>
+                    <div><strong>Chapter 3:</strong> Tuples & Sets</div>
+                </li>
+                <li class="chapter-item">
+                    <div class="chapter-icon"><i class="fas fa-font"></i></div>
+                    <div><strong>Chapter 4:</strong> String Manipulation</div>
+                </li>
+                <li class="chapter-item">
+                    <div class="chapter-icon"><i class="fas fa-users"></i></div>
+                    <div><strong>Final Project:</strong> Student Management System</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Chapter 1 -->
+        <div class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">1</div>
+                <h2><i class="fas fa-list"></i> Advanced Lists & List Methods</h2>
+            </div>
+
+            <div class="concept-box">
+                <h3><i class="fas fa-lightbulb"></i> Building on Grade 7 Knowledge</h3>
+                <p>Remember lists from Grade 7? Now we'll learn powerful methods to work with lists more efficiently. Lists are like smart containers that can grow, shrink, and reorganize themselves.</p>
+            </div>
+
+            <h3><i class="fas fa-tools"></i> Essential List Methods</h3>
+            
+            <h4><i class="fas fa-plus-circle"></i> 1. Adding Items to Lists</h4>
+            <div class="code-block">
+<span class="code-comment"># Create a list of fruits</span><br>
+fruits = [<span style="color: #f1fa8c">"apple"</span>, <span style="color: #f1fa8c">"banana"</span>]<br>
+<br>
+<span class="code-comment"># append() - add to the end</span><br>
+fruits.append(<span style="color: #f1fa8c">"orange"</span>)<br>
+<span style="color: #8be9fd">print</span>(fruits)  <span class="code-comment"># ['apple', 'banana', 'orange']</span><br>
+<br>
+<span class="code-comment"># insert() - add at specific position</span><br>
+fruits.insert(<span style="color: #bd93f9">1</span>, <span style="color: #f1fa8c">"grape"</span>)<br>
+<span style="color: #8be9fd">print</span>(fruits)  <span class="code-comment"># ['apple', 'grape', 'banana', 'orange']</span><br>
+<br>
+<span class="code-comment"># extend() - add multiple items</span><br>
+fruits.extend([<span style="color: #f1fa8c">"mango"</span>, <span style="color: #f1fa8c">"pineapple"</span>])<br>
+<span style="color: #8be9fd">print</span>(fruits)
+            </div>
+            <div class="output">
+['apple', 'banana', 'orange']<br>
+['apple', 'grape', 'banana', 'orange']<br>
+['apple', 'grape', 'banana', 'orange', 'mango', 'pineapple']
+            </div>
+
+            <h4><i class="fas fa-minus-circle"></i> 2. Removing Items from Lists</h4>
+            <div class="code-block">
+numbers = [<span style="color: #bd93f9">10</span>, <span style="color: #bd93f9">20</span>, <span style="color: #bd93f9">30</span>, <span style="color: #bd93f9">40</span>, <span style="color: #bd93f9">30</span>]<br>
+<br>
+<span class="code-comment"># remove() - remove first matching value</span><br>
+numbers.remove(<span style="color: #bd93f9">30</span>)<br>
+<span style="color: #8be9fd">print</span>(numbers)  <span class="code-comment"># [10, 20, 40, 30]</span><br>
+<br>
+<span class="code-comment"># pop() - remove by index and return value</span><br>
+removed = numbers.pop(<span style="color: #bd93f9">1</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Removed: {removed}"</span>)  <span class="code-comment"># Removed: 20</span><br>
+<span style="color: #8be9fd">print</span>(numbers)  <span class="code-comment"># [10, 40, 30]</span><br>
+<br>
+<span class="code-comment"># clear() - remove all items</span><br>
+numbers.clear()<br>
+<span style="color: #8be9fd">print</span>(numbers)  <span class="code-comment"># []</span>
+            </div>
+
+            <div class="try-it">
+                <h3><i class="fas fa-flask"></i> Try It Yourself: Manage a To-Do List</h3>
+                <p>Create a program that manages a to-do list using list methods.</p>
+                
+                <div class="interactive-area">
+                    <textarea class="code-editor" id="code1-1"># Create an empty to-do list
+todo_list = []
+
+# Add tasks to the list
+todo_list.append("Complete math homework")
+todo_list.append("Practice coding")
+todo_list.insert(0, "Wake up early")  # Add at beginning
+
+print("My To-Do List:")
+for i, task in enumerate(todo_list):
+    print(f"{i+1}. {task}")
+
+# Complete first task
+completed = todo_list.pop(0)
+print(f"\n✅ Completed: {completed}")
+
+print("\nRemaining tasks:")
+for i, task in enumerate(todo_list):
+    print(f"{i+1}. {task}")</textarea>
+                    <button class="btn" onclick="runCode('1-1')"><i class="fas fa-play"></i> Run Code</button>
+                    <div class="hint">
+                        <strong>Hint:</strong> enumerate() gives you both the index and value when looping through lists!
+                    </div>
+                    <div id="output1-1" class="output">Output will appear here...</div>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-sort"></i> List Sorting and Searching</h3>
+            <div class="code-block">
+<span class="code-comment"># Sorting lists</span><br>
+grades = [<span style="color: #bd93f9">85</span>, <span style="color: #bd93f9">92</span>, <span style="color: #bd93f9">78</span>, <span style="color: #bd93f9">96</span>, <span style="color: #bd93f9">88</span>]<br>
+<br>
+<span class="code-comment"># sort() - sort the list itself</span><br>
+grades.sort()<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Sorted grades:"</span>, grades)<br>
+<br>
+<span class="code-comment"># sorted() - return sorted copy</span><br>
+reverse_grades = sorted(grades, reverse=<span style="color: #ff79c6">True</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Reverse order:"</span>, reverse_grades)<br>
+<br>
+<span class="code-comment"># Finding items</span><br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Index of 92:"</span>, grades.index(<span style="color: #bd93f9">92</span>))<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Count of 88:"</span>, grades.count(<span style="color: #bd93f9">88</span>))
+            </div>
+        </div>
+
+        <!-- Chapter 2 -->
+        <div class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">2</div>
+                <h2><i class="fas fa-book"></i> Dictionaries - Key-Value Pairs</h2>
+            </div>
+
+            <div class="concept-box">
+                <h3><i class="fas fa-lightbulb"></i> What are Dictionaries?</h3>
+                <p>Dictionaries store data as key-value pairs, like a real dictionary where you look up a word (key) to find its meaning (value). They're perfect for storing related information together.</p>
+            </div>
+
+            <div class="real-world">
+                <h4><i class="fas fa-globe-americas"></i> Real-World Example</h4>
+                <p>Think of a student record: you have a name, grade, subjects, and marks. A dictionary lets you store all this information together in one organized place!</p>
+            </div>
+
+            <h3><i class="fas fa-code"></i> Creating and Using Dictionaries</h3>
+            <div class="code-block">
+<span class="code-comment"># Creating a dictionary</span><br>
+student = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"name"</span>: <span style="color: #f1fa8c">"Anya Sharma"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"grade"</span>: <span style="color: #bd93f9">8</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"subjects"</span>: [<span style="color: #f1fa8c">"Math"</span>, <span style="color: #f1fa8c">"Science"</span>, <span style="color: #f1fa8c">"English"</span>],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"marks"</span>: {<span style="color: #f1fa8c">"Math"</span>: <span style="color: #bd93f9">85</span>, <span style="color: #f1fa8c">"Science"</span>: <span style="color: #bd93f9">92</span>, <span style="color: #f1fa8c">"English"</span>: <span style="color: #bd93f9">78</span>}<br>
+}<br>
+<br>
+<span class="code-comment"># Accessing values</span><br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Student:"</span>, student[<span style="color: #f1fa8c">"name"</span>])<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Grade:"</span>, student[<span style="color: #f1fa8c">"grade"</span>])<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Math marks:"</span>, student[<span style="color: #f1fa8c">"marks"</span>][<span style="color: #f1fa8c">"Math"</span>])<br>
+<br>
+<span class="code-comment"># Adding new information</span><br>
+student[<span style="color: #f1fa8c">"school"</span>] = <span style="color: #f1fa8c">"Delhi Public School"</span><br>
+student[<span style="color: #f1fa8c">"attendance"</span>] = <span style="color: #bd93f9">95.5</span><br>
+<br>
+<span class="code-comment"># Updating values</span><br>
+student[<span style="color: #f1fa8c">"grade"</span>] = <span style="color: #bd93f9">9</span>  <span class="code-comment"># Promoted to next grade!</span>
+            </div>
+
+            <div class="try-it">
+                <h3><i class="fas fa-flask"></i> Try It Yourself: Create a Book Dictionary</h3>
+                <p>Create a dictionary to store information about your favorite book.</p>
+                
+                <div class="interactive-area">
+                    <textarea class="code-editor" id="code2-1"># Create a dictionary for your favorite book
+book = {
+    "title": "Harry Potter and the Philosopher's Stone",
+    "author": "J.K. Rowling",
+    "year": 1997,
+    "pages": 223,
+    "genres": ["Fantasy", "Adventure"]
+}
+
+# Display book information
+print("📚 My Favorite Book:")
+print(f"Title: {book['title']}")
+print(f"Author: {book['author']}")
+print(f"Published: {book['year']}")
+print(f"Pages: {book['pages']}")
+print(f"Genres: {', '.join(book['genres'])}")
+
+# Add a rating
+book["rating"] = 4.8
+print(f"⭐ Rating: {book['rating']}/5")
+
+# Update if you've read it
+book["read"] = True
+print(f"📖 Read: {'Yes' if book['read'] else 'No'}")</textarea>
+                    <button class="btn" onclick="runCode('2-1')"><i class="fas fa-play"></i> Run Code</button>
+                    <div id="output2-1" class="output">Output will appear here...</div>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-tools"></i> Dictionary Methods</h3>
+            <div class="code-block">
+<span class="code-comment"># Useful dictionary methods</span><br>
+student = {<span style="color: #f1fa8c">"name"</span>: <span style="color: #f1fa8c">"Rohan"</span>, <span style="color: #f1fa8c">"grade"</span>: <span style="color: #bd93f9">8</span>, <span style="color: #f1fa8c">"city"</span>: <span style="color: #f1fa8c">"Mumbai"</span>}<br>
+<br>
+<span class="code-comment"># get() - safe way to access values</span><br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Age:"</span>, student.get(<span style="color: #f1fa8c">"age"</span>, <span style="color: #f1fa8c">"Not specified"</span>))<br>
+<br>
+<span class="code-comment"># keys() - get all keys</span><br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Keys:"</span>, list(student.keys()))<br>
+<br>
+<span class="code-comment"># values() - get all values</span><br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Values:"</span>, list(student.values()))<br>
+<br>
+<span class="code-comment"># items() - get key-value pairs</span><br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Items:"</span>)<br>
+<span style="color: #ff79c6">for</span> key, value <span style="color: #ff79c6">in</span> student.items():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"  {key}: {value}"</span>)
+            </div>
+        </div>
+
+        <!-- Chapter 3 -->
+        <div class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">3</div>
+                <h2><i class="fas fa-layer-group"></i> Tuples & Sets</h2>
+            </div>
+
+            <div class="concept-box">
+                <h3><i class="fas fa-lightbulb"></i> Understanding Tuples</h3>
+                <p>Tuples are like lists but immutable - once created, they cannot be changed. They're perfect for storing data that shouldn't be modified, like coordinates or configuration settings.</p>
+            </div>
+
+            <h3><i class="fas fa-lock"></i> Working with Tuples</h3>
+            <div class="code-block">
+<span class="code-comment"># Creating and using tuples</span><br>
+<span class="code-comment"># Student information that shouldn't change</span><br>
+student_info = (<span style="color: #f1fa8c">"Anya Sharma"</span>, <span style="color: #bd93f9">14</span>, <span style="color: #f1fa8c">"Grade 8"</span>, <span style="color: #f1fa8c">"DPS"</span>)<br>
+<br>
+<span class="code-comment"># Accessing tuple elements</span><br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Name:"</span>, student_info[<span style="color: #bd93f9">0</span>])<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Age:"</span>, student_info[<span style="color: #bd93f9">1</span>])<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Grade:"</span>, student_info[<span style="color: #bd93f9">2</span>])<br>
+<br>
+<span class="code-comment"># Tuple unpacking</span><br>
+name, age, grade, school = student_info<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Unpacked: {name} is {age} years old in {grade}"</span>)<br>
+<br>
+<span class="code-comment"># This would cause an error (tuples are immutable):</span><br>
+<span class="code-comment"># student_info[1] = 15  # Uncomment to see the error</span>
+            </div>
+
+            <h3><i class="fas fa-object-group"></i> Understanding Sets</h3>
+            <p>Sets are collections of unique items - no duplicates allowed! They're great for mathematical operations and removing duplicates.</p>
+            
+            <div class="code-block">
+<span class="code-comment"># Working with sets</span><br>
+<span class="code-comment"># Create sets of favorite subjects</span><br>
+anya_subjects = {<span style="color: #f1fa8c">"Math"</span>, <span style="color: #f1fa8c">"Science"</span>, <span style="color: #f1fa8c">"English"</span>, <span style="color: #f1fa8c">"Art"</span>}<br>
+rohan_subjects = {<span style="color: #f1fa8c">"Science"</span>, <span style="color: #f1fa8c">"History"</span>, <span style="color: #f1fa8c">"Math"</span>, <span style="color: #f1fa8c">"Music"</span>}<br>
+<br>
+<span class="code-comment"># Set operations</span><br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Common subjects (intersection):"</span>, anya_subjects & rohan_subjects)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"All subjects (union):"</span>, anya_subjects | rohan_subjects)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Subjects only Anya likes:"</span>, anya_subjects - rohan_subjects)<br>
+<br>
+<span class="code-comment"># Adding and removing from sets</span><br>
+anya_subjects.add(<span style="color: #f1fa8c">"Computer Science"</span>)<br>
+anya_subjects.remove(<span style="color: #f1fa8c">"Art"</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Updated Anya's subjects:"</span>, anya_subjects)
+            </div>
+
+            <div class="try-it">
+                <h3><i class="fas fa-flask"></i> Try It Yourself: Remove Duplicates</h3>
+                <p>Use a set to remove duplicate items from a list.</p>
+                
+                <div class="interactive-area">
+                    <textarea class="code-editor" id="code3-1"># List with duplicate numbers
+numbers = [1, 2, 2, 3, 4, 4, 4, 5, 6, 6, 7, 8, 8, 9]
+print(f"Original list: {numbers}")
+print(f"Length: {len(numbers)}")
+
+# Convert to set to remove duplicates
+unique_numbers = set(numbers)
+print(f"\nUnique numbers: {unique_numbers}")
+print(f"Length after removing duplicates: {len(unique_numbers)}")
+
+# Convert back to list if needed
+unique_list = list(unique_numbers)
+print(f"\nBack to list: {unique_list}")
+
+# Sort the unique numbers
+sorted_unique = sorted(unique_list)
+print(f"Sorted unique numbers: {sorted_unique}")</textarea>
+                    <button class="btn" onclick="runCode('3-1')"><i class="fas fa-play"></i> Run Code</button>
+                    <div class="hint">
+                        <strong>Hint:</strong> Sets automatically remove duplicates, making them perfect for this task!
+                    </div>
+                    <div id="output3-1" class="output">Output will appear here...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter 4 -->
+        <div class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">4</div>
+                <h2><i class="fas fa-font"></i> String Manipulation</h2>
+            </div>
+
+            <div class="concept-box">
+                <h3><i class="fas fa-lightbulb"></i> Advanced String Operations</h3>
+                <p>Strings are more than just text - they're sequences of characters that we can manipulate in powerful ways. Let's explore advanced string methods!</p>
+            </div>
+
+            <h3><i class="fas fa-tools"></i> Essential String Methods</h3>
+            <div class="code-block">
+<span class="code-comment"># Common string operations</span><br>
+text = <span style="color: #f1fa8c">"  Hello, Grade 8 Programmers!  "</span><br>
+<br>
+<span class="code-comment"># Basic string methods</span><br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Original:"</span>, text)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Strip spaces:"</span>, text.strip())<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Uppercase:"</span>, text.upper())<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Lowercase:"</span>, text.lower())<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Title case:"</span>, text.strip().title())<br>
+<br>
+<span class="code-comment"># String searching</span><br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Contains 'Grade':"</span>, <span style="color: #f1fa8c">"Grade"</span> <span style="color: #ff79c6">in</span> text)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Starts with 'Hello':"</span>, text.strip().startswith(<span style="color: #f1fa8c">"Hello"</span>))<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Index of 'Programmers':"</span>, text.find(<span style="color: #f1fa8c">"Programmers"</span>))<br>
+<br>
+<span class="code-comment"># String splitting and joining</span><br>
+words = text.strip().split(<span style="color: #f1fa8c">" "</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Split words:"</span>, words)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Joined with dashes:"</span>, <span style="color: #f1fa8c">"-"</span>.join(words))
+            </div>
+
+            <h3><i class="fas fa-magic"></i> String Formatting Techniques</h3>
+            <div class="code-block">
+<span class="code-comment"># Different ways to format strings</span><br>
+name = <span style="color: #f1fa8c">"Anya"</span><br>
+age = <span style="color: #bd93f9">14</span><br>
+grade = <span style="color: #bd93f9">8.5</span><br>
+<br>
+<span class="code-comment"># f-strings (modern and recommended)</span><br>
+message1 = <span style="color: #f1fa8c">f"Hello {name}, you are {age} years old in grade {grade}!"</span><br>
+<span style="color: #8be9fd">print</span>(message1)<br>
+<br>
+<span class="code-comment"># format() method</span><br>
+message2 = <span style="color: #f1fa8c">"Hello {}, you are {} years old in grade {}!"</span>.format(name, age, grade)<br>
+<span style="color: #8be9fd">print</span>(message2)<br>
+<br>
+<span class="code-comment"># With number formatting</span><br>
+message3 = <span style="color: #f1fa8c">f"Grade average: {grade:.2f}"</span>  <span class="code-comment"># 2 decimal places</span><br>
+<span style="color: #8be9fd">print</span>(message3)<br>
+<br>
+<span class="code-comment"># Multi-line f-string</span><br>
+report = <span style="color: #f1fa8c">f"""<br>
+Student Report:<br>
+Name: {name}<br>
+Age: {age}<br>
+Grade: {grade:.1f}<br>
+Status: {'Pass' if grade >= 5 else 'Fail'}<br>
+"""</span><br>
+<span style="color: #8be9fd">print</span>(report)
+            </div>
+
+            <div class="try-it">
+                <h3><i class="fas fa-flask"></i> Try It Yourself: Text Analyzer</h3>
+                <p>Create a program that analyzes text and provides statistics.</p>
+                
+                <div class="interactive-area">
+                    <textarea class="code-editor" id="code4-1"># Text analyzer program
+text = "Python programming is fun and educational. We learn coding in Grade 8!"
+
+print("📊 Text Analysis Report")
+print("=" * 40)
+
+# Basic statistics
+print(f"Original text: {text}")
+print(f"Text length: {len(text)} characters")
+print(f"Number of words: {len(text.split())}")
+print(f"Uppercase version: {text.upper()}")
+print(f"Lowercase version: {text.lower()}")
+
+# Word analysis
+words = text.split()
+unique_words = set(words)
+print(f"\nUnique words: {len(unique_words)}")
+print(f"Word frequency:")
+for word in unique_words:
+    count = words.count(word)
+    print(f"  '{word}': {count} times")
+
+# Sentence analysis
+sentences = text.split('.')
+print(f"\nNumber of sentences: {len([s for s in sentences if s.strip()])}")
+
+# Character analysis
+print(f"\nFirst character: '{text[0]}'")
+print(f"Last character: '{text[-1]}'")
+print(f"Text contains 'Python': {'Yes' if 'Python' in text else 'No'}")</textarea>
+                    <button class="btn" onclick="runCode('4-1')"><i class="fas fa-play"></i> Run Code</button>
+                    <div class="hint">
+                        <strong>Hint:</strong> Use split() to break text into words and len() to count them!
+                    </div>
+                    <div id="output4-1" class="output">Output will appear here...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Project -->
+        <div class="project">
+            <h3><i class="fas fa-users"></i> Final Project: Student Management System</h3>
+            <p>Create a complete system to manage multiple students using dictionaries and lists.</p>
+            
+            <div class="code-block" style="background: rgba(0, 0, 0, 0.3);">
+<span class="code-comment"># Student Management System - Complete Project</span><br>
+students = []<br>
+<br>
+<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">add_student</span>():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"\n➕ Add New Student"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name = <span style="color: #8be9fd">input</span>(<span style="color: #f1fa8c">"Enter student name: "</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;grade = int(<span style="color: #8be9fd">input</span>(<span style="color: #f1fa8c">"Enter grade: "</span>))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;city = <span style="color: #8be9fd">input</span>(<span style="color: #f1fa8c">"Enter city: "</span>)<br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;student = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"name"</span>: name,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"grade"</span>: grade,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"city"</span>: city,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"student_id"</span>: len(students) + <span style="color: #bd93f9">1001</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;students.append(student)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"✅ Student {name} added successfully! ID: {student['student_id']}"</span>)<br>
+<br>
+<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">display_students</span>():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">if</span> <span style="color: #ff79c6">not</span> students:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"📝 No students in the system."</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">return</span><br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"\n📊 Student List:"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"-"</span> * <span style="color: #bd93f9">40</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">for</span> student <span style="color: #ff79c6">in</span> students:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"ID: {student['student_id']}"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Name: {student['name']}"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Grade: {student['grade']}"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"City: {student['city']}"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"-"</span> * <span style="color: #bd93f9">40</span>)<br>
+<br>
+<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">find_student</span>():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name = <span style="color: #8be9fd">input</span>(<span style="color: #f1fa8c">"Enter student name to search: "</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">for</span> student <span style="color: #ff79c6">in</span> students:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">if</span> student[<span style="color: #f1fa8c">"name"</span>].lower() == name.lower():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"✅ Found: {student}"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">return</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"❌ Student not found."</span>)<br>
+<br>
+<span class="code-comment"># Main program loop</span><br>
+<span style="color: #ff79c6">while</span> <span style="color: #ff79c6">True</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"\n🎓 STUDENT MANAGEMENT SYSTEM"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"1. Add Student"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"2. Display All Students"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"3. Find Student"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"4. Exit"</span>)<br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;choice = <span style="color: #8be9fd">input</span>(<span style="color: #f1fa8c">"Enter your choice (1-4): "</span>)<br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">if</span> choice == <span style="color: #f1fa8c">"1"</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_student()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">elif</span> choice == <span style="color: #f1fa8c">"2"</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display_students()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">elif</span> choice == <span style="color: #f1fa8c">"3"</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;find_student()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">elif</span> choice == <span style="color: #f1fa8c">"4"</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"👋 Thank you for using Student Management System!"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">break</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">else</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"❌ Invalid choice. Please try again."</span>)
+            </div>
+
+            <div class="try-it" style="background: rgba(255, 255, 255, 0.1); border-color: white;">
+                <h3 style="color: white;"><i class="fas fa-rocket"></i> Challenge: Add More Features</h3>
+                <p style="color: white;">Try adding these features to make the system even better:</p>
+                <ul style="color: white; margin: 15px 0 15px 30px;">
+                    <li><i class="fas fa-book"></i> Add subjects and marks for each student</li>
+                    <li><i class="fas fa-calculator"></i> Calculate average marks</li>
+                    <li><i class="fas fa-trash"></i> Remove students from the system</li>
+                    <li><i class="fas fa-save"></i> Save data to a file (we'll learn this in Grade 9!)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="lesson-nav">
+            <button class="btn"><a href="7thgrade.html" style="color: white; text-decoration: none;"><i class="fas fa-arrow-left"></i> Previous Grade</a></button>
+            <button class="btn"><a href="9thgrade.html" style="color: white; text-decoration: none;">Next Grade <i class="fas fa-arrow-right"></i></a></button>
+        </div>
+
+        <footer>
+            <p>ViblySpace - Grade 8 Programming Curriculum | Building Practical Problem-Solving Skills</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;"><i class="fas fa-arrow-right"></i> Next: Grade 9 - Introduction to Object-Oriented Programming</p>
+            <button class="btn" style="margin-top: 15px;"><a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-home"></i> Back to ViblySpace</a></button>
+        </footer>
+    </div>
+
+    <script>
+        function runCode(codeId) {
+            const code = document.getElementById(`code${codeId}`).value;
+            const outputElement = document.getElementById(`output${codeId}`);
+            
+            try {
+                outputElement.innerHTML = '';
+                outputElement.className = 'output';
+                
+                let output = simulatePythonExecution(code);
+                outputElement.innerHTML = output;
+                
+            } catch (error) {
+                outputElement.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+                outputElement.className = 'output error';
+            }
+        }
+
+        function simulatePythonExecution(code) {
+            let output = '';
+            
+            if (code.includes('todo_list')) {
+                output = `My To-Do List:<br>1. Wake up early<br>2. Complete math homework<br>3. Practice coding<br><br>✅ Completed: Wake up early<br><br>Remaining tasks:<br>1. Complete math homework<br>2. Practice coding`;
+            } else if (code.includes('book')) {
+                output = `📚 My Favorite Book:<br>Title: Harry Potter and the Philosopher's Stone<br>Author: J.K. Rowling<br>Published: 1997<br>Pages: 223<br>Genres: Fantasy, Adventure<br>⭐ Rating: 4.8/5<br>📖 Read: Yes`;
+            } else if (code.includes('numbers = [1, 2, 2, 3, 4, 4, 4, 5, 6, 6, 7, 8, 8, 9]')) {
+                output = `Original list: [1, 2, 2, 3, 4, 4, 4, 5, 6, 6, 7, 8, 8, 9]<br>Length: 14<br><br>Unique numbers: {1, 2, 3, 4, 5, 6, 7, 8, 9}<br>Length after removing duplicates: 9<br><br>Back to list: [1, 2, 3, 4, 5, 6, 7, 8, 9]<br>Sorted unique numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9]`;
+            } else if (code.includes('Text Analysis Report')) {
+                output = `📊 Text Analysis Report<br>========================================<br>Original text: Python programming is fun and educational. We learn coding in Grade 8!<br>Text length: 69 characters<br>Number of words: 11<br>Uppercase version: PYTHON PROGRAMMING IS FUN AND EDUCATIONAL. WE LEARN CODING IN GRADE 8!<br>Lowercase version: python programming is fun and educational. we learn coding in grade 8!<br><br>Unique words: 10<br>Word frequency:<br>  'Python': 1 times<br>  'programming': 1 times<br>  'is': 1 times<br>  'fun': 1 times<br>  'and': 1 times<br>  'educational.': 1 times<br>  'We': 1 times<br>  'learn': 1 times<br>  'coding': 1 times<br>  'in': 1 times<br>  'Grade': 1 times<br>  '8!': 1 times<br><br>Number of sentences: 2<br><br>First character: 'P'<br>Last character: '!'<br>Text contains 'Python': Yes`;
+            }
+            
+            return output || 'Code executed successfully! Check the example outputs above.';
+        }
+
+        // Initialize with example outputs
+        window.onload = function() {
+            document.getElementById('output1-1').innerHTML = 'Run the code to see your to-do list in action!';
+            document.getElementById('output2-1').innerHTML = 'Run the code to see the book information!';
+            document.getElementById('output3-1').innerHTML = 'Run the code to remove duplicates from the number list!';
+            document.getElementById('output4-1').innerHTML = 'Run the code to analyze the text!';
+        };
+    </script>
+</body>
+</html>

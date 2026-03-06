@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViblySpace - Learn Python Programming</title>
+    <link rel="icon" type="image/x-icon" href="connection.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --success: #4cc9f0;
+            --accent: #4895ef;
+            --warning: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Enhanced Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 20px;
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
+            margin-right: 8px;
+            color: var(--primary);
+        }
+        
+        .main-nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links li {
+            margin: 0 5px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .language-nav {
+            display: flex;
+            list-style: none;
+            margin-left: 15px;
+        }
+        
+        .language-nav li {
+            margin-left: 8px;
+        }
+        
+        .language-nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            background-color: #f0f2f5;
+        }
+        
+        .language-nav a:hover, .language-nav a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #306998, #FFD43B);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 5px 10px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #306998;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: #306998;
+            color: white;
+        }
+        
+        main {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .main-nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .main-nav.active {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-links li {
+                margin: 5px 0;
+                width: 100%;
+            }
+            
+            .nav-links a {
+                display: block;
+                width: 100%;
+            }
+            
+            .language-nav {
+                margin: 10px 0 0 0;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .language-nav li {
+                margin: 0 5px 0 0;
+            }
+        }
+        
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        section h3 {
+            color: #306998;
+            margin: 20px 0 10px;
+        }
+        
+        section p {
+            margin-bottom: 15px;
+        }
+        
+        .code-example {
+            background-color: #2c3e50;
+            color: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .code-example .keyword {
+            color: #FFD43B;
+        }
+        
+        .code-example .string {
+            color: #98c379;
+        }
+        
+        .code-example .number {
+            color: #d19a66;
+        }
+        
+        .code-example .comment {
+            color: #7f8c8d;
+        }
+        
+        .code-example .function {
+            color: #61afef;
+        }
+        
+        .code-example .builtin {
+            color: #56b6c2;
+        }
+        
+        .interactive-example {
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+        }
+        
+        .example-box {
+            background-color: #306998;
+            color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .example-box:hover {
+            background-color: #25527a;
+            transform: translateY(-2px);
+        }
+        
+        button {
+            background-color: #306998;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #25527a;
+            transform: translateY(-2px);
+        }
+        
+        input, select, textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 5px;
+            font-size: 16px;
+            width: calc(100% - 20px);
+        }
+        
+        .output {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            min-height: 50px;
+            border-left: 4px solid #306998;
+        }
+        
+        .try-it {
+            background-color: #ffeaa7;
+            border-left: 4px solid #fdcb6e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .try-it h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        aside {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            align-self: start;
+            position: sticky;
+            top: 100px;
+        }
+        
+        aside h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        aside ul {
+            list-style: none;
+        }
+        
+        aside li {
+            margin-bottom: 10px;
+        }
+        
+        aside a {
+            text-decoration: none;
+            color: #306998;
+            display: block;
+            padding: 8px 10px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        aside a:hover {
+            background-color: #f0f7ff;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #7f8c8d;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        footer a {
+            color: #306998;
+            text-decoration: none;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        table th {
+            background-color: #f8f9fa;
+            color: #2c3e50;
+        }
+        
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background-color: #fff9c4;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .console {
+            background-color: #2c3e50;
+            color: #98c379;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            min-height: 100px;
+            margin: 15px 0;
+            overflow-y: auto;
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-laptop-code logo-icon"></i>
+                <div class="logo-text">ViblySpace</div>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="main-nav" id="mainNav">
+                <ul class="nav-links">
+                    <!-- <li><a href="into.html" class="nav-link">Home</a></li>
+                    <!-- <li><a href="into.html#courses" class="nav-link">Courses</a></li>
+                    <li><a href="into.html#grades" class="nav-link">Grade Levels</a></li>
+                    <li><a href="into.html#about" class="nav-link">About</a></li>
+                    <li><a href="into.html#contact" class="nav-link">Contact</a></li> - -->
+                </ul>
+                
+                <ul class="language-nav">
+                    <li><a href="concept.html">HTML</a></li>
+                    <li><a href="css.html">CSS</a></li>
+                    <li><a href="python.html" class="active">Python</a></li>
+                    <li><a href="js.html">JS</a></li>
+                    <li><a href="ai.html">AI</a></li> 
+                    <li><a href="TRP.html">TRP</a></li> 
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Python for Beginners</h1>
+            <p>Learn one of the most popular programming languages in the world</p>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#variables">Variables</a></li>
+                <li><a href="#functions">Functions</a></li>
+                <li><a href="#datatypes">Data Types</a></li>
+                <li><a href="#conditions">Conditions</a></li>
+                <li><a href="#loops">Loops</a></li>
+                <li><a href="#lists">Lists</a></li>
+                <li><a href="#dictionaries">Dictionaries</a></li>
+                <li><a href="#modules">Modules</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <div class="content">
+                <section id="introduction">
+                    <h2>What is Python?</h2>
+                    <p>Python is a high-level, interpreted programming language known for its simplicity and readability. It's widely used in web development, data science, artificial intelligence, and more.</p>
+                    
+                    <h3>Your First Python Program</h3>
+                    <div class="code-example">
+                        <span class="comment"># This will print a message to the console</span><br>
+                        <span class="builtin">print</span>(<span class="string">"Hello, World!"</span>)
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Try it out:</h4>
+                        <button onclick="runPythonCode()">Run Hello World</button>
+                        <div class="console" id="introOutput"></div>
+                    </div>
+                    
+                    <div class="try-it">
+                        <h4>Try It Yourself</h4>
+                        <p>Type your own Python code below and run it:</p>
+                        <textarea id="customCode" rows="3" placeholder="Enter Python code here">print("I'm learning Python!")</textarea>
+                        <button onclick="runCustomCode()">Run Code</button>
+                        <div class="console" id="customOutput"></div>
+                    </div>
+                </section>
+                
+                <section id="variables">
+                    <h2>Variables</h2>
+                    <p>Variables are containers for storing data values. In Python, you don't need to declare variables with any particular type.</p>
+                    
+                    <div class="code-example">
+                        <span class="comment"># Declaring variables</span><br>
+                        name = <span class="string">"John"</span><br>
+                        age = <span class="number">25</span><br>
+                        is_student = <span class="keyword">True</span><br><br>
+                        
+                        <span class="comment"># Using variables</span><br>
+                        <span class="builtin">print</span>(name)  <span class="comment"># Output: John</span><br>
+                        <span class="builtin">print</span>(age)   <span class="comment"># Output: 25</span>
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Variable Playground</h4>
+                        <p>Change the values and see what happens:</p>
+                        <input type="text" id="varName" placeholder="Enter a name" value="Alice">
+                        <input type="number" id="varAge" placeholder="Enter age" value="30">
+                        <button onclick="updateVariables()">Update Variables</button>
+                        <div class="output" id="variableOutput">
+                            Name: Alice, Age: 30
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="functions">
+                    <h2>Functions</h2>
+                    <p>Functions are blocks of code that only run when they are called. You can pass data, known as parameters, into a function.</p>
+                    
+                    <div class="code-example">
+                        <span class="comment"># Function definition</span><br>
+                        <span class="keyword">def</span> <span class="function">greet</span>(name):<br>
+                        &nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Hello, "</span> + name + <span class="string">"!"</span><br><br>
+                        
+                        <span class="comment"># Calling the function</span><br>
+                        message = <span class="function">greet</span>(<span class="string">"Sarah"</span>)<br>
+                        <span class="builtin">print</span>(message)  <span class="comment"># Output: Hello, Sarah!</span>
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Function Fun</h4>
+                        <p>Enter your name and see the function in action:</p>
+                        <input type="text" id="funcName" placeholder="Your name">
+                        <button onclick="callGreetFunction()">Greet Me!</button>
+                        <div class="output" id="functionOutput"></div>
+                    </div>
+                </section>
+                
+                <section id="datatypes">
+                    <h2>Data Types</h2>
+                    <p>Python has various data types. The most common ones are:</p>
+                    
+                    <table>
+                        <tr>
+                            <th>Data Type</th>
+                            <th>Example</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>String</td>
+                            <td>"Hello"</td>
+                            <td>Text data</td>
+                        </tr>
+                        <tr>
+                            <td>Integer</td>
+                            <td>42</td>
+                            <td>Whole numbers</td>
+                        </tr>
+                        <tr>
+                            <td>Float</td>
+                            <td>3.14</td>
+                            <td>Decimal numbers</td>
+                        </tr>
+                        <tr>
+                            <td>Boolean</td>
+                            <td>True, False</td>
+                            <td>True/False values</td>
+                        </tr>
+                        <tr>
+                            <td>List</td>
+                            <td>[1, 2, 3]</td>
+                            <td>Ordered collection</td>
+                        </tr>
+                        <tr>
+                            <td>Dictionary</td>
+                            <td>{"name": "John"}</td>
+                            <td>Key-value pairs</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="interactive-example">
+                        <h4>Data Type Explorer</h4>
+                        <p>Enter a value and see its data type:</p>
+                        <input type="text" id="dataTypeInput" placeholder="Enter any value" value="Python">
+                        <button onclick="checkDataType()">Check Data Type</button>
+                        <div class="output" id="dataTypeOutput"></div>
+                    </div>
+                </section>
+                
+                <section id="conditions">
+                    <h2>Conditional Statements</h2>
+                    <p>Conditional statements are used to perform different actions based on different conditions.</p>
+                    
+                    <div class="code-example">
+                        time = <span class="number">14</span><br><br>
+                        
+                        <span class="keyword">if</span> time < <span class="number">12</span>:<br>
+                        &nbsp;&nbsp;<span class="builtin">print</span>(<span class="string">"Good morning!"</span>)<br>
+                        <span class="keyword">elif</span> time < <span class="number">18</span>:<br>
+                        &nbsp;&nbsp;<span class="builtin">print</span>(<span class="string">"Good afternoon!"</span>)<br>
+                        <span class="keyword">else</span>:<br>
+                        &nbsp;&nbsp;<span class="builtin">print</span>(<span class="string">"Good evening!"</span>)
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Condition Checker</h4>
+                        <p>Enter a time (0-23) and see the greeting:</p>
+                        <input type="number" id="timeInput" min="0" max="23" value="14">
+                        <button onclick="checkTime()">Check Time</button>
+                        <div class="output" id="conditionOutput"></div>
+                    </div>
+                </section>
+
+                <section id="loops">
+                    <h2>Loops</h2>
+                    <p>Loops are used to execute a block of code multiple times. Python has two types of loops: for loops and while loops.</p>
+                    
+                    <div class="code-example">
+                        <span class="comment"># For loop - iterates over a sequence</span><br>
+                        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">5</span>):<br>
+                        &nbsp;&nbsp;<span class="builtin">print</span>(<span class="string">"Number:"</span>, i)<br><br>
+                        
+                        <span class="comment"># While loop - repeats while condition is true</span><br>
+                        count = <span class="number">0</span><br>
+                        <span class="keyword">while</span> count < <span class="number">3</span>:<br>
+                        &nbsp;&nbsp;<span class="builtin">print</span>(<span class="string">"Count:"</span>, count)<br>
+                        &nbsp;&nbsp;count += <span class="number">1</span>
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Loop Generator</h4>
+                        <p>Enter how many times to loop:</p>
+                        <input type="number" id="loopCount" min="1" max="10" value="5">
+                        <button onclick="runLoop()">Run Loop</button>
+                        <div class="console" id="loopOutput"></div>
+                    </div>
+                </section>
+
+                <section id="lists">
+                    <h2>Lists</h2>
+                    <p>Lists are used to store multiple items in a single variable. They are one of 4 built-in data types in Python used to store collections of data.</p>
+                    
+                    <div class="code-example">
+                        <span class="comment"># Creating a list</span><br>
+                        fruits = [<span class="string">"Apple"</span>, <span class="string">"Banana"</span>, <span class="string">"Orange"</span>]<br><br>
+                        
+                        <span class="comment"># Accessing list elements</span><br>
+                        <span class="builtin">print</span>(fruits[<span class="number">0</span>])  <span class="comment"># Output: Apple</span><br><br>
+                        
+                        <span class="comment"># Adding to a list</span><br>
+                        fruits.append(<span class="string">"Grapes"</span>)<br><br>
+                        
+                        <span class="comment"># List length</span><br>
+                        <span class="builtin">print</span>(<span class="builtin">len</span>(fruits))  <span class="comment"># Output: 4</span>
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>List Playground</h4>
+                        <p>Our fruits list: <span id="listDisplay">Apple, Banana, Orange</span></p>
+                        <input type="text" id="newFruit" placeholder="Add a fruit">
+                        <button onclick="addFruit()">Add Fruit</button>
+                        <button onclick="removeFruit()">Remove Last Fruit</button>
+                        <div class="output" id="listOutput"></div>
+                    </div>
+                </section>
+
+                <section id="dictionaries">
+                    <h2>Dictionaries</h2>
+                    <p>Dictionaries are used to store data values in key:value pairs. They are unordered, changeable and do not allow duplicates.</p>
+                    
+                    <div class="code-example">
+                        <span class="comment"># Creating a dictionary</span><br>
+                        person = {<br>
+                        &nbsp;&nbsp;<span class="string">"first_name"</span>: <span class="string">"John"</span>,<br>
+                        &nbsp;&nbsp;<span class="string">"last_name"</span>: <span class="string">"Doe"</span>,<br>
+                        &nbsp;&nbsp;<span class="string">"age"</span>: <span class="number">30</span>,<br>
+                        &nbsp;&nbsp;<span class="string">"is_student"</span>: <span class="keyword">False</span><br>
+                        }<br><br>
+                        
+                        <span class="comment"># Accessing dictionary values</span><br>
+                        <span class="builtin">print</span>(person[<span class="string">"first_name"</span>])  <span class="comment"># Output: John</span><br>
+                        <span class="builtin">print</span>(person.get(<span class="string">"age"</span>))     <span class="comment"># Output: 30</span>
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Dictionary Creator</h4>
+                        <p>Create your own person dictionary:</p>
+                        <input type="text" id="dictFirstName" placeholder="First Name" value="Jane">
+                        <input type="text" id="dictLastName" placeholder="Last Name" value="Smith">
+                        <input type="number" id="dictAge" placeholder="Age" value="28">
+                        <button onclick="createPerson()">Create Person</button>
+                        <div class="output" id="dictionaryOutput"></div>
+                    </div>
+                </section>
+
+                <section id="modules">
+                    <h2>Modules</h2>
+                    <p>Modules are files containing Python code that can be imported and used in other Python programs. Python has a rich collection of built-in modules.</p>
+                    
+                    <div class="code-example">
+                        <span class="comment"># Importing a module</span><br>
+                        <span class="keyword">import</span> math<br><br>
+                        
+                        <span class="comment"># Using module functions</span><br>
+                        <span class="builtin">print</span>(math.sqrt(<span class="number">16</span>))  <span class="comment"># Output: 4.0</span><br>
+                        <span class="builtin">print</span>(math.pi)           <span class="comment"># Output: 3.141592653589793</span><br><br>
+                        
+                        <span class="comment"># Importing specific functions</span><br>
+                        <span class="keyword">from</span> datetime <span class="keyword">import</span> datetime<br>
+                        <span class="builtin">print</span>(datetime.now())  <span class="comment"># Output: current date and time</span>
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Module Explorer</h4>
+                        <p>Try out some common module functions:</p>
+                        <button onclick="useMathModule()">Math Functions</button>
+                        <button onclick="useRandomModule()">Random Functions</button>
+                        <button onclick="useDatetimeModule()">Date/Time Functions</button>
+                        <div class="console" id="moduleOutput"></div>
+                    </div>
+                </section>
+            </div>
+            
+            <aside>
+                <h3>Python Quick Reference</h3>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#variables">Variables</a></li>
+                    <li><a href="#functions">Functions</a></li>
+                    <li><a href="#datatypes">Data Types</a></li>
+                    <li><a href="#conditions">Conditions</a></li>
+                    <li><a href="#loops">Loops</a></li>
+                    <li><a href="#lists">Lists</a></li>
+                    <li><a href="#dictionaries">Dictionaries</a></li>
+                    <li><a href="#modules">Modules</a></li>
+                </ul>
+                
+                <h3>Practice Exercises</h3>
+                <ul>
+                    <li>To-Do List</li>
+                    <li>Number Guessing Game</li>
+                    <li>Simple Quiz</li>
+                    <li><a href="pythonpractice-ex.html">->Go for Exercise</a></li>
+                </ul>
+                
+                <h3>Next Steps</h3>
+                <ul>
+                    <li>Object-Oriented Python</li>
+                    <li>File Handling</li>
+                    <li>Web Development with Flask</li>
+                    <li>Data Analysis with Pandas</li>
+                    <li><a href="index.html">->Home</a></li>
+                </ul>
+            </aside>
+        </main>
+        
+        <footer>
+            <p>Python for Beginners Tutorial &copy; ViblySpace | Interactive Learning Experience</p>
+        </footer>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+
+        // Global variables
+        let fruits = ['Apple', 'Banana', 'Orange'];
+
+        // Introduction functions
+        function runPythonCode() {
+            const output = document.getElementById('introOutput');
+            if (!output) return;
+            
+            output.innerHTML = '';
+            const lineElement = document.createElement('div');
+            lineElement.textContent = 'Hello, World!';
+            output.appendChild(lineElement);
+        }
+
+        function runCustomCode() {
+            const code = document.getElementById('customCode').value;
+            const output = document.getElementById('customOutput');
+            
+            if (!output) {
+                console.error('Output element not found');
+                return;
+            }
+            
+            output.innerHTML = '';
+            
+            try {
+                const lines = code.split('\n');
+                let variables = {};
+                
+                lines.forEach(line => {
+                    if (line.trim() === '') return;
+                    
+                    const lineElement = document.createElement('div');
+                    
+                    // Handle print statements
+                    if (line.includes('print(')) {
+                        const stringMatch = line.match(/print\(["'](.*)["']\)/);
+                        if (stringMatch) {
+                            lineElement.textContent = stringMatch[1];
+                        } else {
+                            const varMatch = line.match(/print\((.*)\)/);
+                            if (varMatch) {
+                                const varName = varMatch[1].trim();
+                                if (variables[varName] !== undefined) {
+                                    lineElement.textContent = variables[varName];
+                                } else {
+                                    lineElement.textContent = '[Error: Variable not defined]';
+                                    lineElement.style.color = '#e74c3c';
+                                }
+                            } else {
+                                lineElement.textContent = '[Error: Invalid print statement]';
+                                lineElement.style.color = '#e74c3c';
+                            }
+                        }
+                    } 
+                    // Handle variable assignment
+                    else if (line.includes('=')) {
+                        const parts = line.split('=').map(part => part.trim());
+                        if (parts.length === 2) {
+                            const varName = parts[0];
+                            let value = parts[1];
+                            
+                            // Remove quotes if present for strings
+                            if ((value.startsWith('"') && value.endsWith('"')) || 
+                                (value.startsWith("'") && value.endsWith("'"))) {
+                                value = value.substring(1, value.length - 1);
+                            }
+                            
+                            variables[varName] = value;
+                            lineElement.textContent = 'Variable set: ' + varName + ' = ' + value;
+                            lineElement.style.color = '#27ae60';
+                        }
+                    } 
+                    // Handle other code
+                    else {
+                        lineElement.textContent = 'Executed: ' + line;
+                    }
+                    
+                    output.appendChild(lineElement);
+                });
+                
+            } catch (error) {
+                const errorElement = document.createElement('div');
+                errorElement.textContent = 'Error: ' + error.message;
+                errorElement.style.color = '#e74c3c';
+                output.appendChild(errorElement);
+            }
+        }
+
+        // Variables functions
+        function updateVariables() {
+            const name = document.getElementById('varName').value || 'Anonymous';
+            const age = document.getElementById('varAge').value || '0';
+            const output = document.getElementById('variableOutput');
+            
+            if (output) {
+                output.textContent = 'Name: ' + name + ', Age: ' + age;
+            }
+        }
+
+        // Functions section
+        function greet(name) {
+            return 'Hello, ' + name + '! Welcome to Python!';
+        }
+
+        function callGreetFunction() {
+            const name = document.getElementById('funcName').value || 'Friend';
+            const message = greet(name);
+            const output = document.getElementById('functionOutput');
+            
+            if (output) {
+                output.textContent = message;
+            }
+        }
+
+        // Data Types functions
+        function checkDataType() {
+            const input = document.getElementById('dataTypeInput').value;
+            let type = 'string';
+            
+            if (!isNaN(input) && input.trim() !== '') {
+                if (input.includes('.')) {
+                    type = 'float';
+                } else {
+                    type = 'integer';
+                }
+            } else if (input.toLowerCase() === 'true' || input.toLowerCase() === 'false') {
+                type = 'boolean';
+            }
+            
+            const output = document.getElementById('dataTypeOutput');
+            if (output) {
+                output.textContent = 'Value: "' + input + '" is of type: ' + type;
+            }
+        }
+
+        // Conditions functions
+        function checkTime() {
+            const time = parseInt(document.getElementById('timeInput').value);
+            let greeting;
+            
+            if (time < 12) {
+                greeting = 'Good morning!';
+            } else if (time < 18) {
+                greeting = 'Good afternoon!';
+            } else {
+                greeting = 'Good evening!';
+            }
+            
+            const output = document.getElementById('conditionOutput');
+            if (output) {
+                output.textContent = greeting;
+            }
+        }
+
+        // Loops functions
+        function runLoop() {
+            const count = parseInt(document.getElementById('loopCount').value);
+            const output = document.getElementById('loopOutput');
+            
+            if (!output) return;
+            
+            output.innerHTML = '';
+            
+            for (let i = 0; i < count; i++) {
+                const line = document.createElement('div');
+                line.textContent = 'Number: ' + i;
+                output.appendChild(line);
+            }
+        }
+
+        // Lists functions
+        function updateListDisplay() {
+            const display = document.getElementById('listDisplay');
+            if (display) {
+                display.textContent = fruits.join(', ');
+            }
+        }
+
+        function addFruit() {
+            const newFruit = document.getElementById('newFruit').value.trim();
+            const output = document.getElementById('listOutput');
+            
+            if (newFruit) {
+                fruits.push(newFruit);
+                updateListDisplay();
+                if (output) {
+                    output.textContent = 'Added: ' + newFruit;
+                }
+                document.getElementById('newFruit').value = '';
+            }
+        }
+
+        function removeFruit() {
+            const output = document.getElementById('listOutput');
+            
+            if (fruits.length > 0) {
+                const removed = fruits.pop();
+                updateListDisplay();
+                if (output) {
+                    output.textContent = 'Removed: ' + removed;
+                }
+            } else {
+                if (output) {
+                    output.textContent = 'No fruits to remove!';
+                }
+            }
+        }
+
+        // Initialize list display
+        updateListDisplay();
+
+        // Dictionaries functions
+        function createPerson() {
+            const firstName = document.getElementById('dictFirstName').value || 'Unknown';
+            const lastName = document.getElementById('dictLastName').value || 'Unknown';
+            const age = document.getElementById('dictAge').value || '0';
+            const output = document.getElementById('dictionaryOutput');
+            
+            if (!output) return;
+            
+            const person = {
+                first_name: firstName,
+                last_name: lastName,
+                age: age,
+                is_student: parseInt(age) < 25
+            };
+            
+            output.innerHTML = 
+                '<p><strong>First Name:</strong> ' + person.first_name + '</p>' +
+                '<p><strong>Last Name:</strong> ' + person.last_name + '</p>' +
+                '<p><strong>Age:</strong> ' + person.age + '</p>' +
+                '<p><strong>Is Student:</strong> ' + (person.is_student ? 'Yes' : 'No') + '</p>';
+        }
+
+        // Modules functions
+        function useMathModule() {
+            const output = document.getElementById('moduleOutput');
+            if (!output) return;
+            
+            output.innerHTML = '';
+            
+            const lines = [
+                'Math.sqrt(16) = 4.0',
+                'Math.pi = 3.141592653589793',
+                'Math.pow(2, 3) = 8.0',
+                'Math.floor(3.7) = 3'
+            ];
+            
+            lines.forEach(line => {
+                const lineElement = document.createElement('div');
+                lineElement.textContent = line;
+                output.appendChild(lineElement);
+            });
+        }
+
+        function useRandomModule() {
+            const output = document.getElementById('moduleOutput');
+            if (!output) return;
+            
+            output.innerHTML = '';
+            
+            const lines = [
+                'Random number between 1-10: ' + (Math.floor(Math.random() * 10) + 1),
+                'Random choice from [A, B, C]: ' + ['A', 'B', 'C'][Math.floor(Math.random() * 3)],
+                'Random float between 0-1: ' + Math.random().toFixed(2)
+            ];
+            
+            lines.forEach(line => {
+                const lineElement = document.createElement('div');
+                lineElement.textContent = line;
+                output.appendChild(lineElement);
+            });
+        }
+
+        function useDatetimeModule() {
+            const output = document.getElementById('moduleOutput');
+            if (!output) return;
+            
+            output.innerHTML = '';
+            
+            const now = new Date();
+            const lines = [
+                'Current date: ' + now.toDateString(),
+                'Current time: ' + now.toLocaleTimeString(),
+                'Year: ' + now.getFullYear(),
+                'Month: ' + (now.getMonth() + 1),
+                'Day: ' + now.getDate()
+            ];
+            
+            lines.forEach(line => {
+                const lineElement = document.createElement('div');
+                lineElement.textContent = line;
+                output.appendChild(lineElement);
+            });
+        }
+    </script>
+</body>
+</html>

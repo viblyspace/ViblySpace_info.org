@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViblySpace - Grade 5 Web Design Curriculum</title>
+    <link rel="icon" type="favicon" href="connection.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        .main-header {
+            background: white;
+            color: #2d3748;
+            padding: 15px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #6a11cb;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .main-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #6a11cb, #2575fc, #06b6d4);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            font-size: 2.2rem;
+            color: #6a11cb;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        nav a:hover {
+            color: #6a11cb;
+            background-color: #f1f5f9;
+        }
+        
+        nav a.active {
+            color: #6a11cb;
+            background-color: #eef2ff;
+            font-weight: 600;
+        }
+        
+        /* Page Header Styles */
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            color: #2575fc;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #6a11cb;
+            margin: 20px 0 10px;
+        }
+        
+        .history-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid #2575fc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .example-box {
+            background-color: #f0f7ff;
+            border: 1px solid #c2e0ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .code-block {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .output {
+            background-color: #edf2f7;
+            border: 1px dashed #cbd5e0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            min-height: 20px;
+        }
+        
+        .try-it {
+            background-color: #e6fffa;
+            border: 1px solid #81e6d9;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .interactive-area {
+            background-color: #f7fafc;
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .code-editor {
+            width: 100%;
+            min-height: 100px;
+            background-color: #2d3748;
+            color: #e2e8f0;
+            border: 1px solid #4a5568;
+            border-radius: 5px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            margin: 10px 0;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hint {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .success {
+            color: #38a169;
+            font-weight: bold;
+        }
+        
+        .error {
+            color: #e53e3e;
+            font-weight: bold;
+        }
+        
+        /* Module Navigation */
+        .module-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .module-btn {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .module-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .module-section {
+            display: none;
+        }
+        
+        .module-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+            
+            nav ul {
+                gap: 10px;
+            }
+            
+            nav a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .logo-icon {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Header -->
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-laptop-code logo-icon"></i>
+                    <div class="logo-text">ViblySpace</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <!-- <li><a href="4thgrade.html" class="nav-link">Grade 4</a></li> -->
+                        <li><a href="5thgrade.html" class="nav-link active">Grade 5</a></li>
+                        <li><a href="6thgrade.html" class="nav-link">Grade 6</a></li>
+                        <li><a href="concept.html" class="nav-link">HTML</a></li>
+                        <li><a href="css.html" class="nav-link">CSS</a></li>
+                        <li><a href="python.html" class="nav-link">Python</a></li>
+                        <li><a href="js.html" class="nav-link">JavaScript</a></li>
+                        <li><a href="ai.html" class="nav-link">AI</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Page Header -->
+        <header>
+            <h1>Grade 5 Web Design Curriculum</h1>
+            <p class="subtitle">Learn the fundamentals of HTML and CSS to create your first web pages. Build a strong foundation in web development with this comprehensive curriculum.</p>
+        </header>
+
+        <!-- Module Navigation -->
+        <div class="card">
+            <h2>Course Modules</h2>
+            <div class="module-nav">
+                <button class="module-btn" onclick="showModule(1)">HTML Fundamentals</button>
+                <button class="module-btn" onclick="showModule(2)">CSS Styling</button>
+                <button class="module-btn" onclick="showModule(3)">Web Elements</button>
+                <button class="module-btn" onclick="showModule(4)">Web Layout</button>
+                <button class="module-btn" onclick="showModule(5)">Images & Links</button>
+                <button class="module-btn" onclick="showModule(6)">Lists & Tables</button>
+                <button class="module-btn" onclick="showModule(7)">Colors & Fonts</button>
+                <button class="module-btn" onclick="showModule(8)">Complete Website</button>
+            </div>
+        </div>
+
+        <!-- Module 1: HTML Fundamentals -->
+        <div id="module1" class="module-section active">
+            <div class="card">
+                <h2>Module 1: HTML Fundamentals</h2>
+                
+                <h3>What is HTML?</h3>
+                <p><strong>HTML (HyperText Markup Language)</strong> is the foundation of every website. It provides the structural framework that defines the content and layout of web pages.</p>
+                <p>HTML uses <strong>elements</strong> represented by <strong>tags</strong> to mark up different parts of content. These tags tell web browsers how to display the content.</p>
+                
+                <div class="history-box">
+                    <h3>Did You Know?</h3>
+                    <p>The first version of HTML was created by Tim Berners-Lee in 1991. He was trying to create a system for scientists to share research documents easily. Today, HTML is used by billions of websites worldwide!</p>
+                </div>
+                
+                <h3>Essential HTML Tags</h3>
+                <div class="code-block">
+                    &lt;html&gt; - The root element of an HTML page<br>
+                    &lt;head&gt; - Contains meta information about the document<br>
+                    &lt;title&gt; - Specifies a title for the document<br>
+                    &lt;body&gt; - Contains the visible page content<br>
+                    &lt;h1&gt; to &lt;h6&gt; - Defines HTML headings<br>
+                    &lt;p&gt; - Defines a paragraph<br>
+                    &lt;a&gt; - Defines a hyperlink<br>
+                    &lt;img&gt; - Defines an image
+                </div>
+                
+                <h3>HTML Document Structure</h3>
+                <p>Every HTML document follows a standard structure:</p>
+                <div class="code-block">
+                    &lt;!DOCTYPE html&gt;<br>
+                    &lt;html&gt;<br>
+                    &nbsp;&nbsp;&lt;head&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Page Title&lt;/title&gt;<br>
+                    &nbsp;&nbsp;&lt;/head&gt;<br>
+                    &nbsp;&nbsp;&lt;body&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;My First Heading&lt;/h1&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;My first paragraph.&lt;/p&gt;<br>
+                    &nbsp;&nbsp;&lt;/body&gt;<br>
+                    &lt;/html&gt;
+                </div>
+                
+                <div class="try-it">
+                    <h3>Try It Yourself:</h3>
+                    <p>Create your first HTML page by filling in the template below:</p>
+                    
+                    <div class="interactive-area">
+                        <textarea class="code-editor" id="code1">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+    &lt;p&gt;This is my first paragraph!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+                        <button onclick="runCode(1)">Run Code</button>
+                        <div class="hint">
+                            <strong>Hint:</strong> All HTML tags need to be enclosed in angle brackets &lt; &gt;
+                        </div>
+                        <div id="output1" class="output">Your webpage preview will appear here...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 2: CSS Styling -->
+        <div id="module2" class="module-section">
+            <div class="card">
+                <h2>Module 2: CSS Styling</h2>
+                
+                <h3>What is CSS?</h3>
+                <p><strong>CSS (Cascading Style Sheets)</strong> is a stylesheet language used to describe the presentation of documents written in HTML. While HTML defines the structure, CSS controls the visual appearance.</p>
+                <p>CSS allows you to apply styles such as colors, fonts, spacing, and layout to HTML elements, creating visually appealing web pages.</p>
+                
+                <h3>CSS Color Systems</h3>
+                <div class="example-box">
+                    <p><strong>Hex Codes:</strong> Six-digit codes representing colors (e.g., #FF0000 for red)</p>
+                    <p><strong>RGB:</strong> Defines colors using Red, Green, and Blue values (e.g., rgb(255, 0, 0))</p>
+                    <p><strong>Color Names:</strong> Predefined color names that browsers recognize (e.g., "red", "blue")</p>
+                </div>
+                
+                <h3>Common CSS Properties</h3>
+                <div class="code-block">
+                    color - Sets the text color<br>
+                    background-color - Sets the background color<br>
+                    font-family - Specifies the font for text<br>
+                    font-size - Sets the size of the font<br>
+                    margin - Sets the space outside an element<br>
+                    padding - Sets the space inside an element<br>
+                    border - Sets the border around an element
+                </div>
+                
+                <h3>CSS Syntax</h3>
+                <p>CSS rules consist of a selector and a declaration block:</p>
+                <div class="code-block">
+                    selector {<br>
+                    &nbsp;&nbsp;property: value;<br>
+                    }<br><br>
+                    Example:<br>
+                    h1 {<br>
+                    &nbsp;&nbsp;color: blue;<br>
+                    &nbsp;&nbsp;font-size: 24px;<br>
+                    &nbsp;&nbsp;font-family: Arial, sans-serif;<br>
+                    }
+                </div>
+                
+                <div class="try-it">
+                    <h3>Try It Yourself:</h3>
+                    <p>Style a heading with CSS properties:</p>
+                    
+                    <div class="interactive-area">
+                        <textarea class="code-editor" id="code2">h1 {
+    color: darkblue;
+    background-color: lightyellow;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+}</textarea>
+                        <button onclick="runCode(2)">Run Code</button>
+                        <div class="hint">
+                            <strong>Hint:</strong> Don't forget the curly braces { } and semicolons ; after each property
+                        </div>
+                        <div id="output2" class="output">Your styled heading will appear here...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 3: Web Elements -->
+        <div id="module3" class="module-section">
+            <div class="card">
+                <h2>Module 3: Web Elements</h2>
+                
+                <h3>Integrating HTML and CSS</h3>
+                <p>Effective web development requires the seamless integration of HTML and CSS. HTML provides the structural foundation, while CSS enhances it with visual design.</p>
+                <p>This module focuses on applying CSS to HTML elements to control their appearance, size, and positioning on the page.</p>
+                
+                <h3>CSS Sizing Properties</h3>
+                <div class="code-block">
+                    width - Sets the width of an element<br>
+                    height - Sets the height of an element<br>
+                    max-width - Sets the maximum width<br>
+                    min-height - Sets the minimum height<br>
+                    font-size - Controls text size
+                </div>
+                
+                <h3>CSS Units of Measurement</h3>
+                <div class="example-box">
+                    <p><strong>px</strong> - Pixels (absolute measurement)</p>
+                    <p><strong>%</strong> - Percentage (relative to parent element)</p>
+                    <p><strong>em</strong> - Relative to the font-size of the element</p>
+                    <p><strong>rem</strong> - Relative to the font-size of the root element</p>
+                    <p><strong>vh/vw</strong> - Percentage of viewport height/width</p>
+                </div>
+                
+                <h3>Creating a Styled Element</h3>
+                <div class="code-block">
+                    HTML:<br>
+                    &lt;div class="content-box"&gt;<br>
+                    &nbsp;&nbsp;Welcome to our website!<br>
+                    &lt;/div&gt;<br><br>
+                    
+                    CSS:<br>
+                    .content-box {<br>
+                    &nbsp;&nbsp;width: 300px;<br>
+                    &nbsp;&nbsp;height: 200px;<br>
+                    &nbsp;&nbsp;background-color: #f0f8ff;<br>
+                    &nbsp;&nbsp;border: 2px solid #4682b4;<br>
+                    &nbsp;&nbsp;padding: 20px;<br>
+                    &nbsp;&nbsp;margin: 15px;<br>
+                    &nbsp;&nbsp;border-radius: 8px;<br>
+                    }
+                </div>
+                
+                <div class="try-it">
+                    <h3>Try It Yourself:</h3>
+                    <p>Create a styled content box:</p>
+                    
+                    <div class="interactive-area">
+                        <textarea class="code-editor" id="code3">.my-box {
+    width: 250px;
+    height: 150px;
+    background-color: lightgreen;
+    border: 3px solid darkgreen;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+}</textarea>
+                        <button onclick="runCode(3)">Run Code</button>
+                        <div class="hint">
+                            <strong>Hint:</strong> The CSS Box Model consists of content, padding, border, and margin
+                        </div>
+                        <div id="output3" class="output">Your styled box will appear here...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 4: Web Layout -->
+        <div id="module4" class="module-section">
+            <div class="card">
+                <h2>Module 4: Web Layout</h2>
+                
+                <h3>Complete Web Page Development</h3>
+                <p>Creating effective web pages requires understanding how to structure content and apply consistent styling across all elements.</p>
+                <p>This module covers the complete web development workflow, from planning to implementation, focusing on creating well-structured, visually cohesive web pages.</p>
+                
+                <h3>CSS Layout Methods</h3>
+                <div class="example-box">
+                    <p><strong>Normal Flow</strong> - The default browser layout</p>
+                    <p><strong>Flexbox</strong> - One-dimensional layout system</p>
+                    <p><strong>Grid</strong> - Two-dimensional layout system</p>
+                    <p><strong>Positioning</strong> - Precise element placement</p>
+                </div>
+                
+                <h3>Responsive Design Principles</h3>
+                <p>Modern websites must provide optimal viewing experiences across various devices:</p>
+                <ul>
+                    <li>Fluid layouts that adapt to screen size</li>
+                    <li>Media queries for device-specific styling</li>
+                    <li>Flexible images and media</li>
+                    <li>Readable typography at all sizes</li>
+                </ul>
+                
+                <h3>Web Development Workflow</h3>
+                <div class="history-box">
+                    <p><strong>1. Planning and Design</strong> - Define the purpose, audience, and content structure</p>
+                    <p><strong>2. HTML Structure</strong> - Build the semantic HTML foundation</p>
+                    <p><strong>3. CSS Styling</strong> - Apply visual styles for usability and appeal</p>
+                    <p><strong>4. Testing and Refinement</strong> - Test across different browsers and devices</p>
+                </div>
+                
+                <div class="try-it">
+                    <h3>Try It Yourself:</h3>
+                    <p>Create a simple webpage layout:</p>
+                    
+                    <div class="interactive-area">
+                        <textarea class="code-editor" id="code4">/* Simple webpage layout */
+.header {
+    background-color: #6a11cb;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.content {
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.footer {
+    background-color: #343a40;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}</textarea>
+                        <button onclick="runCode(4)">Run Code</button>
+                        <div class="hint">
+                            <strong>Hint:</strong> Good web design follows principles of simplicity, consistency, and user-centered design
+                        </div>
+                        <div id="output4" class="output">Your webpage layout will appear here...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 5: Adding Images and Links -->
+        <div id="module5" class="module-section">
+            <div class="card">
+                <h2>Module 5: Adding Images and Links</h2>
+                
+                <h3>Making Your Website Interactive</h3>
+                <p>Now that you know how to create text and style it, let's learn how to add images and links to make your website more interesting and interactive!</p>
+                <p>Images help tell stories and make your website visually appealing, while links let visitors navigate between pages.</p>
+                
+                <h3>Adding Images with HTML</h3>
+                <p>The <code>&lt;img&gt;</code> tag is used to add images to your webpage:</p>
+                <div class="code-block">
+                    &lt;img src="cat.jpg" alt="A cute cat"&gt;
+                </div>
+                <p><strong>src</strong> tells the browser where to find the image file</p>
+                <p><strong>alt</strong> provides a description for screen readers</p>
+                
+                <h3>Creating Links with HTML</h3>
+                <p>The <code>&lt;a&gt;</code> tag creates clickable links:</p>
+                <div class="code-block">
+                    &lt;a href="https://www.google.com"&gt;Visit Google&lt;/a&gt;
+                </div>
+                <p><strong>href</strong> tells the browser where the link should go</p>
+                <p>The text between the tags is what users see and click on</p>
+                
+                <div class="try-it">
+                    <h3>Try It Yourself:</h3>
+                    <p>Create a simple photo gallery with links:</p>
+                    
+                    <div class="interactive-area">
+                        <textarea class="code-editor" id="code5">&lt;h1&gt;My Photo Gallery&lt;/h1&gt;
+&lt;img src="https://via.placeholder.com/200" alt="Sample image"&gt;
+&lt;p&gt;Visit my &lt;a href="#"&gt;Favorite Website&lt;/a&gt;&lt;/p&gt;</textarea>
+                        <button onclick="runCode(5)">Run Code</button>
+                        <div class="hint">
+                            <strong>Hint:</strong> You can control image size with width and height attributes
+                        </div>
+                        <div id="output5" class="output">Your photo gallery will appear here...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 6: Creating Lists and Tables -->
+        <div id="module6" class="module-section">
+            <div class="card">
+                <h2>Module 6: Creating Lists and Tables</h2>
+                
+                <h3>Organizing Information</h3>
+                <p>Sometimes we need to present information in an organized way. HTML gives us special tags to create lists and tables that help visitors understand information quickly.</p>
+                <p>Think about how you might list your favorite games or create a schedule for your week - lists and tables are perfect for this!</p>
+                
+                <h3>HTML List Types</h3>
+                <p><strong>Ordered Lists</strong> (numbered):</p>
+                <div class="code-block">
+                    &lt;ol&gt;<br>
+                    &nbsp;&nbsp;&lt;li&gt;First item&lt;/li&gt;<br>
+                    &nbsp;&nbsp;&lt;li&gt;Second item&lt;/li&gt;<br>
+                    &lt;/ol&gt;
+                </div>
+                <p><strong>Unordered Lists</strong> (bulleted):</p>
+                <div class="code-block">
+                    &lt;ul&gt;<br>
+                    &nbsp;&nbsp;&lt;li&gt;Apples&lt;/li&gt;<br>
+                    &nbsp;&nbsp;&lt;li&gt;Bananas&lt;/li&gt;<br>
+                    &lt;/ul&gt;
+                </div>
+                
+                <h3>Creating Tables</h3>
+                <p>Tables organize information into rows and columns:</p>
+                <div class="code-block">
+                    &lt;table&gt;<br>
+                    &nbsp;&nbsp;&lt;tr&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Day&lt;/th&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Activity&lt;/th&gt;<br>
+                    &nbsp;&nbsp;&lt;/tr&gt;<br>
+                    &nbsp;&nbsp;&lt;tr&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Monday&lt;/td&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Soccer practice&lt;/td&gt;<br>
+                    &nbsp;&nbsp;&lt;/tr&gt;<br>
+                    &lt;/table&gt;
+                </div>
+                
+                <div class="try-it">
+                    <h3>Try It Yourself:</h3>
+                    <p>Create a weekly schedule using a table:</p>
+                    
+                    <div class="interactive-area">
+                        <textarea class="code-editor" id="code6">&lt;table border="1"&gt;
+&lt;tr&gt;
+    &lt;th&gt;Day&lt;/th&gt;
+    &lt;th&gt;Morning&lt;/th&gt;
+    &lt;th&gt;Afternoon&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;Monday&lt;/td&gt;
+    &lt;td&gt;School&lt;/td&gt;
+    &lt;td&gt;Art Class&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</textarea>
+                        <button onclick="runCode(6)">Run Code</button>
+                        <div class="hint">
+                            <strong>Hint:</strong> &lt;th&gt; creates table headers (bold), &lt;td&gt; creates regular table cells
+                        </div>
+                        <div id="output6" class="output">Your table will appear here...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 7: Fun with Colors and Fonts -->
+        <div id="module7" class="module-section">
+            <div class="card">
+                <h2>Module 7: Fun with Colors and Fonts</h2>
+                
+                <h3>Expressing Yourself with Design</h3>
+                <p>Colors and fonts are like the personality of your website! They help create moods and make your content more enjoyable to read.</p>
+                <p>Just like you might choose different colors for different subjects in your notebook, you can choose colors and fonts that match what your website is about.</p>
+                
+                <h3>Color Your World</h3>
+                <p>CSS lets you color almost anything on your webpage:</p>
+                <div class="code-block">
+                    /* Text color */<br>
+                    color: red;<br><br>
+                    /* Background color */<br>
+                    background-color: blue;<br><br>
+                    /* Border color */<br>
+                    border-color: green;
+                </div>
+                <p>You can use color names like "red" or "blue", or use special codes like #FF0000 for red.</p>
+                
+                <h3>Playing with Fonts</h3>
+                <p>Change how your text looks with these CSS properties:</p>
+                <div class="code-block">
+                    /* Change font family */<br>
+                    font-family: Arial, sans-serif;<br><br>
+                    /* Change font size */<br>
+                    font-size: 20px;<br><br>
+                    /* Make text bold */<br>
+                    font-weight: bold;<br><br>
+                    /* Make text italic */<br>
+                    font-style: italic;
+                </div>
+                
+                <div class="try-it">
+                    <h3>Try It Yourself:</h3>
+                    <p>Create a colorful heading with custom fonts:</p>
+                    
+                    <div class="interactive-area">
+                        <textarea class="code-editor" id="code7">.fun-heading {
+    color: purple;
+    background-color: yellow;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 32px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+}</textarea>
+                        <button onclick="runCode(7)">Run Code</button>
+                        <div class="hint">
+                            <strong>Hint:</strong> Some colors work well together while others don't. Try blue/white or yellow/black combinations!
+                        </div>
+                        <div id="output7" class="output">Your colorful heading will appear here...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 8: Your First Complete Website -->
+        <div id="module8" class="module-section">
+            <div class="card">
+                <h2>Module 8: Your First Complete Website</h2>
+                
+                <h3>Putting It All Together</h3>
+                <p>Congratulations! You've learned the basic building blocks of web design. Now let's combine everything you've learned to create your first complete website.</p>
+                <p>We'll create a simple personal website that you can customize with information about yourself, your hobbies, and things you like!</p>
+                
+                <h3>Build Your Personal Website</h3>
+                <div class="code-block">
+                    &lt;!DOCTYPE html&gt;<br>
+                    &lt;html&gt;<br>
+                    &lt;head&gt;<br>
+                    &nbsp;&nbsp;&lt;title&gt;My Personal Website&lt;/title&gt;<br>
+                    &lt;style&gt;<br>
+                    &nbsp;&nbsp;body { font-family: Arial, sans-serif; }<br>
+                    &nbsp;&nbsp;.header { background: #6a11cb; color: white; padding: 20px; }<br>
+                    &nbsp;&nbsp;.content { padding: 20px; }<br>
+                    &nbsp;&nbsp;.footer { background: #333; color: white; padding: 10px; }<br>
+                    &lt;/style&gt;<br>
+                    &lt;/head&gt;<br>
+                    &lt;body&gt;<br>
+                    &nbsp;&nbsp;&lt;div class="header"&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Welcome to My Website!&lt;/h1&gt;<br>
+                    &nbsp;&nbsp;&lt;/div&gt;<br>
+                    &nbsp;&nbsp;&lt;div class="content"&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;About Me&lt;/h2&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;I'm a 5th grader who loves coding!&lt;/p&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&gt;My Favorite Things&lt;/h3&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Playing video games&lt;/li&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Reading books&lt;/li&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Creating websites&lt;/li&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+                    &nbsp;&nbsp;&lt;/div&gt;<br>
+                    &nbsp;&nbsp;&lt;div class="footer"&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Created by Me © 2023&lt;/p&gt;<br>
+                    &nbsp;&nbsp;&lt;/div&gt;<br>
+                    &lt;/body&gt;<br>
+                    &lt;/html&gt;
+                </div>
+                
+                <div class="try-it">
+                    <h3>Your Turn:</h3>
+                    <p>Create your own personal website! Customize it with your information:</p>
+                    
+                    <div class="interactive-area">
+                        <textarea class="code-editor" id="code8">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Personal Website&lt;/title&gt;
+    &lt;style&gt;
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 0;
+        }
+        .header { 
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white; 
+            padding: 30px; 
+            text-align: center;
+        }
+        .content { 
+            padding: 20px; 
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .footer { 
+            background: #333; 
+            color: white; 
+            padding: 15px; 
+            text-align: center;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="header"&gt;
+        &lt;h1&gt;Welcome to My Website!&lt;/h1&gt;
+        &lt;p&gt;Created by a 5th Grade Web Designer&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="content"&gt;
+        &lt;h2&gt;About Me&lt;/h2&gt;
+        &lt;p&gt;Hello! I'm learning web design and this is my first website.&lt;/p&gt;
+        &lt;h3&gt;My Favorite Things&lt;/h3&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Creating websites&lt;/li&gt;
+            &lt;li&gt;Playing sports&lt;/li&gt;
+            &lt;li&gt;Reading books&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="footer"&gt;
+        &lt;p&gt;Created with HTML & CSS © 2023&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+                        <button onclick="runCode(8)">Run Code</button>
+                        <div class="hint">
+                            <strong>Hint:</strong> Make your website unique by changing colors, adding your photos, or creating pages about your interests!
+                        </div>
+                        <div id="output8" class="output">Your complete website will appear here...</div>
+                    </div>
+                </div>
+                
+                <div class="history-box">
+                    <h3>Congratulations!</h3>
+                    <p>You've just created your first website using HTML and CSS - the same tools professional web designers use every day! Keep practicing and learning, and who knows - maybe one day you'll create websites for big companies or even start your own web design business!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-nav">
+            <button><a href="index.html" style="color: white; text-decoration: none;">← Back to Home</a></button>
+            <button><a href="6thgrade.html" style="color: white; text-decoration: none;">Continue to 6th Grade →</a></button>
+        </div>
+        
+        <footer>
+            <p>ViblySpace - Grade 5 Web Design Curriculum | Building Foundations for Digital Literacy</p>
+        </footer>
+    </div>
+
+    <script>
+        // Show first module by default
+        showModule(1);
+
+        function showModule(moduleNumber) {
+            // Hide all modules
+            document.querySelectorAll('.module-section').forEach(module => {
+                module.classList.remove('active');
+            });
+            
+            // Show selected module
+            document.getElementById('module' + moduleNumber).classList.add('active');
+        }
+
+        // Simple code execution for educational purposes
+        function runCode(lessonNum) {
+            const code = document.getElementById(`code${lessonNum}`).value;
+            const outputElement = document.getElementById(`output${lessonNum}`);
+            
+            try {
+                outputElement.innerHTML = '';
+                outputElement.className = 'output';
+                
+                // For HTML/CSS examples, we'll create a simple preview
+                if (code.includes('<!DOCTYPE') || code.includes('<html') || code.includes('<div')) {
+                    // It's HTML code
+                    const preview = document.createElement('iframe');
+                    preview.style.width = '100%';
+                    preview.style.height = '300px';
+                    preview.style.border = '1px solid #ccc';
+                    preview.style.borderRadius = '5px';
+                    
+                    const blob = new Blob([code], {type: 'text/html'});
+                    preview.src = URL.createObjectURL(blob);
+                    
+                    outputElement.appendChild(preview);
+                } else if (code.includes('{') && code.includes('}') && code.includes(':')) {
+                    // It's CSS code - create a styled element
+                    const styledElement = document.createElement('div');
+                    
+                    if (code.includes('.fun-heading')) {
+                        styledElement.innerHTML = '<h1>Welcome to My Colorful Website!</h1>';
+                    } else if (code.includes('.my-box')) {
+                        styledElement.innerHTML = '<div>This is my styled box!</div>';
+                    } else if (code.includes('h1 {')) {
+                        styledElement.innerHTML = '<h1>This is a styled heading</h1>';
+                    } else {
+                        styledElement.innerHTML = '<div>Styled Element Preview</div>';
+                    }
+                    
+                    // Add the CSS to the element
+                    const style = document.createElement('style');
+                    style.textContent = code;
+                    styledElement.appendChild(style);
+                    
+                    outputElement.appendChild(styledElement);
+                } else {
+                    // Plain text output
+                    outputElement.textContent = 'Code executed successfully!';
+                }
+                
+            } catch (error) {
+                outputElement.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+                outputElement.className = 'output error';
+            }
+        }
+        
+        // Initialize with some example outputs
+        window.onload = function() {
+            // Set up initial previews for better user experience
+            runCode(1);
+            runCode(2);
+            runCode(3);
+            runCode(4);
+            runCode(5);
+            runCode(6);
+            runCode(7);
+            runCode(8);
+        };
+    </script>
+</body>
+</html>

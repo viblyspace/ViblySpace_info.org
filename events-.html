@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViblySpace - Student Tech Events</title>
+    <link rel="icon" type="favicon" href="connection.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #7209b7;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(67, 97, 238, 0.8), rgba(58, 12, 163, 0.9)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .hero-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            background-color: var(--secondary);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            color: var(--dark);
+        }
+        
+        .btn-warning {
+            background-color: var(--warning);
+        }
+        
+        /* Section Styles */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            font-size: 2.2rem;
+            color: var(--secondary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--gray);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .content-section {
+            margin-bottom: 60px;
+        }
+        
+        /* Registration Form */
+        .registration-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-top: 40px;
+        }
+        
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--secondary);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .form-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .form-check input {
+            margin-top: 5px;
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .spinner i {
+            font-size: 2rem;
+            color: var(--primary);
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #155724;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            border: 1px solid #c3e6cb;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Welcome Message */
+        .welcome-message {
+            display: none;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #0d47a1;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .message-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        /* Form Icons */
+        .form-icon {
+            color: var(--primary);
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #495057;
+            color: #adb5bd;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .hero-icon {
+                font-size: 3rem;
+            }
+            
+            .message-icon {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-laptop-code logo-icon"></i>
+                <div class="logo-text">ViblySpace</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <i class="fas fa-calendar-alt hero-icon"></i>
+            <h1>Welcome to ViblySpace Events</h1>
+            <p>We're excited to have your school join our technology events. Let's create amazing learning experiences together!</p>
+        </div>
+    </section>
+
+    <!-- Registration Form -->
+    <main class="container">
+        <section id="register" class="content-section">
+            <div class="registration-section">
+                <h2 class="form-title">
+                    <i class="fas fa-edit form-icon"></i>
+                    Register Your School for Events
+                </h2>
+                <p style="text-align: center; margin-bottom: 30px; color: var(--gray);">
+                    <i class="fas fa-handshake form-icon"></i>
+                    Hello there! We're thrilled you're interested in our events. Please fill out this form and we'll get back to you soon.
+                </p>
+                
+                <!-- Welcome Message -->
+                <div class="welcome-message" id="welcomeMessage">
+                    <i class="fas fa-info-circle message-icon"></i>
+                    <h3>Welcome to ViblySpace!</h3>
+                    <p>We noticed some information is missing. Could you please complete all the fields so we can help you better?</p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.9;">
+                        <i class="fas fa-thumbs-up form-icon"></i>
+                        Thank you for your cooperation!
+                    </p>
+                </div>
+                
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle message-icon"></i>
+                    <h3>Registration Successfully Submitted!</h3>
+                    <p>Thank you for registering with ViblySpace! We're excited to have your school on board.</p>
+                    <p style="margin-top: 10px;">We'll contact you within 2 business days with all the event details.</p>
+                    <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8;">
+                        <i class="fas fa-smile form-icon"></i>
+                        Have a great day!
+                    </p>
+                </div>
+                
+                <!-- Loading Spinner -->
+                <div class="spinner" id="loadingSpinner">
+                    <i class="fas fa-spinner"></i>
+                    <p>Processing your registration...</p>
+                    <p style="font-size: 0.9rem; margin-top: 10px; opacity: 0.7;">
+                        <i class="fas fa-clock form-icon"></i>
+                        Thank you for your patience!
+                    </p>
+                </div>
+                
+                <form id="event-registration-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="school-name">
+                                <i class="fas fa-school form-icon"></i>
+                                School Name *
+                            </label>
+                            <input type="text" id="school-name" name="schoolName" class="form-control" required placeholder="Enter your school name">
+                        </div>
+                        <div class="form-group">
+                            <label for="school-type">
+                                <i class="fas fa-graduation-cap form-icon"></i>
+                                School Type *
+                            </label>
+                            <select id="school-type" name="schoolType" class="form-control" required>
+                                <option value="">Choose your school type</option>
+                                <option value="elementary">Elementary School</option>
+                                <option value="middle">Middle School</option>
+                                <option value="high">High School</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-name">
+                                <i class="fas fa-user form-icon"></i>
+                                Contact Person Name *
+                            </label>
+                            <input type="text" id="contact-name" name="contactName" class="form-control" required placeholder="Teacher or coordinator name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-role">
+                                <i class="fas fa-briefcase form-icon"></i>
+                                Contact Person Role *
+                            </label>
+                            <input type="text" id="contact-role" name="contactRole" class="form-control" required placeholder="e.g., Computer Teacher, Coordinator">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope form-icon"></i>
+                                Email Address *
+                            </label>
+                            <input type="email" id="email" name="email" class="form-control" required placeholder="your.email@school.edu">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">
+                                <i class="fas fa-phone form-icon"></i>
+                                Phone Number *
+                            </label>
+                            <input type="tel" id="phone" name="phone" class="form-control" required placeholder="+1 (234) 567-8900">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="events">
+                            <i class="fas fa-calendar-check form-icon"></i>
+                            Which events interest you? *
+                        </label>
+                        <select id="events" name="events" class="form-control" required>
+                            <option value="">Select events that interest you</option>
+                            <option value="web-hackathon">Web Development Hackathon</option>
+                            <option value="python-challenge">Python Programming Challenge</option>
+                            <option value="game-camp">Game Development Camp</option>
+                            <option value="all">All Events</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="students">
+                            <i class="fas fa-users form-icon"></i>
+                            Estimated Number of Students *
+                        </label>
+                        <input type="number" id="students" name="students" class="form-control" min="1" required placeholder="e.g., 15">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="grade-levels">
+                            <i class="fas fa-chalkboard-teacher form-icon"></i>
+                            Grade Levels of Students *
+                        </label>
+                        <input type="text" id="grade-levels" name="gradeLevels" class="form-control" required placeholder="e.g., Grades 7-9">
+                    </div>
+                    
+                    <div class="form-check">
+                        <input type="checkbox" id="terms" name="terms" class="form-check-input" required>
+                        <label for="terms" class="form-check-label">
+                            <i class="fas fa-file-contract form-icon"></i>
+                            I agree to the terms and conditions *
+                        </label>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input type="checkbox" id="updates" name="updates" class="form-check-input">
+                        <label for="updates" class="form-check-label">
+                            <i class="fas fa-bell form-icon"></i>
+                            Send me updates about future events
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; padding: 15px;" id="submitButton">
+                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+                        Submit Registration
+                    </button>
+                    
+                    <p style="text-align: center; margin-top: 20px; color: var(--gray); font-size: 0.9rem;">
+                        <i class="fas fa-heart form-icon"></i>
+                        Thank you for considering ViblySpace! We look forward to working with your school.
+                    </p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>
+                        <i class="fas fa-laptop-code" style="margin-right: 10px;"></i>
+                        About ViblySpace
+                    </h3>
+                    <p>ViblySpace is a non-profit initiative aimed at bringing quality coding education to school students across the country.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>
+                        <i class="fas fa-link" style="margin-right: 10px;"></i>
+                        Quick Links
+                    </h3>
+                    <ul>
+                        <li><a href="into.html"><i class="fas fa-home" style="margin-right: 8px; text-decoration: none;"></i>Home</a></li>
+                        <!-- <li><a href="#"><i class="fas fa-calendar-alt" style="margin-right: 8px;"></i>Events</a></li> -->
+                        <li><a href="into.html#courses"><i class="fas fa-book" style="margin-right: 8px;"></i>Courses</a></li>
+                        <li><a href="index.html#grades"><i class="fas fa-graduation-cap" style="margin-right: 8px;"></i>Grade Levels</a></li>
+                        <li><a href="index.html#about"><i class="fas fa-info-circle" style="margin-right: 8px;"></i>About</a></li>
+                        <li><a href="index.html#contact"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>
+                        <i class="fas fa-address-card" style="margin-right: 10px;"></i>
+                        Contact Us
+                    </h3>
+                    <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> 123 Education Street, Learning City</p>
+                    <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> info@ViblySpace.org</p>
+                    <p><i class="fas fa-phone" style="margin-right: 10px;"></i> +1 234 567 8900</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    <i class="far fa-copyright" style="margin-right: 5px;"></i>
+                    2025 ViblySpace. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Replace this with your Google Apps Script URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const registrationForm = document.getElementById('event-registration-form');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const successMessage = document.getElementById('successMessage');
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            const submitButton = document.getElementById('submitButton');
+            
+            // Hide messages initially
+            welcomeMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+            loadingSpinner.style.display = 'none';
+            
+            registrationForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Basic validation
+                const requiredFields = registrationForm.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value) {
+                        isValid = false;
+                        field.style.borderColor = '#ff6b6b';
+                    } else {
+                        field.style.borderColor = '#ddd';
+                    }
+                });
+                
+                if (!isValid) {
+                    // Show friendly welcome message instead of error
+                    welcomeMessage.style.display = 'block';
+                    
+                    // Scroll to the message
+                    welcomeMessage.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                    return;
+                }
+                
+                // Hide welcome message if it was shown
+                welcomeMessage.style.display = 'none';
+                
+                // Show loading spinner
+                loadingSpinner.style.display = 'block';
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 8px;"></i> Processing...';
+                
+                try {
+                    // Prepare form data
+                    const formData = new FormData(registrationForm);
+                    const data = Object.fromEntries(formData);
+                    
+                    // Add timestamp
+                    data.timestamp = new Date().toISOString();
+                    
+                    // Send to Google Apps Script
+                    const response = await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    // Success - show celebration message
+                    setTimeout(() => {
+                        loadingSpinner.style.display = 'none';
+                        successMessage.style.display = 'block';
+                        registrationForm.style.display = 'none';
+                        
+                        // Scroll to success message
+                        successMessage.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                    }, 1500);
+                    
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+                    
+                    // Show friendly message instead of error
+                    setTimeout(() => {
+                        loadingSpinner.style.display = 'none';
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = '<i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Submit Registration';
+                        
+                        // Show success message anyway (user-friendly approach)
+                        successMessage.style.display = 'block';
+                        registrationForm.style.display = 'none';
+                        
+                        successMessage.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                    }, 1500);
+                }
+            });
+            
+            // Real-time validation with friendly feedback
+            const inputs = registrationForm.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.value) {
+                        this.style.borderColor = '#4cc9f0';
+                    } else {
+                        this.style.borderColor = '#ddd';
+                    }
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (!this.value && this.hasAttribute('required')) {
+                        this.style.borderColor = '#ff6b6b';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

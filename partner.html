@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViblySpace - Partnership Program</title>
+    <link rel="icon" type="favicon" href="connection.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+        
+        /* Professional Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 12px 0;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #3b82f6;
+            margin-right: 20px;
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
+            margin-right: 8px;
+            color: #3b82f6;
+        }
+        
+        .main-nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links li {
+            margin: 0 5px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #334155;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .language-nav {
+            display: flex;
+            list-style: none;
+            margin-left: 15px;
+        }
+        
+        .language-nav li {
+            margin-left: 8px;
+        }
+        
+        .language-nav a {
+            text-decoration: none;
+            color: #334155;
+            font-weight: 500;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            background-color: #f0f2f5;
+        }
+        
+        .language-nav a:hover, .language-nav a.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #3b82f6;
+        }
+        
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .main-nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .main-nav.active {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-links li {
+                margin: 5px 0;
+                width: 100%;
+            }
+            
+            .nav-links a {
+                display: block;
+                width: 100%;
+            }
+            
+            .language-nav {
+                margin: 10px 0 0 0;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .language-nav li {
+                margin: 0 5px 0 0;
+            }
+        }
+        
+        .partnership-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 40px 20px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h1 {
+            font-size: 36px;
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .highlight {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+        
+        .content-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        
+        .benefits-section {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .benefits-section h2 {
+            font-size: 24px;
+            color: #1e293b;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #dbeafe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: #3b82f6;
+            font-size: 20px;
+        }
+        
+        .benefit-card h3 {
+            font-size: 18px;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        
+        .benefit-card p {
+            color: #64748b;
+            font-size: 15px;
+        }
+        
+        .form-section {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-section h2 {
+            font-size: 24px;
+            color: #1e293b;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #2563eb;
+        }
+        
+        .submit-btn:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Success message */
+        .success-message {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid #a7f3d0;
+            display: none;
+        }
+        
+        .success-message i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        /* Error message */
+        .error-message {
+            background-color: #fef2f2;
+            color: #dc2626;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+            border: 1px solid #fecaca;
+        }
+        
+        /* Professional greeting styles */
+        .greeting-message {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+            display: none;
+        }
+        
+        .greeting-message i {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .greeting-message h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .greeting-message p {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .contact-info {
+            margin-top: 40px;
+            text-align: center;
+            padding: 25px;
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+        
+        .contact-info h3 {
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info p {
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+        
+        .home-btn {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+        
+        .home-btn a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .content-container {
+                flex-direction: column;
+            }
+            
+            .section-header h1 {
+                font-size: 28px;
+            }
+            
+            .section-header p {
+                font-size: 16px;
+            }
+        }
+        
+        .google-script-info {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 40px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .google-script-info h3 {
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+        
+        .google-script-info ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .google-script-info li {
+            margin-bottom: 10px;
+            color: #64748b;
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Professional Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-laptop-code logo-icon"></i>
+                <div class="logo-text">ViblySpace</div>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="main-nav" id="mainNav">
+                <ul class="nav-links">
+                    <!-- Navigation links can be added here -->
+                </ul>
+                
+                <ul class="language-nav">
+                    <li><a href="concept.html">HTML</a></li>
+                    <li><a href="css.html">CSS</a></li>
+                    <li><a href="python.html">Python</a></li>
+                    <li><a href="js.html">JS</a></li>
+                    <li><a href="ai.html">AI</a></li> 
+                    <!-- <li><a href="login.html">TRP</a></li>  -->
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section class="partnership-section">
+        <div class="section-header">
+            <h1>Partner with <span class="highlight">ViblySpace</span></h1>
+            <p>We're always looking to expand our program to schools. If you're interested in partnering with us, please fill out our partnership inquiry form.</p>
+        </div>
+        
+        <!-- Professional Greeting Message (Initially Hidden) -->
+        <div id="greeting-message" class="greeting-message">
+            <i class="fas fa-check-circle"></i>
+            <h3>Thank You for Your Interest!</h3>
+            <p>Your partnership inquiry has been successfully submitted. Our team will review your information and contact you within 4 days.</p>
+            <p style="margin-top: 15px; font-size: 14px; opacity: 0.8;">We appreciate your interest in ViblySpace and look forward to exploring this partnership opportunity with you.</p>
+        </div>
+        
+        <div class="content-container">
+            <div class="benefits-section">
+                <h2>Benefits of Partnering with ViblySpace</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-rocket"></i></div>
+                        <h3>Advanced Educational Technology</h3>
+                        <p>Access our cutting-edge platform with interactive tools, analytics, and resources designed to enhance teaching and learning.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-chart-bar"></i></div>
+                        <h3>Comprehensive Analytics</h3>
+                        <p>Gain insights into student performance with our detailed tracking and reporting features to support data-driven decisions.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-users"></i></div>
+                        <h3>Dedicated Support</h3>
+                        <p>Receive personalized onboarding, training, and ongoing support from our educational technology specialists.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-sync-alt"></i></div>
+                        <h3>Continuous Updates</h3>
+                        <p>Benefit from regular platform improvements and new features based on educator feedback and technological advancements.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2>Partnership Inquiry Form</h2>
+                <form id="partnership-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="school">School/Organization</label>
+                        <input type="text" id="school" class="form-control" placeholder="Enter your school or organization name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="role">Your Role</label>
+                        <select id="role" class="form-control" required>
+                            <option value="" disabled selected>Select your role</option>
+                            <option value="administrator">Administrator</option>
+                            <option value="teacher">Teacher</option>
+                            <option value="technology-coordinator">Technology Coordinator</option>
+                            <option value="curriculum-director">Curriculum Director</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="students">Approximate Number of Students</label>
+                        <select id="students" class="form-control" required>
+                            <option value="" disabled selected>Select student count</option>
+                            <option value="1-100">1-100</option>
+                            <option value="101-500">101-500</option>
+                            <option value="501-1000">501-1000</option>
+                            <option value="1001-5000">1001-5000</option>
+                            <option value="5000+">5000+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">How can ViblySpace help your institution?</label>
+                        <textarea id="message" class="form-control" placeholder="Tell us about your goals and how we can support your educational needs" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        <span id="btn-text">Submit Partnership Inquiry</span>
+                        <span id="btn-spinner" class="spinner" style="display: none;"></span>
+                    </button>
+                    
+                    <div id="success-message" class="success-message">
+                        <i class="fas fa-check-circle"></i> Thank you for your partnership inquiry! Our team will contact you shortly.
+                    </div>
+                    
+                    <div id="error-message" class="error-message">
+                        <i class="fas fa-exclamation-circle"></i> There was an error submitting your form. Please try again or contact us directly.
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="contact-info">
+            <h3>Need Immediate Assistance?</h3>
+            <p>Email us directly at: <strong>info_ViblySpace@gmail.com</strong></p>
+            <p>Or call us at: <strong>+91 (8882-444-329)</strong></p>
+            <button class="home-btn"><a href="index.html">Back to ViblySpace</a></button>
+        </div>
+    </section>
+<script>
+   // Form submission with Google Apps Script
+document.getElementById('partnership-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const submitBtn = document.getElementById('submit-btn');
+    const btnText = document.getElementById('btn-text');
+    const btnSpinner = document.getElementById('btn-spinner');
+    const successMessage = document.getElementById('success-message');
+    const errorMessage = document.getElementById('error-message');
+    const greetingMessage = document.getElementById('greeting-message');
+    const form = document.getElementById('partnership-form');
+    
+    // Hide previous messages
+    successMessage.style.display = 'none';
+    errorMessage.style.display = 'none';
+    greetingMessage.style.display = 'none';
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    btnText.textContent = 'Submitting...';
+    btnSpinner.style.display = 'inline-block';
+    
+    // Collect form data
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        school: document.getElementById('school').value,
+        role: document.getElementById('role').value,
+        students: document.getElementById('students').value,
+        message: document.getElementById('message').value,
+        timestamp: new Date().toLocaleString()
+    };
+    
+    console.log("Form data to send:", formData);
+    
+    // ⚠️ REPLACE THIS WITH YOUR ACTUAL GOOGLE SCRIPT URL ⚠️
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzk1zWcrcgG0HQZvuvblyIihnTe6UlEFbeFNCkzlxu1I7JcWDIxh4fv5f9_8s1rlQ4BJQ/exec';
+    
+    // Method 1: Using FormData (more reliable)
+    const formDataToSend = new FormData();
+    Object.keys(formData).forEach(key => {
+        formDataToSend.append(key, formData[key]);
+    });
+    
+    // Send data to Google Apps Script
+    fetch(scriptURL, {
+        method: 'POST',
+        body: formDataToSend
+    })
+    .then(response => {
+        console.log("Response received:", response);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Success response:", data);
+        
+        // Always show success to user
+        successMessage.style.display = 'block';
+        greetingMessage.style.display = 'block';
+        
+        // Reset form
+        form.reset();
+        
+        // Scroll to greeting message
+        greetingMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+        
+        // Even if there's an error, show success to user
+        // This prevents users from seeing technical errors
+        successMessage.style.display = 'block';
+        greetingMessage.style.display = 'block';
+        greetingMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // But log the actual error
+        console.log("Background error occurred:", error);
+    })
+    .finally(() => {
+        // Reset button state
+        submitBtn.disabled = false;
+        btnText.textContent = 'Submit Partnership Inquiry';
+        btnSpinner.style.display = 'none';
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5th Grade Web Design Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #4a90e2;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+        }
+        
+        .practice-notice {
+            background: #e8f4fd;
+            border: 2px solid #4a90e2;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .practice-notice h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        section {
+            margin: 40px 0;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            border-left: 5px solid #4a90e2;
+            padding-left: 15px;
+            margin: 30px 0 20px 0;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin: 25px 0 15px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .concept-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .example-box {
+            background: #fff;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .code {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            border: 1px solid #4a5568;
+        }
+        
+        .homework {
+            background: #e8f5e8;
+            border: 2px solid #27ae60;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .homework h3 {
+            color: #27ae60;
+        }
+        
+        .tip {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .definition {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .analogy {
+            background: #fce4ec;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #7f8c8d;
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        strong {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>5th Grade Web Design Complete Guide</h1>
+            <p class="subtitle">Everything you need to know about HTML and CSS in simple words</p>
+        </header>
+
+        <div class="practice-notice">
+            <h3><i class="fas fa-laptop-code"></i> Practice What You Learn!</h3>
+            <p>Use our <strong>5th Grade Lessons page</strong> to try all the code examples and homework problems.</p>
+            <p>You can type the code, see your results instantly, and check if your homework is correct!</p>
+        </div>
+
+        <section>
+            <h2>What is Web Design?</h2>
+            
+            <div class="concept-box">
+                <p>Web design is the art of creating websites. It's like building a digital house where people can visit and find information.</p>
+                <p>When you visit any website like YouTube, Wikipedia, or your school's website, you're looking at web design in action!</p>
+            </div>
+            
+            <div class="analogy">
+                <h3>Think of it like building a house:</h3>
+                <p><strong>HTML</strong> is the structure - the walls, floors, and rooms</p>
+                <p><strong>CSS</strong> is the decoration - the paint, furniture, and decorations</p>
+                <p>Together they create a complete, beautiful house that people enjoy visiting!</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>HTML - The Building Blocks</h2>
+            
+            <div class="definition">
+                <p><strong>HTML</strong> stands for HyperText Markup Language. It's the foundation of every website.</p>
+            </div>
+            
+            <h3>What are HTML Tags?</h3>
+            <p>HTML uses special codes called <strong>tags</strong> to create different parts of a webpage. Tags are like labels that tell the browser what each piece of content is.</p>
+            
+            <div class="example-box">
+                <p>Tags usually come in pairs - an opening tag and a closing tag:</p>
+                <div class="code">&lt;tagname&gt;Content goes here&lt;/tagname&gt;</div>
+                <p>The closing tag has a forward slash / before the tag name.</p>
+            </div>
+            
+            <h3>Basic HTML Structure</h3>
+            <p>Every HTML document has the same basic structure. Think of it as a recipe that always starts the same way:</p>
+            
+            <div class="code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Webpage Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;My First Heading&lt;/h1&gt;
+    &lt;p&gt;My first paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            
+            <div class="tip">
+                <p><strong>Remember:</strong> The &lt;head&gt; contains information about the page (like the title), and the &lt;body&gt; contains all the visible content.</p>
+            </div>
+            
+            <h3>Most Important HTML Tags</h3>
+            
+            <div class="example-box">
+                <p><strong>Headings:</strong> &lt;h1&gt; to &lt;h6&gt; - Create headings of different sizes</p>
+                <p><strong>Paragraphs:</strong> &lt;p&gt; - Create paragraphs of text</p>
+                <p><strong>Links:</strong> &lt;a href="url"&gt;Link Text&lt;/a&gt; - Create clickable links</p>
+                <p><strong>Images:</strong> &lt;img src="image.jpg" alt="description"&gt; - Show pictures</p>
+                <p><strong>Lists:</strong> &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt; - Create bulleted or numbered lists</p>
+                <p><strong>Division:</strong> &lt;div&gt; - Create containers to group elements</p>
+            </div>
+            
+            <div class="homework">
+                <h3>HTML Homework</h3>
+                <p><strong>Problem 1:</strong> Create a simple webpage about your favorite animal with:</p>
+                <ul>
+                    <li>A main heading (h1) with the animal's name</li>
+                    <li>Two paragraphs describing the animal</li>
+                    <li>A bulleted list of 3 interesting facts</li>
+                </ul>
+                <p><strong>Problem 2:</strong> Find and fix the errors in this HTML code:</p>
+                <div class="code">&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Page&lt;title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome
+    &lt;p&gt;This is my page&lt;/p&gt;
+&lt;/body&gt;</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>CSS - Making Websites Beautiful</h2>
+            
+            <div class="definition">
+                <p><strong>CSS</strong> stands for Cascading Style Sheets. It's what makes websites look pretty and organized.</p>
+            </div>
+            
+            <div class="analogy">
+                <p>If HTML is a plain black and white coloring book, CSS is your box of crayons that brings everything to life with color!</p>
+            </div>
+            
+            <h3>How CSS Works</h3>
+            <p>CSS works by selecting HTML elements and telling them how to look. It's like giving instructions:</p>
+            <p>"Make all headings blue" or "Give paragraphs a yellow background"</p>
+            
+            <h3>CSS Syntax</h3>
+            <p>CSS uses a simple pattern:</p>
+            
+            <div class="code">selector {
+    property: value;
+    property: value;
+}</div>
+            
+            <div class="example-box">
+                <p><strong>Example:</strong></p>
+                <div class="code">h1 {
+    color: blue;
+    font-size: 24px;
+    text-align: center;
+}</div>
+                <p>This CSS makes all h1 headings blue, 24 pixels big, and centered on the page.</p>
+            </div>
+            
+            <h3>Common CSS Properties</h3>
+            
+            <div class="example-box">
+                <p><strong>Colors and Text:</strong></p>
+                <ul>
+                    <li><code>color</code> - Changes text color</li>
+                    <li><code>background-color</code> - Changes background color</li>
+                    <li><code>font-family</code> - Changes font style</li>
+                    <li><code>font-size</code> - Changes text size</li>
+                    <li><code>text-align</code> - Aligns text (left, center, right)</li>
+                </ul>
+                
+                <p><strong>Spacing and Layout:</strong></p>
+                <ul>
+                    <li><code>width</code> and <code>height</code> - Set element size</li>
+                    <li><code>margin</code> - Space outside an element</li>
+                    <li><code>padding</code> - Space inside an element</li>
+                    <li><code>border</code> - Creates borders</li>
+                </ul>
+            </div>
+            
+            <h3>CSS Selectors</h3>
+            <p>Selectors tell CSS which HTML elements to style:</p>
+            
+            <div class="example-box">
+                <p><strong>Element Selector:</strong> Styles all elements of that type</p>
+                <div class="code">p {
+    color: green;
+}</div>
+                
+                <p><strong>Class Selector:</strong> Styles elements with a specific class (use . before class name)</p>
+                <div class="code">.special {
+    font-weight: bold;
+}</div>
+                
+                <p><strong>ID Selector:</strong> Styles one specific element (use # before ID name)</p>
+                <div class="code">#main-title {
+    font-size: 2rem;
+}</div>
+            </div>
+            
+            <div class="homework">
+                <h3>CSS Homework</h3>
+                <p><strong>Problem 1:</strong> Add CSS to your animal webpage to:</p>
+                <ul>
+                    <li>Make headings blue</li>
+                    <li>Give paragraphs a light gray background</li>
+                    <li>Center the main heading</li>
+                    <li>Add space around paragraphs</li>
+                </ul>
+                
+                <p><strong>Problem 2:</strong> Create a styled box with:</p>
+                <ul>
+                    <li>Width: 300px, Height: 200px</li>
+                    <li>Light blue background</li>
+                    <li>2px solid dark blue border</li>
+                    <li>15px padding inside</li>
+                    <li>20px margin outside</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Adding Images and Links</h2>
+            
+            <h3>Images Make Websites Interesting</h3>
+            <p>Images help tell stories and make your website fun to look at. You add images with the &lt;img&gt; tag.</p>
+            
+            <div class="code">&lt;img src="cat.jpg" alt="A cute cat playing with yarn"&gt;</div>
+            
+            <div class="tip">
+                <p><strong>Important:</strong> Always include alt text that describes the image. This helps people who can't see the image understand what it shows.</p>
+            </div>
+            
+            <h3>Links Connect Everything</h3>
+            <p>Links let visitors move between pages. You create links with the &lt;a&gt; tag.</p>
+            
+            <div class="code">&lt;a href="https://www.google.com"&gt;Visit Google&lt;/a&gt;</div>
+            
+            <p>The text between the tags is what people click on. The href tells the browser where to go when clicked.</p>
+            
+            <div class="homework">
+                <h3>Images and Links Homework</h3>
+                <p><strong>Problem:</strong> Add to your animal webpage:</p>
+                <ul>
+                    <li>2 images of your animal with good alt text</li>
+                    <li>A link to Wikipedia page about your animal</li>
+                    <li>A link that goes to a different section of your page</li>
+                    <li>Style links to change color when hovered over</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Creating Lists and Tables</h2>
+            
+            <h3>Lists Organize Information</h3>
+            <p>Lists help present information in a clear, easy-to-read way.</p>
+            
+            <div class="example-box">
+                <p><strong>Ordered Lists</strong> (numbered):</p>
+                <div class="code">&lt;ol&gt;
+    &lt;li&gt;First item&lt;/li&gt;
+    &lt;li&gt;Second item&lt;/li&gt;
+&lt;/ol&gt;</div>
+                
+                <p><strong>Unordered Lists</strong> (bulleted):</p>
+                <div class="code">&lt;ul&gt;
+    &lt;li&gt;Apples&lt;/li&gt;
+    &lt;li&gt;Bananas&lt;/li&gt;
+&lt;/ul&gt;</div>
+            </div>
+            
+            <h3>Tables for Complex Information</h3>
+            <p>Tables organize information into rows and columns, perfect for schedules or comparisons.</p>
+            
+            <div class="code">&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Day&lt;/th&gt;
+        &lt;th&gt;Activity&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Monday&lt;/td&gt;
+        &lt;td&gt;Soccer practice&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</div>
+            
+            <div class="homework">
+                <h3>Lists and Tables Homework</h3>
+                <p><strong>Problem:</strong> Add to your animal webpage:</p>
+                <ul>
+                    <li>An ordered list of your animal's favorite foods</li>
+                    <li>An unordered list of interesting facts</li>
+                    <li>A table showing where it lives, what it eats, and lifespan</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Colors and Fonts</h2>
+            
+            <h3>Colors Express Feelings</h3>
+            <p>Different colors create different moods:</p>
+            
+            <div class="example-box">
+                <p><strong style="color: blue;">Blue</strong> - Calm and trustworthy</p>
+                <p><strong style="color: red;">Red</strong> - Exciting and urgent</p>
+                <p><strong style="color: green;">Green</strong> - Natural and healthy</p>
+                <p><strong style="color: yellow;">Yellow</strong> - Happy and energetic</p>
+                <p><strong style="color: purple;">Purple</strong> - Creative and royal</p>
+            </div>
+            
+            <h3>CSS Color Systems</h3>
+            <p>You can specify colors in different ways:</p>
+            
+            <div class="example-box">
+                <p><strong>Color Names:</strong> red, blue, green (140+ options)</p>
+                <p><strong>Hex Codes:</strong> #FF0000 (red), #00FF00 (green)</p>
+                <p><strong>RGB:</strong> rgb(255, 0, 0) (red), rgb(0, 255, 0) (green)</p>
+            </div>
+            
+            <h3>Fonts Give Personality</h3>
+            <p>Fonts are the style of your text. CSS lets you control:</p>
+            
+            <div class="example-box">
+                <p><code>font-family</code> - Which font to use</p>
+                <p><code>font-size</code> - How big the text is</p>
+                <p><code>font-weight</code> - How thick the text is (bold, normal)</p>
+                <p><code>font-style</code> - Normal or italic</p>
+            </div>
+            
+            <div class="tip">
+                <p><strong>Design Tip:</strong> Use only 2-3 fonts on a webpage. Too many fonts can look messy and confusing.</p>
+            </div>
+            
+            <div class="homework">
+                <h3>Colors and Fonts Homework</h3>
+                <p><strong>Problem:</strong> Give your animal webpage a complete makeover:</p>
+                <ul>
+                    <li>Choose a color scheme with 3-4 colors</li>
+                    <li>Use 2 different font families</li>
+                    <li>Create different text sizes for headings and paragraphs</li>
+                    <li>Make sure text is easy to read against backgrounds</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Creating Complete Websites</h2>
+            
+            <h3>Putting Everything Together</h3>
+            <p>Now you know all the pieces! Let's combine them to create a complete website.</p>
+            
+            <div class="analogy">
+                <p>Think of everything you've learned as ingredients for baking cookies:</p>
+                <p><strong>HTML</strong> - Flour, eggs, sugar (basic ingredients)</p>
+                <p><strong>CSS</strong> - Chocolate chips, vanilla, decorations</p>
+                <p><strong>Your creativity</strong> - The recipe that combines everything</p>
+                <p>Now you're ready to bake amazing website cookies!</p>
+            </div>
+            
+            <h3>Website Structure</h3>
+            <p>Most websites have these main parts:</p>
+            
+            <div class="example-box">
+                <p><strong>Header</strong> - Top section with logo and navigation</p>
+                <p><strong>Main Content</strong> - Central area with your information</p>
+                <p><strong>Footer</strong> - Bottom section with contact info and links</p>
+            </div>
+            
+            <h3>Web Design Best Practices</h3>
+            
+            <div class="concept-box">
+                <p><strong>Keep it simple</strong> - Don't overcrowd with too much content</p>
+                <p><strong>Be consistent</strong> - Use the same styles throughout</p>
+                <p><strong>Make it readable</strong> - Good contrast between text and background</p>
+                <p><strong>Navigation should be clear</strong> - Easy to move around your site</p>
+                <p><strong>Check your links</strong> - Make sure all links work</p>
+            </div>
+            
+            <div class="homework">
+                <h3>Final Homework Project</h3>
+                <p><strong>Project:</strong> Create a complete 3-page website about any topic you love</p>
+                <p><strong>Requirements:</strong></p>
+                <ul>
+                    <li>Homepage with introduction</li>
+                    <li>Second page with detailed information</li>
+                    <li>Third page with contact information</li>
+                    <li>Navigation between all pages</li>
+                    <li>Use all HTML and CSS skills you've learned</li>
+                    <li>Make it visually appealing and easy to use</li>
+                </ul>
+            </div>
+            
+            <div class="practice-notice">
+                <h3><i class="fas fa-star"></i> Congratulations!</h3>
+                <p>You've learned all the basics of web design! Remember to practice on our <strong>5th Grade Lessons page</strong> where you can try all these examples and see your results instantly.</p>
+                <p>Keep building websites and having fun with your creations!</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>5th Grade Web Design Complete Guide - Use our lessons page to practice and see your results!</p>
+        </footer>
+    </div>
+</body>
+</html>

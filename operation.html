@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViblySpace - Learn Coding for All Grades</title>
+    <link rel="icon" type="favicon" href="connection.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Welcome Page Styles - Professional Design */
+        .welcome-container {
+            display: flex;
+            max-width: 1400px;
+            width: 100%;
+            min-height: 80vh;
+            margin: 40px auto;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+
+        .welcome-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .images-side-full {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            width: 100%;
+        }
+
+        .images-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+            height: 100%;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+            border-radius: 16px;
+        }
+
+        .image-container:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        .image-container:hover::before {
+            opacity: 1;
+        }
+
+        .platform-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+            min-height: 200px;
+            border-radius: 16px;
+        }
+
+        .image-container:hover .platform-image {
+            transform: scale(1.08);
+        }
+
+        /* Professional decorative elements */
+        .corner-decoration {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            z-index: 0;
+        }
+
+        .corner-top-left {
+            top: -10px;
+            left: -10px;
+            border-top: 3px solid rgba(255, 255, 255, 0.3);
+            border-left: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px 0 0 0;
+        }
+
+        .corner-top-right {
+            top: -10px;
+            right: -10px;
+            border-top: 3px solid rgba(255, 255, 255, 0.3);
+            border-right: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0 20px 0 0;
+        }
+
+        .corner-bottom-left {
+            bottom: -10px;
+            left: -10px;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+            border-left: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0 0 0 20px;
+        }
+
+        .corner-bottom-right {
+            bottom: -10px;
+            right: -10px;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+            border-right: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0 0 20px 0;
+        }
+
+        /* Floating elements for visual interest */
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .floating-1 {
+            width: 60px;
+            height: 60px;
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-2 {
+            width: 40px;
+            height: 40px;
+            top: 70%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-3 {
+            width: 30px;
+            height: 30px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Responsive Design for Welcome Section */
+        @media (max-width: 1200px) {
+            .welcome-container {
+                max-width: 95%;
+            }
+            
+            .images-grid {
+                max-width: 900px;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .welcome-container {
+                flex-direction: column;
+                min-height: auto;
+            }
+            
+            .images-side-full {
+                min-height: 70vh;
+                padding: 30px;
+            }
+            
+            .images-grid {
+                max-width: 700px;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .welcome-container {
+                border-radius: 15px;
+            }
+            
+            .images-side-full {
+                min-height: 60vh;
+                padding: 25px;
+            }
+            
+            .images-grid {
+                gap: 15px;
+            }
+            
+            .image-container {
+                border-radius: 12px;
+            }
+            
+            .platform-image {
+                min-height: 180px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .images-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, 1fr);
+                gap: 20px;
+            }
+            
+            .images-side-full {
+                min-height: 80vh;
+                padding: 20px;
+            }
+            
+            .image-container {
+                border-radius: 10px;
+            }
+            
+            .platform-image {
+                min-height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-container {
+                border-radius: 12px;
+                margin: 30px auto;
+            }
+            
+            .images-side-full {
+                min-height: 70vh;
+                padding: 15px;
+            }
+            
+            .images-grid {
+                gap: 12px;
+            }
+            
+            .platform-image {
+                min-height: 180px;
+            }
+        }
+
+        /* Large screens */
+        @media (min-width: 1400px) {
+            .welcome-container {
+                max-width: 1300px;
+            }
+            
+            .images-grid {
+                max-width: 1100px;
+            }
+        }
+
+        /* Very large screens */
+        @media (min-width: 1600px) {
+            .welcome-container {
+                max-width: 1500px;
+            }
+            
+            .images-grid {
+                max-width: 1200px;
+            }
+            
+            .image-container {
+                min-height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-laptop-code logo-icon"></i>
+                <div class="logo-text">ViblySpace</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="grades">Grade Levels</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">About</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                    <!-- <li><a href="concept.html" data-page="HTML">HTML</a></li> -->
+                    <!-- <li><a href="css.html" data-page="CSS">CSS</a></li>
+                    <li><a href="python.html" data-page="Python">Python</a></li>
+                    <li><a href="js.html" data-page="JS">JS</a></li>
+                    <li><a href="ai.html" data-page="AI">AI</a></li>  -->
+                    <li><a href="TRP.html" data-page="AI">TRP</a></li> 
+                       <li><a href="quizzesPage.html"><i class="fas fa-question-circle"></i> Quizzes</a></li> 
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Learn Coding For Everyone</h1>
+                    <p>A programming education platform for school students from grade 5 to 12. Learn HTML, CSS, JavaScript, Java, Python, AI and more with our easy-to-understand curriculum.</p>
+                </div>
+            </div>
+
+            <!-- Welcome Page Section - Professional Image Layout -->
+            <div class="welcome-container">
+                <!-- Decorative corners -->
+                <div class="corner-decoration corner-top-left"></div>
+                <div class="corner-decoration corner-top-right"></div>
+                <div class="corner-decoration corner-bottom-left"></div>
+                <div class="corner-decoration corner-bottom-right"></div>
+                
+                <!-- Floating elements -->
+                <div class="floating-element floating-1"></div>
+                <div class="floating-element floating-2"></div>
+                <div class="floating-element floating-3"></div>
+                
+                <!-- Full-width images section -->
+                <div class="images-side-full">
+                    <div class="images-grid">
+                        <div class="image-container">
+                            <img src="imagefirst.png" alt="Interactive Coding Environment" class="platform-image" loading="lazy">
+                        </div>
+                        <div class="image-container">
+                            <img src="imagesForSize.png" alt="Student Projects" class="platform-image" loading="lazy">
+                        </div>
+                        <div class="image-container">
+                            <img src="sixth.png" alt="Collaborative Coding" class="platform-image" loading="lazy">
+                        </div>
+                        <div class="image-container">
+                            <img src="fourth.png" alt="Modern Technologies" class="platform-image" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Learning Paths by Grade</h2>
+            <div class="grade-cards">
+                <!-- Grades 4-6 -->
+                <div class="grade-card grade-5-6" data-grade="elementary">
+                    <div class="card-header">
+                        <h3>Grades 5-6</h3>
+                        <p>Beginner Level</p>
+                    </div>
+                    <div class="card-body">
+                        <p>Introduction to computational thinking and basic programming concepts through fun activities and games.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Basic computer skills</li>
+                            <li><i class="fas fa-check-circle"></i> Introduction to coding with blocks</li>
+                            <li><i class="fas fa-check-circle"></i> Simple games development</li>
+                            <li><i class="fas fa-check-circle"></i> Basic web concepts</li>
+                            <li><i class="fas fa-check-circle"></i> Creative computing</li>
+                        </ul>
+                        <a href="5thgrade.html" class="btn grade-btn" style="background-color: #4895ef; text-decoration: none;">Explore Courses</a>
+                    </div>
+                </div>
+
+                <!-- Grades 7-9 -->
+                <div class="grade-card grade-7-9" data-grade="middle">
+                    <div class="card-header">
+                        <h3>Grades 7-9</h3>
+                        <p>Intermediate Level</p>
+                    </div>
+                    <div class="card-body">
+                        <p>Building foundational knowledge in programming languages and web development with hands-on projects.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> HTML & CSS fundamentals</li>
+                            <li><i class="fas fa-check-circle"></i> JavaScript basics</li>
+                            <li><i class="fas fa-check-circle"></i> Introduction to Python</li>
+                            <li><i class="fas fa-check-circle"></i> Web design principles</li>
+                            <li><i class="fas fa-check-circle"></i> Simple app development</li>
+                        </ul>
+                        <a href="7thgrade.html" class="btn grade-btn" style="background-color: #7209b7; text-decoration: none;">Explore Courses</a>
+                    </div>
+                </div>
+
+                <!-- Grades 10-12 -->
+                <div class="grade-card grade-10-12" data-grade="high">
+                    <div class="card-header">
+                        <h3>Grades 10-12</h3>
+                        <p>Advanced Level</p>
+                    </div>
+                    <div class="card-body">
+                        <p>Advanced programming concepts, AI fundamentals, and preparation for higher education in computer science.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Advanced JavaScript</li>
+                            <li><i class="fas fa-check-circle"></i> Java programming</li>
+                            <li><i class="fas fa-check-circle"></i> Introduction to AI & ML</li>
+                            <li><i class="fas fa-check-circle"></i> Database fundamentals</li>
+                            <li><i class="fas fa-check-circle"></i> Project development</li>
+                        </ul>
+                        <a href="10thgrade.html" style="text-decoration: none;" class="btn grade-btn" style="background-color: #b5179e;">Explore Courses</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features">
+                <h2 class="section-title">Why Learn With Us</h2>
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Structured Curriculum</h3>
+                        <p>Our courses are designed by education experts to match each grade level's learning capabilities.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>Hands-on Projects</h3>
+                        <p>Learn by doing with real-world projects that make coding concepts easier to understand.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h3>Teacher Resources</h3>
+                        <p>We provide comprehensive resources for teachers to effectively deliver coding education.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Courses Page -->
+        <div id="courses" class="page">
+            <h2 class="section-title">Programming Courses</h2>
+            
+            <div class="content-section">
+                <h2>Web Development</h2>
+                <div class="course-grid">
+                    <div class="course-card">
+                        <div class="course-img" style="background-color: #e34c26;">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <div class="course-content">
+                            <h3>HTML Fundamentals</h3>
+                            <p>Learn the building blocks of web pages with HTML.</p>
+                            <a href="concept.html" class="btn btn-primary">Start Learning</a>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-img" style="background-color: #264de4;">
+                            <i class="fab fa-css3-alt"></i>
+                        </div>
+                        <div class="course-content">
+                            <h3>CSS Styling</h3>
+                            <p>Make your web pages beautiful with CSS.</p>
+                            <a href="css.html" class="btn btn-primary">Start Learning</a>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-img" style="background-color: #f0db4f;">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <div class="course-content">
+                            <h3>JavaScript Basics</h3>
+                            <p>Add interactivity to your websites with JavaScript.</p>
+                            <a href="js.html" class="btn btn-primary">Start Learning</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Programming Languages</h2>
+                <div class="course-grid">
+                    <div class="course-card">
+                        <div class="course-img" style="background-color: #306998;">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="course-content">
+                            <h3>Python for Beginners</h3>
+                            <p>Learn one of the most popular programming languages.</p>
+                            <a href="python.html" class="btn btn-primary">Start Learning</a>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-img" style="background-color: #007396;">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <div class="course-content">
+                            <h3>Java Programming</h3>
+                            <p>Learn object-oriented programming with Java.</p>
+                            <a href="java.html" class="btn btn-primary">Start Learning</a>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-img" style="background-color: #61dafb;">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <div class="course-content">
+                            <h3>Web Frameworks</h3>
+                            <p>Build modern web applications with React.</p>
+                            <a href="react.html" class="btn btn-primary">Start Learning</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Advanced Topics</h2>
+                <div class="course-grid">
+                    <div class="course-card">
+                        <div class="course-img" style="background-color: #ff6b6b;">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="course-content">
+                            <h3>Introduction to AI</h3>
+                            <p>Learn the basics of Artificial Intelligence.</p>
+                            <a href="ai.html" class="btn btn-primary">Start Learning</a>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-img" style="background-color: #4ecdc4;">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="course-content">
+                            <h3>Database Systems</h3>
+                            <p>Learn how to store and manage data effectively.</p>
+                            <a href="dataset.html" class="btn btn-primary">Start Learning</a>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-img" style="background-color: #ff9f1c;">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="course-content">
+                            <h3>App Development</h3>
+                            <p>Build mobile applications for iOS and Android.</p>
+                            <a href="app.html" class="btn btn-primary">Start Learning</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grade Levels Page -->
+        <div id="grades" class="page">
+            <h2 class="section-title">Grade Level Learning Paths</h2>
+            
+            <div class="content-section">
+                <h2>Elementary School (Grades 5-6)</h2>
+                <div class="language-grid">
+                    <div class="language-card">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>Game-Based Learning</h3>
+                        <p>Learn programming concepts through interactive games and puzzles.</p>
+                    </div>
+                    <div class="language-card">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <h3>Block Programming</h3>
+                        <p>Drag and drop code blocks to create programs visually.</p>
+                    </div>
+                    <div class="language-card">
+                        <i class="fas fa-paint-brush"></i>
+                        <h3>Creative Computing</h3>
+                        <p>Create art, animations, and stories with code.</p>
+                    </div>
+                </div>
+                <a href="5thgrade.html" class="btn btn-success">View Elementary Curriculum</a>
+            </div>
+
+            <div class="content-section">
+                <h2>Middle School (Grades 7-9)</h2>
+                <div class="language-grid">
+                    <div class="language-card">
+                        <i class="fab fa-html5"></i>
+                        <h3>Web Development</h3>
+                        <p>Build your first websites with HTML, CSS, and JavaScript.</p>
+                    </div>
+                    <div class="language-card">
+                        <i class="fab fa-python"></i>
+                        <h3>Python Basics</h3>
+                        <p>Learn the fundamentals of text-based programming.</p>
+                    </div>
+                    <div class="language-card">
+                        <i class="fas fa-code"></i>
+                        <h3>Computational Thinking</h3>
+                        <p>Develop problem-solving skills through coding challenges.</p>
+                    </div>
+                </div>
+                <a href="7thgrade.html" class="btn btn-success">View Middle School Curriculum</a>
+            </div>
+
+            <div class="content-section">
+                <h2>High School (Grades 10-12)</h2>
+                <div class="language-grid">
+                    <div class="language-card">
+                        <i class="fab fa-java"></i>
+                        <h3>Java Programming</h3>
+                        <p>Learn object-oriented programming with Java.</p>
+                    </div>
+                    <div class="language-card">
+                        <i class="fas fa-robot"></i>
+                        <h3>Artificial Intelligence</h3>
+                        <p>Introduction to AI concepts and machine learning.</p>
+                    </div>
+                    <div class="language-card">
+                        <i class="fas fa-server"></i>
+                        <h3>Backend Development</h3>
+                        <p>Learn about servers, databases, and APIs.</p>
+                    </div>
+                </div>
+                <a href="10thgrade.html" class="btn btn-success">View High School Curriculum</a>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page">
+            <h2 class="section-title">About ViblySpace</h2>
+            
+          <div class="content-section">
+    <h2>Our Mission</h2>     
+     <p>Our curriculum aligns with educational standards while introducing students in grades 5-12 to computational thinking through project-based learning. We provide comprehensive teacher support and flexible implementation models that complement existing academic programs.</p>
+    
+    <p>We focus on developing transferable skills that enhance academic performance across subjects—fostering logical reasoning, systematic problem-solving, and creative innovation that serves students in all aspects of their education and future careers.</p>
+    
+    <p>Join us in preparing students not just to use technology, but to understand and create it—building the foundational skills for lifelong success and leadership.</p>            
+</div>
+
+            <div class="content-section">
+                <h2>Our Approach</h2>
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Age-Appropriate Learning</h3>
+                        <p>Content tailored to different cognitive development stages</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>Project-Based</h3>
+                        <p>Learn by building real projects that students care about</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Collaborative</h3>
+                        <p>Encourage teamwork and peer learning</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>For Teachers</h2>
+                <p>ViblySpace provides comprehensive resources for teachers to effectively deliver coding education even without prior programming experience. Our teacher portal includes:</p>
+                <ul>
+                    <li><i class="fas fa-check-circle" style="color: var(--success);"></i> Lesson plans and teaching guides</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--success);"></i> Classroom activities and exercises</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--success);"></i> Professional development resources</li>
+                </ul>
+                <a href="TRP.html" class="btn btn-primary" style="text-decoration: none;">Teacher Resources</a>
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <h2 class="section-title">Contact Us</h2>
+            
+            <div class="content-section">
+                <h2>Get In Touch</h2>
+                <p>Have questions about our program or want to bring ViblySpace to your school? Reach out to our team!</p>
+                
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>info_ViblySpace@gmail.com</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-phone"></i>
+                        <h3>Call Us</h3>
+                        <p>+1 ()-ViblySpace</p>
+                    </div>
+                    <!-- <div class="feature">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Visit Us</h3>
+                        <p>123 Education Street, Learning City</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+                <h2>Become a Partner School</h2>
+                <p>We're always looking to expand our program to more schools. If you're interested in partnering with us, please fill out our partnership inquiry form.</p>
+                <a href="partner.html" class="btn btn-primary" style="text-decoration: none;">Partnership Information</a>
+            </div>
+    </main>
+
+    
+   <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section"> 
+                <h3>About ViblySpace</h3>
+                <p>ViblySpace is a education platform initiative aimed at bringing quality coding education to school students across the country.</p>
+            </div>
+           
+            <div class="footer-section">
+<!--                 
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Education Street, Learning City</p>
+                <p><i class="fas fa-envelope"></i> info@ViblySpace.org</p>
+                <p><i class="fas fa-phone"></i> </p> -->
+            </div> 
+              <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#" class="nav-link" data-page="home" style="color: aliceblue; text-decoration: none;"><i class="fas fa-home" style="margin-right: 8px;"></i>Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="courses" style="color: aliceblue; text-decoration: none;"><i class="fas fa-book" style="margin-right: 8px;"></i>Courses</a></li>
+                    <li><a href="#" class="nav-link" data-page="grades" style="color: aliceblue; text-decoration: none;"><i class="fas fa-graduation-cap" style="margin-right: 8px;"></i>Grade Levels</a></li>
+                    <li><a href="#" class="nav-link" data-page="about" style="color: aliceblue; text-decoration: none;"><i class="fas fa-info-circle" style="margin-right: 8px;"></i>About</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact" style="color: aliceblue; text-decoration: none;"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Contact</a></li>
+                    <li><a href="advance-AI.html" data-page="code-editor" style="color: aliceblue; text-decoration: none;"><i class="fas fa-code" style="margin-right: 8px;"></i>Web-Code Editor</a></li>
+                    <li><a href="ExercisesGuide.html" data-page="contact" style="color: aliceblue; text-decoration: none;"><i class="fas fa-dumbbell" style="margin-right: 8px;"></i>Exercises-GuideLine</a></li>
+                    <li><a href="digitalLiteracy.html" data-page="code-editor" style="color: aliceblue; text-decoration: none;"><i class="fas fa-laptop-code" style="margin-right: 8px;"></i>WTEM</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy;  ViblySpace. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+    <!-- Interactive Elements -->
+    <div id="notification" class="notification hidden">
+        <div class="notification-content">
+            <span id="notification-text"></span>
+            <button id="notification-close">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation functionality
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Only prevent default for links that don't have actual href values
+                    if (this.getAttribute('href') === '#' || !this.getAttribute('href').includes('.html')) {
+                        e.preventDefault();
+                    }
+                    
+                    // Remove active class from all links and pages
+                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+                    pages.forEach(page => page.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Show corresponding page
+                    const pageId = this.getAttribute('data-page');
+                    const targetPage = document.getElementById(pageId);
+                    if (targetPage) {
+                        targetPage.classList.add('active');
+                        window.scrollTo(0, 0);
+                    }
+                });
+            });
+            
+            // Explore Courses button functionality
+            const exploreBtn = document.getElementById('explore-btn');
+            if (exploreBtn) {
+                exploreBtn.addEventListener('click', function(e) {
+                    // Allow the link to work normally if it has a valid href
+                    if (this.getAttribute('href') && this.getAttribute('href') !== '#') {
+                        return; // Let the browser handle the navigation
+                    }
+                    
+                    e.preventDefault();
+                    
+                    // Navigate to courses page
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    pages.forEach(page => page.classList.remove('active'));
+                    
+                    const coursesLink = document.querySelector('a[data-page="courses"]');
+                    if (coursesLink) {
+                        coursesLink.classList.add('active');
+                        document.getElementById('courses').classList.add('active');
+                        window.scrollTo(0, 0);
+                    }
+                });
+            }
+            
+            // Grade card interactions
+            const gradeCards = document.querySelectorAll('.grade-card');
+            gradeCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+                
+                // Grade card button click
+                const gradeBtn = this.querySelector('.grade-btn');
+                if (gradeBtn) {
+                    gradeBtn.addEventListener('click', function(e) {
+                        // Allow the link to work normally if it has a valid href
+                        if (this.getAttribute('href') && this.getAttribute('href') !== '#') {
+                            return; // Let the browser handle the navigation
+                        }
+                        
+                        e.preventDefault();
+                        const grade = card.getAttribute('data-grade');
+                        showNotification(`Exploring ${grade} school courses!`);
+                        
+                        // Navigate to courses page
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        pages.forEach(page => page.classList.remove('active'));
+                        
+                        const coursesLink = document.querySelector('a[data-page="courses"]');
+                        if (coursesLink) {
+                            coursesLink.classList.add('active');
+                            document.getElementById('courses').classList.add('active');
+                            window.scrollTo(0, 0);
+                        }
+                    });
+                }
+            });
+            
+            // Course card interactions
+            const courseCards = document.querySelectorAll('.course-card');
+            courseCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+                });
+                
+                // Course button click
+                const courseBtn = this.querySelector('.btn-primary');
+                if (courseBtn) {
+                    courseBtn.addEventListener('click', function(e) {
+                        // Allow the link to work normally if it has a valid href
+                        if (this.getAttribute('href') && this.getAttribute('href') !== '#') {
+                            return; // Let the browser handle the navigation
+                        }
+                        
+                        const courseTitle = this.closest('.course-content').querySelector('h3').textContent;
+                        showNotification(`Starting ${courseTitle} course!`);
+                    });
+                }
+            });
+            
+            // Feature card interactions
+            const featureCards = document.querySelectorAll('.feature');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Language card interactions
+            const languageCards = document.querySelectorAll('.language-card');
+            languageCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 8px 16px rgba(0,0,0,0.1)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+                });
+            });
+            
+            // Welcome page image optimization
+            const platformImages = document.querySelectorAll('.platform-image');
+            platformImages.forEach(img => {
+                img.onerror = function() {
+                    const container = this.closest('.image-container');
+                    container.innerHTML = `
+                        <div style="text-align: center; color: rgba(255,255,255,0.7); width: 100%;">
+                            <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 15px; display: block;"></i>
+                            <p style="font-size: 1rem;">Project Image</p>
+                        </div>
+                    `;
+                };
+            });
+            
+            // Notification system
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notification-text');
+            const notificationClose = document.getElementById('notification-close');
+            
+            function showNotification(message) {
+                notificationText.textContent = message;
+                notification.classList.remove('hidden');
+                
+                // Auto hide after 3 seconds
+                setTimeout(() => {
+                    hideNotification();
+                }, 3000);
+            }
+            
+            function hideNotification() {
+                notification.classList.add('hidden');
+            }
+            
+            if (notificationClose) {
+                notificationClose.addEventListener('click', hideNotification);
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add loading animation to buttons
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Only add loading for buttons that don't navigate away
+                    if (!this.getAttribute('href') || this.getAttribute('href') === '#') {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                        }, 1500);
+                    }
+                });
+            });
+            
+            // Add typing effect to hero text
+            const heroTitle = document.querySelector('.hero h1');
+            if (heroTitle) {
+                const originalText = heroTitle.textContent;
+                heroTitle.textContent = '';
+                
+                let i = 0;
+                const typeWriter = () => {
+                    if (i < originalText.length) {
+                        heroTitle.textContent += originalText.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 50);
+                    }
+                };
+                
+                // Start typing effect after a short delay
+                setTimeout(typeWriter, 500);
+            }
+        });
+    </script>
+    
+    <style>
+        /* Additional styles for interactive elements */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-width: 300px;
+        }
+        
+        .notification.hidden {
+            display: none;
+        }
+        
+        .notification-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #notification-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+        
+        /* Animation for page transitions */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Enhanced hover effects */
+        .grade-card, .course-card, .feature, .language-card {
+            transition: all 0.3s ease;
+        }
+        
+        /* Loading animation */
+        .fa-spin {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViblySpace - Learn Java Programming</title>
+    <link rel="icon" type="image/x-icon" href="connection.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --success: #4cc9f0;
+            --accent: #4895ef;
+            --warning: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Enhanced Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 20px;
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
+            margin-right: 8px;
+            color: var(--primary);
+        }
+        
+        .main-nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links li {
+            margin: 0 5px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .language-nav {
+            display: flex;
+            list-style: none;
+            margin-left: 15px;
+        }
+        
+        .language-nav li {
+            margin-left: 8px;
+        }
+        
+        .language-nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            background-color: #f0f2f5;
+        }
+        
+        .language-nav a:hover, .language-nav a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #007396, #ED8B00);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 5px 10px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #007396;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: #007396;
+            color: white;
+        }
+        
+        /* Main Content */
+        main {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .main-nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .main-nav.active {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-links li {
+                margin: 5px 0;
+                width: 100%;
+            }
+            
+            .nav-links a {
+                display: block;
+                width: 100%;
+            }
+            
+            .language-nav {
+                margin: 10px 0 0 0;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .language-nav li {
+                margin: 0 5px 0 0;
+            }
+        }
+        
+        /* Content Sections */
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        section h3 {
+            color: #007396;
+            margin: 20px 0 10px;
+        }
+        
+        section p {
+            margin-bottom: 15px;
+        }
+        
+        /* Code Examples */
+        .code-example {
+            background-color: #2c3e50;
+            color: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .code-example .keyword {
+            color: #CC7832;
+        }
+        
+        .code-example .string {
+            color: #6A8759;
+        }
+        
+        .code-example .number {
+            color: #6897BB;
+        }
+        
+        .code-example .comment {
+            color: #808080;
+        }
+        
+        .code-example .class {
+            color: #FFC66D;
+        }
+        
+        .code-example .method {
+            color: #FFC66D;
+        }
+        
+        /* Interactive Examples */
+        .interactive-example {
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+        }
+        
+        .example-box {
+            background-color: #007396;
+            color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .example-box:hover {
+            background-color: #005a7a;
+            transform: translateY(-2px);
+        }
+        
+        button {
+            background-color: #007396;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #005a7a;
+            transform: translateY(-2px);
+        }
+        
+        input, select, textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 5px;
+            font-size: 16px;
+            width: calc(100% - 20px);
+        }
+        
+        /* Output Areas */
+        .output {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            min-height: 50px;
+            border-left: 4px solid #007396;
+        }
+        
+        /* Try It Yourself */
+        .try-it {
+            background-color: #ffeaa7;
+            border-left: 4px solid #fdcb6e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .try-it h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        /* Sidebar */
+        aside {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            align-self: start;
+            position: sticky;
+            top: 100px;
+        }
+        
+        aside h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        aside ul {
+            list-style: none;
+        }
+        
+        aside li {
+            margin-bottom: 10px;
+        }
+        
+        aside a {
+            text-decoration: none;
+            color: #007396;
+            display: block;
+            padding: 8px 10px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        aside a:hover {
+            background-color: #f0f7ff;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #7f8c8d;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        footer a {
+            color: #007396;
+            text-decoration: none;
+        }
+        
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        table th {
+            background-color: #f8f9fa;
+            color: #2c3e50;
+        }
+        
+        /* Lists */
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        /* Highlight */
+        .highlight {
+            background-color: #fff9c4;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        /* Interactive Console */
+        .console {
+            background-color: #2c3e50;
+            color: #6A8759;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            min-height: 100px;
+            margin: 15px 0;
+            overflow-y: auto;
+            max-height: 200px;
+        }
+        
+        .concept-box {
+            background: #e3f2fd;
+            border-left: 4px solid #007396;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-laptop-code logo-icon"></i>
+                <div class="logo-text">ViblySpace</div>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="main-nav" id="mainNav">
+                <ul class="nav-links">
+                    <!-- <li><a href="into.html" class="nav-link">Home</a></li>
+                    <!-- <li><a href="into.html#courses" class="nav-link">Courses</a></li>
+                    <li><a href="into.html#grades" class="nav-link">Grade Levels</a></li>
+                    <li><a href="into.html#about" class="nav-link">About</a></li>
+                    <li><a href="into.html#contact" class="nav-link">Contact</a></li> - -->
+                </ul>
+                
+                <ul class="language-nav">
+                    <li><a href="concept.html">HTML</a></li>
+                    <li><a href="css.html">CSS</a></li>
+                    <li><a href="python.html">Python</a></li>
+                    <li><a href="js.html">JS</a></li>
+                     <li><a href="react.html">React</a></li>
+                    <li><a href="ai.html">AI</a></li>  
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Java Programming</h1>
+            <p>Learn object-oriented programming with Java - From basics to advanced concepts</p>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#oop">OOP Concepts</a></li>
+                <li><a href="#classes">Classes & Objects</a></li>
+                <li><a href="#inheritance">Inheritance</a></li>
+                <li><a href="#polymorphism">Polymorphism</a></li>
+                <li><a href="#encapsulation">Encapsulation</a></li>
+                <li><a href="#methods">Methods</a></li>
+                <li><a href="#collections">Collections</a></li>
+                <li><a href="#exceptions">Exceptions</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <div class="content">
+                <section id="introduction">
+                    <h2>What is Java?</h2>
+                    <p>Java is a powerful, object-oriented programming language that runs on billions of devices worldwide. It's known for its "Write Once, Run Anywhere" capability.</p>
+                    
+                    <div class="concept-box">
+                        <h4>🚀 Key Features:</h4>
+                        <ul>
+                            <li><strong>Platform Independent:</strong> Java code compiles to bytecode that runs on any Java Virtual Machine (JVM)</li>
+                            <li><strong>Object-Oriented:</strong> Everything in Java is an object</li>
+                            <li><strong>Secure:</strong> Built-in security features and no pointers</li>
+                            <li><strong>Multithreaded:</strong> Can perform multiple tasks simultaneously</li>
+                        </ul>
+                    </div>
+
+                    <h3>Your First Java Program</h3>
+                    <div class="code-example">
+                        <span class="comment">// Every Java program must have a class</span><br>
+                        <span class="keyword">public class</span> <span class="class">HelloWorld</span> {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// main() is the entry point of every Java application</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public static void</span> <span class="method">main</span>(String[] args) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"Hello, World!"</span>);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        }
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Try it out:</h4>
+                        <button onclick="runJavaCode()">Run Hello World</button>
+                        <div class="console" id="introOutput"></div>
+                    </div>
+                    
+                    <div class="try-it">
+                        <h4>💡 Did You Know?</h4>
+                        <p>Java was originally called "Oak" and was designed for interactive television, but it was too advanced for the digital cable television industry at the time!</p>
+                    </div>
+                </section>
+                
+                <section id="oop">
+                    <h2>Object-Oriented Programming (OOP)</h2>
+                    <p>OOP is a programming paradigm that organizes software design around objects rather than functions and logic.</p>
+                    
+                    <div class="concept-box">
+                        <h4>🎯 Four Pillars of OOP:</h4>
+                        <ol>
+                            <li><strong>Encapsulation:</strong> Bundling data and methods that work on that data within one unit</li>
+                            <li><strong>Inheritance:</strong> Creating new classes from existing ones</li>
+                            <li><strong>Polymorphism:</strong> One name, many forms</li>
+                            <li><strong>Abstraction:</strong> Hiding complex reality while exposing only essentials</li>
+                        </ol>
+                    </div>
+
+                    <h3>Real-World Analogy</h3>
+                    <p>Think of a <span class="highlight">Car</span> as a class. Different car models (Toyota, BMW) are objects of that class. They inherit basic car properties but have their own unique features.</p>
+                    
+                    <div class="interactive-example">
+                        <h4>OOP Concept Explorer</h4>
+                        <p>Select an OOP concept to see an example:</p>
+                        <select id="oopConcept" onchange="showOOPExample()">
+                            <option value="">Choose a concept</option>
+                            <option value="encapsulation">Encapsulation</option>
+                            <option value="inheritance">Inheritance</option>
+                            <option value="polymorphism">Polymorphism</option>
+                            <option value="abstraction">Abstraction</option>
+                        </select>
+                        <div class="output" id="oopOutput"></div>
+                    </div>
+                </section>
+                
+                <section id="classes">
+                    <h2>Classes and Objects</h2>
+                    <p>A <strong>class</strong> is a blueprint for creating objects. An <strong>object</strong> is an instance of a class.</p>
+                    
+                    <div class="code-example">
+                        <span class="comment">// Class definition</span><br>
+                        <span class="keyword">public class</span> <span class="class">Student</span> {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Fields (attributes)</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;String name;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span> age;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span> gpa;<br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Constructor</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span> <span class="method">Student</span>(String name, <span class="keyword">int</span> age, <span class="keyword">double</span> gpa) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span>.name = name;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span>.age = age;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span>.gpa = gpa;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Method</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public void</span> <span class="method">displayInfo</span>() {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"Name: "</span> + name + <span class="string">", Age: "</span> + age + <span class="string">", GPA: "</span> + gpa);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        }
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Create Your Student Object</h4>
+                        <p>Fill in the details to create a student object:</p>
+                        <input type="text" id="studentName" placeholder="Student Name" value="John Doe">
+                        <input type="number" id="studentAge" placeholder="Age" value="20">
+                        <input type="number" id="studentGpa" placeholder="GPA" step="0.1" value="3.5">
+                        <button onclick="createStudent()">Create Student</button>
+                        <div class="output" id="studentOutput"></div>
+                    </div>
+
+                    <div class="warning">
+                        <h4>⚠️ Important Note:</h4>
+                        <p>In Java, <strong>everything is pass-by-value</strong>. For objects, the reference (memory address) is passed by value, not the actual object.</p>
+                    </div>
+                </section>
+                
+                <section id="inheritance">
+                    <h2>Inheritance</h2>
+                    <p>Inheritance allows a class to inherit properties and methods from another class. The class being inherited from is called the <strong>parent/superclass</strong>, and the class that inherits is called the <strong>child/subclass</strong>.</p>
+                    
+                    <div class="code-example">
+                        <span class="comment">// Parent class</span><br>
+                        <span class="keyword">class</span> <span class="class">Animal</span> {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;String name;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public void</span> <span class="method">eat</span>() {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"This animal eats food."</span>);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        }<br><br>
+                        <span class="comment">// Child class inheriting from Animal</span><br>
+                        <span class="keyword">class</span> <span class="class">Dog</span> <span class="keyword">extends</span> Animal {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public void</span> <span class="method">bark</span>() {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"Woof! Woof!"</span>);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        }
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Inheritance Demo</h4>
+                        <p>See how inheritance works:</p>
+                        <button onclick="demoInheritance()">Run Inheritance Example</button>
+                        <div class="console" id="inheritanceOutput"></div>
+                    </div>
+
+                    <div class="concept-box">
+                        <h4>🔗 Types of Inheritance:</h4>
+                        <ul>
+                            <li><strong>Single:</strong> One class extends another class</li>
+                            <li><strong>Multilevel:</strong> Class A → Class B → Class C</li>
+                            <li><strong>Hierarchical:</strong> One class extended by multiple classes</li>
+                            <li><strong>Multiple:</strong> Not supported in Java (use interfaces instead)</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="polymorphism">
+                    <h2>Polymorphism</h2>
+                    <p>Polymorphism means "many forms". It allows methods to do different things based on the object that is acting upon them.</p>
+                    
+                    <h3>Method Overloading (Compile-time Polymorphism)</h3>
+                    <div class="code-example">
+                        <span class="keyword">class</span> <span class="class">Calculator</span> {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Same method name, different parameters</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span> <span class="method">add</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> a + b;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">double</span> <span class="method">add</span>(<span class="keyword">double</span> a, <span class="keyword">double</span> b) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> a + b;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        }
+                    </div>
+                    
+                    <h3>Method Overriding (Runtime Polymorphism)</h3>
+                    <div class="code-example">
+                        <span class="keyword">class</span> <span class="class">Animal</span> {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public void</span> <span class="method">makeSound</span>() {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"Animal makes a sound"</span>);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        }<br><br>
+                        <span class="keyword">class</span> <span class="class">Cat</span> <span class="keyword">extends</span> Animal {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">@Override</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public void</span> <span class="method">makeSound</span>() {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"Meow!"</span>);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        }
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Polymorphism Playground</h4>
+                        <p>See polymorphism in action:</p>
+                        <button onclick="demoPolymorphism()">Run Polymorphism Example</button>
+                        <div class="console" id="polymorphismOutput"></div>
+                    </div>
+                </section>
+
+                <section id="encapsulation">
+                    <h2>Encapsulation</h2>
+                    <p>Encapsulation is about bundling data and methods together and restricting direct access to some of the object's components.</p>
+                    
+                    <div class="code-example">
+                        <span class="keyword">public class</span> <span class="class">BankAccount</span> {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Private fields - cannot be accessed directly</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span> String accountNumber;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private double</span> balance;<br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Public methods to access private fields</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span> String <span class="method">getAccountNumber</span>() {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> accountNumber;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public double</span> <span class="method">getBalance</span>() {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> balance;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public void</span> <span class="method">deposit</span>(<span class="keyword">double</span> amount) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> (amount > 0) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;balance += amount;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        }
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Bank Account Simulator</h4>
+                        <p>Create and manage a bank account:</p>
+                        <input type="text" id="accountNumber" placeholder="Account Number" value="123456">
+                        <input type="number" id="depositAmount" placeholder="Deposit Amount" value="1000">
+                        <button onclick="createBankAccount()">Create Account</button>
+                        <button onclick="makeDeposit()">Make Deposit</button>
+                        <div class="output" id="bankOutput"></div>
+                    </div>
+
+                    <div class="concept-box">
+                        <h4>🎯 Benefits of Encapsulation:</h4>
+                        <ul>
+                            <li><strong>Data Hiding:</strong> Internal implementation is hidden</li>
+                            <li><strong>Flexibility:</strong> Can change internal implementation without affecting users</li>
+                            <li><strong>Reusability:</strong> Easy to reuse encapsulated code</li>
+                            <li><strong>Testing:</strong> Easier to unit test</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="methods">
+                    <h2>Methods in Java</h2>
+                    <p>Methods are blocks of code that perform specific tasks. They make code reusable and organized.</p>
+                    
+                    <table>
+                        <tr>
+                            <th>Method Type</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td>Instance Method</td>
+                            <td>Belongs to object, can access instance variables</td>
+                            <td>public void display() { }</td>
+                        </tr>
+                        <tr>
+                            <td>Static Method</td>
+                            <td>Belongs to class, called using class name</td>
+                            <td>public static void main() { }</td>
+                        </tr>
+                        <tr>
+                            <td>Abstract Method</td>
+                            <td>No implementation, must be overridden</td>
+                            <td>abstract void calculate();</td>
+                        </tr>
+                        <tr>
+                            <td>Final Method</td>
+                            <td>Cannot be overridden by subclasses</td>
+                            <td>public final void process() { }</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="interactive-example">
+                        <h4>Method Calculator</h4>
+                        <p>Try different method operations:</p>
+                        <input type="number" id="num1" placeholder="First number" value="10">
+                        <input type="number" id="num2" placeholder="Second number" value="5">
+                        <select id="operation">
+                            <option value="add">Add</option>
+                            <option value="subtract">Subtract</option>
+                            <option value="multiply">Multiply</option>
+                            <option value="divide">Divide</option>
+                        </select>
+                        <button onclick="calculate()">Calculate</button>
+                        <div class="output" id="calcOutput"></div>
+                    </div>
+                </section>
+
+                <section id="collections">
+                    <h2>Collections Framework</h2>
+                    <p>Collections are used to store and manipulate groups of objects. Java provides a rich collections framework.</p>
+                    
+                    <div class="code-example">
+                        <span class="comment">// Using ArrayList</span><br>
+                        <span class="keyword">import</span> java.util.ArrayList;<br><br>
+                        ArrayList&lt;String&gt; fruits = <span class="keyword">new</span> ArrayList&lt;&gt;();<br>
+                        fruits.add(<span class="string">"Apple"</span>);<br>
+                        fruits.add(<span class="string">"Banana"</span>);<br>
+                        fruits.add(<span class="string">"Orange"</span>);<br><br>
+                        <span class="keyword">for</span> (String fruit : fruits) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;System.out.println(fruit);<br>
+                        }
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Collection Playground</h4>
+                        <p>Manage a list of items:</p>
+                        <input type="text" id="collectionItem" placeholder="Enter item">
+                        <button onclick="addToCollection()">Add to List</button>
+                        <button onclick="showCollection()">Show List</button>
+                        <button onclick="clearCollection()">Clear List</button>
+                        <div class="console" id="collectionOutput"></div>
+                    </div>
+                </section>
+
+                <section id="exceptions">
+                    <h2>Exception Handling</h2>
+                    <p>Exceptions are unexpected events that occur during program execution. Java provides robust exception handling.</p>
+                    
+                    <div class="code-example">
+                        <span class="keyword">try</span> {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span> result = 10 / 0; <span class="comment">// This will cause ArithmeticException</span><br>
+                        } <span class="keyword">catch</span> (ArithmeticException e) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"Cannot divide by zero!"</span>);<br>
+                        } <span class="keyword">finally</span> {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"This always executes"</span>);<br>
+                        }
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4>Exception Simulator</h4>
+                        <p>See how exception handling works:</p>
+                        <input type="number" id="divisor" placeholder="Enter divisor" value="0">
+                        <button onclick="divideNumbers()">Divide 10 by this number</button>
+                        <div class="output" id="exceptionOutput"></div>
+                    </div>
+
+                    <div class="warning">
+                        <h4>⚠️ Common Exceptions:</h4>
+                        <ul>
+                            <li><strong>NullPointerException:</strong> Accessing null object</li>
+                            <li><strong>ArrayIndexOutOfBoundsException:</strong> Invalid array index</li>
+                            <li><strong>NumberFormatException:</strong> Invalid number conversion</li>
+                            <li><strong>IOException:</strong> Input/output operations failure</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            
+            <aside>
+                <h3>Java Quick Reference</h3>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#oop">OOP Concepts</a></li>
+                    <li><a href="#classes">Classes & Objects</a></li>
+                    <li><a href="#inheritance">Inheritance</a></li>
+                    <li><a href="#polymorphism">Polymorphism</a></li>
+                    <li><a href="#encapsulation">Encapsulation</a></li>
+                    <li><a href="#methods">Methods</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#exceptions">Exceptions</a></li>
+                </ul>
+                
+                <h3>Java Data Types</h3>
+                <ul>
+                    <li><strong>Primitive:</strong> int, double, boolean, char</li>
+                    <li><strong>Reference:</strong> String, Arrays, Objects</li>
+                </ul>
+                
+                <h3>Practice Projects</h3>
+                <ul>
+                    <li>Student Management</li>
+                    <li>Banking System</li>
+                    <li>Library System</li>
+                    <li><a href="javapractice-ex.html">->Go for Exercise</a></li>
+                </ul>
+                
+                <h3>Next Steps</h3>
+                <ul>
+                    <li>Advanced Java</li>
+                    <li>Spring Framework</li>
+                    <li>Android Development</li>
+                    <li>Java Web Services</li>
+                     <li><a href="index.html">->Home</a></li>
+                </ul>
+            </aside>
+        </main>
+        
+        <footer>
+            <p>Java Programming Tutorial &copy;ViblySpace | Master Object-Oriented Programming</p>
+        </footer>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+
+        // Global variables
+        let studentObjects = [];
+        let bankAccounts = [];
+        let collectionItems = [];
+
+        // Introduction functions
+        function runJavaCode() {
+            const output = document.getElementById('introOutput');
+            if (!output) return;
+            
+            output.innerHTML = '';
+            const lineElement = document.createElement('div');
+            lineElement.textContent = 'Hello, World!';
+            output.appendChild(lineElement);
+        }
+
+        // OOP Concepts
+        function showOOPExample() {
+            const concept = document.getElementById('oopConcept').value;
+            const output = document.getElementById('oopOutput');
+            if (!output) return;
+            
+            let content = '';
+            switch(concept) {
+                case 'encapsulation':
+                    content = '🔒 <strong>Encapsulation:</strong> Like a medicine capsule - the drug (data) is protected inside. In Java, we use private variables with public getter/setter methods.';
+                    break;
+                case 'inheritance':
+                    content = '👨‍👦 <strong>Inheritance:</strong> Like a child inheriting traits from parents. A Dog class can inherit from Animal class and get all its properties.';
+                    break;
+                case 'polymorphism':
+                    content = '🎭 <strong>Polymorphism:</strong> Like a person being a student, employee, and parent at the same time. One method can behave differently based on the object.';
+                    break;
+                case 'abstraction':
+                    content = '📱 <strong>Abstraction:</strong> Like using a smartphone - you don\'t need to know how it works internally, just how to use its features.';
+                    break;
+                default:
+                    content = 'Select a concept to see an explanation with real-world analogy.';
+            }
+            output.innerHTML = content;
+        }
+
+        // Classes and Objects
+        function createStudent() {
+            const name = document.getElementById('studentName').value || 'Unknown';
+            const age = document.getElementById('studentAge').value || '0';
+            const gpa = document.getElementById('studentGpa').value || '0.0';
+            const output = document.getElementById('studentOutput');
+            
+            if (!output) return;
+            
+            const student = {
+                name: name,
+                age: parseInt(age),
+                gpa: parseFloat(gpa),
+                displayInfo: function() {
+                    return `Name: ${this.name}, Age: ${this.age}, GPA: ${this.gpa}`;
+                }
+            };
+            
+            studentObjects.push(student);
+            output.innerHTML = `✅ Student created successfully!<br>${student.displayInfo()}`;
+        }
+
+        // Inheritance
+        function demoInheritance() {
+            const output = document.getElementById('inheritanceOutput');
+            if (!output) return;
+            
+            output.innerHTML = '';
+            
+            // Simulating inheritance
+            const animal = {
+                eat: function() {
+                    return 'Animal is eating...';
+                }
+            };
+            
+            const dog = Object.create(animal);
+            dog.bark = function() {
+                return 'Dog is barking: Woof! Woof!';
+            };
+            
+            const line1 = document.createElement('div');
+            line1.textContent = dog.eat();
+            output.appendChild(line1);
+            
+            const line2 = document.createElement('div');
+            line2.textContent = dog.bark();
+            output.appendChild(line2);
+            
+            const line3 = document.createElement('div');
+            line3.textContent = '💡 The Dog inherited the eat() method from Animal!';
+            line3.style.color = '#007396';
+            output.appendChild(line3);
+        }
+
+        // Polymorphism
+        function demoPolymorphism() {
+            const output = document.getElementById('polymorphismOutput');
+            if (!output) return;
+            
+            output.innerHTML = '';
+            
+            // Method overloading simulation
+            const addNumbers = function(a, b) {
+                if (typeof a === 'number' && typeof b === 'number') {
+                    return `Adding numbers: ${a} + ${b} = ${a + b}`;
+                } else {
+                    return `Concatenating strings: ${a} + ${b} = ${a.toString() + b.toString()}`;
+                }
+            };
+            
+            const line1 = document.createElement('div');
+            line1.textContent = addNumbers(5, 3);
+            output.appendChild(line1);
+            
+            const line2 = document.createElement('div');
+            line2.textContent = addNumbers('Hello', ' World');
+            output.appendChild(line2);
+            
+            const line3 = document.createElement('div');
+            line3.textContent = '🎭 Same method name, different behaviors - that\'s polymorphism!';
+            line3.style.color = '#007396';
+            output.appendChild(line3);
+        }
+
+        // Encapsulation
+        function createBankAccount() {
+            const accountNumber = document.getElementById('accountNumber').value || '000000';
+            const output = document.getElementById('bankOutput');
+            
+            if (!output) return;
+            
+            const account = {
+                _accountNumber: accountNumber,
+                _balance: 0,
+                getAccountNumber: function() {
+                    return this._accountNumber;
+                },
+                getBalance: function() {
+                    return this._balance;
+                },
+                deposit: function(amount) {
+                    if (amount > 0) {
+                        this._balance += amount;
+                        return `Deposited: $${amount}`;
+                    }
+                    return 'Invalid deposit amount';
+                }
+            };
+            
+            bankAccounts.push(account);
+            output.innerHTML = `✅ Account created! Number: ${account.getAccountNumber()}, Balance: $${account.getBalance()}`;
+        }
+
+        function makeDeposit() {
+            const amount = parseFloat(document.getElementById('depositAmount').value) || 0;
+            const output = document.getElementById('bankOutput');
+            
+            if (!output || bankAccounts.length === 0) {
+                output.innerHTML = '❌ Please create an account first!';
+                return;
+            }
+            
+            const account = bankAccounts[bankAccounts.length - 1];
+            const result = account.deposit(amount);
+            output.innerHTML = `${result}<br>New Balance: $${account.getBalance()}`;
+        }
+
+        // Methods
+        function calculate() {
+            const num1 = parseFloat(document.getElementById('num1').value) || 0;
+            const num2 = parseFloat(document.getElementById('num2').value) || 0;
+            const operation = document.getElementById('operation').value;
+            const output = document.getElementById('calcOutput');
+            
+            if (!output) return;
+            
+            let result;
+            switch(operation) {
+                case 'add':
+                    result = num1 + num2;
+                    break;
+                case 'subtract':
+                    result = num1 - num2;
+                    break;
+                case 'multiply':
+                    result = num1 * num2;
+                    break;
+                case 'divide':
+                    result = num2 !== 0 ? num1 / num2 : 'Cannot divide by zero';
+                    break;
+            }
+            
+            output.innerHTML = `Result: ${result}`;
+        }
+
+        // Collections
+        function addToCollection() {
+            const item = document.getElementById('collectionItem').value.trim();
+            if (item) {
+                collectionItems.push(item);
+                document.getElementById('collectionItem').value = '';
+            }
+        }
+
+        function showCollection() {
+            const output = document.getElementById('collectionOutput');
+            if (!output) return;
+            
+            output.innerHTML = '';
+            
+            if (collectionItems.length === 0) {
+                output.innerHTML = 'Collection is empty';
+                return;
+            }
+            
+            collectionItems.forEach((item, index) => {
+                const line = document.createElement('div');
+                line.textContent = `${index + 1}. ${item}`;
+                output.appendChild(line);
+            });
+        }
+
+        function clearCollection() {
+            collectionItems = [];
+            const output = document.getElementById('collectionOutput');
+            if (output) {
+                output.innerHTML = 'Collection cleared!';
+            }
+        }
+
+        // Exceptions
+        function divideNumbers() {
+            const divisor = parseFloat(document.getElementById('divisor').value);
+            const output = document.getElementById('exceptionOutput');
+            
+            if (!output) return;
+            
+            try {
+                if (divisor === 0) {
+                    throw new Error('Division by zero is not allowed');
+                }
+                const result = 10 / divisor;
+                output.innerHTML = `✅ Result: 10 / ${divisor} = ${result}`;
+            } catch (error) {
+                output.innerHTML = `❌ Error: ${error.message}`;
+            } finally {
+                const finalMsg = document.createElement('div');
+                finalMsg.textContent = 'This message always shows (finally block)';
+                finalMsg.style.color = '#007396';
+                output.appendChild(finalMsg);
+            }
+        }
+    </script>
+</body>
+</html>

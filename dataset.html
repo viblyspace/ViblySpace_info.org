@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViblySpace - Learn Database Systems</title>
+    <link rel="icon" type="image/x-icon" href="connection.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --success: #4cc9f0;
+            --accent: #4895ef;
+            --warning: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Enhanced Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 20px;
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
+            margin-right: 8px;
+            color: var(--primary);
+        }
+        
+        .main-nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links li {
+            margin: 0 5px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .language-nav {
+            display: flex;
+            list-style: none;
+            margin-left: 15px;
+        }
+        
+        .language-nav li {
+            margin-left: 8px;
+        }
+        
+        .language-nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            background-color: #f0f2f5;
+        }
+        
+        .language-nav a:hover, .language-nav a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .main-nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .main-nav.active {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-links li {
+                margin: 5px 0;
+                width: 100%;
+            }
+            
+            .nav-links a {
+                display: block;
+                width: 100%;
+            }
+            
+            .language-nav {
+                margin: 10px 0 0 0;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .language-nav li {
+                margin: 0 5px 0 0;
+            }
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #3366cc, #6633cc);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 5px 10px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #3366cc;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: #3366cc;
+            color: white;
+        }
+        
+        /* Main Content */
+        main {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Content Sections */
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        section h3 {
+            color: #3366cc;
+            margin: 20px 0 10px;
+        }
+        
+        section p {
+            margin-bottom: 15px;
+        }
+        
+        /* Database Concept Boxes */
+        .concept-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sql-box {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .nosql-box {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .design-box {
+            background: linear-gradient(135deg, #fa709a, #fee140);
+            color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        /* Interactive Examples */
+        .interactive-example {
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+        }
+        
+        .database-demo {
+            background: white;
+            border: 2px solid #3366cc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            min-height: 150px;
+        }
+        
+        .table-visual {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        
+        .sql-editor {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .sql-keyword {
+            color: #ff6b6b;
+        }
+        
+        .sql-table {
+            color: #4ecdc4;
+        }
+        
+        .sql-string {
+            color: #98c379;
+        }
+        
+        button {
+            background-color: #3366cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #254e9e;
+            transform: translateY(-2px);
+        }
+        
+        input, select, textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 5px;
+            font-size: 16px;
+            width: calc(100% - 20px);
+        }
+        
+        /* Output Areas */
+        .output {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            min-height: 50px;
+            border-left: 4px solid #3366cc;
+        }
+        
+        .query-result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        
+        /* Sidebar */
+        aside {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            align-self: start;
+            position: sticky;
+            top: 100px;
+        }
+        
+        aside h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        aside ul {
+            list-style: none;
+        }
+        
+        aside li {
+            margin-bottom: 10px;
+        }
+        
+        aside a {
+            text-decoration: none;
+            color: #3366cc;
+            display: block;
+            padding: 8px 10px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        aside a:hover {
+            background-color: #f0f7ff;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #7f8c8d;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        footer a {
+            color: #3366cc;
+            text-decoration: none;
+        }
+        
+        /* Database Table Styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .data-table th, .data-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .data-table th {
+            background-color: #3366cc;
+            color: white;
+        }
+        
+        .data-table tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        /* Entity Visualization */
+        .entity-box {
+            border: 2px solid #3366cc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            background: white;
+        }
+        
+        .relationship-line {
+            height: 2px;
+            background: #3366cc;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .relationship-line::after {
+            content: '→';
+            position: absolute;
+            right: -10px;
+            top: -8px;
+            color: #3366cc;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-laptop-code logo-icon"></i>
+                <div class="logo-text">ViblySpace</div>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="main-nav" id="mainNav">
+                <ul class="nav-links">
+                    <!-- <li><a href="into.html" class="nav-link">Home</a></li>
+                    <!-- <li><a href="into.html#courses" class="nav-link">Courses</a></li>
+                    <li><a href="into.html#grades" class="nav-link">Grade Levels</a></li>
+                    <li><a href="into.html#about" class="nav-link">About</a></li>
+                    <li><a href="into.html#contact" class="nav-link">Contact</a></li> - -->
+                </ul>
+                
+                <ul class="language-nav">
+                    <li><a href="concept.html">HTML</a></li>
+                    <li><a href="css.html">CSS</a></li>
+                    <li><a href="python.html">Python</a></li>
+                    <li><a href="js.html">JS</a></li>
+                    <li><a href="ai.html">AI</a></li> 
+                    <li><a href="TRP.html">TRP</a></li> 
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Database Systems</h1>
+            <p>Learn how to store, manage, and retrieve data effectively</p>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#what-is-db">What is a Database?</a></li>
+                <li><a href="#types">Database Types</a></li>
+                <li><a href="#sql">SQL Basics</a></li>
+                <li><a href="#design">Database Design</a></li>
+                <li><a href="#normalization">Normalization</a></li>
+                <li><a href="#relationships">Relationships</a></li>
+                <li><a href="#nosql">NoSQL Databases</a></li>
+                <li><a href="#transactions">Transactions</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <div class="content">
+                <section id="what-is-db">
+                    <h2>What is a Database?</h2>
+                    <p>A database is an organized collection of data stored and accessed electronically. Think of it as a digital filing cabinet where you can store, organize, and retrieve information efficiently.</p>
+                    
+                    <div class="concept-box">
+                        <h3>📁 Simple Definition:</h3>
+                        <p><strong>A database is like a super-organized digital library</strong> where instead of books, you store data that computers can quickly find and use.</p>
+                    </div>
+
+                    <h3>Why Use Databases?</h3>
+                    <div class="interactive-example">
+                        <p><strong>Try this comparison:</strong></p>
+                        <button onclick="showComparison('with_db')">With Database</button>
+                        <button onclick="showComparison('without_db')">Without Database</button>
+                        <div class="output" id="comparisonOutput">
+                            Click buttons to see the difference databases make
+                        </div>
+                    </div>
+
+                    <h3>Database vs Spreadsheet</h3>
+                    <table class="data-table">
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Spreadsheet (Excel)</th>
+                            <th>Database</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Volume</strong></td>
+                            <td>Good for thousands of rows</td>
+                            <td>Excellent for millions of records</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Multiple Users</strong></td>
+                            <td>Limited collaboration</td>
+                            <td>Many users can work simultaneously</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Integrity</strong></td>
+                            <td>Easy to make errors</td>
+                            <td>Rules prevent invalid data</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Security</strong></td>
+                            <td>Basic password protection</td>
+                            <td>Advanced user permissions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Best For</strong></td>
+                            <td>Simple lists, calculations</td>
+                            <td>Applications, websites, systems</td>
+                        </tr>
+                    </table>
+                </section>
+                
+                <section id="types">
+                    <h2>Types of Databases</h2>
+                    <p>Different databases are designed for different purposes. The main categories are relational (SQL) and non-relational (NoSQL).</p>
+
+                    <h3>Relational Databases (SQL)</h3>
+                    <div class="sql-box">
+                        <h4>🏗️ Structured like Excel Tables</h4>
+                        <p><strong>Data is organized in tables with rows and columns</strong>, and tables can be linked together using relationships.</p>
+                        <p><em>Examples: MySQL, PostgreSQL, Oracle, SQL Server</em></p>
+                    </div>
+
+                    <h3>NoSQL Databases</h3>
+                    <div class="nosql-box">
+                        <h4>🎯 Flexible Data Structures</h4>
+                        <p><strong>Data can be stored in various formats</strong> - documents, key-value pairs, graphs, or wide columns.</p>
+                        <p><em>Examples: MongoDB, Redis, Cassandra, Neo4j</em></p>
+                    </div>
+
+                    <h3>Database Type Comparison</h3>
+                    <div class="interactive-example">
+                        <button onclick="showDatabaseType('relational')">Relational Database</button>
+                        <button onclick="showDatabaseType('document')">Document Database</button>
+                        <button onclick="showDatabaseType('keyvalue')">Key-Value Store</button>
+                        <button onclick="showDatabaseType('graph')">Graph Database</button>
+                        
+                        <div class="output" id="dbTypeOutput">
+                            Click buttons to explore different database types
+                        </div>
+                    </div>
+
+                    <h3>When to Use Which?</h3>
+                    <table class="data-table">
+                        <tr>
+                            <th>Database Type</th>
+                            <th>Best For</th>
+                            <th>Example Use Case</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Relational</strong></td>
+                            <td>Structured data, complex queries</td>
+                            <td>Banking systems, e-commerce</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Document</strong></td>
+                            <td>Flexible, hierarchical data</td>
+                            <td>Content management, user profiles</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Key-Value</strong></td>
+                            <td>Fast simple queries, caching</td>
+                            <td>Session storage, user preferences</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Graph</strong></td>
+                            <td>Connected data, relationships</td>
+                            <td>Social networks, recommendations</td>
+                        </tr>
+                    </table>
+                </section>
+                
+                <section id="sql">
+                    <h2>SQL Basics</h2>
+                    <p>SQL (Structured Query Language) is the standard language for communicating with relational databases.</p>
+                    
+                    <div class="concept-box">
+                        <h3>🗣️ Database Language</h3>
+                        <p><strong>SQL is how we talk to databases.</strong> It's like giving instructions to a very organized librarian who can instantly find exactly what you need.</p>
+                    </div>
+
+                    <h3>Basic SQL Commands</h3>
+                    <div class="interactive-example">
+                        <div class="sql-editor">
+                            <span class="sql-keyword">SELECT</span> name, email <span class="sql-keyword">FROM</span> <span class="sql-table">users</span> <span class="sql-keyword">WHERE</span> age > 18;
+                        </div>
+                        <p>This means: "Show me the names and emails of all users who are older than 18"</p>
+                    </div>
+
+                    <h3>Live SQL Practice</h3>
+                    <div class="interactive-example">
+                        <p>We have a simple users table. Try writing SQL queries:</p>
+                        
+                        <div class="table-visual">
+                            <h4>Users Table</h4>
+                            <table class="data-table">
+                                <tr>
+                                    <th>id</th>
+                                    <th>name</th>
+                                    <th>email</th>
+                                    <th>age</th>
+                                    <th>city</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Alice</td>
+                                    <td>alice@email.com</td>
+                                    <td>25</td>
+                                    <td>New York</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Bob</td>
+                                    <td>bob@email.com</td>
+                                    <td>30</td>
+                                    <td>London</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Charlie</td>
+                                    <td>charlie@email.com</td>
+                                    <td>22</td>
+                                    <td>Paris</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Diana</td>
+                                    <td>diana@email.com</td>
+                                    <td>28</td>
+                                    <td>Tokyo</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <select id="sqlExample" onchange="runSQLExample()">
+                            <option value="">Choose a SQL example</option>
+                            <option value="select_all">SELECT * FROM users</option>
+                            <option value="select_columns">SELECT name, email FROM users</option>
+                            <option value="where_age">SELECT * FROM users WHERE age > 25</option>
+                            <option value="where_city">SELECT name FROM users WHERE city = 'London'</option>
+                            <option value="order_by">SELECT * FROM users ORDER BY age DESC</option>
+                        </select>
+                        
+                        <div class="query-result" id="sqlResult">
+                            Select a SQL example to see the result
+                        </div>
+                    </div>
+
+                    <h3>Common SQL Operations</h3>
+                    <table class="data-table">
+                        <tr>
+                            <th>Operation</th>
+                            <th>SQL Command</th>
+                            <th>Purpose</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Create</strong></td>
+                            <td>INSERT</td>
+                            <td>Add new records</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Read</strong></td>
+                            <td>SELECT</td>
+                            <td>Retrieve data</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Update</strong></td>
+                            <td>UPDATE</td>
+                            <td>Modify existing data</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Delete</strong></td>
+                            <td>DELETE</td>
+                            <td>Remove data</td>
+                        </tr>
+                    </table>
+                </section>
+                
+                <section id="design">
+                    <h2>Database Design</h2>
+                    <p>Good database design is crucial for building efficient and maintainable applications.</p>
+                    
+                    <div class="design-box">
+                        <h3>🏗️ Blueprint for Data</h3>
+                        <p><strong>Database design is like architectural planning for your data.</strong> You decide what information to store and how it connects before building anything.</p>
+                    </div>
+
+                    <h3>Design Process</h3>
+                    <div class="interactive-example">
+                        <button onclick="showDesignStep(1)">1. Requirements</button>
+                        <button onclick="showDesignStep(2)">2. Conceptual Design</button>
+                        <button onclick="showDesignStep(3)">3. Logical Design</button>
+                        <button onclick="showDesignStep(4)">4. Physical Design</button>
+                        
+                        <div class="output" id="designOutput">
+                            Click the steps to see the database design process
+                        </div>
+                    </div>
+
+                    <h3>Entity-Relationship Diagram (ERD)</h3>
+                    <p>ERDs are visual representations of database structure. Let's design a simple library system:</p>
+                    
+                    <div class="interactive-example">
+                        <div style="text-align: center;">
+                            <div class="entity-box">
+                                <strong>Books</strong><br>
+                                book_id (PK)<br>
+                                title<br>
+                                author<br>
+                                published_year
+                            </div>
+                            
+                            <div class="relationship-line"></div>
+                            
+                            <div class="entity-box">
+                                <strong>Authors</strong><br>
+                                author_id (PK)<br>
+                                name<br>
+                                country
+                            </div>
+                        </div>
+                        
+                        <p><strong>PK = Primary Key</strong> (unique identifier for each record)</p>
+                        <p>This shows a relationship: One author can write many books</p>
+                    </div>
+
+                    <h3>Design Principles</h3>
+                    <ul>
+                        <li><strong>Keep it simple:</strong> Don't overcomplicate the design</li>
+                        <li><strong>Plan for growth:</strong> Design should handle future data</li>
+                        <li><strong>Use meaningful names:</strong> Table and column names should be clear</li>
+                        <li><strong>Avoid data duplication:</strong> Store each piece of information once</li>
+                        <li><strong>Consider performance:</strong> Design for efficient queries</li>
+                    </ul>
+                </section>
+
+                <section id="normalization">
+                    <h2>Database Normalization</h2>
+                    <p>Normalization is the process of organizing data to reduce redundancy and improve data integrity.</p>
+
+                    <h3>Why Normalize?</h3>
+                    <div class="interactive-example">
+                        <p>Compare these two designs for a school database:</p>
+                        <button onclick="showNormalizationExample('before')">Before Normalization</button>
+                        <button onclick="showNormalizationExample('after')">After Normalization</button>
+                        
+                        <div class="output" id="normalizationOutput">
+                            Click to see the difference normalization makes
+                        </div>
+                    </div>
+
+                    <h3>Normalization Forms</h3>
+                    <table class="data-table">
+                        <tr>
+                            <th>Form</th>
+                            <th>Rule</th>
+                            <th>Simple Explanation</th>
+                        </tr>
+                        <tr>
+                            <td><strong>1NF</strong></td>
+                            <td>Atomic values</td>
+                            <td>Each cell contains only one value</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2NF</strong></td>
+                            <td>No partial dependencies</td>
+                            <td>All data depends on the whole primary key</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3NF</strong></td>
+                            <td>No transitive dependencies</td>
+                            <td>Data depends only on the primary key</td>
+                        </tr>
+                    </table>
+
+                    <h3>Normalization Example</h3>
+                    <div class="interactive-example">
+                        <p><strong>Problem:</strong> A table with student and course information has repeating data</p>
+                        
+                        <div class="table-visual">
+                            <h4>Original Table (Problems)</h4>
+                            <table class="data-table">
+                                <tr>
+                                    <th>student_id</th>
+                                    <th>student_name</th>
+                                    <th>course_id</th>
+                                    <th>course_name</th>
+                                    <th>instructor</th>
+                                </tr>
+                                <tr>
+                                    <td>101</td>
+                                    <td>Alice</td>
+                                    <td>MATH101</td>
+                                    <td>Calculus</td>
+                                    <td>Dr. Smith</td>
+                                </tr>
+                                <tr>
+                                    <td>101</td>
+                                    <td>Alice</td>
+                                    <td>CS101</td>
+                                    <td>Programming</td>
+                                    <td>Dr. Johnson</td>
+                                </tr>
+                                <tr>
+                                    <td>102</td>
+                                    <td>Bob</td>
+                                    <td>MATH101</td>
+                                    <td>Calculus</td>
+                                    <td>Dr. Smith</td>
+                                </tr>
+                            </table>
+                            <p><em>Problem: Student and course information is repeated</em></p>
+                        </div>
+
+                        <button onclick="showNormalizedTables()">Show Normalized Solution</button>
+                        
+                        <div id="normalizedTables" style="display: none;">
+                            <div class="table-visual">
+                                <h4>Students Table</h4>
+                                <table class="data-table">
+                                    <tr>
+                                        <th>student_id</th>
+                                        <th>student_name</th>
+                                    </tr>
+                                    <tr><td>101</td><td>Alice</td></tr>
+                                    <tr><td>102</td><td>Bob</td></tr>
+                                </table>
+                            </div>
+                            
+                            <div class="table-visual">
+                                <h4>Courses Table</h4>
+                                <table class="data-table">
+                                    <tr>
+                                        <th>course_id</th>
+                                        <th>course_name</th>
+                                        <th>instructor</th>
+                                    </tr>
+                                    <tr><td>MATH101</td><td>Calculus</td><td>Dr. Smith</td></tr>
+                                    <tr><td>CS101</td><td>Programming</td><td>Dr. Johnson</td></tr>
+                                </table>
+                            </div>
+                            
+                            <div class="table-visual">
+                                <h4>Enrollments Table (Relationship)</h4>
+                                <table class="data-table">
+                                    <tr>
+                                        <th>student_id</th>
+                                        <th>course_id</th>
+                                    </tr>
+                                    <tr><td>101</td><td>MATH101</td></tr>
+                                    <tr><td>101</td><td>CS101</td></tr>
+                                    <tr><td>102</td><td>MATH101</td></tr>
+                                </table>
+                            </div>
+                            <p><em>Solution: No repeated data, easy to maintain!</em></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="relationships">
+                    <h2>Database Relationships</h2>
+                    <p>Relationships define how tables connect to each other in a relational database.</p>
+
+                    <h3>Types of Relationships</h3>
+                    <div class="interactive-example">
+                        <button onclick="showRelationship('one_to_one')">One-to-One</button>
+                        <button onclick="showRelationship('one_to_many')">One-to-Many</button>
+                        <button onclick="showRelationship('many_to_many')">Many-to-Many</button>
+                        
+                        <div class="output" id="relationshipOutput">
+                            Click to learn about different relationship types
+                        </div>
+                    </div>
+
+                    <h3>Relationship Examples</h3>
+                    <table class="data-table">
+                        <tr>
+                            <th>Relationship</th>
+                            <th>Real-World Example</th>
+                            <th>Database Example</th>
+                        </tr>
+                        <tr>
+                            <td><strong>One-to-One</strong></td>
+                            <td>Person ↔ Passport</td>
+                            <td>Users ↔ UserProfiles</td>
+                        </tr>
+                        <tr>
+                            <td><strong>One-to-Many</strong></td>
+                            <td>Author ↔ Books</td>
+                            <td>Customers ↔ Orders</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Many-to-Many</strong></td>
+                            <td>Students ↔ Courses</td>
+                            <td>Products ↔ Categories</td>
+                        </tr>
+                    </table>
+
+                    <h3>Foreign Keys</h3>
+                    <div class="interactive-example">
+                        <p><strong>Foreign keys</strong> are how we create relationships between tables:</p>
+                        
+                        <div class="sql-editor">
+                            <span class="sql-comment">-- Customers table</span><br>
+                            <span class="sql-keyword">CREATE TABLE</span> <span class="sql-table">customers</span> (<br>
+                            &nbsp;&nbsp;customer_id <span class="sql-keyword">INT PRIMARY KEY</span>,<br>
+                            &nbsp;&nbsp;name <span class="sql-keyword">VARCHAR</span>(100)<br>
+                            );<br><br>
+                            
+                            <span class="sql-comment">-- Orders table with foreign key</span><br>
+                            <span class="sql-keyword">CREATE TABLE</span> <span class="sql-table">orders</span> (<br>
+                            &nbsp;&nbsp;order_id <span class="sql-keyword">INT PRIMARY KEY</span>,<br>
+                            &nbsp;&nbsp;customer_id <span class="sql-keyword">INT</span>,<br>
+                            &nbsp;&nbsp;order_date <span class="sql-keyword">DATE</span>,<br>
+                            &nbsp;&nbsp;<span class="sql-keyword">FOREIGN KEY</span> (customer_id) <span class="sql-keyword">REFERENCES</span> customers(customer_id)<br>
+                            );
+                        </div>
+                        
+                        <p>This ensures that every order must belong to a valid customer!</p>
+                    </div>
+                </section>
+
+                <section id="nosql">
+                    <h2>NoSQL Databases</h2>
+                    <p>NoSQL databases provide flexible schemas and are designed for specific data models and use cases.</p>
+
+                    <h3>Why NoSQL?</h3>
+                    <div class="interactive-example">
+                        <button onclick="showNoSQLAdvantage('flexibility')">Flexibility</button>
+                        <button onclick="showNoSQLAdvantage('scalability')">Scalability</button>
+                        <button onclick="showNoSQLAdvantage('performance')">Performance</button>
+                        
+                        <div class="output" id="nosqlOutput">
+                            Click to see advantages of NoSQL databases
+                        </div>
+                    </div>
+
+                    <h3>NoSQL Data Models</h3>
+                    <div class="interactive-example">
+                        <div class="database-demo">
+                            <h4>Document Database (MongoDB)</h4>
+                            <div class="sql-editor">
+                                {<br>
+                                &nbsp;&nbsp;"_id": "123",<br>
+                                &nbsp;&nbsp;"name": "Alice",<br>
+                                &nbsp;&nbsp;"age": 25,<br>
+                                &nbsp;&nbsp;"address": {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"street": "123 Main St",<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"city": "New York"<br>
+                                &nbsp;&nbsp;},<br>
+                                &nbsp;&nbsp;"hobbies": ["reading", "hiking"]<br>
+                                }
+                            </div>
+                            <p><em>Stores data as flexible JSON-like documents</em></p>
+                        </div>
+                    </div>
+
+                    <h3>SQL vs NoSQL Comparison</h3>
+                    <table class="data-table">
+                        <tr>
+                            <th>Feature</th>
+                            <th>SQL Databases</th>
+                            <th>NoSQL Databases</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Schema</strong></td>
+                            <td>Fixed, predefined</td>
+                            <td>Flexible, dynamic</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scalability</strong></td>
+                            <td>Vertical (bigger servers)</td>
+                            <td>Horizontal (more servers)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Structure</strong></td>
+                            <td>Tables with rows/columns</td>
+                            <td>Documents, key-value, graphs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ACID Compliance</strong></td>
+                            <td>Yes (strict)</td>
+                            <td>Often relaxed</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Best For</strong></td>
+                            <td>Complex queries, transactions</td>
+                            <td>Big data, real-time apps</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section id="transactions">
+                    <h2>Database Transactions</h2>
+                    <p>Transactions ensure that database operations are completed reliably, following the ACID principles.</p>
+
+                    <h3>ACID Properties</h3>
+                    <div class="interactive-example">
+                        <button onclick="showACIDProperty('atomicity')">Atomicity</button>
+                        <button onclick="showACIDProperty('consistency')">Consistency</button>
+                        <button onclick="showACIDProperty('isolation')">Isolation</button>
+                        <button onclick="showACIDProperty('durability')">Durability</button>
+                        
+                        <div class="output" id="acidOutput">
+                            Click to learn about ACID properties
+                        </div>
+                    </div>
+
+                    <h3>Transaction Example: Bank Transfer</h3>
+                    <div class="interactive-example">
+                        <p>Imagine transferring $100 from Alice to Bob:</p>
+                        
+                        <div class="sql-editor">
+                            <span class="sql-keyword">BEGIN TRANSACTION</span>;<br><br>
+                            
+                            <span class="sql-comment">-- 1. Deduct $100 from Alice's account</span><br>
+                            <span class="sql-keyword">UPDATE</span> accounts <span class="sql-keyword">SET</span> balance = balance - 100<br>
+                            <span class="sql-keyword">WHERE</span> account_id = 'Alice';<br><br>
+                            
+                            <span class="sql-comment">-- 2. Add $100 to Bob's account</span><br>
+                            <span class="sql-keyword">UPDATE</span> accounts <span class="sql-keyword">SET</span> balance = balance + 100<br>
+                            <span class="sql-keyword">WHERE</span> account_id = 'Bob';<br><br>
+                            
+                            <span class="sql-keyword">COMMIT</span>;
+                        </div>
+                        
+                        <p><strong>Atomicity ensures:</strong> Either both updates happen, or neither happens. No half-completed transfers!</p>
+                        
+                        <button onclick="simulateTransaction()">Simulate Bank Transfer</button>
+                        <div class="output" id="transactionResult"></div>
+                    </div>
+
+                    <h3>Why Transactions Matter</h3>
+                    <ul>
+                        <li><strong>Data Integrity:</strong> Prevents partial updates</li>
+                        <li><strong>Error Recovery:</strong> Can rollback on failure</li>
+                        <li><strong>Concurrency:</strong> Multiple users can work safely</li>
+                        <li><strong>Reliability:</strong> Data remains consistent</li>
+                    </ul>
+                </section>
+            </div>
+            
+            <aside>
+                <h3>Database Quick Concepts</h3>
+                <ul>
+                    <li><a href="#what-is-db">What is a Database?</a></li>
+                    <li><a href="#types">Database Types</a></li>
+                    <li><a href="#sql">SQL Basics</a></li>
+                    <li><a href="#design">Database Design</a></li>
+                    <li><a href="#normalization">Normalization</a></li>
+                    <li><a href="#relationships">Relationships</a></li>
+                    <li><a href="#nosql">NoSQL Databases</a></li>
+                    <li><a href="#transactions">Transactions</a></li>
+                </ul>
+                
+                <h3>Key Database Terms</h3>
+                <ul>
+                    <li><strong>Table:</strong> Collection of data</li>
+                    <li><strong>Row/Record:</strong> Single data entry</li>
+                    <li><strong>Column/Field:</strong> Data attribute</li>
+                    <li><strong>Primary Key:</strong> Unique identifier</li>
+                    <li><strong>Foreign Key:</strong> Relationship link</li>
+                </ul>
+                
+                <h3>Popular Databases</h3>
+                <ul>
+                    <li>MySQL</li>
+                    <li>PostgreSQL</li>
+                    <li>MongoDB</li>
+                    <li>Redis</li>
+                    <li>SQLite</li>
+                </ul>
+                
+                <h3>Next Steps</h3>
+                <ul>
+                    <li>Advanced SQL</li>
+                    <li>Database Administration</li>
+                    <li>Database Security</li>
+                    <li>Cloud Databases</li>
+                    <li><a href="index.html">->Home</a></li>
+                </ul>
+            </aside>
+        </main>
+        
+        <footer>
+            <p>Database Systems Tutorial &copy; <a href="index.html">ViblySpace</a> | Mastering Data Management</p>
+        </footer>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+
+        // Sample data for demonstrations
+        const sampleUsers = [
+            { id: 1, name: 'Alice', email: 'alice@email.com', age: 25, city: 'New York' },
+            { id: 2, name: 'Bob', email: 'bob@email.com', age: 30, city: 'London' },
+            { id: 3, name: 'Charlie', email: 'charlie@email.com', age: 22, city: 'Paris' },
+            { id: 4, name: 'Diana', email: 'diana@email.com', age: 28, city: 'Tokyo' }
+        ];
+
+        // Database comparison
+        function showComparison(type) {
+            const output = document.getElementById('comparisonOutput');
+            let content = '';
+            
+            if (type === 'with_db') {
+                content = `
+                    <h4>✅ With Database</h4>
+                    <p><strong>Searching 1 million records:</strong> ~0.01 seconds</p>
+                    <p><strong>Multiple users:</strong> Can work simultaneously without conflicts</p>
+                    <p><strong>Data safety:</strong> Automatic backups and recovery</p>
+                    <p><strong>Example:</strong> Facebook finding your friends from billions of users instantly</p>
+                `;
+            } else {
+                content = `
+                    <h4>❌ Without Database (Using Files)</h4>
+                    <p><strong>Searching 1 million records:</strong> ~10+ seconds</p>
+                    <p><strong>Multiple users:</strong> Data corruption risk</p>
+                    <p><strong>Data safety:</strong> Manual backup needed</p>
+                    <p><strong>Example:</strong> Searching through thousands of Excel files manually</p>
+                `;
+            }
+            
+            output.innerHTML = content;
+        }
+
+        // Database types
+        function showDatabaseType(type) {
+            const output = document.getElementById('dbTypeOutput');
+            let content = '';
+            
+            switch(type) {
+                case 'relational':
+                    content = `
+                        <h4>🏗️ Relational Database</h4>
+                        <p><strong>Structure:</strong> Tables with rows and columns</p>
+                        <p><strong>Like:</strong> Multiple Excel sheets that can link together</p>
+                        <p><strong>Best for:</strong> Structured data, complex queries, transactions</p>
+                        <p><strong>Example:</strong> Banking system with customers, accounts, transactions</p>
+                    `;
+                    break;
+                case 'document':
+                    content = `
+                        <h4>📄 Document Database</h4>
+                        <p><strong>Structure:</strong> JSON-like documents</p>
+                        <p><strong>Like:</strong> Folders with different types of documents</p>
+                        <p><strong>Best for:</strong> Content management, user profiles, catalogs</p>
+                        <p><strong>Example:</strong> Blog platform with articles, comments, user data</p>
+                    `;
+                    break;
+                case 'keyvalue':
+                    content = `
+                        <h4>🔑 Key-Value Store</h4>
+                        <p><strong>Structure:</strong> Simple key-value pairs</p>
+                        <p><strong>Like:</strong> Dictionary or phone book</p>
+                        <p><strong>Best for:</strong> Caching, sessions, user preferences</p>
+                        <p><strong>Example:</strong> Shopping cart data, user session storage</p>
+                    `;
+                    break;
+                case 'graph':
+                    content = `
+                        <h4>🕸️ Graph Database</h4>
+                        <p><strong>Structure:</strong> Nodes and relationships</p>
+                        <p><strong>Like:</strong> Social network connections</p>
+                        <p><strong>Best for:</strong> Social networks, recommendations, fraud detection</p>
+                        <p><strong>Example:</strong> Friend recommendations, network analysis</p>
+                    `;
+                    break;
+            }
+            
+            output.innerHTML = content;
+        }
+
+        // SQL examples
+        function runSQLExample() {
+            const example = document.getElementById('sqlExample').value;
+            const resultDiv = document.getElementById('sqlResult');
+            
+            if (!example) return;
+            
+            let result = [];
+            let explanation = '';
+            
+            switch(example) {
+                case 'select_all':
+                    result = sampleUsers;
+                    explanation = 'SELECT * FROM users - Shows all columns for all users';
+                    break;
+                case 'select_columns':
+                    result = sampleUsers.map(user => ({ name: user.name, email: user.email }));
+                    explanation = 'SELECT name, email FROM users - Shows only name and email columns';
+                    break;
+                case 'where_age':
+                    result = sampleUsers.filter(user => user.age > 25);
+                    explanation = 'SELECT * FROM users WHERE age > 25 - Shows users older than 25';
+                    break;
+                case 'where_city':
+                    result = sampleUsers.filter(user => user.city === 'London')
+                                      .map(user => ({ name: user.name }));
+                    explanation = "SELECT name FROM users WHERE city = 'London' - Shows names of users in London";
+                    break;
+                case 'order_by':
+                    result = [...sampleUsers].sort((a, b) => b.age - a.age);
+                    explanation = 'SELECT * FROM users ORDER BY age DESC - Shows users sorted by age (oldest first)';
+                    break;
+            }
+            
+            // Create HTML table for results
+            if (result.length > 0) {
+                const columns = Object.keys(result[0]);
+                let tableHTML = `<table class="data-table"><tr>`;
+                
+                // Header row
+                columns.forEach(col => {
+                    tableHTML += `<th>${col}</th>`;
+                });
+                tableHTML += `</tr>`;
+                
+                // Data rows
+                result.forEach(row => {
+                    tableHTML += `<tr>`;
+                    columns.forEach(col => {
+                        tableHTML += `<td>${row[col]}</td>`;
+                    });
+                    tableHTML += `</tr>`;
+                });
+                
+                tableHTML += `</table>`;
+                resultDiv.innerHTML = `<p><strong>${explanation}</strong></p>${tableHTML}`;
+            } else {
+                resultDiv.innerHTML = `<p><strong>${explanation}</strong></p><p>No results found</p>`;
+            }
+        }
+
+        // Design steps
+        function showDesignStep(step) {
+            const output = document.getElementById('designOutput');
+            let content = '';
+            
+            switch(step) {
+                case 1:
+                    content = `
+                        <h4>📋 Step 1: Requirements Analysis</h4>
+                        <p><strong>What:</strong> Understand what data needs to be stored</p>
+                        <p><strong>Questions to ask:</strong></p>
+                        <ul>
+                            <li>What information do we need to store?</li>
+                            <li>How will the data be used?</li>
+                            <li>How many users will access it?</li>
+                            <li>What are the performance needs?</li>
+                        </ul>
+                        <p><em>Example: For a library system, we need books, members, loans...</em></p>
+                    `;
+                    break;
+                case 2:
+                    content = `
+                        <h4>🎨 Step 2: Conceptual Design</h4>
+                        <p><strong>What:</strong> Create a high-level model (ER Diagram)</p>
+                        <p><strong>Focus on:</strong> Entities and relationships, not technical details</p>
+                        <p><strong>Output:</strong> Entity-Relationship Diagram (ERD)</p>
+                        <p><em>Example: Books, Authors, Members entities with relationships between them</em></p>
+                    `;
+                    break;
+                case 3:
+                    content = `
+                        <h4>📐 Step 3: Logical Design</h4>
+                        <p><strong>What:</strong> Convert conceptual design to database structure</p>
+                        <p><strong>Focus on:</strong> Tables, columns, data types, relationships</p>
+                        <p><strong>Apply:</strong> Normalization rules</p>
+                        <p><em>Example: Define books table with columns: book_id, title, author_id, etc.</em></p>
+                    `;
+                    break;
+                case 4:
+                    content = `
+                        <h4>⚙️ Step 4: Physical Design</h4>
+                        <p><strong>What:</strong> Implement the actual database</p>
+                        <p><strong>Focus on:</strong> Performance, storage, indexes</p>
+                        <p><strong>Create:</strong> Actual tables, indexes, constraints</p>
+                        <p><em>Example: Create MySQL tables with specific data types and indexes</em></p>
+                    `;
+                    break;
+            }
+            
+            output.innerHTML = content;
+        }
+
+        // Normalization examples
+        function showNormalizationExample(type) {
+            const output = document.getElementById('normalizationOutput');
+            let content = '';
+            
+            if (type === 'before') {
+                content = `
+                    <h4>❌ Before Normalization</h4>
+                    <p><strong>Problems:</strong></p>
+                    <ul>
+                        <li>Data duplication (repeated course information)</li>
+                        <li>Update anomalies (change course name in multiple places)</li>
+                        <li>Insert anomalies (can't add course without students)</li>
+                        <li>Delete anomalies (delete student might lose course info)</li>
+                    </ul>
+                    <p><em>Like having one big messy spreadsheet with everything mixed together</em></p>
+                `;
+            } else {
+                content = `
+                    <h4>✅ After Normalization</h4>
+                    <p><strong>Benefits:</strong></p>
+                    <ul>
+                        <li>No data duplication</li>
+                        <li>Easy updates (change course name in one place)</li>
+                        <li>Flexible inserts (add courses without students)</li>
+                        <li>Safe deletes (delete student won't affect course)</li>
+                        <li>Better performance</li>
+                    </ul>
+                    <p><em>Like having organized file cabinets with clear categories</em></p>
+                `;
+            }
+            
+            output.innerHTML = content;
+        }
+
+        function showNormalizedTables() {
+            document.getElementById('normalizedTables').style.display = 'block';
+        }
+
+        // Relationships
+        function showRelationship(type) {
+            const output = document.getElementById('relationshipOutput');
+            let content = '';
+            
+            switch(type) {
+                case 'one_to_one':
+                    content = `
+                        <h4>1️⃣➡️1️⃣ One-to-One Relationship</h4>
+                        <p><strong>One record in Table A relates to exactly one record in Table B</strong></p>
+                        <p><strong>Real Example:</strong> Person ↔ Passport (each person has one passport)</p>
+                        <p><strong>Database Example:</strong> Users ↔ UserProfiles (extra user details)</p>
+                        <p><strong>Implementation:</strong> Foreign key in either table</p>
+                    `;
+                    break;
+                case 'one_to_many':
+                    content = `
+                        <h4>1️⃣➡️🔢 One-to-Many Relationship</h4>
+                        <p><strong>One record in Table A relates to many records in Table B</strong></p>
+                        <p><strong>Real Example:</strong> Author ↔ Books (one author writes many books)</p>
+                        <p><strong>Database Example:</strong> Customers ↔ Orders (one customer has many orders)</p>
+                        <p><strong>Implementation:</strong> Foreign key in the "many" table</p>
+                    `;
+                    break;
+                case 'many_to_many':
+                    content = `
+                        <h4>🔢➡️🔢 Many-to-Many Relationship</h4>
+                        <p><strong>Many records in Table A relate to many records in Table B</strong></p>
+                        <p><strong>Real Example:</strong> Students ↔ Courses (many students take many courses)</p>
+                        <p><strong>Database Example:</strong> Products ↔ Categories (products in multiple categories)</p>
+                        <p><strong>Implementation:</strong> Junction table with two foreign keys</p>
+                    `;
+                    break;
+            }
+            
+            output.innerHTML = content;
+        }
+
+        // NoSQL advantages
+        function showNoSQLAdvantage(type) {
+            const output = document.getElementById('nosqlOutput');
+            let content = '';
+            
+            switch(type) {
+                case 'flexibility':
+                    content = `
+                        <h4>🎯 Flexibility</h4>
+                        <p><strong>Problem with SQL:</strong> Need to define all columns upfront</p>
+                        <p><strong>NoSQL Solution:</strong> Add new fields anytime without changing structure</p>
+                        <p><strong>Example:</strong> User profiles can have different fields for different users</p>
+                        <p><em>Like having flexible forms instead of rigid spreadsheets</em></p>
+                    `;
+                    break;
+                case 'scalability':
+                    content = `
+                        <h4>📈 Scalability</h4>
+                        <p><strong>Problem with SQL:</strong> Hard to distribute across multiple servers</p>
+                        <p><strong>NoSQL Solution:</strong> Designed to scale horizontally (add more servers)</p>
+                        <p><strong>Example:</strong> Handle millions of users by adding more cheap servers</p>
+                        <p><em>Like building with Lego blocks instead of one big sculpture</em></p>
+                    `;
+                    break;
+                case 'performance':
+                    content = `
+                        <h4>⚡ Performance</h4>
+                        <p><strong>Problem with SQL:</strong> Complex joins can be slow with huge data</p>
+                        <p><strong>NoSQL Solution:</strong> Optimized for specific access patterns</p>
+                        <p><strong>Example:</strong> Key-value stores can retrieve data in milliseconds</p>
+                        <p><em>Like having specialized tools instead of one Swiss army knife</em></p>
+                    `;
+                    break;
+            }
+            
+            output.innerHTML = content;
+        }
+
+        // ACID properties
+        function showACIDProperty(property) {
+            const output = document.getElementById('acidOutput');
+            let content = '';
+            
+            switch(property) {
+                case 'atomicity':
+                    content = `
+                        <h4>⚛️ Atomicity</h4>
+                        <p><strong>"All or Nothing" principle</strong></p>
+                        <p>Either all operations in a transaction complete, or none do</p>
+                        <p><strong>Example:</strong> Bank transfer - both debit and credit must happen</p>
+                        <p><em>Like a light switch - it's either on or off, never halfway</em></p>
+                    `;
+                    break;
+                case 'consistency':
+                    content = `
+                        <h4>✅ Consistency</h4>
+                        <p><strong>Data remains valid</strong></p>
+                        <p>Transaction can't violate database rules and constraints</p>
+                        <p><strong>Example:</strong> Account balance can't go negative if not allowed</p>
+                        <p><em>Like a bouncer checking IDs - only valid data gets in</em></p>
+                    `;
+                    break;
+                case 'isolation':
+                    content = `
+                        <h4>🚧 Isolation</h4>
+                        <p><strong>Transactions don't interfere</strong></p>
+                        <p>Concurrent transactions don't affect each other</p>
+                        <p><strong>Example:</strong> Two people can transfer money simultaneously safely</p>
+                        <p><em>Like separate checkout lanes - each customer gets their turn</em></p>
+                    `;
+                    break;
+                case 'durability':
+                    content = `
+                        <h4>💾 Durability</h4>
+                        <p><strong>Completed transactions are permanent</strong></p>
+                        <p>Once committed, data survives system failures</p>
+                        <p><strong>Example:</strong> Bank transfer persists even if power goes out</p>
+                        <p><em>Like writing in pen instead of pencil - it's permanent</em></p>
+                    `;
+                    break;
+            }
+            
+            output.innerHTML = content;
+        }
+
+        // Transaction simulation
+        function simulateTransaction() {
+            const resultDiv = document.getElementById('transactionResult');
+            
+            resultDiv.innerHTML = `
+                <h4>🏦 Bank Transfer Simulation</h4>
+                <p><strong>Starting balances:</strong></p>
+                <ul>
+                    <li>Alice: $1000</li>
+                    <li>Bob: $500</li>
+                </ul>
+                <p><strong>Transferring $100 from Alice to Bob...</strong></p>
+                <p style="color: green;">✅ Transaction successful!</p>
+                <p><strong>Final balances:</strong></p>
+                <ul>
+                    <li>Alice: $900</li>
+                    <li>Bob: $600</li>
+                </ul>
+                <p><em>Atomicity ensured both updates happened together!</em></p>
+            `;
+        }
+    </script>
+</body>
+</html>

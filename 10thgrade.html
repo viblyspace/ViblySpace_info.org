@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViblySpace - Learn Coding for All Grades</title>
+    <link rel="icon" type="favicon" href="connection.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #2d3748;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Main Header Styles */
+        .main-header {
+            background: white;
+            color: #2d3748;
+            padding: 15px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #dc2626;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .main-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #dc2626, #b91c1c, #ef4444);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            font-size: 2.2rem;
+            color: #dc2626;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        nav a:hover {
+            color: #dc2626;
+            background-color: #f1f5f9;
+        }
+        
+        nav a.active {
+            color: #dc2626;
+            background-color: #fef2f2;
+            font-weight: 600;
+        }
+        
+        /* Page Header */
+        .header {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .grade-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Navigation */
+        .chapter-nav {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .chapter-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            list-style: none;
+        }
+        
+        .chapter-item {
+            background: #fef2f2;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #dc2626;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .chapter-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chapter-icon {
+            font-size: 1.5rem;
+            color: #dc2626;
+            width: 40px;
+            text-align: center;
+        }
+        
+        /* Content Cards */
+        .chapter {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+        
+        .chapter::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #dc2626, #b91c1c);
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .chapter-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .chapter-number {
+            background: #dc2626;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);
+        }
+        
+        h2 {
+            color: #2d3748;
+            font-size: 1.8rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h3 {
+            color: #dc2626;
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h4 {
+            color: #b91c1c;
+            margin: 20px 0 12px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Content Elements */
+        .concept-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            border-left: 4px solid #dc2626;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+            position: relative;
+        }
+        
+        .concept-box::before {
+            content: "\f0eb";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #dc2626;
+            opacity: 0.2;
+            font-size: 2rem;
+        }
+
+        .simple-explanation {
+            background: #f0f9ff;
+            border: 2px solid #7dd3fc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .simple-explanation::before {
+            content: "\f059";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #0369a1;
+            opacity: 0.3;
+            font-size: 1.5rem;
+        }
+
+        .simple-explanation h4 {
+            color: #0369a1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .real-world {
+            background: #f0f9ff;
+            border: 1px solid #7dd3fc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .real-world::before {
+            content: "\f06c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #0369a1;
+            opacity: 0.3;
+            font-size: 1.5rem;
+        }
+        
+        .real-world h4 {
+            color: #0369a1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            border: 1px solid #4a5568;
+            position: relative;
+        }
+        
+        .code-block::before {
+            content: "\f121";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #a0aec0;
+            font-size: 1rem;
+        }
+        
+        .code-comment {
+            color: #a0aec0;
+        }
+        
+        .output {
+            background: #edf2f7;
+            border: 2px dashed #cbd5e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .output::before {
+            content: "Output";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #edf2f7;
+            padding: 0 10px;
+            font-size: 0.8rem;
+            color: #4a5568;
+            font-weight: 600;
+        }
+        
+        .try-it {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            border: 2px solid #dc2626;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+        }
+        
+        .try-it::before {
+            content: "\f544";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #dc2626;
+            opacity: 0.3;
+            font-size: 2rem;
+        }
+        
+        .interactive-area {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .code-editor {
+            width: 100%;
+            min-height: 150px;
+            background: #2d3748;
+            color: #e2e8f0;
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.95rem;
+            resize: vertical;
+            margin: 15px 0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.3);
+        }
+        
+        .hint {
+            background: #fffaf0;
+            border: 1px solid #fbd38d;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            position: relative;
+        }
+        
+        .hint::before {
+            content: "\f05a";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #d69e2e;
+            font-size: 1.2rem;
+        }
+        
+        .success {
+            color: #059669;
+            font-weight: 600;
+        }
+        
+        .error {
+            color: #dc2626;
+            font-weight: 600;
+        }
+        
+        /* Project Section */
+        .project {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,70 C20,40 40,60 60,30 C80,0 100,20 100,50 L100,100 L0,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .project h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #718096;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .chapter {
+                padding: 25px;
+            }
+            
+            .chapter-list {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                gap: 10px;
+            }
+            
+            nav a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .logo-icon {
+                font-size: 1.8rem;
+            }
+            
+            .chapter-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .chapter-number {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Header -->
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-laptop-code logo-icon"></i>
+                    <div class="logo-text">ViblySpace</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="7thgrade.html" class="nav-link">Grade 7</a></li>
+                        <li><a href="8thgrade.html" class="nav-link">Grade 8</a></li>
+                        <li><a href="9thgrade.html" class="nav-link">Grade 9</a></li>
+                        <li><a href="10thgrade.html" class="nav-link active">Grade 10</a></li>
+                         <li><a href="11thgrade.html" class="nav-link">Grade 11</a></li>
+                        <li><a href="python.html" class="nav-link">Python</a></li>
+                        <li><a href="concept.html" class="nav-link">HTML</a></li>
+                        <li><a href="css.html" class="nav-link">CSS</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Page Header -->
+        <div class="header">
+            <div class="grade-tag"><i class="fas fa-graduation-cap"></i> Grade 10 Curriculum</div>
+            <h1><i class="fas fa-globe"></i> Real-World Programming Applications</h1>
+            <p class="subtitle">Take your skills to the next level by building practical applications that solve real problems.</p>
+        </div>
+
+        <!-- Chapter Navigation -->
+        <div class="chapter-nav">
+            <h3 style="color: #dc2626; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-map"></i> Course Chapters
+            </h3>
+            <ul class="chapter-list">
+                <li class="chapter-item">
+                    <div class="chapter-icon"><i class="fas fa-file-alt"></i></div>
+                    <div><strong>Chapter 1:</strong> File Handling - Saving Data</div>
+                </li>
+                <li class="chapter-item">
+                    <div class="chapter-icon"><i class="fas fa-globe"></i></div>
+                    <div><strong>Chapter 2:</strong> Web Programming Basics</div>
+                </li>
+                <li class="chapter-item">
+                    <div class="chapter-icon"><i class="fas fa-chart-bar"></i></div>
+                    <div><strong>Chapter 3:</strong> Data Analysis Introduction</div>
+                </li>
+                <li class="chapter-item">
+                    <div class="chapter-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div><strong>Chapter 4:</strong> Error Handling</div>
+                </li>
+                <li class="chapter-item">
+                    <div class="chapter-icon"><i class="fas fa-wallet"></i></div>
+                    <div><strong>Final Project:</strong> Personal Finance Tracker</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Chapter 1 -->
+        <div class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">1</div>
+                <h2><i class="fas fa-file-alt"></i> File Handling - Saving Data Permanently</h2>
+            </div>
+
+            <div class="simple-explanation">
+                <h4><i class="fas fa-brain"></i> Simple Explanation</h4>
+                <p><strong>File handling</strong> is like saving your work in a notebook instead of writing on a whiteboard. When you write on a whiteboard, it gets erased when you turn it off. But when you write in a notebook, your work stays there forever!</p>
+                <p>In programming, we use files to save data so it doesn't disappear when we close our program.</p>
+            </div>
+
+            <h3><i class="fas fa-code"></i> Reading from Files</h3>
+            <div class="code-block">
+<span class="code-comment"># Reading a file is like reading a book</span><br>
+<span class="code-comment"># Step 1: Open the file (like opening a book)</span><br>
+file = <span style="color: #8be9fd">open</span>(<span style="color: #f1fa8c">"my_notes.txt"</span>, <span style="color: #f1fa8c">"r"</span>)  <span class="code-comment"># "r" means read</span><br>
+<br>
+<span class="code-comment"># Step 2: Read the content (like reading pages)</span><br>
+content = file.read()<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"File content:"</span>)<br>
+<span style="color: #8be9fd">print</span>(content)<br>
+<br>
+<span class="code-comment"># Step 3: Close the file (like closing the book)</span><br>
+file.close()
+            </div>
+
+            <h3><i class="fas fa-code"></i> Writing to Files</h3>
+            <div class="code-block">
+<span class="code-comment"># Writing to a file is like writing in a diary</span><br>
+<span class="code-comment"># Step 1: Open the file for writing</span><br>
+file = <span style="color: #8be9fd">open</span>(<span style="color: #f1fa8c">"my_diary.txt"</span>, <span style="color: #f1fa8c">"w"</span>)  <span class="code-comment"># "w" means write</span><br>
+<br>
+<span class="code-comment"># Step 2: Write some text</span><br>
+file.write(<span style="color: #f1fa8c">"Dear Diary,\n"</span>)<br>
+file.write(<span style="color: #f1fa8c">"Today I learned file handling in Python!\n"</span>)<br>
+file.write(<span style="color: #f1fa8c">"It's like having a permanent memory for my programs."</span>)<br>
+<br>
+<span class="code-comment"># Step 3: Close the file</span><br>
+file.close()<br>
+<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"✅ Diary entry saved successfully!"</span>)
+            </div>
+
+            <div class="try-it">
+                <h3><i class="fas fa-flask"></i> Try It Yourself: Create a Student Records File</h3>
+                <p>Create a program that saves student information to a file.</p>
+                
+                <div class="interactive-area">
+                    <textarea class="code-editor" id="code1-1"># Create student data
+students = [
+    {"name": "Anya Sharma", "grade": 10, "marks": 85},
+    {"name": "Rohan Patel", "grade": 10, "marks": 92},
+    {"name": "Priya Kumar", "grade": 10, "marks": 78}
+]
+
+# Save to file
+file = open("students.txt", "w")
+file.write("Student Records\\n")
+file.write("=" * 20 + "\\n")
+
+for student in students:
+    file.write(f"Name: {student['name']}\\n")
+    file.write(f"Grade: {student['grade']}\\n")
+    file.write(f"Marks: {student['marks']}\\n")
+    file.write("-" * 15 + "\\n")
+
+file.close()
+print("✅ Student records saved to students.txt")
+
+# Read and display the file
+print("\\n📖 Reading from file:")
+file = open("students.txt", "r")
+print(file.read())
+file.close()</textarea>
+                    <button class="btn" onclick="runCode('1-1')"><i class="fas fa-play"></i> Run Code</button>
+                    <div class="hint">
+                        <strong>Hint:</strong> Remember to close files after using them! Think of it like closing a book when you're done reading.
+                    </div>
+                    <div id="output1-1" class="output">Output will appear here...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter 2 -->
+        <div class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">2</div>
+                <h2><i class="fas fa-globe"></i> Web Programming Basics</h2>
+            </div>
+
+            <div class="simple-explanation">
+                <h4><i class="fas fa-brain"></i> Simple Explanation</h4>
+                <p><strong>Web programming</strong> is like building a house that people can visit through the internet. </p>
+                <p><strong>HTML</strong> is the structure (walls, rooms), <strong>CSS</strong> is the paint and decoration, and <strong>Python (Flask)</strong> is the electricity and plumbing that makes everything work!</p>
+            </div>
+
+            <h3><i class="fas fa-code"></i> Creating a Simple Website with Flask</h3>
+            <div class="code-block">
+<span class="code-comment"># Flask is like a magic box that turns Python into websites</span><br>
+<span class="code-comment"># First, we need to install Flask: pip install flask</span><br>
+<br>
+<span style="color: #ff79c6">from</span> flask <span style="color: #ff79c6">import</span> Flask<br>
+<br>
+<span class="code-comment"># Create our website app</span><br>
+app = Flask(<span style="color: #f1fa8c">"MyWebsite"</span>)<br>
+<br>
+<span class="code-comment"># Create a home page (like the main door of our house)</span><br>
+<span style="color: #ff79c6">@app.route</span>(<span style="color: #f1fa8c">"/"</span>)<br>
+<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">home</span>():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">return</span> <span style="color: #f1fa8c">"""</span><br><span style="color: #f1fa8c">&lt;h1&gt;Welcome to My Python Website!&lt;/h1&gt;</span><br><span style="color: #f1fa8c">&lt;p&gt;This is my first web page with Python.&lt;/p&gt;</span><br><span style="color: #f1fa8c">&lt;a href="/about"&gt;Learn about me&lt;/a&gt;</span><br><span style="color: #f1fa8c">"""</span><br>
+<br>
+<span class="code-comment"># Create an about page (like another room in our house)</span><br>
+<span style="color: #ff79c6">@app.route</span>(<span style="color: #f1fa8c">"/about"</span>)<br>
+<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">about</span>():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">return</span> <span style="color: #f1fa8c">"""</span><br><span style="color: #f1fa8c">&lt;h1&gt;About Me&lt;/h1&gt;</span><br><span style="color: #f1fa8c">&lt;p&gt;I'm a Grade 10 student learning web programming!&lt;/p&gt;</span><br><span style="color: #f1fa8c">&lt;a href="/"&gt;Go back home&lt;/a&gt;</span><br><span style="color: #f1fa8c">"""</span><br>
+<br>
+<span class="code-comment"># Start the website</span><br>
+<span style="color: #ff79c6">if</span> <span style="color: #ffb86c">__name__</span> == <span style="color: #f1fa8c">"__main__"</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;app.run(debug=<span style="color: #ff79c6">True</span>)
+            </div>
+
+            <div class="real-world">
+                <h4><i class="fas fa-lightbulb"></i> How It Works</h4>
+                <p>When you run this code, Flask creates a local website. You can visit it in your browser by going to <code>http://localhost:5000</code></p>
+                <p>• The <code>@app.route("/")</code> tells Flask: "When someone visits the main page, show them this content"</p>
+                <p>• The <code>@app.route("/about")</code> tells Flask: "When someone visits /about, show them different content"</p>
+            </div>
+        </div>
+
+        <!-- Chapter 3 -->
+        <div class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">3</div>
+                <h2><i class="fas fa-chart-bar"></i> Data Analysis Introduction</h2>
+            </div>
+
+            <div class="simple-explanation">
+                <h4><i class="fas fa-brain"></i> Simple Explanation</h4>
+                <p><strong>Data analysis</strong> is like being a detective who looks at clues (data) to find patterns and solve mysteries.</p>
+                <p>For example, if you have test scores of all students, you can analyze them to find:</p>
+                <ul style="margin: 10px 0 10px 30px;">
+                    <li>Who got the highest score?</li>
+                    <li>What's the average score?</li>
+                    <li>How many students passed?</li>
+                </ul>
+            </div>
+
+            <h3><i class="fas fa-code"></i> Basic Data Analysis with Lists</h3>
+            <div class="code-block">
+<span class="code-comment"># Let's analyze test scores of our class</span><br>
+scores = [<span style="color: #bd93f9">85</span>, <span style="color: #bd93f9">92</span>, <span style="color: #bd93f9">78</span>, <span style="color: #bd93f9">96</span>, <span style="color: #bd93f9">88</span>, <span style="color: #bd93f9">74</span>, <span style="color: #bd93f9">91</span>, <span style="color: #bd93f9">89</span>]<br>
+<br>
+<span class="code-comment"># Basic analysis</span><br>
+average = <span style="color: #8be9fd">sum</span>(scores) / <span style="color: #8be9fd">len</span>(scores)<br>
+highest = <span style="color: #8be9fd">max</span>(scores)<br>
+lowest = <span style="color: #8be9fd">min</span>(scores)<br>
+<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"📊 Test Score Analysis"</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Number of students: {len(scores)}"</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Average score: {average:.1f}"</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Highest score: {highest}"</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Lowest score: {lowest}"</span>)<br>
+<br>
+<span class="code-comment"># Find how many students passed (score >= 75)</span><br>
+passed = [score <span style="color: #ff79c6">for</span> score <span style="color: #ff79c6">in</span> scores <span style="color: #ff79c6">if</span> score >= <span style="color: #bd93f9">75</span>]<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Students passed: {len(passed)}/{len(scores)}"</span>)<br>
+<br>
+<span class="code-comment"># Sort scores to see ranking</span><br>
+sorted_scores = <span style="color: #8be9fd">sorted</span>(scores, reverse=<span style="color: #ff79c6">True</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Top 3 scores: {sorted_scores[:3]}"</span>)
+            </div>
+            <div class="output">
+📊 Test Score Analysis<br>
+Number of students: 8<br>
+Average score: 86.6<br>
+Highest score: 96<br>
+Lowest score: 74<br>
+Students passed: 7/8<br>
+Top 3 scores: [96, 92, 91]
+            </div>
+
+            <div class="try-it">
+                <h3><i class="fas fa-flask"></i> Try It Yourself: Analyze Weather Data</h3>
+                <p>Create a program that analyzes weekly temperature data.</p>
+                
+                <div class="interactive-area">
+                    <textarea class="code-editor" id="code3-1"># Weekly temperature data (in Celsius)
+temperatures = [25, 28, 26, 30, 32, 29, 27]
+
+print("🌡️ Weekly Temperature Analysis")
+print(f"Temperatures: {temperatures}")
+
+# Basic calculations
+average_temp = sum(temperatures) / len(temperatures)
+hottest_day = max(temperatures)
+coldest_day = min(temperatures)
+
+print(f"Average temperature: {average_temp:.1f}°C")
+print(f"Hottest day: {hottest_day}°C")
+print(f"Coldest day: {coldest_day}°C")
+
+# Find days above 28°C
+hot_days = [temp for temp in temperatures if temp > 28]
+print(f"Days above 28°C: {len(hot_days)} days")
+
+# Temperature range
+temp_range = hottest_day - coldest_day
+print(f"Temperature range: {temp_range}°C")
+
+# Bonus: Convert to Fahrenheit
+fahrenheit = [(temp * 9/5) + 32 for temp in temperatures]
+print(f"Temperatures in Fahrenheit: {[round(f, 1) for f in fahrenheit]}")</textarea>
+                    <button class="btn" onclick="runCode('3-1')"><i class="fas fa-play"></i> Run Code</button>
+                    <div id="output3-1" class="output">Output will appear here...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter 4 -->
+        <div class="chapter">
+            <div class="chapter-header">
+                <div class="chapter-number">4</div>
+                <h2><i class="fas fa-exclamation-triangle"></i> Error Handling</h2>
+            </div>
+
+            <div class="simple-explanation">
+                <h4><i class="fas fa-brain"></i> Simple Explanation</h4>
+                <p><strong>Error handling</strong> is like having a backup plan when something goes wrong. Instead of your program crashing, you can tell it what to do when it encounters problems.</p>
+                <p>Think of it like having an umbrella when it might rain - you're prepared for unexpected situations!</p>
+            </div>
+
+            <h3><i class="fas fa-code"></i> Basic Error Handling with Try-Except</h3>
+            <div class="code-block">
+<span class="code-comment"># Without error handling - program crashes if something goes wrong</span><br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Let's divide two numbers"</span>)<br>
+num1 = <span style="color: #8be9fd">int</span>(<span style="color: #8be9fd">input</span>(<span style="color: #f1fa8c">"Enter first number: "</span>))<br>
+num2 = <span style="color: #8be9fd">int</span>(<span style="color: #8be9fd">input</span>(<span style="color: #f1fa8c">"Enter second number: "</span>))<br>
+<br>
+result = num1 / num2  <span class="code-comment"># This will crash if num2 is 0!</span><br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Result: {result}"</span>)<br>
+<br>
+<span class="code-comment"># With error handling - program continues gracefully</span><br>
+<span style="color: #ff79c6">try</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;num1 = <span style="color: #8be9fd">int</span>(<span style="color: #8be9fd">input</span>(<span style="color: #f1fa8c">"Enter first number: "</span>))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;num2 = <span style="color: #8be9fd">int</span>(<span style="color: #8be9fd">input</span>(<span style="color: #f1fa8c">"Enter second number: "</span>))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;result = num1 / num2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Result: {result}"</span>)<br>
+<span style="color: #ff79c6">except</span> ZeroDivisionError:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"❌ Error: Cannot divide by zero!"</span>)<br>
+<span style="color: #ff79c6">except</span> ValueError:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"❌ Error: Please enter valid numbers!"</span>)<br>
+<span style="color: #ff79c6">except</span> Exception <span style="color: #ff79c6">as</span> e:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"❌ An unexpected error occurred: {e}"</span>)<br>
+<span style="color: #ff79c6">finally</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"✅ Program execution completed"</span>)
+            </div>
+
+            <div class="real-world">
+                <h4><i class="fas fa-lightbulb"></i> Common Error Types</h4>
+                <ul style="margin: 10px 0 10px 30px;">
+                    <li><strong>ZeroDivisionError:</strong> When you try to divide by zero</li>
+                    <li><strong>ValueError:</strong> When you provide invalid input (like letters instead of numbers)</li>
+                    <li><strong>FileNotFoundError:</strong> When you try to open a file that doesn't exist</li>
+                    <li><strong>TypeError:</strong> When you use wrong data types (like adding string to number)</li>
+                    <li><strong>IndexError:</strong> When you try to access list items that don't exist</li>
+                </ul>
+            </div>
+
+            <h3><i class="fas fa-code"></i> Practical Example: Safe File Reading</h3>
+            <div class="code-block">
+<span class="code-comment"># Safe way to read files with error handling</span><br>
+<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">read_file_safely</span>(filename):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">try</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">with</span> <span style="color: #8be9fd">open</span>(filename, <span style="color: #f1fa8c">"r"</span>) <span style="color: #ff79c6">as</span> file:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content = file.read()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"✅ Successfully read {filename}"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">return</span> content<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">except</span> FileNotFoundError:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"❌ File '{filename}' not found!"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">return</span> <span style="color: #ff79c6">None</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">except</span> PermissionError:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"❌ No permission to read '{filename}'"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">return</span> <span style="color: #ff79c6">None</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">except</span> Exception <span style="color: #ff79c6">as</span> e:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"❌ Unexpected error: {e}"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">return</span> <span style="color: #ff79c6">None</span><br>
+<br>
+<span class="code-comment"># Test the function</span><br>
+content = read_file_safely(<span style="color: #f1fa8c">"my_notes.txt"</span>)<br>
+<span style="color: #ff79c6">if</span> content:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"File content:"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(content)<br>
+<span style="color: #ff79c6">else</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"Could not read the file."</span>)
+            </div>
+
+            <div class="try-it">
+                <h3><i class="fas fa-flask"></i> Try It Yourself: Create a Robust Calculator</h3>
+                <p>Create a calculator that handles various user input errors gracefully.</p>
+                
+                <div class="interactive-area">
+                    <textarea class="code-editor" id="code4-1">def safe_calculator():
+    print("🧮 Safe Calculator")
+    print("Operations: +, -, *, /")
+    
+    try:
+        # Get user input
+        num1 = float(input("Enter first number: "))
+        operation = input("Enter operation (+, -, *, /): ")
+        num2 = float(input("Enter second number: "))
+        
+        # Perform calculation based on operation
+        if operation == "+":
+            result = num1 + num2
+        elif operation == "-":
+            result = num1 - num2
+        elif operation == "*":
+            result = num1 * num2
+        elif operation == "/":
+            if num2 == 0:
+                return "❌ Error: Cannot divide by zero!"
+            result = num1 / num2
+        else:
+            return f"❌ Error: Unknown operation '{operation}'"
+        
+        return f"✅ Result: {num1} {operation} {num2} = {result}"
+    
+    except ValueError:
+        return "❌ Error: Please enter valid numbers!"
+    except Exception as e:
+        return f"❌ Unexpected error: {e}"
+
+# Test the calculator
+print(safe_calculator())
+
+# Let's also test file operations with error handling
+print("\n📁 Testing file operations:")
+try:
+    with open("config.txt", "r") as file:
+        settings = file.read()
+        print("✅ Config file loaded successfully")
+except FileNotFoundError:
+    print("ℹ️ Config file not found, using default settings")
+    settings = "default"
+except Exception as e:
+    print(f"❌ Error reading config: {e}")
+    settings = "default"
+
+print(f"Current settings: {settings}")</textarea>
+                    <button class="btn" onclick="runCode('4-1')"><i class="fas fa-play"></i> Run Code</button>
+                    <div class="hint">
+                        <strong>Hint:</strong> The <code>try-except</code> block lets you "try" risky code and "except" (catch) any errors that occur, preventing your program from crashing.
+                    </div>
+                    <div id="output4-1" class="output">Output will appear here...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Project -->
+        <div class="project">
+            <h3><i class="fas fa-wallet"></i> Final Project: Personal Finance Tracker</h3>
+            <p>Create a complete application to track your income and expenses using everything you've learned!</p>
+            
+            <div class="code-block" style="background: rgba(0, 0, 0, 0.3);">
+<span class="code-comment"># Personal Finance Tracker - Complete Project</span><br>
+<span style="color: #ff79c6">class</span> <span style="color: #50fa7b">FinanceTracker</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">__init__</span>(<span style="color: #ffb86c">self</span>):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ffb86c">self</span>.transactions = []<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ffb86c">self</span>.balance = <span style="color: #bd93f9">0</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ffb86c">self</span>.load_data()<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">add_income</span>(<span style="color: #ffb86c">self</span>, amount, description):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ffb86c">self</span>.balance += amount<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transaction = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"type"</span>: <span style="color: #f1fa8c">"Income"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"amount"</span>: amount,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"description"</span>: description<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ffb86c">self</span>.transactions.append(transaction)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"✅ Added income: ₹{amount} - {description}"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ffb86c">self</span>.save_data()<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">add_expense</span>(<span style="color: #ffb86c">self</span>, amount, description):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">if</span> amount > <span style="color: #ffb86c">self</span>.balance:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"❌ Not enough balance!"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">return</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ffb86c">self</span>.balance -= amount<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transaction = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"type"</span>: <span style="color: #f1fa8c">"Expense"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"amount"</span>: amount,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"description"</span>: description<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ffb86c">self</span>.transactions.append(transaction)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"✅ Added expense: ₹{amount} - {description}"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ffb86c">self</span>.save_data()<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">show_summary</span>(<span style="color: #ffb86c">self</span>):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total_income = <span style="color: #8be9fd">sum</span>(t[<span style="color: #f1fa8c">"amount"</span>] <span style="color: #ff79c6">for</span> t <span style="color: #ff79c6">in</span> <span style="color: #ffb86c">self</span>.transactions <span style="color: #ff79c6">if</span> t[<span style="color: #f1fa8c">"type"</span>] == <span style="color: #f1fa8c">"Income"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total_expense = <span style="color: #8be9fd">sum</span>(t[<span style="color: #f1fa8c">"amount"</span>] <span style="color: #ff79c6">for</span> t <span style="color: #ff79c6">in</span> <span style="color: #ffb86c">self</span>.transactions <span style="color: #ff79c6">if</span> t[<span style="color: #f1fa8c">"type"</span>] == <span style="color: #f1fa8c">"Expense"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"\n💰 FINANCIAL SUMMARY"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"="</span> * <span style="color: #bd93f9">30</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Current Balance: ₹{self.balance}"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Total Income: ₹{total_income}"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Total Expenses: ₹{total_expense}"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"Number of Transactions: {len(self.transactions)}"</span>)<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">show_transactions</span>(<span style="color: #ffb86c">self</span>):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">if</span> <span style="color: #ff79c6">not</span> <span style="color: #ffb86c">self</span>.transactions:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"No transactions yet."</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">return</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"\n📝 TRANSACTION HISTORY"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">for</span> i, transaction <span style="color: #ff79c6">in</span> <span style="color: #8be9fd">enumerate</span>(<span style="color: #ffb86c">self</span>.transactions, <span style="color: #bd93f9">1</span>):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sign = <span style="color: #f1fa8c">"+"</span> <span style="color: #ff79c6">if</span> transaction[<span style="color: #f1fa8c">"type"</span>] == <span style="color: #f1fa8c">"Income"</span> <span style="color: #ff79c6">else</span> <span style="color: #f1fa8c">"-"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">f"{i}. {transaction['type']}: {sign}₹{transaction['amount']} - {transaction['description']}"</span>)<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">save_data</span>(<span style="color: #ffb86c">self</span>):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">with</span> <span style="color: #8be9fd">open</span>(<span style="color: #f1fa8c">"finance_data.txt"</span>, <span style="color: #f1fa8c">"w"</span>) <span style="color: #ff79c6">as</span> file:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file.write(<span style="color: #f1fa8c">f"Balance:{self.balance}\n"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">for</span> transaction <span style="color: #ff79c6">in</span> <span style="color: #ffb86c">self</span>.transactions:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file.write(<span style="color: #f1fa8c">f"{transaction['type']},{transaction['amount']},{transaction['description']}\n"</span>)<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">def</span> <span style="color: #50fa7b">load_data</span>(<span style="color: #ffb86c">self</span>):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">try</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">with</span> <span style="color: #8be9fd">open</span>(<span style="color: #f1fa8c">"finance_data.txt"</span>, <span style="color: #f1fa8c">"r"</span>) <span style="color: #ff79c6">as</span> file:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lines = file.readlines()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">if</span> lines:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ffb86c">self</span>.balance = float(lines[<span style="color: #bd93f9">0</span>].split(<span style="color: #f1fa8c">":"</span>)[<span style="color: #bd93f9">1</span>])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">for</span> line <span style="color: #ff79c6">in</span> lines[<span style="color: #bd93f9">1</span>:]:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parts = line.strip().split(<span style="color: #f1fa8c">","</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">if</span> <span style="color: #8be9fd">len</span>(parts) == <span style="color: #bd93f9">3</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transaction = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"type"</span>: parts[<span style="color: #bd93f9">0</span>],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"amount"</span>: float(parts[<span style="color: #bd93f9">1</span>]),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f1fa8c">"description"</span>: parts[<span style="color: #bd93f9">2</span>]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ffb86c">self</span>.transactions.append(transaction)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">except</span> FileNotFoundError:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># First time running - no data file yet</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff79c6">pass</span><br>
+<br>
+<span class="code-comment"># Main program</span><br>
+tracker = FinanceTracker()<br>
+<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"💼 PERSONAL FINANCE TRACKER"</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"1. Add Income"</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"2. Add Expense"</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"3. Show Summary"</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"4. Show Transactions"</span>)<br>
+<span style="color: #8be9fd">print</span>(<span style="color: #f1fa8c">"5. Exit"</span>)<br>
+<br>
+<span class="code-comment"># Add some sample data</span><br>
+tracker.add_income(<span style="color: #bd93f9">1000</span>, <span style="color: #f1fa8c">"Pocket money"</span>)<br>
+tracker.add_income(<span style="color: #bd93f9">500</span>, <span style="color: #f1fa8c">"Birthday gift"</span>)<br>
+tracker.add_expense(<span style="color: #bd93f9">200</span>, <span style="color: #f1fa8c">"Lunch"</span>)<br>
+tracker.add_expense(<span style="color: #bd93f9">150</span>, <span style="color: #f1fa8c">"Books"</span>)<br>
+<br>
+tracker.show_summary()<br>
+tracker.show_transactions()
+            </div>
+
+            <div class="try-it" style="background: rgba(255, 255, 255, 0.1); border-color: white;">
+                <h3 style="color: white;"><i class="fas fa-rocket"></i> Challenge: Add More Features</h3>
+                <p style="color: white;">Try adding these features to make your finance tracker even better:</p>
+                <ul style="color: white; margin: 15px 0 15px 30px;">
+                    <li><i class="fas fa-tags"></i> Add categories for expenses (food, entertainment, etc.)</li>
+                    <li><i class="fas fa-calendar-alt"></i> Create monthly reports</li>
+                    <li><i class="fas fa-chart-pie"></i> Add a budget limit feature</li>
+                    <li><i class="fas fa-chart-line"></i> Create charts to visualize spending</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="lesson-nav">
+            <button class="btn"><a href="9thgrade.html" style="color: white; text-decoration: none;"><i class="fas fa-arrow-left"></i> Previous Grade</a></button>
+            <button class="btn"><a href="11thgrade.html" style="color: white; text-decoration: none;">Next Grade <i class="fas fa-arrow-right"></i></a></button>
+        </div>
+
+        <footer>
+            <p>ViblySpace - Grade 10 Programming Curriculum | Building Real-World Applications</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;"><i class="fas fa-arrow-right"></i> Congratulations! You've completed the ViblySpace coding curriculum from Grades 6-10! 🎓</p>
+            <button class="btn" style="margin-top: 15px;"><a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-home"></i> Back to ViblySpace</a></button>
+        </footer>
+    </div>
+
+    <script>
+        function runCode(codeId) {
+            const code = document.getElementById(`code${codeId}`).value;
+            const outputElement = document.getElementById(`output${codeId}`);
+            
+            try {
+                outputElement.innerHTML = '';
+                outputElement.className = 'output';
+                
+                let output = simulatePythonExecution(code);
+                outputElement.innerHTML = output;
+                
+            } catch (error) {
+                outputElement.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+                outputElement.className = 'output error';
+            }
+        }
+
+        function simulatePythonExecution(code) {
+            let output = '';
+            
+            if (code.includes('students.txt')) {
+                output = `✅ Student records saved to students.txt<br><br>📖 Reading from file:<br>Student Records<br>====================<br>Name: Anya Sharma<br>Grade: 10<br>Marks: 85<br>---------------<br>Name: Rohan Patel<br>Grade: 10<br>Marks: 92<br>---------------<br>Name: Priya Kumar<br>Grade: 10<br>Marks: 78<br>---------------<br>`;
+            } else if (code.includes('temperatures')) {
+                output = `🌡️ Weekly Temperature Analysis<br>Temperatures: [25, 28, 26, 30, 32, 29, 27]<br>Average temperature: 28.1°C<br>Hottest day: 32°C<br>Coldest day: 25°C<br>Days above 28°C: 3 days<br>Temperature range: 7°C<br>Temperatures in Fahrenheit: [77.0, 82.4, 78.8, 86.0, 89.6, 84.2, 80.6]`;
+            } else if (code.includes('safe_calculator')) {
+                output = `🧮 Safe Calculator<br>Operations: +, -, *, /<br>Enter first number: 10<br>Enter operation (+, -, *, /): /<br>Enter second number: 2<br>✅ Result: 10.0 / 2.0 = 5.0<br><br>📁 Testing file operations:<br>ℹ️ Config file not found, using default settings<br>Current settings: default`;
+            }
+            
+            return output || 'Code executed successfully! Check the example outputs above.';
+        }
+
+        // Initialize with example outputs
+        window.onload = function() {
+            document.getElementById('output1-1').innerHTML = 'Run the code to see file handling in action!';
+            document.getElementById('output3-1').innerHTML = 'Run the code to analyze temperature data!';
+            document.getElementById('output4-1').innerHTML = 'Run the code to test error handling!';
+        };
+    </script>
+</body>
+</html>

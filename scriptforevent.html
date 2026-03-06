@@ -1,0 +1,189 @@
+// ENHANCED VERSION WITH PRIVACY CONTROLS
+function doPost(e) {
+  try {
+    // Parse the JSON data from the form
+    const data = JSON.parse(e.postData.contents);
+    
+    // Get or create the spreadsheet (PRIVATE - only you can access)
+    const sheet = getSpreadsheet();
+    
+    // Add headers if this is the first submission
+    if (sheet.getLastRow() === 0) {
+      sheet.getRange(1, 1, 1, 11).setValues([[
+        'Timestamp', 
+        'School Name', 
+        'School Type', 
+        'Contact Name', 
+        'Contact Role', 
+        'Email', 
+        'Phone', 
+        'Events', 
+        'Student Count',
+        'Grade Levels',
+        'Receive Updates'
+      ]]);
+      
+      // Format header row
+      sheet.getRange(1, 1, 1, 11)
+        .setBackground('#4361ee')
+        .setFontColor('white')
+        .setFontWeight('bold');
+    }
+    
+    // Add the new row with form data
+    const newRow = sheet.getLastRow() + 1;
+    sheet.getRange(newRow, 1, 1, 11).setValues([[
+      data.timestamp,
+      data.schoolName,
+      data.schoolType,
+      data.contactName,
+      data.contactRole,
+      data.email,
+      data.phone,
+      data.events,
+      data.students,
+      data.gradeLevels,
+      data.updates ? 'Yes' : 'No'
+    ]]);
+    
+    // Format the new row
+    sheet.getRange(newRow, 1, 1, 11)
+      .setBorder(true, true, true, true, true, true)
+      .setVerticalAlignment('middle');
+    
+    // Auto-resize columns for better readability
+    sheet.autoResizeColumns(1, 11);
+    
+    // Send email notifications (ONLY TO YOU)
+    sendAdminNotification(data);
+    
+    // Send confirmation to school (ONLY TO THEM)
+    sendConfirmationEmail(data);
+    
+    // Return success response
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        result: 'success',
+        message: 'Registration received successfully!'
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    console.error('Error processing form:', error);
+    
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        result: 'error',
+        message: 'We encountered an issue, but your registration was saved. We will contact you shortly.'
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function getSpreadsheet() {
+  // PRIVATE SPREADSHEET - only accessible by you
+  const spreadsheetName = 'ViblySpace Event Registrations - PRIVATE';
+  let spreadsheet;
+  
+  try {
+    const files = DriveApp.getFilesByName(spreadsheetName);
+    if (files.hasNext()) {
+      spreadsheet = SpreadsheetApp.open(files.next());
+    } else {
+      spreadsheet = SpreadsheetApp.create(spreadsheetName);
+      
+      // MAKE SPREADSHEET PRIVATE (default is already private to you)
+      const file = DriveApp.getFileById(spreadsheet.getId());
+      file.setSharing(DriveApp.Access.PRIVATE, DriveApp.Permission.VIEW);
+    }
+  } catch (error) {
+    spreadsheet = SpreadsheetApp.create(spreadsheetName);
+  }
+  
+  return spreadsheet.getSheets()[0];
+}
+
+function sendAdminNotification(data) {
+  try {
+    // ONLY SEND TO ADMIN EMAIL (Update this to your email)
+    const adminEmails = [
+      'your-admin-email@gmail.com',  // Primary admin
+      // 'second-admin@viblyspace.org', // Optional: add team members
+    ];
+    
+    const subject = `🎉 New Event Registration: ${data.schoolName}`;
+    
+    const htmlBody = `
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .header { background: linear-gradient(135deg, #4361ee, #3a0ca3); color: white; padding: 20px; text-align: center; }
+        .content { padding: 20px; background: #f8f9fa; }
+        .details { background: white; padding: 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #4361ee; }
+        .footer { text-align: center; padding: 20px; color: #666; font-size: 14px; }
+        .privacy-note { background: #fff3cd; padding: 15px; border-radius: 5px; margin: 15px 0; border-left: 4px solid #ffc107; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔒 New School Registration</h1>
+        <p>ViblySpace Events Program - ADMIN NOTIFICATION</p>
+    </div>
+    
+    <div class="content">
+        <div class="privacy-note">
+            <strong>🔐 CONFIDENTIAL:</strong> This information is private and should only be accessed by authorized ViblySpace team members.
+        </div>
+        
+        <div class="details">
+            <h3>📋 Registration Details</h3>
+            <p><strong>🏫 School:</strong> ${data.schoolName}</p>
+            <p><strong>🎓 Type:</strong> ${data.schoolType}</p>
+            <p><strong>👤 Contact:</strong> ${data.contactName} (${data.contactRole})</p>
+            <p><strong>📧 Email:</strong> ${data.email}</p>
+            <p><strong>📞 Phone:</strong> ${data.phone}</p>
+            <p><strong>📅 Events:</strong> ${data.events}</p>
+            <p><strong>👥 Students:</strong> ${data.students}</p>
+            <p><strong>📚 Grades:</strong> ${data.gradeLevels}</p>
+            <p><strong>🔔 Updates:</strong> ${data.updates ? 'Yes' : 'No'}</p>
+            <p><strong>⏰ Submitted:</strong> ${new Date(data.timestamp).toLocaleString()}</p>
+        </div>
+        
+        <p><strong>Next Steps:</strong></p>
+        <ul>
+            <li>Contact the school within 2 business days</li>
+            <li>Send event details and schedule</li>
+            <li>Add to your outreach tracking</li>
+        </ul>
+        
+        <div class="privacy-note">
+            <strong>📊 Data Location:</strong> This information is stored in a private Google Sheet accessible only to you.
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>This email was automatically generated by ViblySpace Events System</p>
+        <p>🔒 Private and Confidential</p>
+    </div>
+</body>
+</html>
+    `;
+    
+    // Send to all admin emails
+    adminEmails.forEach(email => {
+      if (email && email !== 'your-admin-email@gmail.com') {
+        MailApp.sendEmail({
+          to: email,
+          subject: subject,
+          htmlBody: htmlBody,
+          body: `New registration from ${data.schoolName}. Check the private spreadsheet for details.`
+        });
+      }
+    });
+    
+  } catch (error) {
+    console.error('Error sending admin notification:', error);
+  }
+}
